@@ -1,9 +1,20 @@
 Rails.application.routes.draw do
+  # get 'basic_page/index'
+  # get 'basic_page/blog'
+  # get 'basic_page/resume'
+  # get 'basic_page/about'
+
+  resources :posts
+
+  match '/resume',      to: 'basic_page#resume',      via: 'get'
+  match '/about',       to: 'basic_page#about',       via: 'get'
+  match '/blog',        to: 'basic_page#blog',        via: 'get'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  # root 'welcome#index'
+  root 'basic_page#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
