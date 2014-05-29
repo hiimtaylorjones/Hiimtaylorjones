@@ -4,7 +4,10 @@ Rails.application.routes.draw do
   # get 'basic_page/resume'
   # get 'basic_page/about'
 
-  resources :posts
+  # resources :posts
+  resources :posts do
+    resources :comments
+  end
 
   match '/resume',      to: 'basic_page#resume',      via: 'get'
   match '/about',       to: 'basic_page#about',       via: 'get'

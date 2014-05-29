@@ -6,13 +6,13 @@
                                            "data-turbolinks-track" => true %>
     <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
     <%= csrf_meta_tags %>
-    <%= render 'partial_views/shim' %>
+    <%= render 'layouts/partials/shim' %>
   </head>
   <body>
-    <%= render 'partial_views/header' %>
+    <%= render 'layouts/partials/header' %>
     <div class="container">
       <%= yield %>
-      <%= render 'partial_views/footer' %>
+      <%= render 'layouts/partials/footer' %>
     </div>
   </body>
 </html>
