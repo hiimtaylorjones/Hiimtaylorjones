@@ -5,11 +5,14 @@ source 'https://rubygems.org'
 gem 'rails', '4.1.0'
 gem 'bootstrap-sass', '2.3.2.0'
 gem 'sprockets'
-gem "bcrypt-ruby", :require => "bcrypt"
+gem 'bcrypt-ruby', :require => 'bcrypt'
 # Use sqlite3 as the database for Active Record
 group :development, :test do 
 	gem 'sqlite3'
+	gem 'spring-commands-rspec'
 	gem 'rspec-rails'
+	gem 'guard-rspec'
+  	gem 'rb-fsevent' if `uname` =~ /Darwin/
 end
 
 group :test do
