@@ -11,14 +11,16 @@ group :development, :test do
 	gem 'sqlite3'
 	gem 'spring-commands-rspec'
 	gem 'rspec-rails'
-	gem 'guard-rspec'
   	gem 'rb-fsevent' if `uname` =~ /Darwin/
+  	gem 'factory_girl_rails', '4.2.1'
 end
 
 group :test do
 	gem 'selenium-webdriver'
 	gem 'capybara'
-	gem 'factory_girl_rails', '4.2.1'
+	gem 'guard-rspec'
+	gem 'launchy'
+	gem 'faker'
 end
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.3'

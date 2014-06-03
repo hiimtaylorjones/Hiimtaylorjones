@@ -1,5 +1,13 @@
 require 'spec_helper'
 
 describe User do
-  pending "add some examples to (or delete) #{__FILE__}"
+	it "Has a valid Factory" do
+		FactoryGirl.create(:user).should be_valid
+	end
+	it "Should have an email" do
+		FactoryGirl.build(:user, email: nil).should_not be_valid
+	end 
+	it "Should have a password" do
+		FactoryGirl.build(:user, password: nil).should_not be_valid
+	end
 end
