@@ -1,5 +1,7 @@
 require 'spec_helper'
 
 describe "sessions/new.html.erb" do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it "should have the content 'Sign In'" do
+  	visit '/log_in'
+  end
 end

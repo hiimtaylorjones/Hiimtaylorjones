@@ -1,5 +1,8 @@
 require 'spec_helper'
 
 describe "basic_page/index.html.erb" do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it "should have the content 'Everything Is Collateral'" do
+  	visit root_path
+  	expect(page).to have_content('Everything Is Collateral')
+  end
 end
