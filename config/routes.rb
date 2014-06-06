@@ -1,19 +1,25 @@
 Rails.application.routes.draw do
 
-  resources :posts do
-    resources :comments
-  end
+  get 'posts/index'
   resources :users
+  resources :posts
   resources :sessions
+  
+  namespace :admin do
+    get '', to: 'dashboard#index', as: '/'
+    resources :posts
+    resources :users
+  end
+
 
   # You can have the root of your site routed with "root"
   root 'basic_page#index'
   match '/resume',      to: 'basic_page#resume',      via: 'get'
   match '/about',       to: 'basic_page#about',       via: 'get'
-  match '/blog',        to: 'basic_page#blog',        via: 'get'
-  match '/sign_up',     to: 'users#new',              via: 'get'
-  match '/log_out',     to: 'sessions#destroy',       via: 'get'
-  match '/log_in',      to: 'sessions#new',           via: 'get'
+  match '/blog',        to: 'posts#index',            via: 'get'
+  match '/signup',      to: 'users#new',              via: 'get'
+  match '/logout',      to: 'sessions#destroy',       via: 'get'
+  match '/login',       to: 'sessions#new',           via: 'get'
 
   
 
