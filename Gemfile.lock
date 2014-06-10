@@ -74,7 +74,7 @@ GEM
       rspec (>= 2.14, < 4.0)
     hike (1.2.3)
     i18n (0.6.9)
-    jbuilder (2.0.8)
+    jbuilder (2.1.0)
       activesupport (>= 3.0.0, < 5)
       multi_json (~> 1.2)
     jquery-rails (3.1.0)
@@ -216,7 +216,6 @@ DEPENDENCIES
   pg
   rails (= 4.1.0)
   rails_12factor
-  rb-fsevent
   rspec-rails
   sass-rails (~> 4.0.3)
   sdoc (~> 0.4.0)

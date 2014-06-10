@@ -4,9 +4,7 @@ development:
   database: site_development
   pool: 5
   timeout: 5000
-  username: everythingisruby
-  password: passw0rd
-  #host: localhost
+#   #host: localhost
 
 test:
   adapter: postgresql
@@ -14,6 +12,4 @@ test:
   database: site_test
   pool: 5
   timeout: 5000
-  username: everythingisruby
-  password: passw0rd
-  #host: localhost
+#   #host: localhost
