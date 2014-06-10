@@ -7,6 +7,7 @@ gem 'bootstrap-sass', '2.3.2.0'
 gem 'sprockets'
 gem 'bcrypt'
 gem 'pg'
+gem 'unicorn'
 
 group :development, :test do 
 	gem 'spring-commands-rspec'
