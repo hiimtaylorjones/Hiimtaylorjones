@@ -1,14 +1,24 @@
 Rails.application.routes.draw do
 
   get 'posts/index'
-  resources :users
-  resources :posts
+  
+  resources :posts do
+    resources :comments
+  end
+
+  resources :users do 
+    resources :comments
+  end
+
   resources :sessions
   
   namespace :admin do
     get '', to: 'dashboard#index', as: '/'
-    resources :posts
-    resources :users
+    resources :posts do
+      resources :users do 
+        resources :comments
+      end
+    end 
   end
 
 
@@ -20,6 +30,7 @@ Rails.application.routes.draw do
   match '/signup',      to: 'users#new',              via: 'get'
   match '/logout',      to: 'sessions#destroy',       via: 'get'
   match '/login',       to: 'sessions#new',           via: 'get'
+
 
   
 
