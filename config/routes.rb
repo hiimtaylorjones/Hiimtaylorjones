@@ -1,25 +1,24 @@
 Rails.application.routes.draw do
-
-  get 'posts/index'
   
-  resources :posts do
+  devise_for :admins
+  devise_for :users
+  
+  resources :post
+
+  namespace :post do
     resources :comments
   end
 
-  resources :users do 
-    resources :comments
-  end
-
-  resources :sessions
+  # namespace :users do
+  #   resources :comments
+  # end
   
-  namespace :admin do
-    get '', to: 'dashboard#index', as: '/'
-    resources :posts do
-      resources :users do 
-        resources :comments
-      end
-    end 
-  end
+  # namespace :admin do
+  #   resources :users
+  #   resources :posts do
+  #     resources :comments
+  #   end 
+  # end
 
 
   # You can have the root of your site routed with "root"
@@ -27,12 +26,7 @@ Rails.application.routes.draw do
   match '/resume',      to: 'basic_page#resume',      via: 'get'
   match '/about',       to: 'basic_page#about',       via: 'get'
   match '/blog',        to: 'posts#index',            via: 'get'
-  match '/signup',      to: 'users#new',              via: 'get'
-  match '/logout',      to: 'sessions#destroy',       via: 'get'
-  match '/login',       to: 'sessions#new',           via: 'get'
-
-
-  
+  # match '/signup',      to: 'basic_page#signup',      via: 'get'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

@@ -21,8 +21,10 @@
   </p>
 <% end %>
 
-<% if current_user %> 
+<% if user_signed_in? %> 
   <% render 'posts/comment_form' %>
+<% else %>
+  <p>Please log in to display comments.</p>
 <% end %>
  
 <%= link_to 'Back', posts_path %>

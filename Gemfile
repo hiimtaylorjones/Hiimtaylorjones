@@ -8,6 +8,8 @@ gem 'sprockets'
 gem 'bcrypt'
 gem 'pg'
 gem 'unicorn'
+gem 'cancan'
+gem 'devise'
 
 group :development, :test do 
 	gem 'spring-commands-rspec'
@@ -24,6 +26,7 @@ group :test do
 end
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.3'
+gem 'will_paginate-bootstrap'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .js.coffee assets and views

@@ -1,7 +1,7 @@
 development:
   adapter: postgresql
   encoding: unicode
-  database: site_development
+  database: collateral_site_development
   pool: 5
   timeout: 5000
 #   #host: localhost
@@ -9,7 +9,7 @@ development:
 test:
   adapter: postgresql
   encoding: unicode
-  database: site_test
+  database: collateral_site_test
   pool: 5
   timeout: 5000
 #   #host: localhost
