@@ -1,18 +1,5 @@
-//= depend_on_asset "glyphicons-halflings.png"
-//= depend_on_asset "glyphicons-halflings-white.png"
-
 @import "bootstrap";
-
-/* Resume Page CSS */
-
-.resume-wrapper {
-	h2 {
-		text-align: left;
-	}
-}
-
-
-/* universal */
+$lightGray: #999;
 
 html {
 	overflow-y: scroll;
@@ -28,6 +15,8 @@ section {
 
 textarea {
 	resize: vertical;
+	height: 500px;
+	width: 300px;
 }
 
 // .center {
@@ -37,7 +26,7 @@ textarea {
 // 	}
 // }
 
-#nav-pull-right li{
+.pull-right li{
 	display: inline-block;
 }
 
@@ -59,7 +48,7 @@ h2 {
 	margin-bottom: 30px;
 	//text-align: center;
 	font-weight: normal;
-	color: $grayLight;
+	color: #999;
 }
 
 p {
@@ -90,7 +79,7 @@ footer {
 	margin-top: 45px;
 	padding-top: 5px;
 	border-top: 1px solid #eaeaea;
-	color: $grayLight;
+	color: #999;
 	a {
 		color: #555;
     	&:hover {
@@ -111,3 +100,14 @@ footer {
 		}
 	}
 }
+
+
+/* Resume Page CSS */
+
+.resume-wrapper {
+	h2 {
+		text-align: left;
+	}
+}
+
+
