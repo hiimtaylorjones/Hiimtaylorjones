@@ -5,9 +5,6 @@ class BasicPageController < ApplicationController
   def blog
   end
 
-  def resume
-  end
-
   def about
   end
 end

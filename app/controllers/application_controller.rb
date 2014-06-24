@@ -2,22 +2,12 @@ class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
-  helper_method :current_user, :current_admin
+  before_filter :configure_permitted_parameters, if: :devise_controller?
 
-  def authorize_user
-    redirect_to login_url, alert: "Not logged in as a user. Please log in." if current_user.nil? && current_admin.nil?
+  protected
+
+  def configure_permitted_parameters
+    devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:username, :email, :password, :password_confirmation, :remember_me) }
+    devise_parameter_sanitizer.for(:sign_in) { |u| u.permit(:username, :email, :password, :remember_me) }
   end
-
-  def authorize_admin
-    redirect_to login_url, alert: "Not authorized." if current_admin.nil?
-  end
-
-  private
-  	def current_user
-    	@current_user ||= User.find(session[:user_id]) if session[:user_id]
-  	end
-
-    def current_admin
-      @current_admin ||= Admin.find(session[:admin_id]) if session[:admin_id]
-    end
 end
