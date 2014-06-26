@@ -13,5 +13,4 @@ Rails.application.routes.draw do
   root 'basic_page#index'
   match '/about',       to: 'basic_page#about',       via: 'get'
   match '/blog',        to: 'posts#index',            via: 'get'
-  match '/about_taylor',to: 'basic_page#taylor_jones',via: 'get'
 end

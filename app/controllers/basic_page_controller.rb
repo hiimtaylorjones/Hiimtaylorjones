@@ -7,7 +7,4 @@ class BasicPageController < ApplicationController
 
   def about
   end
-
-  def taylor_jones
-  end
 end
