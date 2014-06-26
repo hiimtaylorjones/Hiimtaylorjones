@@ -1,34 +1,5 @@
-//= depend_on_asset "glyphicons-halflings.png"
-//= depend_on_asset "glyphicons-halflings-white.png"
-
 @import "bootstrap";
-
-/* Debug CSS */
-
-@mixin box_sizing {
-	-moz-box-sizing: border-box;
-	-webkit-box-sizing: border-box;
-	box-sizing: border-box;
-}
-
-.debug_dump {
-	clear: both;
-	float: left;
-	width: 100%;
-	margin-top: 45px;
-	@include box_sizing;
-}
-
-/* Resume Page CSS */
-
-.resume-wrapper {
-	h2 {
-		text-align: left;
-	}
-}
-
-
-/* universal */
+$lightGray: #999;
 
 html {
 	overflow-y: scroll;
@@ -36,6 +7,8 @@ html {
 
 body {
 	padding-top: 60px;
+	margin-left: 10%;
+	margin-right: 10%;
 }
 
 section {
@@ -44,17 +17,21 @@ section {
 
 textarea {
 	resize: vertical;
+	height: 500px;
+	width: 300px;
 }
 
-// .center {
-// 	text-align: center;
-// 	h1 {
-// 		margin-bottom: 10px;
-// 	}
-// }
-
-#nav-pull-right li{
+.pull-right li{
 	display: inline-block;
+	a {
+		font-size: 1.3em;
+		color: #fff;
+		text-transform: uppercase;
+		letter-spacing: -1px;
+		padding-top: 9px;
+		font-weight: bold;
+		line-height: 1;
+	}
 }
 
 /* typography */
@@ -75,7 +52,16 @@ h2 {
 	margin-bottom: 30px;
 	//text-align: center;
 	font-weight: normal;
-	color: $grayLight;
+	color: #999;
+}
+
+h3 {
+	font-size: 1.6em;
+	letter-spacing: -1px;
+	margin-bottom: 30px;
+	//text-align: center;
+	font-weight: normal;
+	color: #999;
 }
 
 p {
@@ -106,7 +92,7 @@ footer {
 	margin-top: 45px;
 	padding-top: 5px;
 	border-top: 1px solid #eaeaea;
-	color: $grayLight;
+	color: #999;
 	a {
 		color: #555;
     	&:hover {
@@ -127,3 +113,4 @@ footer {
 		}
 	}
 }
+
