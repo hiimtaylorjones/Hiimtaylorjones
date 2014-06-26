@@ -7,4 +7,10 @@ class BasicPageController < ApplicationController
 
   def about
   end
+
+  def admin_panel
+  end
+
+  def taylor
+  end
 end

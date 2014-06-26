@@ -1,3 +1,17 @@
 // Place all the styles related to the posts controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.posts-index {
+	table {
+	  border-collapse: collapse;
+	  width: 100%;
+	}
+	th, td {
+	  padding: 0.25rem;
+	  text-align: left;
+	  border: 1px solid #ccc;
+	}
+	tbody tr:nth-child(odd) {
+	  background: #eee;
+	}
+}
