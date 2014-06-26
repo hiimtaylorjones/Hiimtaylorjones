@@ -1,3 +1,19 @@
 // Place all the styles related to the basic_page controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+/* About Page CSS */
+
+.resume-wrapper {
+	margin-left: 25%;
+	margin-right: 25%;
+	h2 {
+		text-align: left;
+	}
+	h3 {
+
+	}
+	li {
+		color: #708090;
+	}
+}
