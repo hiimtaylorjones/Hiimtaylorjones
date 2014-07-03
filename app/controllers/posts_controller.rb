@@ -1,4 +1,9 @@
 class PostsController < ApplicationController
+
+	load_and_authorize_resource
+  	skip_authorize_resource :only => :index
+  	skip_authorize_resource :only => :show
+
 	def new
 		@post = Post.new
 	end
@@ -26,6 +31,7 @@ class PostsController < ApplicationController
 	def destroy
 		@post = Post.find(params[:id])
 		@post.destroy
+		authorize! :manage, @article
 		redirect_to admin_blog
 	end
 
@@ -35,6 +41,7 @@ class PostsController < ApplicationController
 
 	def edit
 		@post = Post.find(params[:id])
+		authorize! :manage, @article
 	end
 
 	def update
@@ -48,6 +55,7 @@ class PostsController < ApplicationController
 
 	def admin
 		@posts = Post.all
+		authorize! :show, @posts
 	end
 
 	private
