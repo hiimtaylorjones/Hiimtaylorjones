@@ -7,7 +7,7 @@ class PostsController < ApplicationController
   		@post = Post.new(post_params)
   		respond_to do |format| 
 	 		if @post.save
-	  			format.html { redirect posts_url, 
+	  			format.html { redirect_to posts_url, 
 	  				notice: 'Post was successfully created.' }
 	  			format.json {render json: @post, status: created,
 	  				location: @post}
@@ -26,11 +26,11 @@ class PostsController < ApplicationController
 	def destroy
 		@post = Post.find(params[:id])
 		@post.destroy
-		redirect_to posts_path
+		redirect_to admin_blog
 	end
 
 	def index
-		@posts = Post.all
+		@posts = Post.order('created_at DESC').limit(10)
 	end
 
 	def edit
@@ -46,9 +46,13 @@ class PostsController < ApplicationController
 		end
 	end
 
+	def admin
+		@posts = Post.all
+	end
+
 	private
 		def post_params
-			params.require(:post).permit(:title, :text)
+			params.require(:post).permit(:title, :img, :text)
 		end
 end
 
