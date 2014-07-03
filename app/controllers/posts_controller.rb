@@ -26,7 +26,7 @@ class PostsController < ApplicationController
 	def destroy
 		@post = Post.find(params[:id])
 		@post.destroy
-		redirect_to posts_path
+		redirect_to admin_blog
 	end
 
 	def index
@@ -46,9 +46,13 @@ class PostsController < ApplicationController
 		end
 	end
 
+	def admin
+		@posts = Post.all
+	end
+
 	private
 		def post_params
-			params.require(:post).permit(:title, :text)
+			params.require(:post).permit(:title, :img, :text)
 		end
 end
 
