@@ -2,7 +2,7 @@
 <div class="post">
 	<h2><%= post.title %></h2>
 	<%= image_tag(post.img) %>
-	<p><%= post.text %></p>
+	<p><%= simple_format post.tagline %></p>
 	<br/>
 	<p><%= link_to 'Read More', post_path(post) %>
 </div>
