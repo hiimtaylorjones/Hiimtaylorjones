@@ -7,6 +7,8 @@ gem 'pg'
 gem 'unicorn'
 gem 'cancancan'
 gem 'devise'
+gem 'will_paginate', '~> 3.0'
+gem 'will_paginate-bootstrap'
 
 group :development, :test do 
 	gem 'spring-commands-rspec'

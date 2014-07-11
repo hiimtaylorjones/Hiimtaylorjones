@@ -7,3 +7,4 @@
 	<p><%= link_to 'Read More', post_path(post) %>
 </div>
 <% end %>
+<%= will_paginate @posts, renderer: BootstrapPagination::Rails, class: "pagination pagination-centered"%>
