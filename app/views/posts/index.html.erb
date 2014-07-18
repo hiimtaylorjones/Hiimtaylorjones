@@ -1,10 +1,11 @@
 <% @posts.each do |post| %>
-<div class="post">
-	<h2><%= post.title %></h2>
-	<%= image_tag(post.img) %>
-	<p><%= simple_format post.tagline %></p>
-	<br/>
-	<p><%= link_to 'Read More', post_path(post) %>
-</div>
+	<div class="post-preview clearfix media">
+		<%= image_tag(post.img, :class => "img-rounded pull-left") %>
+		<h2><%= post.title %></h2>
+		<h4><%= simple_format post.tagline %></h4>
+		<br/>
+		<p><%= link_to 'Read More', post_path(post) %></p>
+	</div>
 <% end %>
-<%= will_paginate @posts, renderer: BootstrapPagination::Rails, class: "pagination pagination-centered"%>
+
+<%= will_paginate @posts, renderer: BootstrapPagination::Rails, class: "pages"%>
