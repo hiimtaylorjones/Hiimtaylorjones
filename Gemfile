@@ -29,6 +29,7 @@ end
 
 
 # Use SCSS for stylesheets
+gem 'yui-compressor'
 gem 'sass-rails', '>= 3.2'
 gem 'bootstrap-sass', '~> 3.1.1'
 # Use Uglifier as compressor for JavaScript assets

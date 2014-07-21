@@ -1,8 +1,16 @@
-<div class="frontpage">
-	<%= image_tag("atl.jpg", :alt => "atl") %>
+<div class="most-recent">
+	<% @posts = Post.order("created_at desc").limit(1) %>
+	<% @posts.each do |post| %>
+		<div class="post">
+			<h2><%= post.title %></h2>
+			<%= image_tag(post.img) %>
+			<p><%= simple_format post.text %></p>
+			<br/>
+		</div>
+	<% end %>
 </div>
 
-<div class="container-fluid">
+<!-- <div class="container-fluid">
 	<div class="row">
 		<div class="col-md-4">
 			<h3>What's New</h3>
@@ -29,4 +37,4 @@
 			</ul>
 		</div>
 	</div>
-</div>
+</div> -->

@@ -2,4 +2,24 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-/* About Page CSS */
+/* User Profile CSS */
+
+.edit-profile {
+	margin-left: 25%;
+	margin-right: 25%;
+	input {
+		width: 45%;
+		height: 35px;
+		margin-bottom: 10px;
+	}
+}
+
+.sign-in {
+	margin-left: 10%;
+	margin-right: 10%;
+	input {
+		width: 30%;
+		height: 35px;
+		margin-bottom: 10px;
+	}
+}
