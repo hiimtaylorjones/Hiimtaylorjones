@@ -1,4 +1,4 @@
-@import "bootstrap";
+@import 'bootstrap';
 $lightGray: #999;
 
 html {
@@ -107,80 +107,6 @@ body {
 	}
 }
 
-/* Blog Post CSS */
-
-.posts-index {
-	table {
-	  border-collapse: collapse;
-	  width: 100%;
-	}
-	th, td {
-	  padding: 0.25rem;
-	  text-align: left;
-	  border: 1px solid #ccc;
-	}
-	tbody tr:nth-child(odd) {
-	  background: #eee;
-	}
-}
-
-.post-preview {
-	margin-left: 15%;
-	margin-right: 15%;
-	img {
-		width: 200px;
-		height: 200px;
-	}
-}
-
-.pages {
-	margin-left: 30%;
-	margin-right: 30%;
-}
-
-.post-form {
-	margin-left: 15%;
-	margin-right: 15%;
-	display: block;
-
-	label {
-		
-	}
-
-	#post_title {
-		width: 800px;
-		
-	}
-
-	textarea {
-		resize: vertical;
-		height: 600px;
-		width: 800px;
-	}
-}
-
-.post {
-	p {
-		display: block;
-		font-size: 1.2em;
-	}
-}
-
-.comment-form {
-	margin-right: 15%;
-	display: block;
-
-	label {
-		
-	}
-
-	textarea {
-		resize: vertical;
-		height: 200px;
-		width: 600px;
-	}
-}
-
 
 /* Navigation CSS */
 
@@ -196,8 +122,6 @@ body {
 		line-height: 1;
 	}
 }
-
-/* Header */
 
 #logo {
 	float: left;

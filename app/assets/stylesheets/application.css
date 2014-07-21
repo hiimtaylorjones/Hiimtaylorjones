@@ -12,4 +12,7 @@
  *
  *= require_tree .
  *= require_self
+ *= requre basic_page
+ *= require custom
+ *= require posts
  */
