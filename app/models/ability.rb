@@ -6,8 +6,11 @@ class Ability
     user ||= User.new # guest user (not logged in)
     if user.role == "admin"
         can :manage, :all
+    elsif user.role == "default"
+        can :read, Post
+        can :manage, Comment
     else
-        can :read, :all
+        can :read, Post
     end
   end
 end

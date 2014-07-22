@@ -1,5 +1,4 @@
 class Post < ActiveRecord::Base
-	self.per_page = 10
 	belongs_to :admin
 	has_many :comments, dependent: :destroy
 	validates :title, presence: true, length: { maximum: 50 }

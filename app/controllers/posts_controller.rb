@@ -31,7 +31,7 @@ class PostsController < ApplicationController
 	def destroy
 		@post = Post.find(params[:id])
 		@post.destroy
-		authorize! :manage, @article
+		authorize! :manage, @post
 		redirect_to admin_blog
 	end
 
@@ -41,7 +41,7 @@ class PostsController < ApplicationController
 
 	def edit
 		@post = Post.find(params[:id])
-		authorize! :manage, @article
+		authorize! :manage, @post
 	end
 
 	def update
