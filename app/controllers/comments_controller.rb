@@ -25,7 +25,7 @@ class CommentsController < ApplicationController
     @post = Post.find(params[:post_id])
     @comment = @post.comments.find(params[:id])
     @comment.destroy
-    redirect_to posts_path(@post)
+    redirect_to @post
   end
  
   private
