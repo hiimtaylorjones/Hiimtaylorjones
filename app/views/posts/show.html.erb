@@ -4,7 +4,25 @@
 	<p><%= simple_format @post.text %></p>
 	<br/>
 </div>
-
+<div class="comments-section">
+	<% @post.comments.each do |comment| %>
+		<div class="comment">
+			<h4><%= comment.commenter %></h4><p>Posted On:</p>
+			<p><%= comment.body %></p>
+			<% if can? :update, comment %>
+				<div class="comment-functions">
+					<p>
+						<%= link_to 'Edit', edit_post_comment_path(comment.id, @post.id) %> |
+						<%= link_to 'Delete', post_comment_path(comment.id, @post.id) %>
+					</p>
+				</div>
+			<% end %>
+		</div>
+	<% end %>
+</div>
+<%if user_signed_in? %>
+	<%= render 'comments/form' %>
+<% end %>
 
 <%= link_to 'Back', posts_path %>
 <% if can? :update, @post %>

@@ -23,4 +23,9 @@ class User < ActiveRecord::Base
     	where(conditions).first
   	end
   end
+
+  private
+    def set_default_role
+      self.role == "default"
+    end
 end

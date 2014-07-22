@@ -61,6 +61,31 @@
 	}
 }
 
+.comments-section {
+
+	.comment {
+		border: 2px solid #ccc;
+		border-radius: 2px;
+		width: 500px;
+		length: 300px;
+		margin-left: 20px;
+		margin-bottom: 10px;
+		p {
+			font-style: italic;
+			margin-left: 20px;
+			margin-right: 0px;
+		}
+		h4 {
+			text-align: left;
+			margin-left: 10px;
+		}
+		.comment-functions {
+			text-align: right;
+		}
+	}
+
+}
+
 .comment-form {
 	margin-right: 15%;
 	display: block;
