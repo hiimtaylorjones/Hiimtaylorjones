@@ -11,12 +11,26 @@
   <body>
     <%= render 'layouts/partials/header' %>
     <div class="container">
+
+      <!--Used to notify the user of errors-->
       <% if notice %>
         <p class="alert alert-success"><%= notice %></p>
       <% end %>
       <% if alert %>
         <p class="alert alert-danger"><%= alert %></p>
       <% end %>
+
+      <!--Sign Up and Sign In pop-ups-->
+      <div class="messagepop login-pop-in">
+        <h2>Test</h2>
+        <a class="close" href="/">Go Away</a>
+      </div>
+      <div class="messagepop signup-pop-in">
+        <h2>Test</h2>
+        <a class="close" href="/">Go Away</a>
+      </div>
+
+      <!--Yields all of the stuff you know and love.-->
       <%= yield %>
       <%= render 'layouts/partials/footer' %>
     </div>

@@ -1,3 +1,4 @@
+
 <div class="most-recent">
 	<% @posts = Post.order("created_at desc").limit(1) %>
 	<% @posts.each do |post| %>

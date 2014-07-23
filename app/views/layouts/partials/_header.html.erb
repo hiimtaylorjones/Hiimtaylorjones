@@ -10,11 +10,23 @@
               <li><%= link_to 'Edit profile', edit_user_registration_path %></li>
               <li><%= link_to "Logout", destroy_user_session_path, method: :delete%></li>
             <% else %>
-              <li><%= link_to "Sign up", new_user_registration_path%></li>
-              <li><%= link_to "Login", new_user_session_path%></li>
+              <li><%= link_to "Sign up", new_user_registration_path, :id=>"sign-up-nav"%></li>
+              
+              <li><%= link_to "Login", new_user_session_path, :id=>"log-in-nav"%></li>
+              
             <% end %>
           </ul>
         </nav>
       </div>
     </div>
 </header>
+
+<div class="messagepop login-pop">
+  <h2>Test</h2>
+  <a class="close" href="/">Go Away</a>
+</div>
+
+<div class="messagepop signup-pop">
+  <h2>Test</h2>
+  <a class="close" href="/">Go Away</a>
+</div>
