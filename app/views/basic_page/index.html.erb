@@ -1,4 +1,3 @@
-
 <div class="most-recent">
 	<% @posts = Post.order("created_at desc").limit(1) %>
 	<% @posts.each do |post| %>
@@ -10,4 +9,9 @@
 		</div>
 		<%=link_to 'Read More', post_path(post) %>
 	<% end %>
+</div>
+
+<div id="Introduction-Pop">
+	<h3>Welcome</h3>
+	<p>Welcome to Everything is Collateral</p>
 </div>
