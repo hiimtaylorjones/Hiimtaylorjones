@@ -20,14 +20,8 @@
         <p class="alert alert-danger"><%= alert %></p>
       <% end %>
 
-      <!--Sign Up and Sign In pop-ups-->
-      <div class="messagepop login-pop-in">
-        <h2>Test</h2>
-        <a class="close" href="/">Go Away</a>
-      </div>
-      <div class="messagepop signup-pop-in">
-        <h2>Test</h2>
-        <a class="close" href="/">Go Away</a>
+      <div class="login-window" style="display:none; overflow:hidden;">
+        <%= render '/devise/sessions/newpopup' %>
       </div>
 
       <!--Yields all of the stuff you know and love.-->

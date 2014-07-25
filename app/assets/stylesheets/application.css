@@ -15,4 +15,5 @@
  *= requre basic_page
  *= require custom
  *= require posts
+ *= require jquery-ui/dialog
  */
