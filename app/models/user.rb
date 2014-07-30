@@ -1,15 +1,14 @@
 class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
+  devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable
   attr_accessor :login
-  after_create :set_default_role
+  after_create :set_role
   validates :username, presence: true, length: {maximum: 255}, uniqueness: { case_sensitive: false }, format: { with: /\A[a-zA-Z0-9]*\z/, message: "may only contain letters and numbers." }
 
   # User::Roles
   # The available roles
-  Roles = [ :admin , :default ]
+  ROLES = %w[default admin]
 
   def is?( requested_role )
     self.role == requested_role.to_s
@@ -24,8 +23,8 @@ class User < ActiveRecord::Base
   	end
   end
 
-  private
-    def set_default_role
-      self.role == :default
+  private 
+    def set_role
+      self.role = "default"
     end
 end

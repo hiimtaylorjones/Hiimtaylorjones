@@ -12,7 +12,7 @@ gem 'will_paginate-bootstrap'
 
 group :development, :test do 
 	gem 'spring-commands-rspec'
-	gem 'rspec-rails'
+	gem 'rspec-rails', '~> 3.0.0'
   	gem 'factory_girl_rails', '4.4.0'
 end
 
