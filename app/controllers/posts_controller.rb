@@ -32,7 +32,7 @@ class PostsController < ApplicationController
 		@post = Post.find(params[:id])
 		@post.destroy
 		authorize! :manage, @post
-		redirect_to admin_blog
+		render 'admin'
 	end
 
 	def index
