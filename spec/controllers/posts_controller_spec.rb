@@ -71,20 +71,15 @@ RSpec.describe PostsController, :type => :controller do
 				expect(response).to render_template(:admin)
 			end
 		end
+
+		describe "All mistakes have been corrected. Call it quits." do
+			it "They should be able to log out" do 
+			end
+		end
 	end
 
 
-	# describe "Delete Post"
-
-	# 	before(:each) do
-	# 		login_user
-	# 		@post = FactoryGirl.create(:post)
-	# 	end
-
-	# 	describe "Get Post to Delete" do 
-	# 		it "should successfuly delete" do 
-	# 			expect(delete :destroy, :id => @post).should change(Post, :count)
-	# 		end
-	# 	end
-
+	describe "User Interactions" do
+		
+	end
 end

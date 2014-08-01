@@ -5,8 +5,4 @@ module ControllerMacros
       sign_in user
       return user
   end
-
-  def signout_user
-
-  end
 end
