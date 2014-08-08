@@ -7,7 +7,7 @@
 <div class="comments-section">
 	<% @post.comments.each do |comment| %>
 		<div class="comment">
-			<h4><%= comment.commenter %></h4><p>Posted On:</p>
+			<h4>- <%= comment.commenter %></h4><p>Posted On:</p>
 			<p><%= comment.body %></p>
 			<% if user_signed_in? && comment.commenter == current_user.username %>
 				<div class="comment-functions">

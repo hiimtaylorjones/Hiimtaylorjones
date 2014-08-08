@@ -6,6 +6,13 @@ class User < ActiveRecord::Base
   before_save :set_role
   validates :username, presence: true, length: {maximum: 255}, uniqueness: { case_sensitive: false }, format: { with: /\A[a-zA-Z0-9]*\z/, message: "may only contain letters and numbers." }
 
+  # Paperclip stuff for images
+  has_attached_file :avatar, :styles => { :medium => "300x300>", :thumb => "100x100>" }, :default_url => "assets/images/atl.jpg"
+  validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
+  validates_with AttachmentPresenceValidator, :attributes => :avatar
+  validates_with AttachmentSizeValidator, :attributes => :avatar, :less_than => 1.megabytes
+
+
   # User::Roles
   # The available roles
   ROLES = %w[default admin]

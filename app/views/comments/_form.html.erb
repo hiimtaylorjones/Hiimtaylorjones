@@ -1,7 +1,7 @@
 <div class="comment-form">
   <h2>Add a comment:</h2>
   <%= form_for([@post, @post.comments.build]) do |f| %>
-  <p><b>Commenter:</b> <%= current_user.username %></p>
+  <p><b>Commenter:</b> <%= image_tag current_user.avatar.url(:thumb) %> <%= current_user.username %></p>
     <%= f.hidden_field :commenter, :value => current_user.username %>
     <p>
       <%= f.label :body %><br>
