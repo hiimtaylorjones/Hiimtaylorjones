@@ -15,20 +15,24 @@
 
 
 
+
 /* User Profile CSS */
 
 .edit-profile, .sign-in, .sign-up, .login-window {
 	margin: 0 auto;
 	width: 50%;
 
-	h2 {
+	h1, h2, h3, h4 {
 		text-align: center;
 	}
 
+	p {
+		margin-left: 80px;
+	}
+
 	form {
-		label{
-			margin-left: 100px;
-			margin-right: 100px;
+		label, i {
+			margin-left: 100px;	
 		}
 		input{
 			margin: auto;
