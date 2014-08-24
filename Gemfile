@@ -9,6 +9,7 @@ gem 'cancancan'
 gem 'devise'
 gem 'will_paginate', '~> 3.0'
 gem 'will_paginate-bootstrap'
+gem 'aws-sdk'
 
 group :development, :test do 
 	gem 'spring-commands-rspec'

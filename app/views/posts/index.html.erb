@@ -1,6 +1,6 @@
 <% @posts.each do |post| %>
 	<div class="post-preview clearfix media">
-		<%= image_tag(post.img, :class => "img-rounded pull-left") %>
+		<%= image_tag post.title_image.url(:thumb), :class => "img-rounded pull-left" %>
 		<h2><%= post.title %></h2>
 		<h4><%= simple_format post.tagline %></h4>
 		<br/>
