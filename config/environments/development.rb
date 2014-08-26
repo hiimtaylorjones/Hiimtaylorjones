@@ -37,4 +37,13 @@ Rails.application.configure do
   # config.action_view.raise_on_missing_translations = true
 
   Paperclip.options[:command_path] = "/usr/local/bin/"
+
+  config.paperclip_defaults = {
+    :storage => :s3,
+    :s3_credentials => {
+      :bucket => ENV['collateral-development'],
+      :access_key_id => ENV['AKIAIYX4BYEBE2EF33UA'],
+      :secret_access_key => ENV['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']
+    }
+  }
 end
