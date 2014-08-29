@@ -3,7 +3,7 @@
 	<% @posts.each do |post| %>
 		<div class="post">
 			<h2><%= post.title %></h2>
-			<!--%= image_tag post.title_image.url%-->
+			<%= image_tag post.title_image.url(:full)%>
 			<p><%= simple_format post.text %></p>
 			<br/>
 		</div>

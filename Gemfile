@@ -11,6 +11,11 @@ gem 'will_paginate', '~> 3.0'
 gem 'will_paginate-bootstrap'
 gem 'aws-sdk'
 
+gem 'fog'
+gem 'mini_magick'
+gem 'carrierwave'
+gem 'paperclip'
+
 group :development, :test do 
 	gem 'spring-commands-rspec'
 	gem 'rspec-rails', '~> 3.0.0'
@@ -44,8 +49,6 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0',          group: :doc
 gem 'yui-compressor'
 gem 'compass-rails'
-
-gem "paperclip", "~> 4.1"
 
 # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
 gem 'spring',        group: :development

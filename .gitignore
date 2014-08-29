@@ -16,4 +16,4 @@
 /tmp
 .env
 
-/config/aws.yml
+/config/aws_cred.yml
