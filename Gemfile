@@ -1,5 +1,4 @@
 source 'https://rubygems.org'
-ruby '2.0.0'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.0'
 gem 'sprockets'
@@ -11,6 +10,11 @@ gem 'devise'
 gem 'will_paginate', '~> 3.0'
 gem 'will_paginate-bootstrap'
 gem 'aws-sdk'
+
+gem 'fog'
+gem 'mini_magick'
+gem 'carrierwave'
+gem 'paperclip'
 
 group :development, :test do 
 	gem 'spring-commands-rspec'
@@ -45,8 +49,6 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0',          group: :doc
 gem 'yui-compressor'
 gem 'compass-rails'
-
-gem "paperclip", "~> 4.1"
 
 # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
 gem 'spring',        group: :development
