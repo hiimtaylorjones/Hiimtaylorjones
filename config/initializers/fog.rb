@@ -1,6 +1,6 @@
 CarrierWave.configure do |config|
   if Rails.env.development? || Rails.env.test?
-    #S3_ENV = YAML.load_file("#{::Rails.root}/config/aws_cred.yml")[Rails.env]	 
+    S3_ENV = YAML.load_file("#{::Rails.root}/config/aws_cred.yml")[Rails.env]	 
     config.fog_credentials = {
       # Configuration for Amazon S3 should be made available through an Environment variable.
       # For local installations, export the env variable through the shell OR
@@ -28,7 +28,7 @@ CarrierWave.configure do |config|
       # $ heroku config:add S3_KEY=your_s3_access_key S3_SECRET=your_s3_secret S3_REGION=eu-west-1 S3_ASSET_URL=http://assets.example.com/ S3_BUCKET_NAME=s3_bucket/folder
    
       # Configuration for Amazon S3
-      :provider              => 'AWS',
+      :provider              => ENV['provider'],
       :aws_access_key_id     => ENV["aws_access_key_id"],
       :aws_secret_access_key => ENV["aws_secret_access_key"]
     }
