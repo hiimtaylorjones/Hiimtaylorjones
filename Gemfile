@@ -10,11 +10,9 @@ gem 'devise'
 gem 'will_paginate', '~> 3.0'
 gem 'will_paginate-bootstrap'
 gem 'aws-sdk'
-
-gem 'fog'
+gem 'carrierwave-aws'
 gem 'mini_magick'
 gem 'carrierwave'
-gem 'paperclip'
 
 group :development, :test do 
 	gem 'spring-commands-rspec'
