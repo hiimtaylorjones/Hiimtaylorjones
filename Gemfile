@@ -10,7 +10,8 @@ gem 'devise'
 gem 'will_paginate', '~> 3.0'
 gem 'will_paginate-bootstrap'
 gem 'aws-sdk'
-gem 'carrierwave-aws'
+gem 'carrierwave'
+gem 'fog'
 gem 'mini_magick'
 
 group :development, :test do 
