@@ -12,7 +12,6 @@ gem 'will_paginate-bootstrap'
 gem 'aws-sdk'
 gem 'carrierwave-aws'
 gem 'mini_magick'
-gem 'carrierwave'
 
 group :development, :test do 
 	gem 'spring-commands-rspec'
