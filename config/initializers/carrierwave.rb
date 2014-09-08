@@ -7,7 +7,6 @@ CarrierWave.configure do |config|
       :aws_access_key_id      => S3_ENV['AWS_ACCESS_KEY_ID'], 
       :aws_secret_access_key  => S3_ENV['AWS_SECRET_ACCESS_KEY'], 
     }
-    config.fog_public     = false 
     config.fog_directory = S3_ENV['S3_BUCKET_NAME']
 
   # For production, AKA Heroku.
@@ -17,7 +16,6 @@ CarrierWave.configure do |config|
       :aws_access_key_id      => ENV['AWS_ACCESS_KEY_ID'], 
       :aws_secret_access_key  => ENV['AWS_SECRET_ACCESS_KEY'], 
     }
-    config.fog_public     = false 
     config.fog_directory = ENV['S3_BUCKET_NAME']
   end
  
