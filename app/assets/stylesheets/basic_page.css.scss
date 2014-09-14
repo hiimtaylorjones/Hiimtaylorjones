@@ -3,36 +3,23 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 
-.most-recent {
-	a {
-		margin-left: 2%;
-		margin-bottom: 30px;
-		font-size: 11pt;
-
-	}
-}
-
-
-
-
-
 /* User Profile CSS */
 
 .edit-profile, .sign-in, .sign-up, .login-window {
 	margin: 0 auto;
-	width: 50%;
+	width: 75%;
 
 	h1, h2, h3, h4 {
 		text-align: center;
 	}
 
 	p {
-		margin-left: 80px;
+		margin-left: 150px;
 	}
 
 	form {
 		label, i {
-			margin-left: 100px;	
+			margin-left: 150px;	
 		}
 		input{
 			margin: auto;

@@ -65,11 +65,9 @@
 
 	.comment {
 		border: 2px solid #ccc;
-		border-radius: 2px;
+		border-radius: 8px;
 		width: 500px;
 		length: 300px;
-		margin-left: 20px;
-		margin-bottom: 10px;
 		p {
 			font-style: italic;
 			margin-left: 20px;
@@ -86,6 +84,12 @@
 
 }
 
+.readmore {
+	a {
+		font-size: 18px;
+	}
+}
+
 .comment-form {
 	margin-right: 15%;
 	display: block;
@@ -98,5 +102,6 @@
 		resize: vertical;
 		height: 200px;
 		width: 600px;
+		border-radius: 8px;
 	}
 }

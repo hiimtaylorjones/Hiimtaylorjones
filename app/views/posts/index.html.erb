@@ -4,7 +4,11 @@
 		<h2><%= post.title %></h2>
 		<h4><%= simple_format post.tagline %></h4>
 		<br/>
-		<p><%= link_to 'Read More', post_path(post) %></p>
+		<div class="text-center">
+			<button type="button" class="btn btn-default readmore">
+				<%=link_to 'Read More', post_path(post) %>
+			</button>
+		</div>
 	</div>
 <% end %>
 
