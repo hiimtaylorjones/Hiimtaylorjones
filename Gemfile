@@ -13,7 +13,6 @@ gem 'aws-sdk'
 gem 'carrierwave'
 gem 'fog'
 gem 'mini_magick'
-gem 'paperclip'
 
 group :development, :test do 
 	gem 'spring-commands-rspec'
