@@ -5,7 +5,7 @@
 
 /* User Profile CSS */
 
-.edit-profile, .sign-in, .sign-up, .login-window {
+.edit-profile, .sign-in, .sign-up, #login-window {
 	margin: 0 auto;
 	width: 75%;
 
@@ -57,3 +57,7 @@ a.selected {
   margin: 8px 0;
   padding-bottom: 8px;
 }
+
+// .ui-dialog-titlebar {
+	
+// }

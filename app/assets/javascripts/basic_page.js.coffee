@@ -4,21 +4,26 @@
 
 # Requires jQuery
 
+
+
 $(document).ready ->
-  $(".login-window").hide()
-  $("#login-nav").click -> 
-    $(".login-window").dialog( 
-      show: "slide"
-      hide: "toggle"
-      width: 400
-      height: 500
-      modal: true
-      title: ""
-      buttons: 
-        Close: ->
-          $(".login-window").dialog "close"
-          $(".login-window").css("display", "none")
-          return
-    )
+  $('#login-window').dialog
+  	autoOpen: false
+  	fluid: true
+  	modal: true
+  	maxWidth: '450'
+  	maxheight: '500'
+  	draggable: true
+  	title: 'Sign In'
+
+  $('#signup-window').dialog
+  	autoOpen: false
+  	title: 'Sign Up'
+
+  $('#login-nav').click ->
+    $('#login-window').dialog('open')
     false
+  $('#signup-nav').click ->
+  	$('#signup-window').dialog('open')
   return
+
