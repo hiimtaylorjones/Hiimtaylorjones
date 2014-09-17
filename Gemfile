@@ -13,6 +13,7 @@ gem 'aws-sdk'
 gem 'carrierwave'
 gem 'fog'
 gem 'mini_magick'
+gem 'ckeditor'
 
 group :development, :test do 
 	gem 'spring-commands-rspec'
@@ -29,14 +30,14 @@ group :test do
 end
 
 
-# Use SCSS for stylesheets
+# Use SCSS for stylesheets. Also using Bootstrap SASS
 gem 'sass-rails', '>= 3.2'
 gem 'bootstrap-sass', '~> 3.1.1'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .js.coffee assets and views
 gem 'coffee-rails', '~> 4.0.0'
-# Use jquery as the JavaScript library
+# jQuery gems
 gem 'jquery-rails', "~> 2.3.0"
 gem 'jquery-ui-rails'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
