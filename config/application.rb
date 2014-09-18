@@ -9,9 +9,7 @@ Bundler.require(*Rails.groups)
 module Everythingisruby
   class Application < Rails::Application
 
-    config.autoload_paths += %W(#{config.root}/app/models/ckeditor)
-    config.assets.precompile += Ckeditor.assets
-    config.assets.precompile += %w(ckeditor/*)
+  
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
@@ -24,6 +22,7 @@ module Everythingisruby
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
     config.assets.precompile += %w(*.png *.jpg *.jpeg *.gif)
+    config.assets.precompile += %w( ckeditor/* )
     config.generators do |g| 
         g.test_framework :rspec,
             :fixtures => true,
