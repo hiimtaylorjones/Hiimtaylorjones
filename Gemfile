@@ -31,7 +31,7 @@ end
 
 
 # Use SCSS for stylesheets. Also using Bootstrap SASS
-gem 'sass-rails', '>= 3.2'
+gem 'sass-rails', github: 'rails/sass-rails'
 gem 'bootstrap-sass', '~> 3.2'
 gem 'autoprefixer-rails'
 # Use Uglifier as compressor for JavaScript assets
