@@ -12,8 +12,8 @@
  *
  *= require_tree .
  *= require_self
- *= require custom
  *= requre basic_page
+ *= require custom
  *= require posts
  *= require jquery-ui
  */
