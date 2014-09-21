@@ -31,14 +31,14 @@ end
 
 
 # Use SCSS for stylesheets. Also using Bootstrap SASS
-gem 'sass-rails', '>= 3.2'
-gem 'bootstrap-sass', '~> 3.1.1'
+gem 'sass-rails', '~> 4.0.3'
+gem 'bootstrap-sass'
 # Use Uglifier as compressor for JavaScript assets
-gem 'uglifier', '>= 1.3.0'
+gem 'uglifier'
 # Use CoffeeScript for .js.coffee assets and views
-gem 'coffee-rails', '~> 4.0.0'
+gem 'coffee-rails'
 # jQuery gems
-gem 'jquery-rails', "~> 2.3.0"
+gem 'jquery-rails'
 gem 'jquery-ui-rails'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
@@ -51,5 +51,7 @@ gem 'compass-rails'
 
 # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
 gem 'spring',        group: :development
+gem 'rails_serve_static_assets', group: :production
 gem 'rails_12factor', group: :production
+
 
