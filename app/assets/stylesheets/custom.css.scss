@@ -13,7 +13,7 @@ html {
 	font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
    	font-weight: 300;
 	min-height: 100%;
-	padding-top: 60px;
+	padding-top: 10px;
 	
 	width: 1080px;
 
@@ -105,6 +105,10 @@ html {
 
 
 /* Navigation CSS */
+
+.navbar {
+	margin-bottom: 5px;
+}
 
 .navbar-right li{
 	display: inline-block;

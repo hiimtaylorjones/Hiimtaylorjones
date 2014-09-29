@@ -59,6 +59,10 @@ a.selected {
 }
 
 .resume-wrapper {
+
+	margin-left: 10%;
+	margin-right: 10%;
+
 	
 	.row {
 		h3 {
@@ -69,6 +73,13 @@ a.selected {
 		ul {
 			margin-left: 35px;
 			margin-right: 35px;
+		}
+	}
+
+	.links {
+		a {
+			margin-left: 10px;
+			margin-right: 10px;
 		}
 	}
 }

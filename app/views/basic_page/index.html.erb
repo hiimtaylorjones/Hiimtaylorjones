@@ -2,7 +2,7 @@
 	<% @posts = Post.order("created_at desc").limit(1) %>
 	<% @posts.each do |post| %>
 		<div class="post">
-			<h2><%= post.title %></h2>
+			<h2 class="text-center"><%= post.title %></h2>
 			<%= image_tag post.title_image.url(:full)%>
 			<p><%= simple_format post.text %></p>
 			<br/>
