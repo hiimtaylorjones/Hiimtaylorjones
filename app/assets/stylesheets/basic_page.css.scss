@@ -58,6 +58,17 @@ a.selected {
   padding-bottom: 8px;
 }
 
-// .ui-dialog-titlebar {
+.resume-wrapper {
 	
-// }
+	.row {
+		h3 {
+			margin-left: 35px;
+			margin-right: 35px;
+		}
+
+		ul {
+			margin-left: 35px;
+			margin-right: 35px;
+		}
+	}
+}

@@ -1,30 +1,32 @@
-<div class="post">
-	<h2><%= @post.title %></h2>
-	<%= image_tag @post.title_image.url(:full) %>
-	<p><%= simple_format @post.text %></p>
-	<br/>
-</div>
-<div class="comments-section">
-	<% @post.comments.each do |comment| %>
-		<div class="comment">
-			<h4>- <%= comment.commenter %></h4><p>Posted On:</p>
-			<p><%= comment.body %></p>
-			<% if user_signed_in? && comment.commenter == current_user.username %>
-				<div class="comment-functions">
-					<p>
-						<%= link_to 'Edit', edit_post_comment_path(comment.id, @post.id) %> |
-						<%= link_to 'Delete', [comment.post, comment], method: :delete, data: { confirm: 'Are you sure?' } %>
-					</p>
-				</div>
-			<% end %>
-		</div>
+<div class="containter-fluid">
+	<div class="post">
+		<h2><%= @post.title %></h2>
+		<%= image_tag @post.title_image.url(:full) %>
+		<p><%= simple_format @post.text %></p>
+		<br/>
+	</div>
+	<div class="comments-section">
+		<% @post.comments.each do |comment| %>
+			<div class="comment">
+				<h4>- <%= comment.commenter %></h4><p>Posted On:</p>
+				<p><%= comment.body %></p>
+				<% if user_signed_in? && comment.commenter == current_user.username %>
+					<div class="comment-functions">
+						<p>
+							<%= link_to 'Edit', edit_post_comment_path(comment.id, @post.id) %> |
+							<%= link_to 'Delete', [comment.post, comment], method: :delete, data: { confirm: 'Are you sure?' } %>
+						</p>
+					</div>
+				<% end %>
+			</div>
+		<% end %>
+	</div>
+	<%if user_signed_in? %>
+		<%= render 'comments/form' %>
+	<% end %>
+
+	<%= link_to 'Back', posts_path %>
+	<% if can? :update, @post %>
+		| <%= link_to 'Edit', edit_post_path(@post) %>
 	<% end %>
 </div>
-<%if user_signed_in? %>
-	<%= render 'comments/form' %>
-<% end %>
-
-<%= link_to 'Back', posts_path %>
-<% if can? :update, @post %>
-	| <%= link_to 'Edit', edit_post_path(@post) %>
-<% end %>

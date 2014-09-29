@@ -9,12 +9,12 @@ html {
  * The following CSS deals with general rules and not specific classes. They may be overridden
  * by the class references towards the bottom of the page. 
  */
-body {
+.content {
 	font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
    	font-weight: 300;
 	min-height: 100%;
 	padding-top: 60px;
-	margin: 0 auto;
+	
 	width: 1080px;
 
 	/* Header CSS */
@@ -30,7 +30,6 @@ body {
 	}
 
 	h2 {
-		text-align: center;
 		font-size: 1.8em;
 		letter-spacing: -1px;
 		margin-bottom: 30px;
@@ -39,7 +38,7 @@ body {
 	}
 
 	h3 {
-		font-size: 1.6em;
+		font-size: 1.4em;
 		letter-spacing: -1px;
 		margin-bottom: 30px;
 		font-weight: normal;
@@ -107,27 +106,25 @@ body {
 
 /* Navigation CSS */
 
-.pull-right li{
+.navbar-right li{
 	display: inline-block;
 	a {
 		font-size: 1.3em;
 		color: #fff;
 		text-transform: uppercase;
 		letter-spacing: -1px;
-		padding-top: 9px;
 		font-weight: bold;
 		line-height: 1;
 	}
 }
 
-#logo {
+.logo {
 	float: left;
 	margin-right: 10px;
 	font-size: 1.7em;
 	color: #fff;
 	text-transform: uppercase;
 	letter-spacing: -1px;
-	padding-top: 9px;
 	font-weight: bold;
 	line-height: 1;
 	&:hover{

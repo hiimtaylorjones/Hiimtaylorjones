@@ -33,6 +33,8 @@ end
 # Use SCSS for stylesheets. Also using Bootstrap SASS
 gem 'sass-rails', '~> 4.0.3'
 gem 'bootstrap-sass'
+gem 'simple_form'
+gem 'country_select'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier'
 # Use CoffeeScript for .js.coffee assets and views
