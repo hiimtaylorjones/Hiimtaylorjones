@@ -1,11 +1,10 @@
 <div class="most-recent">
 	<% @posts = Post.order("created_at desc").limit(1) %>
 	<% @posts.each do |post| %>
-		<div class="post">
+		<div class="post row center-block">
 			<h2 class="text-center"><%= post.title %></h2>
-			<%= image_tag post.title_image.url(:full)%>
-			<p><%= simple_format post.text %></p>
-			<br/>
+			<%= image_tag post.title_image.url(:full), :class => "img-responseive center-block" %>
+			<p class="center-block"><%= simple_format post.text %></p>
 		</div>
 		<div class="text-center">
 			<button type="button" class="btn btn-default readmore">

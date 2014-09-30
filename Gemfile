@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.0'
-gem 'sprockets'
+gem 'sprockets', '~> 2.9'
 gem 'bcrypt'
 gem 'pg'
 gem 'unicorn'
@@ -31,10 +31,11 @@ end
 
 
 # Use SCSS for stylesheets. Also using Bootstrap SASS
-gem 'sass-rails', '~> 4.0.3'
-gem 'bootstrap-sass'
+gem 'bootstrap-sass', '~> 3.2.0'
+gem 'sass-rails', '>= 3.2'
 gem 'simple_form'
 gem 'country_select'
+
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier'
 # Use CoffeeScript for .js.coffee assets and views

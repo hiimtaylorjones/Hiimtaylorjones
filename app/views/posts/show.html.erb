@@ -1,10 +1,10 @@
 
 <div class="post">
 	<h2 class="text-center"><%= @post.title %></h2>
-	<%= image_tag @post.title_image.url(:full), :class => "text-center" %>
+	<%= image_tag @post.title_image.url(:full), :class => "text-center img-responsive" %>
 	<p><%= simple_format @post.text %></p>
-	<br/>
 </div>
+
 <div class="comments-section">
 	<% @post.comments.each do |comment| %>
 		<div class="comment">
