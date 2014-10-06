@@ -31,10 +31,15 @@ end
 
 
 # Use SCSS for stylesheets. Also using Bootstrap SASS
-gem 'bootstrap-sass', '~> 3.2.0'
-gem 'sass-rails', '>= 3.2'
+# gem 'bootstrap-sass', '~> 3.2.0'
+# gem 'sass-rails', '>= 3.2'
+
 gem 'simple_form'
 gem 'country_select'
+
+gem "therubyracer"
+gem "less-rails" #Sprockets (what Rails 3.1 uses for its asset pipeline) supports LESS
+gem "twitter-bootstrap-rails"
 
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier'

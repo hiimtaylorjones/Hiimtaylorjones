@@ -14,7 +14,7 @@
 //= require jquery
 //= require jquery-ui
 //= require jquery_ujs
+//= require twitter/bootstrap
 //= require turbolinks
-//= require bootstrap-sprockets
 //= require basic_page
 //= require_tree .

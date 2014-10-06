@@ -2,7 +2,6 @@
 <html>
   <head>
     <title>Everything Is Collateral </title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
     <%= stylesheet_link_tag "application", media: "all",
                                            "data-turbolinks-track" => true %>
     <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
@@ -12,21 +11,21 @@
   </head>
   
   <script type="text/javascript">
-  $(document).ready(function() {
-    if ($('textarea').length > 0) {
-        var data = $('textarea');
-        $.each(data, function(i) {
-            CKEDITOR.replace(data[i].id);
-        });
-    }
-  });
+    $(document).ready(function() {
+      if ($('textarea').length > 0) {
+          var data = $('textarea');
+          $.each(data, function(i) {
+              CKEDITOR.replace(data[i].id);
+          });
+      }
+    });
   </script>
 
   <%= render 'layouts/partials/header' %>
 
   <body>
-    <div class="container content">
-    <!--Used to notify the user of errors-->
+    <div class="container-fluid content">
+      <!--Used to notify the user of errors-->
       <% if notice %>
         <p class="alert alert-success"><%= notice %></p>
       <% end %>

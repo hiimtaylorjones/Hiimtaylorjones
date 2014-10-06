@@ -9,6 +9,7 @@ class TitleImageUploader < CarrierWave::Uploader::Base
   # Choose what kind of storage to use for this uploader:
   #storage :file
   storage :fog
+  
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:
   def store_dir
@@ -33,11 +34,11 @@ class TitleImageUploader < CarrierWave::Uploader::Base
 
   # Create different versions of your uploaded files:
   version :full do
-    # returns a 150x150 image
+    # returns a 1020x540 image
     process :resize_to_fill => [1020, 540]
   end
   version :thumb do
-    # returns a 50x50 image
+    # returns a 300x300 image
     process :resize_to_fill => [300, 300]
   end
 

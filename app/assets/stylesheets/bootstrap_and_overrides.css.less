@@ -1,3 +1,33 @@
+@import "twitter/bootstrap/bootstrap";
+
+// Set the correct sprite paths
+@iconSpritePath: image-url("twitter/bootstrap/glyphicons-halflings.png");
+@iconWhiteSpritePath: image-url("twitter/bootstrap/glyphicons-halflings-white.png");
+
+// Set the Font Awesome (Font Awesome is default. You can disable by commenting below lines)
+@fontAwesomeEotPath: font-url("fontawesome-webfont.eot");
+@fontAwesomeEotPath_iefix: font-url("fontawesome-webfont.eot?#iefix");
+@fontAwesomeWoffPath: font-url("fontawesome-webfont.woff");
+@fontAwesomeTtfPath: font-url("fontawesome-webfont.ttf");
+@fontAwesomeSvgPath: font-url("fontawesome-webfont.svg#fontawesomeregular");
+
+// Font Awesome
+@import "fontawesome/font-awesome";
+
+// Glyphicons
+//@import "twitter/bootstrap/glyphicons.less";
+
+// Your custom LESS stylesheets goes here
+//
+// Since bootstrap was imported above you have access to its mixins which
+// you may use and inherit here
+//
+// If you'd like to override bootstrap's own variables, you can do so here as well
+// See http://twitter.github.com/bootstrap/customize.html#variables for their names and documentation
+//
+// Example:
+// @link-color: #ff0000;
+
 html {
 	min-height: 100%;
 	overflow-y: scroll;
@@ -12,7 +42,7 @@ html {
    	font-weight: 300;
 	min-height: 100%;
 	padding-top: 10px;
-	width: 1080px;
+	max-width: 1080px;
 
 	/* Header CSS */
 	h1, h2, h3, h4, h5, h6 {
@@ -47,6 +77,8 @@ html {
 	p {
 		font-size: 1.1em;
 		line-height: 1.7em;
+		margin-left: 10px;
+		margin-right: 10px;
 	}
 
 	section {
@@ -54,7 +86,7 @@ html {
 	}
 
 	img {
-		max-width: 1140px;
+		max-width: 100%;
     	height: auto;
     	width: auto\9; /* ie8 */
     	border-radius: 8px;
@@ -65,7 +97,7 @@ html {
 		margin-top: 10px;
 		padding-top: 5px;
 		border-top: 1px solid #A0A0A0;
-		max-width: 1080px;
+		max-width: 1000px;
 		color: #999;
 
 		a {
@@ -94,11 +126,6 @@ html {
 #dialog {
 	display: hidden;
 }
-
-.container {
-	width: 1050px;
-}
-
 
 /* Navigation CSS */
 
@@ -132,4 +159,3 @@ html {
 		text-decoration: none;
 	}
 }
-
