@@ -11,5 +11,6 @@
 		</div>
 	</div>
 <% end %>
-
-<%= will_paginate @posts, renderer: BootstrapPagination::Rails, class: "pages"%>
+<div class="text-center">
+	<%= will_paginate @posts, renderer: BootstrapPagination::Rails, class: "pagination-centered"%>
+</div>
