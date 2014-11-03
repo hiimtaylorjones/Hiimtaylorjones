@@ -19,6 +19,7 @@ group :development, :test do
 	gem 'spring-commands-rspec'
 	gem 'rspec-rails', '~> 3.0.0'
   	gem 'factory_girl_rails', '4.4.0'
+  	gem "fakefs", :require => "fakefs/safe"
 end
 
 group :test do

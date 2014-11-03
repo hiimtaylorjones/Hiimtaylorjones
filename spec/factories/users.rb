@@ -2,6 +2,7 @@
 
 FactoryGirl.define do
   factory :user do
+    avatar                {}
   	email					        {"user@example.com"}
   	username				      {"exampleuser"}
   	password 				      {"Password69"}
