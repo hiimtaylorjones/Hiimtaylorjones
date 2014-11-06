@@ -11,8 +11,8 @@ $(document).ready ->
   	autoOpen: false
   	fluid: true
   	modal: true
-  	maxWidth: '450'
-  	maxheight: '500'
+  	maxWidth: '500'
+  	maxheight: '600'
   	draggable: true
   	title: 'Sign In'
 
