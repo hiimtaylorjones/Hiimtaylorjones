@@ -12,5 +12,4 @@ Rails.application.routes.draw do
   match '/taylor',		  to: 'basic_page#taylor',        via: 'get'
   match '/admin',       to: 'basic_page#admin',         via: 'get'
   match '/blog',        to: 'posts#index',              via: 'get'
-  match '/blog/admin',  to: 'posts#admin',              via: 'get'
 end
