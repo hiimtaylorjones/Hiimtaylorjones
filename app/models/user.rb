@@ -2,12 +2,24 @@ class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable
+  
+  # Allows us to user a general login for users.
   attr_accessor :login
-  before_save :set_role
-  validates :username, presence: true, length: {maximum: 255}, uniqueness: { case_sensitive: false }, format: { with: /\A[a-zA-Z0-9]*\z/, message: "may only contain letters and numbers." }
+
+  # Validations for our usernames
+  validates :username, 
+    presence: true, 
+    length: {maximum: 255}, 
+    uniqueness: { case_sensitive: false }, 
+    format: { with: /\A[a-zA-Z0-9]*\z/, message: "may only contain letters and numbers." }
 
   # Avatar uploader using carrierwave
   mount_uploader :avatar, AvatarUploader
+
+  # For after creation
+  after_create do 
+    set_role('default')
+  end
 
   # User::Roles
   # The available roles
@@ -27,7 +39,11 @@ class User < ActiveRecord::Base
   end
 
   private 
-    def set_role
-      self.role = "default"
+    def set_role(role)
+      if(role == 'admin')
+        self.role = role
+      else
+        self.role = 'default'
+      end
     end
 end

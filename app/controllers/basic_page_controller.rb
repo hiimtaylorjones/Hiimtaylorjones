@@ -1,4 +1,5 @@
 class BasicPageController < ApplicationController
+
   def index
   end
 
@@ -8,7 +9,11 @@ class BasicPageController < ApplicationController
   def about
   end
 
-  def admin_panel
+  def admin
+    @users = User.all 
+    @posts = Post.all
+    authorize! :show, @posts
+    authorize! :show, @users
   end
 
   def taylor

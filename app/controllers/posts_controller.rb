@@ -32,7 +32,7 @@ class PostsController < ApplicationController
 		@post = Post.find(params[:id])
 		@post.destroy
 		authorize! :manage, @post
-		render 'index'
+		redirect_to blog_admin_path
 	end
 
 	def index
@@ -54,6 +54,7 @@ class PostsController < ApplicationController
 	end
 
 	def admin
+		@users = User.all
 		@posts = Post.all
 		authorize! :show, @posts
 	end
