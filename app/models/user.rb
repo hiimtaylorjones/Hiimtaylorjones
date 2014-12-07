@@ -17,9 +17,7 @@ class User < ActiveRecord::Base
   mount_uploader :avatar, AvatarUploader
 
   # For after creation
-  after_create do 
-    set_role('default')
-  end
+  after_create :set_role
 
   # User::Roles
   # The available roles
@@ -39,11 +37,7 @@ class User < ActiveRecord::Base
   end
 
   private 
-    def set_role(role)
-      if(role == 'admin')
-        self.role = role
-      else
-        self.role = 'default'
-      end
+    def set_role
+      self.role = 'default'
     end
 end
