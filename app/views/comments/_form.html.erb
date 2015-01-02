@@ -1,13 +1,16 @@
 <div class="comment-form">
   <h2>Add a comment:</h2>
   <%= form_for([@post, @post.comments.build]) do |f| %>
-  <p><%= image_tag current_user.avatar.url(:thumb) %> <%= current_user.username %></p>
-    <%= f.hidden_field :commenter, :value => current_user.username %>
-    <p>
-      <%= cktext_area :page, :info, :cols => 40, :ckeditor => {:toolbar => 'mini'} %>
-    </p>
-    <p>
-      <%= f.submit %>
-    </p>
+  
+    <div class="comment-form-top">
+      <%= image_tag current_user.avatar.url(:thumb) %> 
+      <h3>Posting As:  <%= current_user.username %></h3>
+      <%= f.hidden_field :commenter, :value => current_user.username %>
+    </div>
+    <div class="comment-form-area">
+      <%= cktext_area :body, :info, :cols => 25, :ckeditor => {:toolbar => 'mini'} %>
+    </div>
+
+    <%= f.submit class: "btn btn-primary" %>
   <% end %>
 </div>
