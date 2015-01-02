@@ -4,7 +4,7 @@
   <p><%= image_tag current_user.avatar.url(:thumb) %> <%= current_user.username %></p>
     <%= f.hidden_field :commenter, :value => current_user.username %>
     <p>
-      <%= f.text_area :body %>
+      <%= cktext_area :page, :info, :cols => 40, :ckeditor => {:toolbar => 'mini'} %>
     </p>
     <p>
       <%= f.submit %>
