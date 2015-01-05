@@ -53,12 +53,6 @@ class PostsController < ApplicationController
 		end
 	end
 
-	def admin
-		@users = User.all
-		@posts = Post.all
-		authorize! :show, @posts
-	end
-
 	private
 		def post_params
 			params.require(:post).permit(:title, :tagline, :title_image, :text)
