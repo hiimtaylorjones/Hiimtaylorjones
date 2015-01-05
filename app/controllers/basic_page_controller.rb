@@ -14,8 +14,7 @@ class BasicPageController < ApplicationController
     @users = User.all 
     @posts = Post.order('created_at DESC')
     @pages = Page.all
-    authorize! :show, @posts
-    authorize! :show, @users
+    @inquiries = Inquiry.all
   end
 
   def taylor

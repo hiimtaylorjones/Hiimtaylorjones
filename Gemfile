@@ -36,7 +36,7 @@ end
 # gem 'sass-rails', '>= 3.2'
 
 gem 'simple_form'
-gem 'country_select'
+gem 'bootstrap-datepicker-rails'
 
 gem "therubyracer"
 gem "less-rails" #Sprockets (what Rails 3.1 uses for its asset pipeline) supports LESS

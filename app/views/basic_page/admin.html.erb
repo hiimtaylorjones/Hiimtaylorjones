@@ -4,14 +4,14 @@
   <table class="table table-striped">
     <tr>
       <th>Title</th>
-      <th class="actions">Actions</th>
+      <th colspan="3">Actions</th>
     </tr>
    
     <% @posts.each do |post| %>
       <tr>
         <td><%= post.title %></td>
-        <td><%= link_to 'Show', post_path(post) %></td>
-        <td><%= link_to 'Edit', edit_post_path(post) %></td>
+        <td><%= link_to 'Show', post_path(post), :class => "btn btn-primary" %></td>
+        <td><%= link_to 'Edit', edit_post_path(post), :class => "btn btn-primary" %></td>
         <td><%= button_to 'Destroy', post_path(post), :class => "btn btn-danger",
                 method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
@@ -22,7 +22,7 @@
 
 </div>
 
-<div class="posts-index">
+<div class="users-index">
   <h1>Listing Users</h1>
  
   <table class="table table-striped">
@@ -31,7 +31,7 @@
       <th>Username</th>
       <th>Role</th>
       <th>Sign In Count</th>
-      <th>Action</th>
+      <th colspan="3">Actions</th>
     </tr>
    
     <% @users.each do |user| %>
@@ -49,20 +49,50 @@
   </table>
 </div>
 
-<div class="posts-index">
+<div class="page-index">
   <h1>Listing Pages</h1>
  
   <table class="table table-striped">
     <tr>
       <th>Title</th>
+      <th colspan="3">Actions</th>
     </tr>
    
     <% @pages.each do |page| %>
         <tr>
           <td><%= page.title %></td>
-          <td><%= link_to 'Show', page_path(page) %></td>
-          <td><%= link_to 'Edit', edit_page_path(page) %></td>
+          <td><%= link_to 'Show', page_path(page), :class => "btn btn-primary" %></td>
+          <td><%= link_to 'Edit', edit_page_path(page), :class => "btn btn-primary" %></td>
           <td><%= link_to 'Delete', page_path(page), :class => "btn btn-danger",
+                method: :delete, data: { confirm: 'Are you sure?' }%></td>
+        </tr>
+    <% end %>
+  </table>
+</div>
+
+<div class="inquiries-index">
+  <h1>Listing Inquiries</h1>
+ 
+  <table class="table table-striped">
+    <tr>
+      <th>Name</th>
+      <th>Company</th>
+      <th>Email</th>
+      <th>Phone</th>
+      <th>Need By</th>
+      <th colspan="3">Actions</th>
+    </tr>
+   
+    <% @inquiries.each do |inquiry| %>
+        <tr>
+          <td><%= inquiry.name %></td>
+          <td><%= inquiry.company %></td>
+          <td><%= inquiry.email %></td>
+          <td><%= inquiry.phone %></td>
+          <td><%= inquiry.finish_date %></td>
+          <td><%= link_to 'Show', inquiry_path(inquiry), :class => "btn btn-primary" %></td>
+          <td><%= link_to 'Edit', edit_inquiry_path(inquiry), :class => "btn btn-primary" %></td>
+          <td><%= link_to 'Delete', inquiry_path(inquiry), :class => "btn btn-danger",
                 method: :delete, data: { confirm: 'Are you sure?' }%></td>
         </tr>
     <% end %>

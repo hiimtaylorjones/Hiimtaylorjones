@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   end
 
   resources :pages
+  resources :inquiries
 
   root 'basic_page#index'
   match '/about',       to: 'basic_page#about',         via: 'get'
