@@ -1,4 +1,8 @@
 class PagesController < ApplicationController
+
+	load_and_authorize_resource
+	skip_authorize_resource :only => :show
+
 	def new
 		@page = Page.new
 	end

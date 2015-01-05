@@ -8,9 +8,11 @@ class Ability
         can :manage, :all
     elsif user.is? "default"
         can :read, Post
+        can :read, Page
         can :manage, Comment
     else
         can :read, Post
+        can :read, Page
     end
   end
 end
