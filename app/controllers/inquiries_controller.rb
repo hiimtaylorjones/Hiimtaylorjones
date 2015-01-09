@@ -5,6 +5,7 @@ class InquiriesController < ApplicationController
 
 	def new
 		@inquiry = Inquiry.new
+		@page = Page.find(2)
 	end
 
 	def create

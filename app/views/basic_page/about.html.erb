@@ -4,16 +4,7 @@
 </div>
 
 <div class="bottom-nav text-center">
-	<button type="button" class="btn btn-default">
-		<%= link_to 'Back', pages_path %>
-	</button>
 	<% if can? :update, @page %>
-		| <button type="button" class="btn btn-default"><%= link_to 'Edit Page', edit_page_path(@page) %></button>
+		<button type="button" class="btn btn-default"><%= link_to 'Edit Page', edit_page_path(@page) %></button>
 	<% end %>
-</div>
-
-<div class="row text-center">
-	<a href="https://twitter.com/hiimtaylorjones"><%= fa_icon "twitter 3x" %></a>
-	<a href=""><%= fa_icon "linkedin 3x" %></a>
-	<a href="https://github.com/codedbeardedsignedtaylor"><%= fa_icon "github 3x" %></a>
 </div>

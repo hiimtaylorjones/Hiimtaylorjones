@@ -1,35 +1,42 @@
-
 <div class="post">
-	<h2 class="text-center"><%= @post.title %></h2>
-	<%= image_tag @post.title_image.url(:full), :class => "text-center img-responsive" %>
-	<p><%= simple_format @post.text %></p>
-</div>
+	<div class="post-header row">
+		<h2 class="text-center"><%= @post.title %></h2>
+		<%= image_tag @post.title_image.url(:full), :class => "center-block img-responsive" %>
+	</div>
 
-<div class="comments-section">
-	<% @post.comments.each do |comment| %>
-		<div class="comment">
-			<h4>- <%= comment.commenter %></h4><p>Posted On:</p>
-			<p><%= comment.body %></p>
-			<% if user_signed_in? && comment.commenter == current_user.username %>
-				<div class="comment-functions">
-					<p>
-							<%= link_to 'Edit', edit_post_comment_path(comment.id, @post.id) %> |
-						<%= link_to 'Delete', [comment.post, comment], method: :delete, data: { confirm: 'Are you sure?' } %>
-					</p>
+	<div class="post-content center-block row">
+		<%= simple_format @post.text %>
+	</div>
+
+	<div class="center-block">
+		<div class="comments-section row">
+			<% @post.comments.each do |comment| %>
+				<div class="comment">
+					<h4>- <%= comment.commenter %></h4><p>Posted On:</p>
+					<p><%= comment.body %></p>
+					<% if user_signed_in? && comment.commenter == current_user.username %>
+						<div class="comment-functions">
+							<p>
+									<%= link_to 'Edit', edit_post_comment_path(comment.id, @post.id) %> |
+								<%= link_to 'Delete', [comment.post, comment], method: :delete, data: { confirm: 'Are you sure?' } %>
+							</p>
+						</div>
+					<% end %>
 				</div>
 			<% end %>
 		</div>
-	<% end %>
-</div>
-<%if user_signed_in? %>
-	<%= render 'comments/form' %>
-<% end %>
+	</div>
 
-<div class="bottom-nav text-center">
-	<button type="button" class="btn btn-default">
-		<%= link_to 'Back', posts_path %>
-	</button>
-	<% if can? :update, @post %>
-		| <button type="button" class="btn btn-default"><%= link_to 'Edit Post', edit_post_path(@post) %></button>
+	<%if user_signed_in? %>
+		<%= render 'comments/form' %>
 	<% end %>
+
+	<div class="bottom-nav text-center">
+		<button type="button" class="btn btn-default">
+			<%= link_to 'Back', posts_path %>
+		</button>
+		<% if can? :update, @post %>
+			| <button type="button" class="btn btn-default"><%= link_to 'Edit Post', edit_post_path(@post) %></button>
+		<% end %>
+	</div>
 </div>

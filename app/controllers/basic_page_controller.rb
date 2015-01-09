@@ -17,6 +17,4 @@ class BasicPageController < ApplicationController
     @inquiries = Inquiry.all
   end
 
-  def taylor
-  end
 end
