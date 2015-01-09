@@ -23,6 +23,7 @@ module Everythingisruby
     # config.i18n.default_locale = :de
     config.assets.precompile += %w(*.png *.jpg *.jpeg *.gif)
     config.assets.precompile += %w( ckeditor/* )
+    config.assets.precompile += %w(*.svg *.eot *.woff)
     config.generators do |g| 
         g.test_framework :rspec,
             :fixtures => true,
