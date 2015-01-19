@@ -1,18 +1,24 @@
 <div class="most-recent post">
-	<% @posts = Post.order("created_at desc").limit(2) %>
 	<% @posts.each do |post| %>
 		<div class="post">
 
 			<h2 class="text-center"><%= post.title %></h2>
 			<%= image_tag post.title_image.url(:full), :class => "img-responseive center-block" %>
 			<p class="center-block"><%= simple_format post.text %></p>
+			<% @time = post.created_at %>
+			<h5 class="text-center">Written by Taylor on <b><%= @time.strftime("%m/%d/%Y") %></b></h5>
 
 			<div class="preview-btn text-center">
 				<button type="button" class="btn btn-default readmore">
 					<%=link_to 'Read More', post_path(post) %>
 				</button>
 			</div>
-
 		</div>
 	<% end %>
+</div>
+
+<div class="blog-btn text-center">
+	<button type="button" class="btn btn-default">
+		<%= link_to 'More Posts', blog_path %>
+	</button>
 </div>

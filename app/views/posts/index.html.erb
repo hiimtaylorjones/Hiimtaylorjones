@@ -1,6 +1,8 @@
 <% @posts.each do |post| %>
 	<div class="post-preview clearfix media">
 		<%= image_tag post.title_image.url(:thumb), :class => "img-rounded pull-left" %>
+		<% @time = post.created_at %>
+		<h4><%= @time.strftime("%m/%d/%Y") %></h4>
 		<h2><%= post.title %></h2>
 		<h4><%= simple_format post.tagline %></h4>
 		<br/>
