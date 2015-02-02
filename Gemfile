@@ -62,5 +62,3 @@ gem 'compass-rails'
 gem 'spring',        group: :development
 gem 'rails_serve_static_assets', group: :production
 gem 'rails_12factor', group: :production
-
-
