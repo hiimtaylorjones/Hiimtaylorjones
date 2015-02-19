@@ -37,7 +37,6 @@ end
 # gem 'sass-rails', '>= 3.2'
 
 gem 'simple_form'
-gem 'bootstrap-datepicker-rails'
 
 gem "therubyracer"
 gem "less-rails" #Sprockets (what Rails 3.1 uses for its asset pipeline) supports LESS
@@ -49,7 +48,6 @@ gem 'uglifier'
 gem 'coffee-rails'
 # jQuery gems
 gem 'jquery-rails'
-gem 'jquery-ui-rails'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder

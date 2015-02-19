@@ -25,9 +25,7 @@
         <p class="alert alert-danger"><%= alert %></p>
       <% end %>
 
-      <div id="login-window" style="display:none; overflow:hidden;">
-        <%= render '/devise/sessions/newpopup' %>
-      </div>
+      <%= render '/devise/sessions/newpopup' %>
     
       <!--Yields all of the stuff you know and love.-->
       <%= yield %>
