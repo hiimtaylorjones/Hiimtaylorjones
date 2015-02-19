@@ -1,0 +1,11 @@
+.inquiry-form {
+  margin: 0 auto;
+  width: 60%;
+}
+.inquiry-form textarea {
+  height: 250px;
+  margin-bottom: 10px;
+}
+.inquiry-form input[type="submit"] {
+  width: 40%;
+}
