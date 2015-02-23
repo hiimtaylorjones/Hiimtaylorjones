@@ -11,7 +11,9 @@
         </div>
         
         <div class="col-sm-9">
-          <%= f.text_area :body, :class => 'comment-body form-control' %>
+          <div class="form-group">
+            <%= f.text_area :body, :class => 'comment-body form-control' %>
+          </div>
           <div class="text-center">
             <%= f.submit class: "btn btn-primary" %>
           </div>

@@ -16,21 +16,21 @@
   <%= render 'layouts/partials/header' %>
 
   <body>
-    <div class="container-fluid content">
+    <div class="container content">
       <!--Used to notify the user of errors-->
-      <% if notice %>
-        <p class="alert alert-success"><%= notice %></p>
-      <% end %>
-      <% if alert %>
-        <p class="alert alert-danger"><%= alert %></p>
-      <% end %>
+      <div class="row">
+        <div class="col-md-12">
+          
+          <%= render 'layouts/partials/alerts' %>
 
-      <%= render '/devise/sessions/newpopup' %>
-    
-      <!--Yields all of the stuff you know and love.-->
-      <%= yield %>
-     
-      <%= render 'layouts/partials/footer' %>
+          <%= render '/devise/sessions/newpopup' %>
+        
+          <!--Yields all of the stuff you know and love.-->
+          <%= yield %>
+         
+          <%= render 'layouts/partials/footer' %>
+        </div>
+      </div>
     </div>
   </body>
 </html>
