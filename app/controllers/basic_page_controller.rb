@@ -5,9 +5,6 @@ class BasicPageController < ApplicationController
     @posts = @posts.order('created_at DESC').paginate(:page => params[:page], :per_page => 3)
   end
 
-  def blog
-  end
-
   def about
     @page = Page.find(1)
   end

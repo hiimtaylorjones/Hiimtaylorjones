@@ -25,7 +25,13 @@ class PostsController < ApplicationController
 	end
 
 	def show
-		@post = Post.find(params[:id])
+		
+  		if Post.where(:id => params[:id], :draft => true).present?
+  			@post = Post.find(params[:id])
+  			authorize! :show, @post
+		else
+  			@post = Post.find(params[:id])
+		end
 	end
 
 	def destroy
@@ -36,7 +42,8 @@ class PostsController < ApplicationController
 	end
 
 	def index
-		@posts = Post.order('created_at DESC').paginate(:page => params[:page], :per_page => 3)
+		@posts = Post.where(draft: false)
+		@posts = @posts.order('created_at DESC').paginate(:page => params[:page], :per_page => 3)
 	end
 
 	def edit
