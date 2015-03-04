@@ -1,7 +1,7 @@
 <div class="post-form">
-  <%= form_for @post, html: { multipart: true } do |f| %>
+  <%= form_for @post, html: { multidivart: true } do |f| %>
     <% if @post.errors.any? %>
-    <div id="error_explanation">
+    <div id="error_exdivlanation">
       <h2><%= pluralize(@post.errors.count, "error") %> prohibited
         this post from being saved:</h2>
       <ul>
@@ -11,25 +11,31 @@
       </ul>
     </div>
     <% end %>
-    <p>
+    
+    <div class="form-group">
       <%= f.label :title %><br>
-      <%= f.text_field :title %>
-    </p>
+      <%= f.text_field :title, :class => 'form-control' %>
+    </div>
 
-    <p>
+    <div class="form-group">
       <%= f.label :tagline %><br>
-      <%= f.text_field :tagline %>
-    </p>
+      <%= f.text_field :tagline, :class => 'form-control' %>
+    </div>
 
-    <p>
+    <div class="form-group">
       <%= f.label :title_image %><br>
       <%= f.file_field :title_image %>
-    </p>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :draft %><br>
+      <%= f.check_box :draft %>
+    </div>
    
-    <p>
+    <div class="form-group">
       <%= f.label :text %><br>
       <%= f.cktext_area :text, :class => 'ckeditor', :ckeditor => {:language => 'en'} %>
-    </p>
+    </div>
    
     <div class="text-center">
       <%= f.submit class: "btn btn-primary" %>
