@@ -5,7 +5,7 @@
 	</div>
 
 	<div class="post-content center-block row">
-		<%= simple_format @post.text %>
+		<%= markdown @post.text %>
 		<% @time = @post.created_at %>
 		<h5 class="text-center">Written by Taylor on <b><%= @time.strftime("%m/%d/%Y") %></b></h5>
 	</div>

@@ -11,25 +11,26 @@
       </ul>
     </div>
     <% end %>
-    <p>
+    
+    <div class="form-group">
       <%= f.label :title %><br>
-      <%= f.text_field :title %>
-    </p>
+      <%= f.text_field :title, :class => 'form-control' %>
+    </div>
 
-    <p>
+    <div class="form-group">
       <%= f.label :tagline %><br>
-      <%= f.text_field :tagline %>
-    </p>
+      <%= f.text_field :tagline, :class => 'form-control' %>
+    </div>
 
-    <p>
+    <div class="form-group">
       <%= f.label :title_image %><br>
       <%= f.file_field :title_image %>
-    </p>
+    </div>
    
-    <p>
+    <div>
       <%= f.label :text %><br>
-      <%= f.cktext_area :text, :class => 'ckeditor', :ckeditor => {:language => 'en'} %>
-    </p>
+      <%= f.text_area :text, :class => 'form-control' %>
+    </div>
    
     <div class="text-center">
       <%= f.submit class: "btn btn-primary" %>
