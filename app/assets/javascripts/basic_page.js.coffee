@@ -3,7 +3,7 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 $(document).ready ->
-  $('code').each (i, block) ->
-    hljs.highlightBlock block
-    return
-  return
+   $('code').each (i, block) ->
+     hljs.highlightBlock block
+     return
+   return
