@@ -3,16 +3,16 @@
   <head>
     <title>Everything Is Collateral </title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true %>
+
+    <!-- Font stuff -->
     <link href='http://fonts.googleapis.com/css?family=PT+Sans:400,700' rel='stylesheet' type='text/css'>
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/railscasts.min.css">
-    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js"></script>
-    <script>hljs.initHighlightingOnLoad();</script>
+
+    <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true %>
     <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
-    <%= javascript_include_tag 'ckeditor/ckeditor.js' %>
     <%= csrf_meta_tags %>
     <%= render 'layouts/partials/shim' %>
+
   </head>
 
   <%= render 'layouts/partials/header' %>

@@ -14,7 +14,8 @@ gem 'aws-sdk'
 gem 'carrierwave'
 gem 'fog'
 gem 'mini_magick'
-gem 'ckeditor'
+#gem 'ckeditor'
+gem 'redcarpet'
 
 group :development, :test do 
 	gem 'spring-commands-rspec'

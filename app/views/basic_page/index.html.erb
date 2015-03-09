@@ -4,7 +4,7 @@
 
 			<h2 class="text-center"><%= post.title %></h2>
 			<%= image_tag post.title_image.url(:full), :class => "img-responseive center-block" %>
-			<p class="center-block"><%= simple_format post.text %></p>
+			<p class="center-block"><%= markdown post.text %></p>
 			<% @time = post.created_at %>
 			<h5 class="text-center">Written by Taylor on <b><%= @time.strftime("%m/%d/%Y") %></b></h5>
 

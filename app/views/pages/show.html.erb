@@ -1,7 +1,7 @@
 
 <div class="page">
 	<h2 class="text-center"><%= @page.title %></h2>
-	<p><%= simple_format @page.content %></p>
+	<%= markdown @page.content %>
 </div>
 
 <div class="bottom-nav text-center">
