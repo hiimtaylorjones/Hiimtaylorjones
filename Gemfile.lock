@@ -58,13 +58,6 @@ GEM
     childprocess (0.5.5)
       ffi (~> 1.0, >= 1.0.11)
     chunky_png (1.3.4)
-    ckeditor (4.1.1)
-      cocaine
-      orm_adapter (~> 0.5.0)
-    climate_control (0.0.3)
-      activesupport (>= 3.0)
-    cocaine (0.5.7)
-      climate_control (>= 0.0.3, < 1.0)
     coderay (1.1.0)
     coffee-rails (4.1.0)
       coffee-script (>= 2.2.0)
@@ -100,7 +93,7 @@ GEM
     diff-lcs (1.2.5)
     erubis (2.7.0)
     excon (0.44.4)
-    execjs (2.3.0)
+    execjs (2.4.0)
     factory_girl (4.4.0)
       activesupport (>= 3.0.0)
     factory_girl_rails (4.4.0)
@@ -291,6 +284,7 @@ GEM
       ffi (>= 0.5.0)
     rdoc (4.2.0)
       json (~> 1.4)
+    redcarpet (3.2.2)
     ref (1.0.5)
     responders (1.1.2)
       railties (>= 3.2, < 4.2)
@@ -393,7 +387,6 @@ DEPENDENCIES
   cancancan
   capybara
   carrierwave
-  ckeditor
   coffee-rails
   compass-rails
   devise
@@ -411,6 +404,7 @@ DEPENDENCIES
   rails (= 4.1.0)
   rails_12factor
   rails_serve_static_assets
+  redcarpet
   rspec-rails (~> 3.0.0)
   sdoc (~> 0.4.0)
   selenium-webdriver
