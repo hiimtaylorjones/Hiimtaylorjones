@@ -10,13 +10,9 @@
 // Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
 // about supported directives.
 //
+//= require ckeditor/init
 //= require jquery
 //= require jquery_ujs
-//= require turbolinks
-<<<<<<< HEAD
-=======
 //= require twitter/bootstrap
-//= require highlight
-//= require basic_page
->>>>>>> ckeditor
+//= require turbolinks
 //= require_tree .

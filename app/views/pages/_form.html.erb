@@ -11,15 +11,15 @@
       </div>
     <% end %>
     
-    <div class="form-group">
+    <p>
       <%= f.label :title %><br>
-      <%= f.text_field :title, :class => 'form-control' %>
-    </div>
+      <%= f.text_field :title %>
+    </p>
 
-    <div class="form-group">
+    <p>
       <%= f.label :content %><br>
-      <%= f.cktext_area :content, :class => 'form-control' %>
-    </div>
+      <%= f.cktext_area :content, :class => 'ckeditor', :ckeditor => {:language => 'en'} %>
+    </p>
    
     <div class="text-center">
       <%= f.submit class: "btn btn-primary" %>
