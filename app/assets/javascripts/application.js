@@ -13,10 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
-<<<<<<< HEAD
-=======
 //= require twitter/bootstrap
 //= require highlight
 //= require basic_page
->>>>>>> ckeditor
 //= require_tree .
