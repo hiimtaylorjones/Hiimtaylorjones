@@ -38,7 +38,7 @@ class PostsController < ApplicationController
 		@post = Post.find(params[:id])
 		@post.destroy
 		authorize! :manage, @post
-		redirect_to blog_admin_path
+		redirect_to admin_path
 	end
 
 	def index
@@ -54,7 +54,7 @@ class PostsController < ApplicationController
 	def update
 		@post = Post.find(params[:id])
 		if @post.update(post_params)
-			redirect_to @post 
+			redirect_to admin_path 
 		else
 			render 'edit'
 		end

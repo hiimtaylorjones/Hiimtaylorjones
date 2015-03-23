@@ -49,7 +49,7 @@ class PagesController < ApplicationController
 	def update
 		@page = Page.find(params[:id])
 		if @page.update(page_params)
-			redirect_to @page 
+			redirect_to admin_path
 		else
 			render 'edit'
 		end
