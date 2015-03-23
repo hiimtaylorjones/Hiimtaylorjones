@@ -3,7 +3,7 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 $(document).on 'ready page:load', ->
-   $('code').each (i, block) ->
+   $('pre code').each (i, block) ->
      hljs.highlightBlock block
      return
    return

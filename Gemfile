@@ -15,7 +15,7 @@ gem 'carrierwave'
 gem 'fog'
 gem 'mini_magick'
 #gem 'ckeditor'
-gem 'redcarpet'
+gem 'redcarpet', github: 'vmg/redcarpet'
 
 group :development, :test do 
 	gem 'spring-commands-rspec'
