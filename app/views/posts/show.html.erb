@@ -1,13 +1,16 @@
 <div class="post">
-	<div class="post-header row">
-		<h2 class="text-center"><%= @post.title %></h2>
-		<%= image_tag @post.title_image.url(:full), :class => "center-block img-responsive" %>
+	
+	<div class="post-header">
+		<div class="text-center">
+			<h1><%= @post.title %></h1>
+			<% @time = @post.created_at %>
+			<h4>Written by <b>Taylor Jones</b> on <b><%= @time.strftime("%m/%d/%Y") %></b></h4>
+		</div>
 	</div>
-
+	<%= image_tag @post.title_image.url(:full), :class => "img-responsive center-block " %>
+	
 	<div class="post-content center-block row">
 		<%= markdown @post.text %>
-		<% @time = @post.created_at %>
-		<h5 class="text-center">Written by Taylor on <b><%= @time.strftime("%m/%d/%Y") %></b></h5>
 	</div>
 
 	<div class="comments-section">
@@ -19,7 +22,7 @@
 					<% if user_signed_in? && comment.commenter == current_user.username %>
 						<div class="comment-functions">
 							<p>
-									<%= link_to 'Edit', edit_post_comment_path(comment.id, @post.id) %> |
+								<%= link_to 'Edit', edit_post_comment_path(comment.id, @post.id) %> |
 								<%= link_to 'Delete', [comment.post, comment], method: :delete, data: { confirm: 'Are you sure?' } %>
 							</p>
 						</div>

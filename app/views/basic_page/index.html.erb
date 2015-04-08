@@ -1,19 +1,14 @@
-<div class="most-recent post">
+<div class="most-recent">
 	<% @posts.each do |post| %>
 		<div class="post">
-
-			<h2 class="text-center"><%= post.title %></h2>
+			<div class="text-center post-header">
+				<%= link_to post.title, post_path(post), :class => "post-link" %>
+				<% @time = post.created_at %>
+				<h4 class="text-center">Written by <b>Taylor Jones</b> on <b><%= @time.strftime("%m/%d/%Y") %></b></h4>
+			</div>
 			<%= image_tag post.title_image.url(:full), :class => "img-responseive center-block" %>
 			<div class="post-content center-block">
-				<%= markdown post.text %></p>
-				<% @time = post.created_at %>
-				<h5 class="text-center">Written by Taylor on <b><%= @time.strftime("%m/%d/%Y") %></b></h5>
-			</div>
-
-			<div class="preview-btn text-center">
-				<button type="button" class="btn btn-default readmore">
-					<%=link_to 'Read More', post_path(post) %>
-				</button>
+				<%= markdown post.text %>
 			</div>
 		</div>
 	<% end %>
