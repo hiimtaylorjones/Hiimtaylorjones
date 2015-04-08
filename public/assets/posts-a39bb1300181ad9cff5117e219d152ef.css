@@ -1,0 +1,89 @@
+/* Blog Post CSS */
+.post {
+  border-bottom: 1px solid #e3e5ec;
+}
+.post .post-header h1 {
+  font-size: 55px;
+  margin-bottom: 5px;
+}
+.post .post-header h4 {
+  margin-top: 0px;
+  margin-bottom: 15px;
+}
+.post .post-header .post-link {
+  font-size: 55px;
+  color: black;
+  margin-bottom: 0px;
+}
+.post .post-content {
+  margin-top: 20px;
+  max-width: 1050px;
+}
+.post .preview-btn {
+  margin-bottom: 10px;
+}
+.post pre {
+  margin-left: 20px;
+  margin-right: 20px;
+}
+.blog-btn {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.blog-btn a {
+  font-size: 18px;
+}
+.post-preview {
+  margin-left: 15%;
+  margin-right: 15%;
+}
+.post-preview h2 a {
+  color: black;
+}
+.post-form,
+.page-form {
+  margin-left: 10%;
+  margin-right: 10%;
+  margin-bottom: 10px;
+}
+.post-form textarea,
+.page-form textarea {
+  min-height: 500px;
+}
+.post-form input[type="submit"],
+.page-form input[type="submit"] {
+  margin-top: 10px;
+}
+.comments-section .comment {
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  width: 500px;
+  length: 300px;
+}
+.comments-section .comment p {
+  font-style: italic;
+  margin-left: 20px;
+  margin-right: 0px;
+}
+.comments-section .comment h4 {
+  text-align: left;
+  margin-left: 10px;
+}
+.comments-section .comment .comment-functions {
+  text-align: right;
+}
+.comment-form .comment-head img,
+.comment-form .comment-head h3 {
+  margin-left: 12%;
+  margin-right: 12%;
+}
+.comment-form .comment-body {
+  min-height: 150px;
+  margin-bottom: 10px;
+}
+.readmore a {
+  font-size: 18px;
+}
+.bottom-nav {
+  margin-top: 20px;
+}
