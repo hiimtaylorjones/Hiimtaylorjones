@@ -12,6 +12,11 @@
 	<div class="post-content center-block row">
 		<%= markdown @post.text %>
 	</div>
+	<div class="tags text-center">
+		<% @post.tag_list.each do |t|%>
+			<%= button_tag t, class: 'btn btn-default tag' %>
+		<% end %>
+	</div>
 
 	<div class="comments-section">
 		<div class="row">
