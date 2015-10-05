@@ -1,17 +1,19 @@
 source 'https://rubygems.org'
-ruby '2.1.1'
+ruby '2.2.2'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.1.0'
+gem 'rails', '4.2.4'
 gem 'sprockets', '~> 2.9'
 gem 'bcrypt'
+
+gem 'foreman'
 
 # Database and server
 gem 'pg'
 gem 'unicorn'
 
 # Authentication and Roles
-gem 'cancancan'
 gem 'devise'
+gem 'rolify'
 
 # UI Frameworks and Gems
 gem 'will_paginate', '~> 3.0'
@@ -21,10 +23,10 @@ gem "less-rails" #Sprockets (what Rails 3.1 uses for its asset pipeline) support
 gem "twitter-bootstrap-rails"
 
 # Backend uploading gems
-gem 'aws-sdk'
-gem 'carrierwave'
-gem 'fog'
+gem "paperclip", "~> 4.3"
 gem 'mini_magick'
+
+# Rendering and Tagging
 gem 'redcarpet', github: 'vmg/redcarpet'
 gem 'acts-as-taggable-on'
 
@@ -43,23 +45,11 @@ gem 'compass-rails'
 
 # Testing assets
 
-group :development, :test do 
-	gem 'spring-commands-rspec'
-	gem 'rspec-rails', '~> 3.0.0'
-  	gem 'factory_girl_rails', '4.4.0'
-  	gem "fakefs", :require => "fakefs/safe"
+group :development, :test do
+	gem 'rspec-rails'
+  gem 'factory_girl_rails'
+	gem "faker"
 end
-
-# Testing Assets
-
-group :test do
-	gem 'selenium-webdriver'
-	gem 'capybara'
-	gem 'guard-rspec'
-	gem 'launchy'
-	gem 'faker'
-end
-
 
 # Heroku Assets
 gem 'spring',        group: :development

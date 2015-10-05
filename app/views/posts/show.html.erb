@@ -1,5 +1,5 @@
 <div class="post">
-	
+
 	<div class="post-header">
 		<div class="text-center">
 			<h1><%= @post.title %></h1>
@@ -8,7 +8,7 @@
 		</div>
 	</div>
 	<%= image_tag @post.title_image.url(:full), :class => "img-responsive center-block " %>
-	
+
 	<div class="post-content center-block row">
 		<%= markdown @post.text %>
 	</div>
@@ -37,9 +37,7 @@
 		</div>
 	</div>
 
-	<%if user_signed_in? %>
-		<%= render 'comments/form' %>
-	<% end %>
+	<%= render 'comments/form' %>
 
 	<div class="bottom-nav text-center">
 		<button type="button" class="btn btn-default">

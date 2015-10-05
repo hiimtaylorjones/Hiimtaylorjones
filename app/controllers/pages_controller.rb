@@ -1,32 +1,15 @@
 class PagesController < ApplicationController
 
-	load_and_authorize_resource
-	skip_authorize_resource :only => :show
-
 	def new
 		@page = Page.new
 	end
 
 	def create
   		@page = Page.new(page_params)
-  		respond_to do |format| 
-	 		if @page.save
-	  			format.html { 
-	  				redirect_to admin_url, 
-	  				notice: 'Page was successfully created.' 
-	  			}
-	  			format.json {
-	  				render json: @page, 
-	  				status: created,
-	  				location: @page
-	  			}
-	  		else
-	  			format.html { render action: "new" }
-	  			format.json { 
-	  				render json: @page.errors, 
-	  				status: :unprocessable_entity 
-	  			}
-	  		end
+  		if @page.save
+	  		redirect_to admin_url, notice: 'Page was successfully created.'
+	  	else
+	  		render action: "new"
 	  	end
 	end
 
@@ -37,13 +20,11 @@ class PagesController < ApplicationController
 	def destroy
 		@page = Page.find(params[:id])
 		@page.destroy
-		authorize! :manage, @page
 		redirect_to admin_path
 	end
 
 	def edit
 		@page = Page.find(params[:id])
-		authorize! :manage, @page
 	end
 
 	def update

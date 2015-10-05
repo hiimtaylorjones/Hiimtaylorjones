@@ -1,15 +1,13 @@
-development:
+development: &default
   adapter: postgresql
-  encoding: unicode
-  database: collateral_site_development
+  database: backbone_data_bootstrap_development
+  min_messages: WARNING
   pool: 5
-  timeout: 5000
-  host: localhost
+  reconnect: true
+  username: postgres
+  host: 'db'
+  port: 5432
 
 test:
-  adapter: postgresql
-  encoding: unicode
-  database: collateral_site_test
-  pool: 5
-  timeout: 5000
-  host: localhost
+  <<: *default
+  database: backbone_data_bootstrap_test
