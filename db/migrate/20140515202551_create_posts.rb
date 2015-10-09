@@ -3,7 +3,8 @@ class CreatePosts < ActiveRecord::Migration
     create_table :posts do |t|
       t.string :title
       t.text :text
-
+      t.boolean :published
+      t.string :tagline
       t.timestamps
     end
   end

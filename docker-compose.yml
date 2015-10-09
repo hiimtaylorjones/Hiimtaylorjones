@@ -11,4 +11,4 @@ web:
   links:
     - db
   volumes:
-    - $PWD:/app
+    - ./:/app
