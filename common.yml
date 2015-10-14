@@ -1,0 +1,5 @@
+webapp:
+  environment:
+      RAIL_ENV: development
+  volumes:
+      - $PWD:/myapp

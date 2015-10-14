@@ -1,13 +1,14 @@
 development: &default
   adapter: postgresql
-  database: backbone_data_bootstrap_development
+  database: collateral_dev
   min_messages: WARNING
   pool: 5
   reconnect: true
-  username: postgres
-  host: 'db'
+  username: tjones
+  password: passw0rd
+  host: localhost
   port: 5432
 
 test:
   <<: *default
-  database: backbone_data_bootstrap_test
+  database: collateral_test

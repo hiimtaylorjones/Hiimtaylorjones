@@ -1,7 +1,7 @@
 class BasicPageController < ApplicationController
 
   def index
-    @posts = Post.where(draft: false)
+    @posts = Post.where(published: false)
     @posts = @posts.order('created_at DESC').paginate(:page => params[:page], :per_page => 3)
   end
 
@@ -10,6 +10,7 @@ class BasicPageController < ApplicationController
   end
 
   def admin
+    authenticate_user!
     @users = User.all
     @posts = Post.order('created_at DESC')
     @pages = Page.all

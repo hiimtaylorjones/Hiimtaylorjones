@@ -1,5 +1,7 @@
 class InquiriesController < ApplicationController
 
+	before_action :authenticate_admin!, only: [:update, :edit, :destroy]
+
 	def new
 		@inquiry = Inquiry.new
 		@page = Page.find(2)
