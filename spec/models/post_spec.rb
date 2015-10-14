@@ -8,6 +8,6 @@ describe Post do
   	expect(FactoryGirl.build(:post, title: nil)).not_to be_valid
   end
   it "should have content" do
-  	expect(FactoryGirl.build(:post, text: nil)).not_to be_valid
+  	expect(FactoryGirl.build(:post, body: nil)).not_to be_valid
   end
 end

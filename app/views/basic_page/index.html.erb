@@ -6,9 +6,8 @@
 				<% @time = post.created_at %>
 				<h4 class="text-center">Written by <b>Taylor Jones</b> on <b><%= @time.strftime("%m/%d/%Y") %></b></h4>
 			</div>
-			<%= image_tag post.title_image.url(:full), :class => "img-responseive center-block" %>
 			<div class="post-content center-block">
-				<%= markdown post.text %>
+				<%= markdown post.body %>
 			</div>
 		</div>
 	<% end %>

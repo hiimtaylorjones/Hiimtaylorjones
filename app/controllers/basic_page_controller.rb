@@ -1,8 +1,8 @@
 class BasicPageController < ApplicationController
 
   def index
-    @posts = Post.where(published: false)
-    @posts = @posts.order('created_at DESC').paginate(:page => params[:page], :per_page => 3)
+    @posts = Post.where(published: true)
+    @posts = @posts.order('created_at DESC').paginate(:page => params[:page], :per_page => 5)
   end
 
   def about

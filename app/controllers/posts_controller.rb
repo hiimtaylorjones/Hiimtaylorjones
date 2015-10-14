@@ -16,7 +16,7 @@ class PostsController < ApplicationController
 	end
 
 	def show
-  	if Post.where(:id => params[:id], :draft => true).present?
+  	if Post.where(:id => params[:id], :published => true).present?
   		@post = Post.find(params[:id])
   		authorize! :show, @post
 		else
@@ -31,7 +31,7 @@ class PostsController < ApplicationController
 	end
 
 	def index
-		@posts = Post.where(draft: false)
+		@posts = Post.where(published: false)
 		@posts = @posts.order('created_at DESC').paginate(:page => params[:page], :per_page => 3)
 	end
 
@@ -50,6 +50,6 @@ class PostsController < ApplicationController
 
 	private
 		def post_params
-			params.require(:post).permit(:title, :tagline, :draft, :title_image, :text, :tag_list)
+			params.require(:post).permit(:title, :tagline, :published, :title_image, :text, :tag_list)
 		end
 end

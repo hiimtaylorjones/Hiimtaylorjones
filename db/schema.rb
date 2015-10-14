@@ -64,7 +64,7 @@ ActiveRecord::Schema.define(version: 20151014035101) do
 
   create_table "posts", force: :cascade do |t|
     t.string   "title"
-    t.text     "text"
+    t.text     "body"
     t.boolean  "published"
     t.string   "tagline"
     t.datetime "created_at"
