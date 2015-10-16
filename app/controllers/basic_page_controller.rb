@@ -10,9 +10,9 @@ class BasicPageController < ApplicationController
   end
 
   def admin
-    authenticate_user!
-    @users = User.all
-    @posts = Post.order('created_at DESC')
+    authenticate_admin!
+    @admins = Admin.all
+    @posts = Post.paginate(page: params[:page], per_page: 10).order('created_at DESC')
     @pages = Page.all
     @inquiries = Inquiry.all
   end
