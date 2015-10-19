@@ -1,15 +1,14 @@
-development:
+development: &default
   adapter: postgresql
-  encoding: unicode
-  database: collateral_site_development
+  database: collateral_dev
+  min_messages: WARNING
   pool: 5
-  timeout: 5000
+  reconnect: true
+  username: tjones
+  password: passw0rd
   host: localhost
+  port: 5432
 
 test:
-  adapter: postgresql
-  encoding: unicode
-  database: collateral_site_test
-  pool: 5
-  timeout: 5000
-  host: localhost
+  <<: *default
+  database: collateral_test

@@ -33,15 +33,15 @@ html {
 	overflow-y: scroll;
 }
 
-/* 
+/*
  * The following CSS deals with general rules and not specific classes. They may be overridden
- * by the class references towards the bottom of the page. 
+ * by the class references towards the bottom of the page.
  */
 .content {
 	font-family: 'PT Sans', sans-serif;
 	// font-family: "Georgia";
-	//font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
-   	font-weight: 300;
+	//font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+  font-weight: 300;
 	min-height: 100%;
 	margin-top: 60px;
 
@@ -78,8 +78,8 @@ html {
 
 	/* Paragraph CSS */
 	p {
-		font-size: 1.1em;
-		line-height: 1.7em;
+		font-size: 1.3em;
+		line-height: 2em;
 		margin-left: 20px;
 		margin-right: 20px;
 	}
@@ -101,7 +101,7 @@ html {
 		padding-top: 20px;
 		margin-top: 10px;
 		border-top: 1px solid #A0A0A0;
-		
+
 		p {
 			color: #999;
 		}
@@ -125,37 +125,24 @@ html {
 	border-radius: 0px;
 }
 
-.navbar-right li{
-	display: inline-block;
-	a {
-		font-size: 1.3em;
-		color: #fff;
-		text-transform: uppercase;
-		letter-spacing: -1px;
-		font-weight: bold;
-		line-height: 1;
-	}
-}
-
 .navbar-inverse {
 	.navbar-brand {
 		color: white;
 	}
-}
 
-.dropdown-menu {
-
-	a {
-		font-size: 1.3em;
-		color: #fff;
-		text-transform: uppercase;
-		letter-spacing: -1px;
-		font-weight: bold;
-		line-height: 1;
+	.navbar-nav {
+		li {
+			display: inline-block;
+			a {
+				font-size: 1.3em;
+				color: white;
+				text-transform: uppercase;
+				letter-spacing: -1px;
+				font-weight: bold;
+				line-height: 1;
+			}
+		}
 	}
-
-	background-color: black;
-
 }
 
 .logo {
@@ -166,7 +153,7 @@ html {
 	text-transform: uppercase;
 	letter-spacing: -1px;
 	font-weight: bold;
-	
+
 	&:hover{
 		color: #fff;
 		text-decoration: none;

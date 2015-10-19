@@ -1,8 +1,6 @@
 class PostsController < ApplicationController
 
-	load_and_authorize_resource
-  	skip_authorize_resource :only => :index
-  	skip_authorize_resource :only => :show
+	before_action :authenticate_admin!, only: [:create, :new, :edit, :update, :destroy]
 
 	def new
 		@post = Post.new
@@ -10,51 +8,41 @@ class PostsController < ApplicationController
 
 	def create
   		@post = Post.new(post_params)
-  		respond_to do |format| 
 	 		if @post.save
-	  			format.html { redirect_to posts_url, 
-	  				notice: 'Post was successfully created.' }
-	  			format.json {render json: @post, status: created,
-	  				location: @post}
-	  		else
-	  			format.html { render action: "new" }
-	  			format.json { render json: @post.errors, 
-	  				status: :unprocessable_entity }
-	  		end
+	  		redirect_to posts_url, notice: 'Post was successfully created.'
+	  	else
+	  		render action: "new"
 	  	end
 	end
 
 	def show
-		
-  		if Post.where(:id => params[:id], :draft => true).present?
-  			@post = Post.find(params[:id])
-  			authorize! :show, @post
+  	if Post.where(:id => params[:id], :published => true).present?
+  		@post = Post.find(params[:id])
+  		authorize! :show, @post
 		else
-  			@post = Post.find(params[:id])
+  		@post = Post.find(params[:id])
 		end
 	end
 
 	def destroy
 		@post = Post.find(params[:id])
 		@post.destroy
-		authorize! :manage, @post
 		redirect_to admin_path
 	end
 
 	def index
-		@posts = Post.where(draft: false)
+		@posts = Post.where(published: false)
 		@posts = @posts.order('created_at DESC').paginate(:page => params[:page], :per_page => 3)
 	end
 
 	def edit
 		@post = Post.find(params[:id])
-		authorize! :manage, @post
 	end
 
 	def update
 		@post = Post.find(params[:id])
 		if @post.update(post_params)
-			redirect_to admin_path 
+			redirect_to admin_path
 		else
 			render 'edit'
 		end
@@ -62,7 +50,6 @@ class PostsController < ApplicationController
 
 	private
 		def post_params
-			params.require(:post).permit(:title, :tagline, :draft, :title_image, :text, :tag_list)
+			params.require(:post).permit(:title, :tagline, :published, :title_image, :text, :tag_list)
 		end
 end
-

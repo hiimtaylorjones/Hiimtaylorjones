@@ -1,22 +1,24 @@
 class BasicPageController < ApplicationController
 
   def index
-    @posts = Post.where(draft: false)
-    @posts = @posts.order('created_at DESC').paginate(:page => params[:page], :per_page => 3)
+    @posts = Post.where(published: true)
+    @posts = @posts.order('created_at DESC').paginate(:page => params[:page], :per_page => 5)
   end
 
   def about
-    @page = Page.find(1)
+    @content = Page.where(title: "About")
+  end
+
+  def hire_me
+    @content = Page.where(tiel: "Hire Me")
   end
 
   def admin
-    @users = User.all 
-    @posts = Post.order('created_at DESC')
+    authenticate_admin!
+    @admins = Admin.all
+    @posts = Post.paginate(page: params[:page], per_page: 10).order('created_at DESC')
     @pages = Page.all
     @inquiries = Inquiry.all
-    authorize! :show, @posts
-    authorize! :show, @users
-    authorize! :show, @pages
   end
 
 end

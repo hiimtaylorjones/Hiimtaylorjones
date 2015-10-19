@@ -19,20 +19,12 @@
 
   <body>
     <div class="container content">
-      <!--Used to notify the user of errors-->
-      <div class="row">
-        <div class="col-md-12">
-          
-          <%= render 'layouts/partials/alerts' %>
+      <%= render 'layouts/partials/alerts' %>
 
-          <%= render '/devise/sessions/newpopup' %>
-        
-          <!--Yields all of the stuff you know and love.-->
-          <%= yield %>
-         
-          <%= render 'layouts/partials/footer' %>
-        </div>
-      </div>
+      <!--Yields all of the stuff you know and love.-->
+      <%= yield %>
+
+      <%= render 'layouts/partials/footer' %>
     </div>
   </body>
 </html>
