@@ -8,11 +8,7 @@ class BasicPageController < ApplicationController
   def about
     @content = Page.where(title: "About")
   end
-
-  def hire_me
-    @content = Page.where(tiel: "Hire Me")
-  end
-
+  
   def admin
     authenticate_admin!
     @admins = Admin.all

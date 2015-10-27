@@ -1,0 +1,79 @@
+.posts-index
+  %h1 Listing Posts
+
+  %table.table.table-striped">
+    %tr
+      %th Title
+      %th{:colspan => "3"} Actions
+
+    - @posts.each do |post|
+      %tr
+        %td= post.title
+        %td= link_to 'Show', post_path(post), :class => "btn btn-primary"
+        %td= link_to 'Edit', edit_post_path(post), :class => "btn btn-primary"
+        %td= button_to 'Destroy', post_path(post), :class => "btn btn-danger", method: :delete, data: { confirm: 'Are you sure?' }
+
+    .text-center
+        = link_to "New Post", new_post_path, :class => "btn btn-primary"
+        = will_paginate @posts
+
+.admins-index
+  %h1 Listing Admins
+
+  %table.table.table-striped
+    %tr
+      %th Email
+      %th Role
+      %th Sign In Count
+      %th{colspan=>"3"} Actions
+
+
+    - @admins.each do |admin|
+      - if admin != current_admin
+        %tr
+          %td= admin.email
+          %td= admin.role
+          %td= admin.sign_in_count
+          %td= link_to 'Delete', admin_registration_path(admin), :class => "btn btn-danger", method: :delete, data: { confirm: 'Are you sure?' }
+
+.page-index
+  %h1 Listing Pages
+
+  %table.table.table-striped
+    %tr
+      %th Title
+      %th{:colspan=>"3"} Actions
+
+    - @pages.each do |page|
+        %tr
+          %td= page.title
+          %td= link_to 'Show', page_path(page), :class => "btn btn-primary"
+          %td= link_to 'Edit', edit_page_path(page), :class => "btn btn-primary"
+          %td= link_to 'Delete', page_path(page), :class => "btn btn-danger", method: :delete, data: { confirm: 'Are you sure?' }
+
+        .text-center
+          = link_to "New Page", new_page_path, :class => "btn btn-primary"
+
+.inquiries-index
+  %h1 Listing Inquiries
+
+  %table.table.table-striped
+    %tr
+      %th Name
+      %th Company
+      %th Email
+      %th Phone
+      %th Need By
+      %th colspan="3">Actions
+
+
+    - @inquiries.each do |inquiry|
+        %tr
+          %td= inquiry.name
+          %td= inquiry.company
+          %td= inquiry.email
+          %td= inquiry.phone
+          %td= inquiry.finish_date
+          %td= link_to 'Show', inquiry_path(inquiry), :class => "btn btn-primary"
+          %td= link_to 'Edit', edit_inquiry_path(inquiry), :class => "btn btn-primary"
+          %td= link_to 'Delete', inquiry_path(inquiry), :class => "btn btn-danger", method: :delete, data: { confirm: 'Are you sure?' }

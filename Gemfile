@@ -5,15 +5,12 @@ gem 'rails', '4.2.4'
 gem 'sprockets', '~> 2.9'
 gem 'bcrypt'
 
-gem 'thin'
-
 # Database and server
 gem 'pg'
 gem 'unicorn'
 
 # Authentication and Roles
 gem 'devise'
-gem 'rolify'
 
 # UI Frameworks and Gems
 gem 'will_paginate', '~> 3.0'
@@ -21,6 +18,7 @@ gem 'will_paginate-bootstrap'
 gem "therubyracer"
 gem "less-rails" #Sprockets (what Rails 3.1 uses for its asset pipeline) supports LESS
 gem "twitter-bootstrap-rails"
+gem "haml"
 
 # Backend uploading gems
 gem "paperclip", "~> 4.3"

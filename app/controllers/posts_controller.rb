@@ -31,8 +31,8 @@ class PostsController < ApplicationController
 	end
 
 	def index
-		@posts = Post.where(published: false)
-		@posts = @posts.order('created_at DESC').paginate(:page => params[:page], :per_page => 3)
+		@posts = Post.where(published: true)
+		@posts = @posts.order('created_at DESC').paginate(:page => params[:page], :per_page => 10)
 	end
 
 	def edit
@@ -50,6 +50,6 @@ class PostsController < ApplicationController
 
 	private
 		def post_params
-			params.require(:post).permit(:title, :tagline, :published, :title_image, :text, :tag_list)
+			params.require(:post).permit(:title, :tagline, :published, :text, :tag_list)
 		end
 end
