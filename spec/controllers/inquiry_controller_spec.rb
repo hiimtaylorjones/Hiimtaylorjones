@@ -1,5 +1,5 @@
 require 'rails_helper'
 
-RSpec.describe InquiryController, :type => :controller do
+RSpec.describe InquiriesController, :type => :controller do
 
 end
