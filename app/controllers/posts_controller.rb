@@ -18,7 +18,6 @@ class PostsController < ApplicationController
 	def show
   	if Post.where(:id => params[:id], :published => true).present?
   		@post = Post.find(params[:id])
-  		authorize! :show, @post
 		else
   		@post = Post.find(params[:id])
 		end
