@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
 
 	before_action :authenticate_admin!, only: [:create, :new, :edit, :update, :destroy]
+	before_action :find_post, only: [:show, :edit, :update, :destroy]
 
 	def new
 		@post = Post.new
@@ -16,15 +17,12 @@ class PostsController < ApplicationController
 	end
 
 	def show
-  	if Post.where(:id => params[:id], :published => true).present?
-  		@post = Post.find(params[:id])
-		else
-  		@post = Post.find(params[:id])
+  	if @post.published == false
+			redirect_to :back, notice: "The post you're trying to look at hasn't been published yet!"
 		end
 	end
 
 	def destroy
-		@post = Post.find(params[:id])
 		@post.destroy
 		redirect_to admin_path
 	end
@@ -39,7 +37,6 @@ class PostsController < ApplicationController
 	end
 
 	def update
-		@post = Post.find(params[:id])
 		if @post.update(post_params)
 			redirect_to admin_path
 		else
@@ -48,6 +45,10 @@ class PostsController < ApplicationController
 	end
 
 	private
+		def find_post
+			@post = Post.find(params[:id])
+		end
+
 		def post_params
 			params.require(:post).permit(:title, :tagline, :published, :text, :tag_list)
 		end

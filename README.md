@@ -2,9 +2,12 @@
 
 ## What Is This?
 
-Everything Is Collateral (aka EverythingIsRuby) is the current implementation of my personal website written in Ruby on Rails. I've been working on it for quite a bit, creating and improving features as I go. In many ways, this is my means of exploring Ruby on Rails. 
+This a build out of my personal website and blog. There's really not much to it. However, you might be able to
+find some really cool stuff nested within. This project acts like a exploratory sandbox (in some ways) for things
+that interest me.
 
-That being said, I strive to keep the master branch as the most stable and secure branch. New feature branches will exist from time to time.
+Previously, I had a pretty heavy dependence on Carrierwave + AWS S3. However, I'm currently reconsidering that
+relationship. The past months or so have been spent on slimming down and updating the app. 
 
 ## What's it made out of?
 
@@ -14,6 +17,5 @@ As I mentioned before, this project is built with Rails. However, there are a fe
 
 * Font-Awesome
 * Twitter Bootstrapp (with LESS processing)
-* Carrierwave with S3 Integration
 * Rails
 * PostgreSQL
