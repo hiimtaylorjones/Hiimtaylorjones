@@ -27,14 +27,16 @@
       <%= f.text_field :tagline, :class => 'form-control' %>
     </div>
 
-    <div>
-      <%= f.label :draft %>
-      <%= f.check_box :draft %>
+    <div class="checkbox">
+      <%= f.label :published do %>
+        <%= f.check_box :published %>
+        Published
+      <% end %>
     </div>
 
     <div>
-      <%= f.label :text %><br>
-      <%= f.text_area :text, :class => 'form-control' %>
+      <%= f.label :body %><br>
+      <%= f.text_area :body, :class => 'form-control' %>
     </div>
 
     <div class="text-center">
