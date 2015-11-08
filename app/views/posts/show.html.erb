@@ -7,10 +7,9 @@
 			<h4>Written by <b>Taylor Jones</b> on <b><%= @time.strftime("%m/%d/%Y") %></b></h4>
 		</div>
 	</div>
-	<%= image_tag @post.title_image.url(:full), :class => "img-responsive center-block " %>
 
 	<div class="post-content center-block row">
-		<%= markdown @post.text %>
+		<%= markdown @post.body %>
 	</div>
 	<div class="tags text-center">
 		<% @post.tag_list.each do |t|%>
@@ -18,33 +17,10 @@
 		<% end %>
 	</div>
 
-	<div class="comments-section">
-		<div class="row">
-			<% @post.comments.each do |comment| %>
-				<div class="comment">
-					<h4><%= comment.commenter %></h4>
-					<p><%= comment.body %></p>
-					<% if user_signed_in? && comment.commenter == current_user.username %>
-						<div class="comment-functions">
-							<p>
-								<%= link_to 'Edit', edit_post_comment_path(comment.id, @post.id) %> |
-								<%= link_to 'Delete', [comment.post, comment], method: :delete, data: { confirm: 'Are you sure?' } %>
-							</p>
-						</div>
-					<% end %>
-				</div>
-			<% end %>
-		</div>
-	</div>
-
-	<%= render 'comments/form' %>
 
 	<div class="bottom-nav text-center">
-		<button type="button" class="btn btn-default">
-			<%= link_to 'Back', posts_path %>
-		</button>
-		<% if can? :update, @post %>
-			| <button type="button" class="btn btn-default"><%= link_to 'Edit Post', edit_post_path(@post) %></button>
+		<% if admin_signed_in? %>
+			<button type="button" class="btn btn-default"><%= link_to 'Edit Post', edit_post_path(@post) %></button>
 		<% end %>
 	</div>
 </div>

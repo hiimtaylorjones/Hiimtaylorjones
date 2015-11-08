@@ -1,6 +1,7 @@
 class PagesController < ApplicationController
 
 	before_action :authenticate_admin!, only: [:create, :new, :edit, :update, :destroy]
+	before_action :find_page, only: [:show, :edit, :destroy, :update]
 
 	def new
 		@page = Page.new
@@ -15,22 +16,18 @@ class PagesController < ApplicationController
 	  	end
 	end
 
-	def show
-		@page = Page.find(params[:id])
-	end
-
 	def destroy
-		@page = Page.find(params[:id])
 		@page.destroy
 		redirect_to admin_path
 	end
 
+	def show
+	end
+
 	def edit
-		@page = Page.find(params[:id])
 	end
 
 	def update
-		@page = Page.find(params[:id])
 		if @page.update(page_params)
 			redirect_to admin_path
 		else
@@ -39,6 +36,10 @@ class PagesController < ApplicationController
 	end
 
 	private
+		def find_page
+			@page = Page.find(params[:id])
+		end
+
 		def page_params
 			params.require(:page).permit(:title, :content)
 		end

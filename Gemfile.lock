@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/vmg/redcarpet.git
-  revision: 47d7c4e5ab23d56464956a726251132afa33c4cd
+  revision: da6d95b7469580db573dacde4179417cb07b012b
   specs:
     redcarpet (3.3.3)
 
@@ -47,7 +47,7 @@ GEM
     arel (6.0.3)
     bcrypt (3.1.10)
     builder (3.2.2)
-    chunky_png (1.3.4)
+    chunky_png (1.3.5)
     climate_control (0.0.3)
       activesupport (>= 3.0)
     cocaine (0.5.7)
@@ -116,16 +116,16 @@ GEM
       less (~> 2.6.0)
       sprockets (> 2, < 4)
       tilt
-    libv8 (3.16.14.11)
+    libv8 (3.16.14.13)
     loofah (2.0.3)
       nokogiri (>= 1.5.9)
     mail (2.6.3)
       mime-types (>= 1.16, < 3)
     mime-types (2.6.2)
     mimemagic (0.3.0)
-    mini_magick (4.3.5)
+    mini_magick (4.3.6)
     mini_portile (0.6.2)
-    minitest (5.8.1)
+    minitest (5.8.2)
     multi_json (1.11.2)
     nokogiri (1.6.6.2)
       mini_portile (~> 0.6.0)
@@ -234,7 +234,7 @@ GEM
     uglifier (2.7.2)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
-    unicorn (4.9.0)
+    unicorn (5.0.0)
       kgio (~> 2.6)
       rack
       raindrops (~> 0.7)

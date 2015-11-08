@@ -1,6 +1,7 @@
 class InquiriesController < ApplicationController
 
 	before_action :authenticate_admin!, only: [:update, :edit, :destroy]
+	before_action :find_inquiry, only: [:show, :edit, :update, :destroy]
 
 	def new
 		@inquiry = Inquiry.new
@@ -16,21 +17,17 @@ class InquiriesController < ApplicationController
 	end
 
 	def show
-		@inquiry = Inquiry.find(params[:id])
 	end
 
 	def destroy
-		@inquiry = Inquiry.find(params[:id])
 		@inquiry.destroy
 		redirect_to admin_path
 	end
 
 	def edit
-		@inquiry = Inquiry.find(params[:id])
 	end
 
 	def update
-		@inquiry = Inquiry.find(params[:id])
 		if @inquiry.update(inquiry_params)
 			redirect_to @inquiry
 		else
@@ -39,6 +36,10 @@ class InquiriesController < ApplicationController
 	end
 
 	private
+		def find_inquiry
+			@inquiry = Inquiry.find(params[:id])
+		end
+
 		def inquiry_params
 			params.require(:inquiry).permit(:name, :company, :email, :phone, :job_description, :finish_date)
 		end
