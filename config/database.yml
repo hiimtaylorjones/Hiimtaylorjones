@@ -17,7 +17,7 @@ production:
   adapter: postgresql
   host: localhost
   encoding: unicode
-  database: my_production_database
+  database: collateral_production
   pool: 5
-  username:
+  username: 
   password:
