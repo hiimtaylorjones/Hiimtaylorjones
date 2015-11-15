@@ -48,7 +48,13 @@ group :development, :test do
 	gem "faker"
 end
 
-# Heroku Assets
-gem 'spring',        group: :development
-gem 'rails_serve_static_assets', group: :production
-gem 'rails_12factor', group: :production
+# DigitalOcean Assets
+gem 'puma'
+
+group :development do
+	gem 'capistrano',         require: false
+  gem 'capistrano-rvm',     require: false
+  gem 'capistrano-rails',   require: false
+  gem 'capistrano-bundler', require: false
+  gem 'capistrano3-puma',   require: false
+end
