@@ -19,5 +19,5 @@ production:
   encoding: unicode
   database: collateral_production
   pool: 5
-  username: 
-  password:
+  username: <%= ENV["DB_PASSWORD"] %>
+  password: <%= ENV["DB_USERNAME"] %>
