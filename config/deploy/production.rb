@@ -20,12 +20,12 @@
 set :stage, :production
 
 # Replace 127.0.0.1 with your server's IP address!
-server '104.131.110.47', user: 'deploy', roles: %w{web app}
+server '104.131.110.47', user: 'root', roles: %w{web app}
 
-set :application, 'Everything Is Collateral'
+set :application, 'EverythingIsRuby'
 set :repo_url, 'git@github.com:codedbeardedsignedtaylor/everythingisruby.git'
 
-set :deploy_to, '/home/deploy/everythingiscollateral'
+set :deploy_to, '/home/EverythingIsRuby'
 
 set :linked_files, %w{config/database.yml}
 set :linked_dirs, %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system}
