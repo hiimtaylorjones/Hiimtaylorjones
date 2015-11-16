@@ -6,6 +6,7 @@ gem 'bcrypt'
 
 # Database and server
 gem 'pg'
+gem 'unicorn'
 
 # Authentication and Roles
 gem 'devise'
@@ -45,15 +46,4 @@ group :development, :test do
 	gem 'rspec-rails'
   gem 'factory_girl_rails'
 	gem "faker"
-end
-
-# DigitalOcean Assets
-gem 'puma'
-
-group :development do
-	gem 'capistrano',         require: false
-  gem 'capistrano-rvm',     require: false
-  gem 'capistrano-rails',   require: false
-  gem 'capistrano-bundler', require: false
-  gem 'capistrano3-puma',   require: false
 end
