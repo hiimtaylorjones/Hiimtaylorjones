@@ -4,8 +4,6 @@ development: &default
   min_messages: WARNING
   pool: 5
   reconnect: true
-  username: tjones
-  password: passw0rd
   host: localhost
   port: 5432
 
