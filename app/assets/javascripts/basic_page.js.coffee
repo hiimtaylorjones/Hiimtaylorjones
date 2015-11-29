@@ -4,11 +4,11 @@
 
 $(document).on 'ready page:load', ->
    navbar = document.getElementsByClassName("navbar navbar-inverse")
-   color = ["black", "#607D8B", "#4CAF50", "#03A9F4", "#9C27B0"]
+   color = ["#4CAF50", "#03A9F4", "#f34d4d", "#27fdf5", "#f765b8", "#e1008a", "#ffab7f", "#35c390" ]
    ind = Math.floor(Math.random() * color.length)
    navbar[0].style['background-color'] = color[ind]
 
-   $('pre code').each (i, block) ->
+   $('code').each (i, block) ->
      hljs.highlightBlock block
      return
    return
