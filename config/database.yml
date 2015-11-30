@@ -5,6 +5,8 @@ development: &default
   pool: 5
   reconnect: true
   host: localhost
+  username: tjones
+  password: passw0rd
   port: 5432
 
 test:
