@@ -1,1 +1,0 @@
-(function(){$(document).on("ready page:load",function(){var a,n,e;e=document.getElementsByClassName("navbar navbar-inverse"),a=["black","#607D8B","#4CAF50","#03A9F4","#9C27B0"],n=Math.floor(Math.random()*a.length),e[0].style["background-color"]=a[n],$("pre code").each(function(a,n){hljs.highlightBlock(n)})})}).call(this);
