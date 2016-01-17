@@ -16,5 +16,7 @@
 /tmp
 .env
 
+/publics/assets/**
+
 /config/aws_cred.yml
 /config/secrets.yml
