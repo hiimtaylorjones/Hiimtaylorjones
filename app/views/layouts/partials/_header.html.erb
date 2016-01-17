@@ -10,12 +10,13 @@
       </button>
       <%= link_to "Everything Is Collateral", root_path, :class => "navbar-brand logo hidden-sm hidden-xs" %>
       <%= link_to "EIC", root_path, :class => "navbar-brand logo visible-sm visible-xs" %>
-      <% if admin_signed_in? %>
+
       </div>
         <ul class="nav navbar-nav navbar-right">
           <li><%= link_to "About", about_path %>
-          <li><%= link_to "Sign Out", destroy_admin_session_path, method: :delete %></li>
+          <% if admin_signed_in? %>
+            <li><%= link_to "Sign Out", destroy_admin_session_path, method: :delete %></li>
+          <% end %>
         </ul>
-      <% end %>
     </div>
 </nav>
