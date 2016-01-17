@@ -1,4 +1,4 @@
-# Everything Is Collateral (http://everythingiscollateral.com)
+# Everything Is Collateral (http://collateralsoftware.com)
 
 ## What Is This?
 
