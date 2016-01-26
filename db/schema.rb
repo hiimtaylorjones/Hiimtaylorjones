@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160126160128) do
+ActiveRecord::Schema.define(version: 20160126162603) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -71,6 +71,13 @@ ActiveRecord::Schema.define(version: 20160126160128) do
     t.string   "tagline"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "responses", force: :cascade do |t|
+    t.integer  "comment_id"
+    t.text     "message"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "taggings", force: :cascade do |t|

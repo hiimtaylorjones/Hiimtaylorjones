@@ -3,14 +3,22 @@
   def create
     post = Post.find(params[:post_id])
     comment = post.comments.new(comment_params)
+    comment.approved = false
 
     if comment.save
       redirect_to post,
         notice: "We've recieved your comment. If it meets our guidlines, then you'll see it very soon!"
     else
       redirect_to post,
-        alert: "We were unable to create your comment. Please check your fields and try again!"
+        alert: comment.errors.full_messages
     end
+  end
+
+  # Allowing me, as the admin to respond to a comment.
+  # It allows for better discourse, while ensuring that I address
+  # certain things about my writing.
+
+  def respond_to_comment
   end
 
   def edit

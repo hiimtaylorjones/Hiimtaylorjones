@@ -3,4 +3,6 @@ class Comment < ActiveRecord::Base
 	validates :name, presence: true
 	validates :email, presence: true
 	validates :message, presence: true
+
+	has_many :responses
 end
