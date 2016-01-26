@@ -2,8 +2,15 @@
 
   def create
     post = Post.find(params[:post_id])
-    @comment = @post.comments.create(comment_params)
-    redirect_to post
+    comment = post.comments.new(comment_params)
+
+    if comment.save
+      redirect_to post,
+        notice: "We've recieved your comment. If it meets our guidlines, then you'll see it very soon!"
+    else
+      redirect_to post,
+        alert: "We were unable to create your comment. Please check your fields and try again!"
+    end
   end
 
   def edit
@@ -29,6 +36,6 @@
 
   private
     def comment_params
-      params.require(:comment).permit(:name, :email, :message)
+      params.permit(:name, :email, :message)
     end
 end
