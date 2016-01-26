@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
 
   devise_for :admins
-  resources :posts
-  resources :pages
-  resources :inquiries, except: [:new]
+  resources :posts do
+    resources :comments
+  end
 
   root 'basic_page#index'
   match '/about',       to: 'basic_page#about',         via: 'get'
@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   match '/hire_me',     to: 'inquiries#new',            via: 'get'
   match '/blog',        to: 'posts#index',              via: 'get'
 
-  get '*path' => redirect { |p, req| 
+  get '*path' => redirect { |p, req|
     req.flash[:notice] = "#{p[:path]} isn't a page on this site. Sorry!";
    '/'
   }

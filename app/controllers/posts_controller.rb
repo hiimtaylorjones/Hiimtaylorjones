@@ -20,6 +20,7 @@ class PostsController < ApplicationController
   	if @post.published == false
 			redirect_to :back, notice: "The post you're trying to look at hasn't been published yet!"
 		end
+		@comment = Comment.new
 	end
 
 	def destroy
