@@ -25,12 +25,28 @@
 	</div>
 </div>
 
+<div class="comments-section">
+	<% if @post.comments.blank? == false %>
+		<h3 class="text-center">This Post Has Comments.</h3>
+
+		<% approved_comments = @post.comments.where(approved: true) %>
+
+		<% if approved_comments.blank? %>
+			<h3 class="text-center">
+				Unfortunately, responses to these comments are still being
+				written. Please check back later!
+			</h3>
+		<% end %>
+
+	<% end %>
+</div>
+
 <h3>Got Something To Say?</h4>
 <h4>
 	In my rebellion against the norms of web design, I've take a different approach towards
 	commenting. It's very much of an expirment at the moment.
 </h4>
-<h4>If you're curious how our commenting works, take a look at <%= link_to 'this!', root_path %></h5>
+<h4>If you're curious how our commenting works, take a look at <%= link_to 'this!', about_commenting_path %></h5>
 
 <div class="comment-form">
 	<%= form_tag(controller: "comments", action: "create", method: 'post', :post_id => @post.id) do |f| %>
