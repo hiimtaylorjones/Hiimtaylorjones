@@ -60,7 +60,8 @@
 		</div>
 
 		<div class="text-center">
-			<%= link_to "Respond", "#", :class => 'btn btn-success' %>
+			<%= render 'posts/comments/comment_response_form', :c_id => comment.id, p_id: @post.id %>
+			<%= link_to "Respond", "#", :class => 'btn btn-success', data: {toggle: "modal", target: "#responseModal"} %>
 			<%= link_to "Approve Only", post_comment_approve_path(post_id: @post.id, comment_id: comment.id), method: :put, :class => 'btn btn-warning' %>
 			<%= link_to "Destroy", post_comment_path(post_id: @post.id, id: comment.id), method: :delete, data: { confirm: 'Are you sure?' } , :class => 'btn btn-danger' %>
 		</div>

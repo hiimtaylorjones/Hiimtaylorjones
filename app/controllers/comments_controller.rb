@@ -19,6 +19,19 @@
   # certain things about my writing.
 
   def respond
+    post = Post.find(params[:post_id])
+    comment = post.comments.find(params[:comment_id])
+    resp = comment.response = Response.new(
+      comment_id: params[:comment_id],
+      message: params[:message]
+    )
+    if resp.save
+      redirect_to post_comment_admin_path,
+        notice: 'Response created!'
+    else
+      redirect_to post_comment_admin_path,
+        alert: 'Response could not be created.'
+    end
   end
 
   def approve

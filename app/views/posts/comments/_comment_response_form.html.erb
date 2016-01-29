@@ -1,0 +1,22 @@
+<div class="modal fade" tabindex="-1" role="dialog" id="responseModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Respond to Comment</h4>
+      </div>
+      <%= form_tag(post_comment_respond_path(post_id: p_id, comment_id: c_id), method: :post) do |f| %>
+        <div class="modal-body">
+          <div class="form-group">
+            <%= label_tag :message %>
+            <%= hidden_field_tag :message %>
+          	<trix-editor input="message"></trix-editor>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <%= submit_tag 'Respond!', :class => 'btn btn-primary' %>
+        </div>
+      <% end %>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
