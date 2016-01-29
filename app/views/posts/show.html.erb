@@ -38,13 +38,27 @@
 			</h3>
 		<% else %>
 			<% approved_comments.each do |comment| %>
-				<div class="comment">
-					<h3><%= comment.name %> on <%= comment.created_at.strftime('%m/%d/%y') %></h3>
-					<h4><%= comment.message.html_safe %></h4>
-					<% if !comment.response.blank? %>
-						<h4><%= response.message.html_safe %></h4>
-					<% end %>
+				<div class="row">
+					<div class="col-md-6">
+						<div class="comment">
+							<h3><%= comment.name %> on <%= comment.created_at.strftime('%m/%d/%y') %></h3>
+							<h4><%= comment.message.html_safe %></h4>
+						</div>
+					</div>
+					<div class="col-md-6">
+					</div>
 				</div>
+				<% if !comment.response.blank? %>
+					<div class="row">
+						<div class="col-md-6"></div>
+						<div class="col-md-6">
+							<div class="response">
+								<h3> Staff on <%= comment.response.created_at.strftime('%m/%d/%y') %></h3>
+								<h4><%= comment.response.message %></h4>
+							</div>
+						</div>
+					</div>
+				<% end %>
 			<% end %>
 		<% end %>
 
