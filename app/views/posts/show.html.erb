@@ -36,6 +36,16 @@
 				Unfortunately, responses to these comments are still being
 				written. Please check back later!
 			</h3>
+		<% else %>
+			<% approved_comments.each do |comment| %>
+				<div class="comment">
+					<h3><%= comment.name %> on <%= comment.created_at.strftime('%m/%d/%y') %></h3>
+					<h4><%= comment.message.html_safe %></h4>
+					<% if !comment.response.blank? %>
+						<h4><%= response.message.html_safe %></h4>
+					<% end %>
+				</div>
+			<% end %>
 		<% end %>
 
 	<% end %>

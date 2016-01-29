@@ -2,7 +2,9 @@ Rails.application.routes.draw do
 
   devise_for :admins
   resources :posts do
-    resources :comments
+    resources :comments do
+      put "/approve",  to: "comments#approve", as: :approve
+    end
     get "/comment_admin",  to: "posts#comment_admin", via: 'get'
   end
 

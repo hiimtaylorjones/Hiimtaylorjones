@@ -4,5 +4,5 @@ class Comment < ActiveRecord::Base
 	validates :email, presence: true
 	validates :message, presence: true
 
-	has_many :responses
+	has_one :response
 end

@@ -18,12 +18,17 @@
   # It allows for better discourse, while ensuring that I address
   # certain things about my writing.
 
-  def respond_to_comment
+  def respond
   end
 
-  def edit
-    post = Post.find(params[:id])
-    @comment = post.comments.find(comment_params)
+  def approve
+    comment = Comment.find(params[:comment_id])
+    comment.approved = true
+    if comment.save
+      redirect_to post_comment_admin_path(:post_id => params[:post_id]), notice: "Comment has been approved."
+    else
+      redirect_to post_comment_admin_path(:post_id => params[:post_id]), alert: "Comment was unable to be approved."
+    end
   end
 
   def update
@@ -39,7 +44,7 @@
     post = Post.find(params[:post_id])
     @comment = post.comments.find(params[:id])
     @comment.destroy
-    redirect_to post
+    redirect_to post_comment_admin_path(post_id: post.id)
   end
 
   private

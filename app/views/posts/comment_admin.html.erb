@@ -45,6 +45,15 @@
 		</div>
 
 		<div class="form-group">
+			<%= label_tag :status %>
+			<% if comment.approved == false %>
+				<button class="btn btn-warning">Not Approved</button>
+			<% else %>
+				<button class="btn btn-success">Approved</button>
+			<% end %>
+		</div>
+
+		<div class="form-group">
 			<div class="form-control">
 				<%= comment.message.html_safe %>
 			</div>
@@ -52,8 +61,8 @@
 
 		<div class="text-center">
 			<%= link_to "Respond", "#", :class => 'btn btn-success' %>
-			<%= link_to "Approve Only", "#", :class => 'btn btn-warning' %>
-			<%= link_to "Destroy", "#", :class => 'btn btn-danger' %>
+			<%= link_to "Approve Only", post_comment_approve_path(post_id: @post.id, comment_id: comment.id), method: :put, :class => 'btn btn-warning' %>
+			<%= link_to "Destroy", post_comment_path(post_id: @post.id, id: comment.id), method: :delete, data: { confirm: 'Are you sure?' } , :class => 'btn btn-danger' %>
 		</div>
 	</div>
 <% end %>
