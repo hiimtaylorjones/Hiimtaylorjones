@@ -1,0 +1,69 @@
+<div class="post">
+
+	<div class="post-header">
+		<div class="text-center">
+			<h1><%= @post.title %></h1>
+			<% @time = @post.created_at %>
+			<h4>Written by <b>Taylor Jones</b> on <b><%= @time.strftime("%m/%d/%Y") %></b></h4>
+		</div>
+	</div>
+
+	<div class="post-content center-block row">
+		<%= markdown @post.body %>
+	</div>
+	<div class="tags text-center">
+		<% @post.tag_list.each do |t|%>
+			<%= button_tag t, class: 'btn btn-default tag' %>
+		<% end %>
+	</div>
+
+
+	<div class="bottom-nav text-center">
+		<% if admin_signed_in? %>
+			<button type="button" class="btn btn-default"><%= link_to 'Edit Post', edit_post_path(@post) %></button>
+		<% end %>
+	</div>
+</div>
+
+<h3>Got Something To Say?</h4>
+<h4>
+	In my rebellion against the norms of web design, I've take a different approach towards
+	commenting. It's very much of an expirment at the moment.
+</h4>
+<h4>If you're curious how our commenting works, take a look at <%= link_to 'this!', root_path %></h5>
+
+<% @post.comments.each do |comment| %>
+	<div class="comment-form-admin">
+		<div class="form-group">
+			<%= label_tag :name %>
+			<%= text_field_tag :name, comment.name, :class => 'form-control', :readonly => true%>
+		</div>
+
+		<div class="form-group">
+			<%= label_tag :email %>
+			<%= text_field_tag :email, comment.email ,:class => 'form-control' , :readonly => true %>
+		</div>
+
+		<div class="form-group">
+			<%= label_tag :status %>
+			<% if comment.approved == false %>
+				<button class="btn btn-warning">Not Approved</button>
+			<% else %>
+				<button class="btn btn-success">Approved</button>
+			<% end %>
+		</div>
+
+		<div class="form-group">
+			<div class="form-control">
+				<%= comment.message.html_safe %>
+			</div>
+		</div>
+
+		<div class="text-center">
+			<%= render 'posts/comments/comment_response_form', :c_id => comment.id, p_id: @post.id %>
+			<%= link_to "Respond", "#", :class => 'btn btn-success', data: {toggle: "modal", target: "#responseModal"} %>
+			<%= link_to "Approve Only", post_comment_approve_path(post_id: @post.id, comment_id: comment.id), method: :put, :class => 'btn btn-warning' %>
+			<%= link_to "Destroy", post_comment_path(post_id: @post.id, id: comment.id), method: :delete, data: { confirm: 'Are you sure?' } , :class => 'btn btn-danger' %>
+		</div>
+	</div>
+<% end %>

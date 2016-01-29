@@ -9,7 +9,7 @@
     - @posts.each do |post|
       %tr
         %td= post.title
-        %td= link_to 'Show', post_path(post), :class => "btn btn-primary"
+        %td= link_to 'Comments', post_comment_admin_path(post), :class => "btn btn-success"
         %td= link_to 'Edit', edit_post_path(post), :class => "btn btn-primary"
         %td= button_to 'Destroy', post_path(post), :class => "btn btn-danger", method: :delete, data: { confirm: 'Are you sure?' }
 

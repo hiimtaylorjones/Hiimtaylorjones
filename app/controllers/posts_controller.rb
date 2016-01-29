@@ -20,6 +20,7 @@ class PostsController < ApplicationController
   	if @post.published == false
 			redirect_to :back, notice: "The post you're trying to look at hasn't been published yet!"
 		end
+		@comment = Comment.new
 	end
 
 	def destroy
@@ -43,6 +44,10 @@ class PostsController < ApplicationController
 			render 'edit'
 		end
 	end
+
+	def comment_admin
+		@post = Post.find(params[:post_id])
+  end
 
 	private
 		def find_post

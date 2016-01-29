@@ -1,5 +1,5 @@
 <div class="post-form">
-  <%= form_for @post, html: { multidivart: true } do |f| %>
+  <%= form_for @post, html: { multipart: true } do |f| %>
     <% if @post.errors.any? %>
     <div id="error_exdivlanation">
       <h2><%= pluralize(@post.errors.count, "error") %> prohibited
