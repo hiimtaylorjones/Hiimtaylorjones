@@ -4,7 +4,7 @@
 
 $(document).on 'ready page:load', ->
    navbar = document.getElementsByClassName("navbar navbar-inverse")
-   color = ["#4CAF50", "#03A9F4", "#f34d4d", "#27fdf5", "#f765b8", "#e1008a", "#ffab7f", "#35c390" ]
+   color = ["#4CAF50", "#03A9F4", "#f34d4d", "#f765b8","#ffab7f", "#35c390" ]
    ind = Math.floor(Math.random() * color.length)
    navbar[0].style['background-color'] = color[ind]
 
