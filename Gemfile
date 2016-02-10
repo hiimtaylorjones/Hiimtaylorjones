@@ -19,13 +19,10 @@ gem "less-rails" #Sprockets (what Rails 3.1 uses for its asset pipeline) support
 gem "twitter-bootstrap-rails"
 gem "haml"
 
-# Backend uploading gems
-gem "paperclip", "~> 4.3"
-gem 'mini_magick'
-
 # Rendering and Tagging
 gem 'redcarpet', github: 'vmg/redcarpet'
 gem 'acts-as-taggable-on'
+gem 'friendly_id'
 
 # Javascript and Coffeescript
 gem 'uglifier'
@@ -45,5 +42,5 @@ gem 'compass-rails'
 group :development, :test do
 	gem 'rspec-rails'
   gem 'factory_girl_rails'
-	gem "faker"
+	gem 'faker'
 end
