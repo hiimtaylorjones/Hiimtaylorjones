@@ -8,16 +8,16 @@ class PostsController < ApplicationController
 	end
 
 	def create
-  		@post = Post.new(post_params)
-	 		if @post.save
-	  		redirect_to posts_url, notice: 'Post was successfully created.'
-	  	else
-	  		render action: "new"
-	  	end
-	end
+		@post = Post.new(post_params)
+		if @post.save
+			redirect_to posts_url, notice: 'Post was successfully created.'
+		else
+			render action: :new
+		end
+	åend
 
 	def show
-  	if @post.published == false
+		if @post.published == false
 			redirect_to :back, notice: "The post you're trying to look at hasn't been published yet!"
 		end
 		@comment = Comment.new
@@ -41,13 +41,13 @@ class PostsController < ApplicationController
 		if @post.update(post_params)
 			redirect_to admin_path
 		else
-			render 'edit'
+			render :edit
 		end
 	end
 
 	def comment_admin
 		@post = Post.find(params[:post_id])
-  end
+	end
 
 	private
 		def find_post

@@ -8,12 +8,12 @@ class PagesController < ApplicationController
 	end
 
 	def create
-  		@page = Page.new(page_params)
-  		if @page.save
-	  		redirect_to admin_url, notice: 'Page was successfully created.'
-	  	else
-	  		render action: "new"
-	  	end
+		@page = Page.new(page_params)
+		if @page.save
+			redirect_to admin_url, notice: 'Page was successfully created.'
+		else
+			render action: "new"
+		end
 	end
 
 	def destroy
@@ -35,12 +35,13 @@ class PagesController < ApplicationController
 		end
 	end
 
-	private
-		def find_page
-			@page = Page.find(params[:id])
-		end
+private
 
-		def page_params
-			params.require(:page).permit(:title, :content)
-		end
+	def find_page
+		@page = Page.find(params[:id])
+	end
+
+	def page_params
+		params.require(:page).permit(:title, :content)
+	end
 end
