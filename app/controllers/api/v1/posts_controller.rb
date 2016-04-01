@@ -18,7 +18,7 @@ class Api::V1::PostsController < ApplicationController
   end
 
   def show
-    if @post.published == false
+    if @post.published == true
       render json: @post, status: :ok
       # @comment = Comment.new
     else
@@ -49,7 +49,7 @@ class Api::V1::PostsController < ApplicationController
     if @post.update(post_params)
       render json: @post, status: :success
     else
-      render json: nil, status: :failure
+      render json: { message: 'Hello' }, status: :failure
     end
   end
 
