@@ -25,7 +25,7 @@ RSpec.describe Api::V1::PostsController, type: :controller do
 		describe 'Get Post to Show' do
 			it 'responds successfully with an HTTP 200 status code' do
 				get :show, id: @post
-        resp = JSON.parse(resp.body)
+        resp = JSON.parse(response.body)
         expect(resp['post']['title']).to eql @post.title
 			end
 		end

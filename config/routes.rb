@@ -3,10 +3,22 @@ Rails.application.routes.draw do
   devise_for :admins
   resources :posts do
     resources :comments do
-      put "/approve",  to: "comments#approve", as: :approve
-      post "/respond", to: "comments#respond", as: :respond
+      put '/approve',  to: 'comments#approve', as: :approve
+      post '/respond', to: 'comments#respond', as: :respond
     end
-    get "/comment_admin",  to: "posts#comment_admin", via: 'get'
+    get '/comment_admin', to: 'posts#comment_admin', via: 'get'
+  end
+
+  namespace :api do
+    namespace :v1 do
+      resources :posts do
+        resources :comments do
+          put '/approve',  to: 'comments#approve', as: :approve
+          post '/respond', to: 'comments#respond', as: :respond
+        end
+        get '/comment_admin', to: 'posts#comment_admin', via: 'get'
+      end
+    end
   end
 
   root 'basic_page#index'

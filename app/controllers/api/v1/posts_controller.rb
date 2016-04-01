@@ -19,9 +19,11 @@ class Api::V1::PostsController < ApplicationController
 
   def show
     if @post.published == false
-      render json: @post
+      render json: @post, status: :ok
+      # @comment = Comment.new
+    else
+      render json: nil, status: :failure
     end
-    @comment = Comment.new
   end
 
   def destroy
@@ -57,6 +59,10 @@ class Api::V1::PostsController < ApplicationController
   end
 
   private
+
+  def find_post
+    @post = Post.find(params[:id])
+  end
 
   def post_params
     params.require(:post).permit(:title, :tagline, :published, :body, :tag_list)
