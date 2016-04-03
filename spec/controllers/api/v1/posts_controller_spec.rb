@@ -32,12 +32,16 @@ RSpec.describe Api::V1::PostsController, type: :controller do
       @post = FactoryGirl.create(:post)
     end
 
-    context 'Editing a post' do
-      it 'should authenticate the user and allow editing' do
-        get :edit, id: @post
-        expect(response).to be_success
-        expect(response).to have_http_status(200)
-      end
+    it 'should authenticate the user and allow editing' do
+      get :edit, id: @post
+      expect(response).to be_success
+      expect(response).to have_http_status(200)
+    end
+
+    it 'should authenticate the user and allow post creation' do
+      post :create, post: FactoryGirl.attributes_for(:post)
+      resp = JSON.parse(response.body)
+      expect(resp['id']).to_not be_nil
     end
   end
 end
