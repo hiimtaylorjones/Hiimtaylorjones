@@ -14,7 +14,7 @@ class PostsController < ApplicationController
 		else
 			render action: :new
 		end
-	åend
+	end
 
 	def show
 		if @post.published == false
