@@ -19,6 +19,9 @@ gem 'less-rails'
 gem 'twitter-bootstrap-rails'
 gem 'haml'
 
+# Ember Time
+gem 'ember-cli-rails'
+
 # Backend uploading gems
 gem 'paperclip', '~> 4.3'
 gem 'mini_magick'
