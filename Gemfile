@@ -15,8 +15,8 @@ gem 'devise'
 gem 'will_paginate'
 gem 'will_paginate-bootstrap'
 gem "therubyracer"
-gem "less-rails"
-gem "twitter-bootstrap-rails"
+gem "bootstrap-sass"
+gem "sass-rails"
 gem "haml"
 
 # Rendering and Tagging
