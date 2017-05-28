@@ -1,55 +1,62 @@
-.post
-  .post-header
-    .text-center
-      %h1 What's Up With Commenting These Days?
+<div class="post">
+  <div class="post-header">
+    <div class="text-center">
+      <h1>What's Up With Commenting These Days?</h1>
+    </div>
+  </div>
 
-  .post-content.center-block.row
-
-    %p
+  <div class="post-content center-block row">
+    <p>
       The other day, I had this idea for a new commenting system. I've spent my last
       few development sessions creating this commenting system. However, its a bit different
       than any other commenting system out there right now.
+    </p>
+    <p>Let's talk about it for a second.</p>
 
-    %p Let's talk about it for a second.
+    <h3>How I'm Implementing This System</h3>
 
-    %h3 How I'm Implementing This System
-
-    %p
+    <p>
       One of the hardest things on the internet is handling spam and encouraging good
       discourse. I really love #{link_to 'Discourse', 'https://www.discourse.org/', target: 'blank'} and their approach to
       the subject. However, I really wanted to try something different for this site.
-    %p
+    </p>
+    <p>
       The approach I want to implement is simple:
-      %b Hosting a Q&A or sorts between readers and myself.
+      <b>Hosting a Q&A or sorts between readers and myself.</b>
       In the best scenario, every valid concern to a post would be addressed in a
       format that respects the initial commenter, but also allows for me to take time
       to address a comment before it gets lost down a thread.
+    </p>
+    <p>Right now, we've got a pretty nifty form that looks like something like this:</p>
 
-    %p
-      Right now, we've got a pretty nifty form that looks like something like this:
+    <%= image_tag 'comment_form.png', :class => 'img img-responsive' %>
 
-    = image_tag 'comment_form.png', :class => 'img img-responsive'
-
-    %p
+    <p>
       Once you fill out the form, a comment will be sent to the admin panel of this site.
       From there, I'll be able to address the comment in the proper manner and send a response
       either privately or publicly (depending on what it warrants).
+    </p>
 
-    %h3 Public Comment Responses
+    <h3>Public Comment Responses</h3>
 
-    %p
+    <p>
       If the comment is being addressed publically, then you'll see a section on the post
       that looks something like this:
+    </p>
 
-    = image_tag 'comment-response.png', :class => 'img img-responsive'
+    <%= image_tag 'comment-response.png', :class => 'img img-responsive' %>
 
-    %h3 Private Comment Responses
+    <h3>Private Comment Responses</h3>
 
-    %p
+    <p>
       If I feel like a comment needs to be addressed privately, I'll be contacting you through
       the email provided in the comment.
+    </p>
 
-    %p
+    <p>
       I'm also aware that this is an expiriment of sorts. So, please be patient with every bug
       and bump in the road. Maybe, at the end of all of this, we'll have something worth talking
       about!
+    </p>
+  </div>
+</div>

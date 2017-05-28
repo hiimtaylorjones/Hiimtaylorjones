@@ -1,0 +1,21 @@
+<div class="most-recent">
+	<% @posts.each do |post| %>
+		<div class="post">
+			<div class="center post-header">
+				<%= link_to post.title, post_path(post), class: "post-link" %>
+				<% @time = post.created_at %>
+				<h4 class="text-center">
+					Written by %b Taylor Jones on <b><%= @time.strftime("%d/%d/%Y") %>
+				</h4>
+			</div>
+			<div class="post-content center-block">
+				<%= markdown post.body %>
+			</div>
+		</div>
+	<% end %>
+	<div class="blog-btn text-center">
+		<button type="button", class: "btn btn-default">
+			<%= link_to "More Posts", blog_path %>
+		</div>
+	</div>
+</div>
