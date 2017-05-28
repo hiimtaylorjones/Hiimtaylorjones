@@ -13,9 +13,8 @@ gem 'devise'
 
 # UI Frameworks and Gems
 gem 'will_paginate'
-gem 'will_paginate-bootstrap'
 gem "therubyracer"
-gem "bootstrap-sass"
+gem "bulma-rails", "~> 0.4.0"
 gem "sass-rails"
 gem "haml"
 

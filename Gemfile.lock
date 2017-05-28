@@ -41,13 +41,10 @@ GEM
     acts-as-taggable-on (5.0.0)
       activerecord (>= 4.2.8)
     arel (7.1.4)
-    autoprefixer-rails (7.1.1)
-      execjs
     bcrypt (3.1.11)
-    bootstrap-sass (3.3.7)
-      autoprefixer-rails (>= 5.2.1)
-      sass (>= 3.3.4)
     builder (3.2.3)
+    bulma-rails (0.4.0)
+      sass (~> 3.2)
     chunky_png (1.3.8)
     coffee-rails (4.2.2)
       coffee-script (>= 2.2.0)
@@ -215,8 +212,6 @@ GEM
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.2)
     will_paginate (3.1.5)
-    will_paginate-bootstrap (1.0.1)
-      will_paginate (>= 3.0.3)
     yui-compressor (0.12.0)
 
 PLATFORMS
@@ -225,7 +220,7 @@ PLATFORMS
 DEPENDENCIES
   acts-as-taggable-on
   bcrypt
-  bootstrap-sass
+  bulma-rails (~> 0.4.0)
   coffee-rails
   compass-rails
   devise
@@ -246,7 +241,6 @@ DEPENDENCIES
   uglifier
   unicorn
   will_paginate
-  will_paginate-bootstrap
   yui-compressor
 
 BUNDLED WITH
