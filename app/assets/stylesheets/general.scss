@@ -7,6 +7,20 @@ html {
  * The following CSS deals with general rules and not specific classes. They may be overridden
  * by the class references towards the bottom of the page.
  */
+
+.nav {
+	.logo {
+		font-family: 'PT Sans', sans-serif;
+		font-size: 1.7em;
+		color: #fff;
+		text-transform: uppercase;
+		letter-spacing: 1px;
+		font-weight: bold;
+	}
+	border-top: 2px solid black;
+	border-bottom: 2px solid black;
+}
+
 .main-content {
 	font-family: 'PT Sans', sans-serif;
 	font-weight: 300;

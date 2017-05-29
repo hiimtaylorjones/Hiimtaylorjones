@@ -5,13 +5,8 @@
 		<h2><%= link_to post.title, post_path(post) %></h2>
 		<h4><%= simple_format post.tagline %></h4>
 		<br/>
-		<div class="text-center">
-			<button type="button" class="button">
-				<%= link_to 'Read More', post_path(post) %>
-			</button>
+		<div class="has-text-centered">
+			<%= link_to 'Read More', post_path(post), class: "button" %>
 		</div>
 	</div>
 <% end %>
-<!-- <div class="text-center">
-	<%= will_paginate @posts, renderer: BootstrapPagination::Rails, class: "pagination-centered"%>
-</div> -->
