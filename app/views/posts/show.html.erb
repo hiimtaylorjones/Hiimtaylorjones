@@ -1,5 +1,4 @@
-<div class="post">
-
+<div class="post content">
 	<div class="post-header">
 		<div class="text-center">
 			<h1><%= @post.title %></h1>
@@ -20,7 +19,7 @@
 
 	<div class="bottom-nav text-center">
 		<% if admin_signed_in? %>
-			<button type="button" class="btn btn-default"><%= link_to 'Edit Post', edit_post_path(@post) %></button>
+			<%= link_to 'Edit Post', edit_post_path(@post), class: "button" %>
 		<% end %>
 	</div>
 </div>
@@ -38,24 +37,17 @@
 			</h3>
 		<% else %>
 			<% approved_comments.each do |comment| %>
-				<div class="row">
-					<div class="col-md-6">
-						<div class="comment">
-							<h3><%= comment.name %> on <%= comment.created_at.strftime('%m/%d/%y') %></h3>
-							<h4><%= comment.message.html_safe %></h4>
-						</div>
-					</div>
-					<div class="col-md-6">
+				<div class="columns">
+					<div class="column">
+						<h3><%= comment.name %> on <%= comment.created_at.strftime('%m/%d/%y') %></h3>
+						<h4><%= comment.message.html_safe %></h4>
 					</div>
 				</div>
 				<% if !comment.response.blank? %>
 					<div class="row">
-						<div class="col-md-6"></div>
-						<div class="col-md-6">
-							<div class="response">
-								<h3> Staff on <%= comment.response.created_at.strftime('%m/%d/%y') %></h3>
-								<h4><%= comment.response.message.html_safe %></h4>
-							</div>
+						<div class="column">
+							<h3> Staff on <%= comment.response.created_at.strftime('%m/%d/%y') %></h3>
+							<h4><%= comment.response.message.html_safe %></h4>
 						</div>
 					</div>
 				<% end %>
@@ -65,30 +57,8 @@
 	<% end %>
 </div>
 
-<h3>Got Something To Say?</h4>
-<h4>
-	In my rebellion against the norms of web design, I've take a different approach towards
-	commenting. It's very much of an expirment at the moment.
-</h4>
-<h4>If you're curious how our commenting works, take a look at <%= link_to 'this!', about_commenting_path %></h5>
-
-<div class="comment-form">
-	<%= form_tag(controller: "comments", action: "create", method: 'post', :post_id => @post.id) do |f| %>
-		<div class="form-group">
-			<%= label_tag :name %>
-			<%= text_field_tag :name, "",:class => 'form-control'%>
-		</div>
-
-		<div class="form-group">
-			<%= label_tag :email %>
-			<%= text_field_tag :email, "",:class => 'form-control'%>
-		</div>
-
-		<%= hidden_field_tag :message %>
-  	<trix-editor input="message"></trix-editor>
-
-		<div class="text-center", style='margin-top: 10px;'>
-			<%= submit_tag "Send My Regards To The Chef", :class => "btn btn-primary" %>
-		</div>
-	<% end %>
+<div class="content">
+	<h3>Got Something To Say?</h4>
+	<h4>Feel free to shoot me some feedback!</h4>
+	<%= render "posts/comments/reader_form" %>
 </div>

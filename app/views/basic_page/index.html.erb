@@ -5,7 +5,7 @@
 				<%= link_to post.title, post_path(post), class: "post-link" %>
 				<% @time = post.created_at %>
 				<h4 class="text-center">
-					Written by %b Taylor Jones on <b><%= @time.strftime("%d/%d/%Y") %>
+					Written by <b>Taylor Jones</b> on <b><%= @time.strftime("%d/%d/%Y") %></b>
 				</h4>
 			</div>
 			<div class="post-content center-block">
@@ -14,8 +14,10 @@
 		</div>
 	<% end %>
 	<div class="blog-btn text-center">
-		<button type="button", class: "btn btn-default">
-			<%= link_to "More Posts", blog_path %>
+		<div class="block">
+			<button type="button", class: "button">
+				<%= link_to "More Posts", blog_path %>
+			</div>
 		</div>
 	</div>
 </div>

@@ -1,0 +1,24 @@
+<div class="comment-form">
+	<%= form_tag(controller: "comments", action: "create", method: 'post', :post_id => @post.id) do |f| %>
+		<div class="field">
+			<%= label_tag :name, nil, class: "label" %>
+      <p class="control">
+        <%= text_field_tag :name, "", class: "input" %>
+      </p>
+		</div>
+
+		<div class="field">
+			<%= label_tag :email, nil, class: "label" %>
+      <p class="control">
+        <%= text_field_tag :email, "", class: "input" %>
+      </p>
+		</div>
+
+		<%= hidden_field_tag :message %>
+  	<trix-editor input="message"></trix-editor>
+
+		<div class="text-center", style='margin-top: 10px;'>
+			<%= submit_tag "Send My Regards To The Chef", :class => "btn btn-primary" %>
+		</div>
+	<% end %>
+</div>
