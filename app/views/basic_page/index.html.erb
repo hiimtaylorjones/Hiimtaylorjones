@@ -1,12 +1,12 @@
 <div class="most-recent">
 	<% @posts.each do |post| %>
-		<div class="post">
-			<div class="center post-header">
-				<%= link_to post.title, post_path(post), class: "post-link" %>
+		<div class="content post-preview">
+			<div class="post-header has-text-centered">
+				<h1><%= link_to post.title, post_path(post), class: "post-link" %></h1>
 				<% @time = post.created_at %>
-				<h4 class="text-center">
+				<p class="author-information has-text-centered">
 					Written by <b>Taylor Jones</b> on <b><%= @time.strftime("%d/%d/%Y") %></b>
-				</h4>
+				</p>
 			</div>
 			<div class="post-content center-block">
 				<%= markdown post.body %>
