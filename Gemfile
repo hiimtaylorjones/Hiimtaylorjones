@@ -6,7 +6,7 @@ gem 'bcrypt'
 
 # Database and server
 gem 'pg'
-gem 'unicorn'
+gem 'puma'
 
 # Authentication and Roles
 gem 'devise'
