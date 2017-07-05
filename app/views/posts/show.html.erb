@@ -11,13 +11,14 @@
 	</div>
 	<div class="tags text-center">
 		<% @post.tag_list.each do |t|%>
-			<%= button_tag t, class: 'btn btn-default tag' %>
+			<%= button_tag t, class: 'button' %>
 		<% end %>
 	</div>
 
 
-	<div class="bottom-nav text-center">
+	<div class="bottom-nav has-text-centered">
 		<% if admin_signed_in? %>
+			<br />
 			<%= link_to 'Edit Post', edit_post_path(@post), class: "button" %>
 		<% end %>
 	</div>
