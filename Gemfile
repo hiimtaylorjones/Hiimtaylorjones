@@ -19,7 +19,8 @@ gem "sass-rails"
 gem "haml"
 
 # Rendering and Tagging
-gem 'redcarpet', '3.4.0'
+gem 'github-markup'
+gem 'commonmarker'
 gem 'acts-as-taggable-on'
 gem 'friendly_id'
 
