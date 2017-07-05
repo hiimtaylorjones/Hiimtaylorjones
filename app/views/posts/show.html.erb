@@ -1,9 +1,8 @@
 <div class="post content">
 	<div class="post-header">
-		<div class="text-center">
+		<div class="has-text-centered">
 			<h1><%= @post.title %></h1>
-			<% @time = @post.created_at %>
-			<h4>Written by <b>Taylor Jones</b> on <b><%= @time.strftime("%m/%d/%Y") %></b></h4>
+			<h4>Written by <b>Taylor Jones</b> on <b><%= @post.created_at.strftime("%m/%d/%Y") %></b></h4>
 		</div>
 	</div>
 
@@ -25,7 +24,7 @@
 </div>
 
 <div class="comments-section">
-	<% if @post.comments.blank? == false %>
+	<% if @post.comments.present? %>
 		<h3 class="text-center">This Post Has Comments.</h3>
 
 		<% approved_comments = @post.comments.where(approved: true) %>
@@ -43,7 +42,7 @@
 						<h4><%= comment.message.html_safe %></h4>
 					</div>
 				</div>
-				<% if !comment.response.blank? %>
+				<% if comment.response %>
 					<div class="row">
 						<div class="column">
 							<h3> Staff on <%= comment.response.created_at.strftime('%m/%d/%y') %></h3>
@@ -53,12 +52,11 @@
 				<% end %>
 			<% end %>
 		<% end %>
-	<% else %>
 	<% end %>
 </div>
 
 <div class="content">
 	<h3>Got Something To Say?</h4>
-	<h4>Feel free to shoot me some feedback!</h4>
+	<h4>Let us know!</h4>
 	<%= render "posts/comments/reader_form" %>
 </div>
