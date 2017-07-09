@@ -44,11 +44,8 @@ class PostsController < ApplicationController
 		end
 	end
 
-	def comment_admin
-		@post = Post.find(params[:post_id])
-  end
-
 	private
+
 		def find_post
 			@post = Post.friendly.find(params[:id])
 		end
