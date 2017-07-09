@@ -14,5 +14,4 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require basic_page
-//= require trix
 //= require_tree .
