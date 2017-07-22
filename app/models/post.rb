@@ -1,3 +1,5 @@
+# A post written by an admin for usage on the site
+
 class Post < ActiveRecord::Base
   extend FriendlyId
   friendly_id :title, use: :slugged

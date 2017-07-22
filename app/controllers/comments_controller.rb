@@ -19,12 +19,8 @@
   # certain things about my writing.
 
   def respond
-    post = Post.find(params[:post_id])
-    comment = post.comments.find(params[:comment_id])
-    resp = comment.response = Response.new(
-      comment_id: params[:comment_id],
-      message: params[:message]
-    )
+    build_comment_response_resources
+
     if resp.save
       redirect_to post_comment_admin_path,
         notice: 'Response created!'
@@ -35,12 +31,15 @@
   end
 
   def approve
-    comment = Comment.find(params[:comment_id])
-    comment.approved = true
+    build_approved_comment
+
+    post_id = params[:post_id]
+    redirect_path = post_comment_admin_path(post_id: post_id)
+
     if comment.save
-      redirect_to post_comment_admin_path(:post_id => params[:post_id]), notice: "Comment has been approved."
+      redirect_to redirect_path, notice: "Comment has been approved."
     else
-      redirect_to post_comment_admin_path(:post_id => params[:post_id]), alert: "Comment was unable to be approved."
+      redirect_to redirect_path, alert: "Comment was unable to be approved."
     end
   end
 
@@ -61,7 +60,24 @@
   end
 
   private
+
     def comment_params
       params.permit(:name, :email, :message)
+    end
+
+    def build_comment_response_resources
+      comment_id = params[:comment_id]
+      post = Post.find(params[:post_id])
+      comment = post.comments.find(id)
+
+      resp = comment.response = Response.new(
+        comment_id: comment_id,
+        message: params[:message]
+      )
+    end
+
+    def build_approved_comment
+      comment = Comment.find(params[:comment_id])
+      comment.approved = true
     end
 end
