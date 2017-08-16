@@ -2,8 +2,7 @@
 
 ## What Is This?
 
-This a build out of my personal website and blog. There's really not much to it. However, you might be able to find some really cool stuff nested within. This project acts like a exploratory sandbox (in some ways) for things that interest me.
-
+This project contains the content of my personal portfolio site. 
 
 ## What's it made out of?
 
