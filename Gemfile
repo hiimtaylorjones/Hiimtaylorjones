@@ -1,4 +1,4 @@
-ruby '2.4.0'
+ruby '2.6.0'
 source 'https://rubygems.org'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '5.0.1'
@@ -20,8 +20,8 @@ gem "sass-rails"
 gem "haml"
 
 # Rendering and Tagging
-gem 'github-markup'
-gem 'commonmarker'
+gem 'github-markup', '3.0.4'
+gem 'commonmarker', '0.19.0'
 gem 'acts-as-taggable-on'
 gem 'friendly_id'
 
