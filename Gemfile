@@ -1,7 +1,7 @@
 ruby '2.6.0'
 source 'https://rubygems.org'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '5.0.1'
+gem 'rails', '5.2.0'
 gem 'sprockets'
 gem 'bcrypt'
 
@@ -41,6 +41,6 @@ gem 'compass-rails'
 group :development, :test do
 	gem 'rspec-rails'
 	gem 'rails-controller-testing'
-  gem 'factory_girl_rails'
+  gem 'factory_bot_rails'
 	gem 'faker'
 end

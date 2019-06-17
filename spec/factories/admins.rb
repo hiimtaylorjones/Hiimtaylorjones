@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :admin do |f|
     p = Faker::Internet.password
     f.email                 { Faker::Internet.email }
