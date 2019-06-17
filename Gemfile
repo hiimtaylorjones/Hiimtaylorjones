@@ -22,7 +22,7 @@ gem "haml"
 # Rendering and Tagging
 gem 'github-markup', '3.0.4'
 gem 'commonmarker', '0.19.0'
-gem 'acts-as-taggable-on'
+gem 'acts-as-taggable-on', '~> 6.0'
 gem 'friendly_id'
 
 # Javascript and Coffeescript
