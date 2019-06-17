@@ -4,16 +4,12 @@
 
 This project contains the content of my personal portfolio site. 
 
-## What's it made out of?
+## Are You Still Updating It?
 
-As I mentioned before, this project is built with Rails. However, there are a few other things at play too!
+Yep! Recently, I've begun exploring updating the site and implementing 
+what I've been learning recently into the project. At the very least, I'll 
+be able to look at my old code and cringe a bit.
 
-(Listed in order of depth)
+## Where Can I Actually Take A Look At It?
 
-* Bulma
-* Rails
-* PostgreSQL
-
-## What's New With It?
-
-Over the past couple of months, I've updated and improved the structure of the application. It hasn't been a full rewrite, but I rewrite a lot of features.
+Its on [Heroku](https://secure-dawn-23123.herokuapp.com/)!
