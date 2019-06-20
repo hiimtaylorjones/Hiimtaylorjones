@@ -56,8 +56,16 @@
 	<% end %>
 </div>
 
-<div class="content">
-	<h3>Got Something To Say?</h4>
-	<h4>Let us know!</h4>
-	<%= render "posts/comments/reader_form" %>
-</div>
+<% if @post.commenting_enabled? %>
+	<div class="content">
+		<h3>Got Something To Say?</h4>
+		<h4>Let us know!</h4>
+		<%= render "posts/comments/reader_form" %>
+	</div>
+<% else %>
+	<div class="content">
+		<h3>We're Currently Not Accepting Feedback Around This Post Right Now</h3>
+		<h4>Check back later if you're interested in contributing to the conversation</h4>
+		<p>You can always tweet at @hiimtaylorjones if you're really got something burning to say!</p>
+	</div>
+<% end %>
