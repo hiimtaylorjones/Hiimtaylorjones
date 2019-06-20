@@ -5,7 +5,10 @@
     comment = post.comments.new(comment_params)
     comment.approved = false
 
-    if comment.save
+    if post.commenting_enabled? == false
+      redirect_path post,
+        notice: "Commenting isn't enabled on this post yet. Check back later to see if we're looking for feedback on this post!"
+    elsif comment.save
       redirect_to post,
         notice: "We've recieved your comment. If it meets our guidlines, then you'll see it very soon!"
     else
