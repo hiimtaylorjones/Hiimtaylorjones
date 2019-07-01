@@ -1,23 +1,23 @@
-<nav class="nav">
-  <div class="nav-left">
-    <%= link_to "Everything Is Collateral", root_path, class: "nav-item logo" %>
-  </div>
+<nav class="level nav">
+    <div class="level-left">
+      <%= link_to "Everything Is Collateral", root_path, class: "nav-item logo" %>
+    </div>
 
-  <!-- This "nav-toggle" hamburger menu is only visible on mobile -->
-  <!-- You need JavaScript to toggle the "is-active" class on "nav-menu" -->
-  <span class="nav-toggle">
-    <span></span>
-    <span></span>
-    <span></span>
-  </span>
+    <!-- This "nav-toggle" hamburger menu is only visible on mobile -->
+    <!-- You need JavaScript to toggle the "is-active" class on "nav-menu" -->
+    <span class="nav-toggle">
+      <span></span>
+      <span></span>
+      <span></span>
+    </span>
 
-  <!-- This "nav-menu" is hidden on mobile -->
-  <!-- Add the modifier "is-active" to display it on mobile -->
-  <div class="nav-right nav-menu">
-    <%= link_to "About", about_path, class: "nav-item" %>
-    <% if admin_signed_in? %>
-      <%= link_to "Admin Panel", admin_path, class: "nav-item" %>
-      <%= link_to "Sign Out", destroy_admin_session_path, method: :delete, class: "nav-item"%>
-    <% end %>
-  </div>
+    <!-- This "nav-menu" is hidden on mobile -->
+    <!-- Add the modifier "is-active" to display it on mobile -->
+    <div class="level-right nav-menu">
+      <%= link_to "About", about_path, class: "nav-item" %>
+      <% if admin_signed_in? %>
+        <%= link_to "Admin Panel", admin_path, class: "nav-item" %>
+        <%= link_to "Sign Out", destroy_admin_session_path, method: :delete, class: "nav-item"%>
+      <% end %>
+    </div>
 </nav>
