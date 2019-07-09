@@ -1,6 +1,6 @@
 <div class="posts-index">
   <h1>Listing Posts</h1>
-  <table class="table table-striped">
+  <table class="table table-striped is-fullwidth">
     <tr>
       <th>Title</th>
       <th colspan="3">Actions</th>
@@ -24,34 +24,5 @@
     <div class="has-text-centered">
       <%= link_to "New Post", new_post_path, :class => "button is-primary" %>
     </div>
-  </table>
-</div>
-<div class="admins-index">
-  <h1>Listing Admins</h1>
-  <table class="table table-striped">
-    <tr>
-      <th>Email</th>
-      <th>Role</th>
-      <th>Sign In Count</th>
-      <th colspan="3">Actions</th>
-    </tr>
-    <% @admins.each do |admin| %>
-      <% if admin != current_admin %>
-        <tr>
-          <td>
-            <%= admin.email %>
-          </td>
-          <td>
-            <%= admin.role %>
-          </td>
-          <td>
-            <%= admin.sign_in_count %>
-          </td>
-          <td>
-            <%= link_to 'Delete', admin_registration_path(admin), :class => "btn btn-danger", method: :delete, data: { confirm: 'Are you sure?' } %>
-          </td>
-        </tr>
-      <% end %>
-    <% end %>
   </table>
 </div>
