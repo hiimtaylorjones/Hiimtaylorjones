@@ -54,7 +54,6 @@ html {
 		font-size: 4em;
 		letter-spacing: -2px;
 		margin-bottom: 30px;
-		text-align: center;
 	}
 
 	h2 {
@@ -152,5 +151,31 @@ trix-editor {
 .nav {
 	.nav-item {
 		margin: 0px 5px;
+	}
+}
+
+.post-header {
+	h1, h3 {
+		margin: 0px !important; // Overriding Bulma here.
+	}
+	p {
+		margin-bottom: 20px;
+	}
+}
+
+.post-content {
+	h1 {
+		font-size: 3.5em;
+		letter-spacing: 0px;
+	}
+
+	h2 {
+		font-size: 2em;
+		letter-spacing: 0px;
+	}
+
+	h3 {
+		font-size: 1.50em;
+		letter-spacing: 0px;
 	}
 }

@@ -1,9 +1,8 @@
 <div class="post content">
 	<div class="post-header">
-		<div class="has-text-centered">
-			<h1><%= @post.title %></h1>
-			<h4>Written by <b>Taylor Jones</b> on <b><%= @post.created_at.strftime("%m/%d/%Y") %></b></h4>
-		</div>
+		<h1><%= @post.title %></h1>
+		<h3><i><%= @post.tagline %></i></h3>
+		<p>Last Updated on <b><%= @post.updated_at.strftime("%B %d, %Y") %></b></p>
 	</div>
 
 	<div class="post-content center-block row">
