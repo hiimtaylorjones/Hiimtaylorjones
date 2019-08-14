@@ -74,14 +74,14 @@ html {
 
 	/* Paragraph CSS */
 	p {
-		font-size: 1.3em;
-		line-height: 2em;
+		font-size: 1.2em;
+		line-height: 1.75em;
 	}
 
 	ul {
 		li {
-			font-size: 1.3em;
-			line-height: 2em;
+			font-size: 1.2em;
+			line-height: 1.75em;
 		}
 	}
 
@@ -124,18 +124,6 @@ trix-editor {
 	padding: 0;
 }
 
-.comment-section {
-	text-align: center;
-	p {
-		font-size: 1.1em;
-
-	}
-
-	b {
-		font-weight: 550;
-	}
-}
-
 .notification-banner {
 	width: 70%;
 	border: 1px black;
@@ -154,28 +142,3 @@ trix-editor {
 	}
 }
 
-.post-header {
-	h1, h3 {
-		margin: 0px !important; // Overriding Bulma here.
-	}
-	p {
-		margin-bottom: 20px;
-	}
-}
-
-.post-content {
-	h1 {
-		font-size: 3.5em;
-		letter-spacing: 0px;
-	}
-
-	h2 {
-		font-size: 2em;
-		letter-spacing: 0px;
-	}
-
-	h3 {
-		font-size: 1.50em;
-		letter-spacing: 0px;
-	}
-}
