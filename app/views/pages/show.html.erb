@@ -8,7 +8,7 @@
 	<button type="button" class="btn btn-default">
 		<%= link_to 'Back', pages_path %>
 	</button>
-	<% if can? :update, @page %>
+	<% if admin_signed_in? %>
 		| <button type="button" class="btn btn-default"><%= link_to 'Edit Page', edit_page_path(@page) %></button>
 	<% end %>
 </div>

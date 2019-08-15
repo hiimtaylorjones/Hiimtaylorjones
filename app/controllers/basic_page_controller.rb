@@ -6,7 +6,7 @@ class BasicPageController < ApplicationController
   end
 
   def about
-    @content = Page.where(title: "About")
+    @page = Page.find_by(title: "about")
   end
 
   def admin

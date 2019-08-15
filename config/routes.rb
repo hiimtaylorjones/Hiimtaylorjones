@@ -9,6 +9,8 @@ Rails.application.routes.draw do
     get "/comment_admin",  to: "posts#comment_admin", via: 'get'
   end
 
+  resources :pages, param: :title
+
   root 'basic_page#index'
 
   match '/about',             to: 'basic_page#about',             via: 'get'

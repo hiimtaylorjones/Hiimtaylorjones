@@ -1,14 +1,13 @@
 class PagesController < ApplicationController
 
 	before_action :authenticate_admin!, only: [:create, :new, :edit, :update, :destroy]
-	before_action :find_page, only: [:show, :edit, :destroy, :update]
 
 	def new
 		@page = Page.new
 	end
 
 	def create
-  		@page = Page.new(page_params)
+			@page = Page.new(page_params)
   		if @page.save
 	  		redirect_to admin_url, notice: 'Page was successfully created.'
 	  	else
@@ -22,22 +21,34 @@ class PagesController < ApplicationController
 	end
 
 	def show
+		find_page_by_title(params[:title])
 	end
 
 	def edit
+		find_page_by_title(params[:title])
 	end
 
 	def update
+		find_page(params[:title])
 		if @page.update(page_params)
-			redirect_to admin_path
+			redirect_to page_path(@page.title)
 		else
 			render 'edit'
 		end
 	end
 
 	private
-		def find_page
-			@page = Page.find(params[:id])
+		def find_page(id)
+			@page = Page.find(id)
+		end
+
+		def find_page_by_title(title)
+			query = Page.where(title: title)
+			if query.exists?
+				@page = query.first 
+			else
+				redirect_to root_path, notice: "Page not found"
+			end
 		end
 
 		def page_params
