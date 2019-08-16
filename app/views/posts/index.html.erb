@@ -1,12 +1,7 @@
 <% @posts.each do |post| %>
-	<div class="post-preview content">
-		<% @time = post.created_at %>
-		<h4><%= @time.strftime("%m/%d/%Y") %></h4>
-		<h2><%= link_to post.title, post_path(post) %></h2>
-		<h4><%= simple_format post.tagline %></h4>
-		<br/>
-		<div class="has-text-centered">
-			<%= link_to 'Read More', post_path(post), class: "button" %>
-		</div>
+	<%= render 'posts/full_post', post: post%>
+
+	<div class="has-text-centered">
+		<%= link_to 'Read More', post_path(post), class: "button" %>
 	</div>
 <% end %>

@@ -1,16 +1,8 @@
 <div class="most-recent">
 	<% @posts.each do |post| %>
-		<div class="content post-preview">
-			<div class="post-header">
-				<h1 class="post-title"><%= link_to post.title, post_path(post), class: "post-link" %></h1>
-				<h3><i><%= post.tagline %></i></h3>
-				<p>Last Updated on <b><%= post.updated_at.strftime("%B %d, %Y") %></b></p>
-			</div>
-			<div class="post-content center-row block">
-				<%= markdown post.body %>
-			</div>
-		</div>
+		<%= render 'posts/full_post', post: post %>
 	<% end %>
+	
 	<div class="has-text-centered">
 		<%= link_to "More Posts", blog_path, class: "button" %>
 	</div>
