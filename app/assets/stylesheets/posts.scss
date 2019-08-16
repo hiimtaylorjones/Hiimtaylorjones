@@ -51,3 +51,23 @@
 		margin-top: 10px;
 	}
 }
+
+#error_exdivlanation {
+	background-color: #F596A6;
+	border: 1px solid black;
+	border-radius: 6px;
+
+	h2 {
+		padding: 10px;
+		margin-bottom: 10px;
+	}
+
+	ul {
+		padding: 10px;
+		margin-left: 20px;
+		list-style: circle;
+		li {
+
+		}
+	}
+}
