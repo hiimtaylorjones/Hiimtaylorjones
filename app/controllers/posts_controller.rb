@@ -17,6 +17,7 @@ class PostsController < ApplicationController
 	end
 
 	def show
+		@not_linkable = true
   	if @post.published == false
 			redirect_to :back, notice: "The post you're trying to look at hasn't been published yet!"
 		end

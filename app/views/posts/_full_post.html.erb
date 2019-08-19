@@ -9,7 +9,11 @@
 	<div class="column">
 		<div class="post content">
 			<div class="post-header">
-				<h1><%= post.title %></h1>
+				<% if @not_linkable == true %>
+					<h1><%= post.title %></h1>
+				<% else %>
+					<h1><%= link_to post.title, post_path(post) %></h1>
+				<% end %>
 				<h3><i><%= post.tagline %></i></h3>
 				<p>Last Updated on <b><%= post.updated_at.strftime("%B %d, %Y") %></b></p>
 			</div>
