@@ -16,7 +16,7 @@ function PositiveFeedbackForm(props) {
   return (
     <div className="feedback-form">
       <h4>Why did you enjoy this article?</h4>
-      <textarea className="feedback-text"></textarea>
+      <textarea value={props.comments} className="feedback-text" onInput={props.onInput}></textarea>
     </div>
   );
 }
@@ -25,18 +25,16 @@ function NegativeFeedbackForm(props) {
   return (
     <div className="feedback-form">
       <h4>What could this article have done better?</h4>
-      <textarea className="feedback-text"></textarea>
+      <textarea value={props.comments} className="feedback-text" onInput={props.onInput}></textarea>
     </div>
   );
 }
-
-
 
 function AverageFeedbackForm(props) {
   return (
     <div className="feedback-form">
       <h4>What about this article seems bland?</h4>
-      <textarea></textarea>
+      <textarea value={props.comments} className="feedback-text" onInput={props.onInput}></textarea>
     </div>
   );
 }
@@ -46,26 +44,41 @@ class PostRating extends Component {
     super(props);
     this.state = { 
       rating: "",
-      email: ""
+      additionalComments: ""
     };
     this.setRating = this.setRating.bind(this);
+    this.captureFeedback = this.captureFeedback.bind(this);
   };
 
   setRating(event) {
-    this.setState({ rating: event.target.value });
+    this.setState(
+      { 
+        rating: event.target.value,
+        additionalComments: ""
+      }
+    );
     console.log(this.state);
   };
+
+  captureFeedback(event) {
+    this.setState({additionalComments: event.target.value});
+  }
+
+  handleSubmit(event) {
+    console.log("Review Sent")
+    event.preventDefault();
+  }
   
   render() {
     let feedbackForm;
     const rating = this.state.rating;
 
     if (["1", "2"].includes(rating)){
-      feedbackForm = <NegativeFeedbackForm />;
+      feedbackForm = <NegativeFeedbackForm comments={this.state.additionalComments} onInput={this.captureFeedback}/>;
     } else if (rating === "3") {
-      feedbackForm = <AverageFeedbackForm />;
+      feedbackForm = <AverageFeedbackForm comments={this.state.additionalComments} onInput={this.captureFeedback}/>;
     } else if (["4", "5"].includes(rating)) {
-      feedbackForm = <PositiveFeedbackForm />;
+      feedbackForm = <PositiveFeedbackForm comments={this.state.additionalComments} onInput={this.captureFeedback}/>;
     }
 
     return(
@@ -84,6 +97,7 @@ class PostRating extends Component {
         <div className="feedback-form">
           {feedbackForm}
         </div>
+        <button onClick={this.handleSubmit}>Send Feedback</button>
       </div>
     );
   }
