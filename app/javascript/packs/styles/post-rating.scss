@@ -8,6 +8,10 @@
       border-radius: 4px;
       font-size: 1.3em;
     }
+
+    .highlighted {
+      background-color: bisque;
+    }
   }
 }
 
@@ -25,4 +29,9 @@
     border-radius: 4px;
     padding: 5px;
   }
+}
+
+.submit-button {
+  font-size: 1.3em;
+  border-radius: 4px;
 }

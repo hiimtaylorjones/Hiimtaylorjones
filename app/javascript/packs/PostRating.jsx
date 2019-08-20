@@ -7,8 +7,13 @@ import ReactDOM from 'react-dom'
 import './styles/post-rating'
 
 function RatingButton(props) {
+  let modifiedButton;
+
   return (
-    <button name="rating" value={props.value} onClick={props.onClick}>{props.value}</button>
+    <button name="rating" 
+      className={props.highlighted === true ? "highlighted" : ""} 
+      value={props.value} 
+      onClick={props.onClick}>{props.value}</button>
   );
 }
 
@@ -16,7 +21,7 @@ function PositiveFeedbackForm(props) {
   return (
     <div className="feedback-form">
       <h4>Why did you enjoy this article?</h4>
-      <textarea value={props.comments} className="feedback-text" onInput={props.onInput}></textarea>
+      <textarea value={props.comments} className="feedback-text" onChange={props.onInput}></textarea>
     </div>
   );
 }
@@ -25,7 +30,7 @@ function NegativeFeedbackForm(props) {
   return (
     <div className="feedback-form">
       <h4>What could this article have done better?</h4>
-      <textarea value={props.comments} className="feedback-text" onInput={props.onInput}></textarea>
+      <textarea value={props.comments} className="feedback-text" onChange={props.onInput}></textarea>
     </div>
   );
 }
@@ -34,7 +39,7 @@ function AverageFeedbackForm(props) {
   return (
     <div className="feedback-form">
       <h4>What about this article seems bland?</h4>
-      <textarea value={props.comments} className="feedback-text" onInput={props.onInput}></textarea>
+      <textarea value={props.comments} className="feedback-text" onChange={props.onInput}></textarea>
     </div>
   );
 }
@@ -87,17 +92,17 @@ class PostRating extends Component {
           <h3>So, what'd you think of this post?</h3>
           <div className="input-group">
             <label>Rate it on a scale of 1 to 5</label><br />
-            <RatingButton value="1" onClick={this.setRating} />
-            <RatingButton value="2" onClick={this.setRating} />
-            <RatingButton value="3" onClick={this.setRating} />
-            <RatingButton value="4" onClick={this.setRating} />
-            <RatingButton value="5" onClick={this.setRating} />
+            <RatingButton value="1" highlighted={this.state.rating === "1" ? true : false} onClick={this.setRating} />
+            <RatingButton value="2" highlighted={this.state.rating === "2" ? true : false} onClick={this.setRating} />
+            <RatingButton value="3" highlighted={this.state.rating === "3" ? true : false} onClick={this.setRating} />
+            <RatingButton value="4" highlighted={this.state.rating === "4" ? true : false} onClick={this.setRating} />
+            <RatingButton value="5" highlighted={this.state.rating === "5" ? true : false} onClick={this.setRating} />
           </div>
         </div>
         <div className="feedback-form">
           {feedbackForm}
         </div>
-        <button onClick={this.handleSubmit}>Send Feedback</button>
+        <button className="submit-button" onClick={this.handleSubmit}>Send Feedback</button>
       </div>
     );
   }
