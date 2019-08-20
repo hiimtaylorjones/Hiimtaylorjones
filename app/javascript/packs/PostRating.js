@@ -4,6 +4,7 @@
 
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom'
+import './styles/post-rating'
 
 class PostRating extends Component {
   constructor(props) {
@@ -24,7 +25,7 @@ class PostRating extends Component {
       <div className="rating-form">
         <h3>So, what'd you think of this post?</h3>
         <div className="input-group">
-          <label>Give it a Rating out of 5</label>
+          <label>Give it a Rating out of 5</label><br />
           <button name="time" value="1" onClick={this.handleChange}>1</button>
           <button name="time" value="2" onClick={this.handleChange}>2</button>
           <button name="time" value="3" onClick={this.handleChange}>3</button>
