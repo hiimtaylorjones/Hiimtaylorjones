@@ -10,3 +10,19 @@
     }
   }
 }
+
+.feedback-form {
+  h4 {
+    margin-top: 5px;
+    font-size: 1.3em;
+  }
+
+  textarea {
+    margin-top: 10px;
+    font-size: 1.1em;
+    width: 50%;
+    height: 7em;
+    border-radius: 4px;
+    padding: 5px;
+  }
+}
