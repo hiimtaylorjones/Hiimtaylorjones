@@ -30,6 +30,12 @@
 			</div>
 		</div>
 
+		<% if @not_linkable == true %>
+			<div id="react-comment-section">
+				<%= javascript_pack_tag('PostRating') %>
+			</div>
+		<% end %>
+
 		<div class="comments-section">
 			<% if post.comments.present? %>
 				<h3 class="text-center">This Post Has Comments.</h3>

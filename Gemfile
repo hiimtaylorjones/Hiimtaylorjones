@@ -17,7 +17,7 @@ gem 'will_paginate'
 gem "therubyracer"
 gem "bulma-rails", "~> 0.7.5"
 gem "sass-rails"
-gem "haml"
+gem 'webpacker', '~> 4.x'
 
 # Rendering and Tagging
 gem 'github-markup', '3.0.4'
