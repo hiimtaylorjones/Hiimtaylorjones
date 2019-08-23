@@ -8,6 +8,7 @@ gem 'bcrypt'
 # Database and server
 gem 'pg'
 gem 'puma'
+gem 'rails_12factor', group: :production
 
 # Authentication and Roles
 gem 'devise'
