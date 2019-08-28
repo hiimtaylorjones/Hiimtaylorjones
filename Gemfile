@@ -32,7 +32,6 @@ gem 'coffee-rails'
 gem 'jquery-rails'
 gem 'turbolinks'
 gem 'yui-compressor'
-gem 'compass-rails'
 
 # Testing assets
 
