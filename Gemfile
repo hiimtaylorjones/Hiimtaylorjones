@@ -31,9 +31,6 @@ gem 'uglifier'
 gem 'coffee-rails'
 gem 'jquery-rails'
 gem 'turbolinks'
-
-# bundle exec rake doc:rails generates the API under doc/api.
-gem 'sdoc', group: :doc
 gem 'yui-compressor'
 gem 'compass-rails'
 
