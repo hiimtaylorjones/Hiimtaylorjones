@@ -7,7 +7,7 @@ gem 'bcrypt'
 
 # Database and server
 gem 'pg'
-gem 'puma'
+gem 'puma', "4.1.0"
 gem 'rails_12factor', group: :production
 
 # Authentication and Roles
@@ -18,7 +18,7 @@ gem 'will_paginate'
 gem "therubyracer"
 gem "bulma-rails", "~> 0.7.5"
 gem "sass-rails"
-gem 'webpacker', '~> 4.x'
+gem 'webpacker', '~> 4.0.7'
 
 # Rendering and Tagging
 gem 'github-markup', '3.0.4'
