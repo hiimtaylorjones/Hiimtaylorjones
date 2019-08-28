@@ -88,7 +88,6 @@ production:
 
   # Production depends on precompilation of packs prior to booting for performance.
   compile: false
-  public_output_path: app/public/packs
 
   # Extract and emit a css file
   extract_css: true
