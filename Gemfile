@@ -17,7 +17,7 @@ gem 'devise'
 gem 'will_paginate'
 gem "therubyracer"
 gem "bulma-rails", "~> 0.7.5"
-gem "sass-rails"
+gem 'sassc-rails'
 gem 'webpacker', '~> 4.0.7'
 
 # Rendering and Tagging
