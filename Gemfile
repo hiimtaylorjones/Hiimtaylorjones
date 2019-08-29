@@ -16,7 +16,6 @@ gem 'devise'
 # UI Frameworks and Gems
 gem 'will_paginate'
 gem "therubyracer"
-gem "bulma-rails", "~> 0.7.5"
 gem 'sassc-rails'
 gem 'webpacker', '~> 4.0.7'
 
@@ -25,13 +24,6 @@ gem 'github-markup', '3.0.4'
 gem 'commonmarker', '0.19.0'
 gem 'acts-as-taggable-on', '~> 6.0'
 gem 'friendly_id'
-
-# Javascript and Coffeescript
-gem 'uglifier'
-gem 'coffee-rails'
-gem 'jquery-rails'
-gem 'turbolinks'
-gem 'yui-compressor'
 
 # Testing assets
 
