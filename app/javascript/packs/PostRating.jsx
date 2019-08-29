@@ -77,7 +77,7 @@ class PostRating extends Component {
     }
 
     return(
-      <div className="feedback-form">
+      <div className="post-rating-form">
         <div className="rating-form">
           <h3>So, what'd you think of this post?</h3>
           <div className="input-group">

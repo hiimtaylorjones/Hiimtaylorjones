@@ -1,6 +1,6 @@
 {
-  "PostRating.js": "/packs/js/PostRating-62ea275022d3bd1ced67.js",
-  "PostRating.js.map": "/packs/js/PostRating-62ea275022d3bd1ced67.js.map",
+  "PostRating.js": "/packs/js/PostRating-1b6edf9f927f458e7f80.js",
+  "PostRating.js.map": "/packs/js/PostRating-1b6edf9f927f458e7f80.js.map",
   "application.js": "/packs/js/application-805c58bcaf41335eb079.js",
   "application.js.map": "/packs/js/application-805c58bcaf41335eb079.js.map",
   "entrypoints": {
@@ -22,10 +22,10 @@
     },
     "PostRating": {
       "js": [
-        "/packs/js/PostRating-62ea275022d3bd1ced67.js"
+        "/packs/js/PostRating-1b6edf9f927f458e7f80.js"
       ],
       "js.map": [
-        "/packs/js/PostRating-62ea275022d3bd1ced67.js.map"
+        "/packs/js/PostRating-1b6edf9f927f458e7f80.js.map"
       ]
     },
     "styles/global/application": {
