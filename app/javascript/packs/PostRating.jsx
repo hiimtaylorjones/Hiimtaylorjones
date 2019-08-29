@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import './styles/post-rating';
+import '../post_rating/styles/post-rating';
 
 function RatingButton(props) {
   let modifiedButton;
@@ -77,7 +77,7 @@ class PostRating extends Component {
     }
 
     return(
-      <div className="feedback-section">
+      <div className="feedback-form">
         <div className="rating-form">
           <h3>So, what'd you think of this post?</h3>
           <div className="input-group">
