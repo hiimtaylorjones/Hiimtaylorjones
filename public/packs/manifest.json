@@ -1,44 +1,74 @@
 {
-  "PostRating.js": "/packs/js/PostRating-ca7809458efc26ea2b0e.js",
-  "PostRating.js.map": "/packs/js/PostRating-ca7809458efc26ea2b0e.js.map",
-  "application.js": "/packs/js/application-d83a23ec9534c30ca73b.js",
-  "application.js.map": "/packs/js/application-d83a23ec9534c30ca73b.js.map",
+  "PostRating.js": "/packs/js/PostRating-6a8bf7f7a032a96a599d.js",
+  "PostRating.js.map": "/packs/js/PostRating-6a8bf7f7a032a96a599d.js.map",
+  "application.js": "/packs/js/application-805c58bcaf41335eb079.js",
+  "application.js.map": "/packs/js/application-805c58bcaf41335eb079.js.map",
   "entrypoints": {
     "application": {
       "js": [
-        "/packs/js/application-d83a23ec9534c30ca73b.js"
+        "/packs/js/application-805c58bcaf41335eb079.js"
       ],
       "js.map": [
-        "/packs/js/application-d83a23ec9534c30ca73b.js.map"
+        "/packs/js/application-805c58bcaf41335eb079.js.map"
       ]
     },
     "hello_react": {
       "js": [
-        "/packs/js/hello_react-4e66af2dae358b5d31d3.js"
+        "/packs/js/hello_react-102777e70161cb63964b.js"
       ],
       "js.map": [
-        "/packs/js/hello_react-4e66af2dae358b5d31d3.js.map"
+        "/packs/js/hello_react-102777e70161cb63964b.js.map"
       ]
     },
     "PostRating": {
       "js": [
-        "/packs/js/PostRating-ca7809458efc26ea2b0e.js"
+        "/packs/js/PostRating-6a8bf7f7a032a96a599d.js"
       ],
       "js.map": [
-        "/packs/js/PostRating-ca7809458efc26ea2b0e.js.map"
+        "/packs/js/PostRating-6a8bf7f7a032a96a599d.js.map"
+      ]
+    },
+    "styles/global/application": {
+      "js": [
+        "/packs/js/styles/global/application-da1fc5b9087bb4b9be24.js"
+      ],
+      "js.map": [
+        "/packs/js/styles/global/application-da1fc5b9087bb4b9be24.js.map"
+      ]
+    },
+    "styles/global/general": {
+      "js": [
+        "/packs/js/styles/global/general-046b1d527277f1b74aa4.js"
+      ],
+      "js.map": [
+        "/packs/js/styles/global/general-046b1d527277f1b74aa4.js.map"
+      ]
+    },
+    "styles/global/posts": {
+      "js": [
+        "/packs/js/styles/global/posts-adde1592ef6428d5fbf9.js"
+      ],
+      "js.map": [
+        "/packs/js/styles/global/posts-adde1592ef6428d5fbf9.js.map"
       ]
     },
     "styles/post-rating": {
       "js": [
-        "/packs/js/styles/post-rating-888135a463e613ddce4a.js"
+        "/packs/js/styles/post-rating-ae7b158246e97e84b0ce.js"
       ],
       "js.map": [
-        "/packs/js/styles/post-rating-888135a463e613ddce4a.js.map"
+        "/packs/js/styles/post-rating-ae7b158246e97e84b0ce.js.map"
       ]
     }
   },
-  "hello_react.js": "/packs/js/hello_react-4e66af2dae358b5d31d3.js",
-  "hello_react.js.map": "/packs/js/hello_react-4e66af2dae358b5d31d3.js.map",
-  "styles/post-rating.js": "/packs/js/styles/post-rating-888135a463e613ddce4a.js",
-  "styles/post-rating.js.map": "/packs/js/styles/post-rating-888135a463e613ddce4a.js.map"
+  "hello_react.js": "/packs/js/hello_react-102777e70161cb63964b.js",
+  "hello_react.js.map": "/packs/js/hello_react-102777e70161cb63964b.js.map",
+  "styles/global/application.js": "/packs/js/styles/global/application-da1fc5b9087bb4b9be24.js",
+  "styles/global/application.js.map": "/packs/js/styles/global/application-da1fc5b9087bb4b9be24.js.map",
+  "styles/global/general.js": "/packs/js/styles/global/general-046b1d527277f1b74aa4.js",
+  "styles/global/general.js.map": "/packs/js/styles/global/general-046b1d527277f1b74aa4.js.map",
+  "styles/global/posts.js": "/packs/js/styles/global/posts-adde1592ef6428d5fbf9.js",
+  "styles/global/posts.js.map": "/packs/js/styles/global/posts-adde1592ef6428d5fbf9.js.map",
+  "styles/post-rating.js": "/packs/js/styles/post-rating-ae7b158246e97e84b0ce.js",
+  "styles/post-rating.js.map": "/packs/js/styles/post-rating-ae7b158246e97e84b0ce.js.map"
 }

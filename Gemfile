@@ -25,6 +25,11 @@ gem 'commonmarker', '0.19.0'
 gem 'acts-as-taggable-on', '~> 6.0'
 gem 'friendly_id'
 
+# Javascript and Coffeescript
+gem 'uglifier'
+gem 'turbolinks'
+gem 'yui-compressor'
+
 # Testing assets
 
 group :development, :test do
