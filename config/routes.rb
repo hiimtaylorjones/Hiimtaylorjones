@@ -9,6 +9,12 @@ Rails.application.routes.draw do
     get "/comment_admin",  to: "posts#comment_admin", via: 'get'
   end
 
+  namespace :api do 
+    namespace :v1 do
+      'feedback/create', to: 'api/v1/comments#create', via: 'post'
+    end
+  end
+
   resources :pages, param: :title
 
   root 'basic_page#index'

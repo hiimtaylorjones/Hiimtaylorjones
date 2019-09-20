@@ -57,6 +57,7 @@ class PostRating extends Component {
 
   captureFeedback(event) {
     this.setState({additionalComments: event.target.value});
+
   }
 
   handleSubmit(event) {
