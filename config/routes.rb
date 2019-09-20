@@ -11,7 +11,7 @@ Rails.application.routes.draw do
 
   namespace :api do 
     namespace :v1 do
-      'feedback/create', to: 'api/v1/comments#create', via: 'post'
+      post 'feedback/create', to: 'api/v1/comments#create'
     end
   end
 
