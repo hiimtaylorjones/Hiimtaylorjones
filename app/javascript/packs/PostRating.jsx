@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import '../post_rating/styles/post-rating';
+import Axios from 'axios';
 
 function RatingButton(props) {
   let modifiedButton;
@@ -32,6 +33,7 @@ class PostRating extends Component {
     };
     this.setRating = this.setRating.bind(this);
     this.captureFeedback = this.captureFeedback.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this)
   };
 
   setRating(event) {
@@ -57,12 +59,17 @@ class PostRating extends Component {
 
   captureFeedback(event) {
     this.setState({additionalComments: event.target.value});
-
   }
 
-  handleSubmit(event) {
-    console.log("Review Sent")
+  async handleSubmit(event) {
     event.preventDefault();
+    await Axios.post('api/v1/feedback/create', {
+      comment: {
+        rating: this.state.rating,
+        message: this.state.additionalComments
+      }
+    });
+    console.log('Feedback sent!');
   }
   
   render() {
