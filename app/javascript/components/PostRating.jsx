@@ -22,6 +22,14 @@ function FeedbackForm(props) {
   );
 }
 
+function MessageContainer(props) {
+  return (
+    <div className="result-message">
+      <h4>{props.message}</h4>
+    </div>
+  )
+}
+
 class PostRating extends Component {
   constructor(props) {
     super(props);
@@ -29,10 +37,12 @@ class PostRating extends Component {
       rating: "",
       message: "",
       highlightColor: "",
-      post_id: props.post_id
+      post_id: props.post_id,
+      submissionResult: ""
     };
     this.setRating = this.setRating.bind(this);
     this.captureFeedback = this.captureFeedback.bind(this);
+    this.sendFeedbackRequest = this.sendFeedbackRequest.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this)
   };
 
@@ -63,13 +73,26 @@ class PostRating extends Component {
 
   async handleSubmit(event) {
     event.preventDefault();
-    // Grab token to authenticate
-    let tokenHeader = document.querySelectorAll('meta[name="csrf-token"]')[0].content;
+    
     console.log("State: ");
     console.log(this.state.rating);
     console.log(this.state.message);
     console.log(this.state.post_id);
-    await Axios({
+
+    if (this.state.rating !== "") {
+      this.setState({submissionResult: "Mind including a rating in your submission?"});
+    } else if (this.state.message !== "") {
+      this.setState({submissionResult: "Mind telling us a bit more about your rating?"});
+    } else {
+      await this.sendFeedbackRequest();
+      this.setState({submissionResult: "Feedback sent! Thanks!"});
+    }
+  }
+
+  sendFeedbackRequest() {
+    // Grab token to authenticate
+    let tokenHeader = document.querySelectorAll('meta[name="csrf-token"]')[0].content;
+    return Axios({
       method: 'post',
       url: 'http://localhost:3000/api/v1/feedback/create',
       data:{
@@ -81,7 +104,6 @@ class PostRating extends Component {
       },
       headers: { 'X-CSRF-TOKEN' : tokenHeader }
     });
-    console.log('Feedback sent!');
   }
   
   render() {
@@ -118,6 +140,7 @@ class PostRating extends Component {
           <FeedbackForm feedbackQuestion={question} changeAction={this.captureFeedback} />
         </div>
         <button className="submit-button" onClick={this.handleSubmit}>Send Feedback</button>
+        <MessageContainer message={this.props.submissionResult} />
       </div>
     );
   }
