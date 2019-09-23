@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
 import '../post_rating/styles/post-rating';
 import Axios from 'axios';
 
@@ -26,7 +25,6 @@ function FeedbackForm(props) {
 class PostRating extends Component {
   constructor(props) {
     super(props);
-    console.log("Props: " + props);
     this.state = { 
       rating: "",
       additionalComments: "",
@@ -117,11 +115,4 @@ class PostRating extends Component {
   }
 }
 
-
-document.addEventListener('DOMContentLoaded', () => {
-  const post_data = document.getElementById('post_data')['id']
-  ReactDOM.render(
-    <PostRating email="" rating="3" post={post_data} />,
-    document.getElementById('react-comment-section'),
-  )
-})
+export default PostRating;

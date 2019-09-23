@@ -32,7 +32,7 @@
 
 		<% if @not_linkable == true %>
 			<div id="react-comment-section">
-				<%= javascript_pack_tag('PostRating', post_data: { "id": post.id }) %>
+				<%= react_component('PostRating', post_id: @post.id) %>
 				<%= stylesheet_pack_tag('PostRating') %>
 			</div>
 		<% end %>
