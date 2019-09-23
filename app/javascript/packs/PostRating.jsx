@@ -26,10 +26,12 @@ function FeedbackForm(props) {
 class PostRating extends Component {
   constructor(props) {
     super(props);
+    console.log("Props: " + props);
     this.state = { 
       rating: "",
       additionalComments: "",
-      highlightColor: ""
+      highlightColor: "",
+      post_id: props.post_id
     };
     this.setRating = this.setRating.bind(this);
     this.captureFeedback = this.captureFeedback.bind(this);
@@ -63,11 +65,20 @@ class PostRating extends Component {
 
   async handleSubmit(event) {
     event.preventDefault();
-    await Axios.post('api/v1/feedback/create', {
-      comment: {
-        rating: this.state.rating,
-        message: this.state.additionalComments
-      }
+    let tokenHeader = document.querySelectorAll('meta[name="csrf-token"]')[0].content;
+    console.log("Token Header: ");
+    console.log(tokenHeader);
+    await Axios({
+      method: 'post',
+      url: 'http://localhost:3000/api/v1/feedback/create',
+      data:{
+        comment: {
+          post_id: this.state.post_id,
+          rating: this.state.rating,
+          message: this.state.additionalComments
+        }
+      },
+      headers: { 'X-CSRF-TOKEN' : tokenHeader }
     });
     console.log('Feedback sent!');
   }
@@ -108,8 +119,9 @@ class PostRating extends Component {
 
 
 document.addEventListener('DOMContentLoaded', () => {
+  const post_data = document.getElementById('post_data')['id']
   ReactDOM.render(
-    <PostRating email="" rating="3" />,
+    <PostRating email="" rating="3" post={post_data} />,
     document.getElementById('react-comment-section'),
   )
 })
