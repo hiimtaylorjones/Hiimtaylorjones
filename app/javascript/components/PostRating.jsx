@@ -16,8 +16,8 @@ function RatingButton(props) {
 function FeedbackForm(props) {
   return (
     <div className="feedback-form">
-      <h4>{props.message}</h4>
-      <textarea value={props.comments} className="feedback-text" onChange={props.onInput}></textarea>
+      <h4>{props.feedbackQuestion}</h4>
+      <textarea className="feedback-text" onChange={props.changeAction}></textarea>
     </div>
   );
 }
@@ -27,7 +27,7 @@ class PostRating extends Component {
     super(props);
     this.state = { 
       rating: "",
-      additionalComments: "",
+      message: "",
       highlightColor: "",
       post_id: props.post_id
     };
@@ -51,21 +51,24 @@ class PostRating extends Component {
     this.setState(
       { 
         rating: rating,
-        additionalComments: "",
         highlightColor: highlightColor
       }
     );
   };
 
   captureFeedback(event) {
-    this.setState({additionalComments: event.target.value});
+    console.log(event.target.value);
+    this.setState({message: event.target.value});
   }
 
   async handleSubmit(event) {
     event.preventDefault();
+    // Grab token to authenticate
     let tokenHeader = document.querySelectorAll('meta[name="csrf-token"]')[0].content;
-    console.log("Token Header: ");
-    console.log(tokenHeader);
+    console.log("State: ");
+    console.log(this.state.rating);
+    console.log(this.state.message);
+    console.log(this.state.post_id);
     await Axios({
       method: 'post',
       url: 'http://localhost:3000/api/v1/feedback/create',
@@ -73,7 +76,7 @@ class PostRating extends Component {
         comment: {
           post_id: this.state.post_id,
           rating: this.state.rating,
-          message: this.state.additionalComments
+          message: this.state.message
         }
       },
       headers: { 'X-CSRF-TOKEN' : tokenHeader }
@@ -82,15 +85,15 @@ class PostRating extends Component {
   }
   
   render() {
-    let message;
+    let question;
     const rating = this.state.rating;
 
     if (["1", "2"].includes(rating)){
-      message = "What did you not like about this post?";
+      question = "What did you not like about this post?";
     } else if (rating === "3") {
-      message = "What about this post seems bland?";
+      question = "What about this post seems bland?";
     } else if (["4", "5"].includes(rating)) {
-      message = "What was the strongest part of this post?";
+      question = "What was the strongest part of this post?";
     }
 
     return(
@@ -99,15 +102,20 @@ class PostRating extends Component {
           <h3>So, what'd you think of this post?</h3>
           <div className="input-group">
             <label>Rate it on a scale of 1 to 5</label><br />
-            <RatingButton value="1" highlighted={this.state.rating === "1" ? true : false} highlightColor={this.state.highlightColor} onClick={this.setRating} />
-            <RatingButton value="2" highlighted={this.state.rating === "2" ? true : false} highlightColor={this.state.highlightColor} onClick={this.setRating} />
-            <RatingButton value="3" highlighted={this.state.rating === "3" ? true : false} highlightColor={this.state.highlightColor} onClick={this.setRating} />
-            <RatingButton value="4" highlighted={this.state.rating === "4" ? true : false} highlightColor={this.state.highlightColor} onClick={this.setRating} />
-            <RatingButton value="5" highlighted={this.state.rating === "5" ? true : false} highlightColor={this.state.highlightColor} onClick={this.setRating} />
+            <RatingButton value="1" highlighted={this.state.rating === "1" ? true : false} 
+              highlightColor={this.state.highlightColor} onClick={this.setRating} />
+            <RatingButton value="2" highlighted={this.state.rating === "2" ? true : false} 
+              highlightColor={this.state.highlightColor} onClick={this.setRating} />
+            <RatingButton value="3" highlighted={this.state.rating === "3" ? true : false} 
+              highlightColor={this.state.highlightColor} onClick={this.setRating} />
+            <RatingButton value="4" highlighted={this.state.rating === "4" ? true : false} 
+              highlightColor={this.state.highlightColor} onClick={this.setRating} />
+            <RatingButton value="5" highlighted={this.state.rating === "5" ? true : false} 
+              highlightColor={this.state.highlightColor} onClick={this.setRating} />
           </div>
         </div>
         <div className="feedback-form">
-          <FeedbackForm message={message} onChange={this.captureFeedback} />
+          <FeedbackForm feedbackQuestion={question} changeAction={this.captureFeedback} />
         </div>
         <button className="submit-button" onClick={this.handleSubmit}>Send Feedback</button>
       </div>

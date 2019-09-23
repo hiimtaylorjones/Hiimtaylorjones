@@ -2,9 +2,12 @@
 
 <div class="comment-section">
   <% if @post.commenting_enabled? %>
-    <h3>Got Something To Say?</h4>
-    <h4>Let us know!</h4>
-    <%= render "posts/comments/reader_form" %>
+    <% if @not_linkable == true %>
+			<div id="react-comment-section">
+				<%= react_component('PostRating', post_id: @post.id) %>
+				<%= stylesheet_pack_tag('PostRating') %>
+			</div>
+		<% end %>
   <% else %>
     <p><b>We're Currently Not Fielding Conversation Around This Post Right Now</b></p>
     <p>Check back later if you're interested in contributing to the conversation.</p>
