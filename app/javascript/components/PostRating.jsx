@@ -3,8 +3,6 @@ import '../post_rating/styles/post-rating';
 import Axios from 'axios';
 
 function RatingButton(props) {
-  let modifiedButton;
-
   return (
     <button name="rating" 
       className={props.highlighted === true ? props.highlightColor : ""} 
@@ -23,10 +21,22 @@ function FeedbackForm(props) {
 }
 
 function MessageContainer(props) {
-  return (
-    <div className="result-message">
+  let code;
+  if((props.message !== "") && (props.success === false)) {
+    code = <div className="result-message-warning">
+      <h4>We wanted to submit your feedback here, but its missing something.</h4>
       <h4>{props.message}</h4>
-    </div>
+    </div>;
+  } else if((props.message !== "") && (props.success === true)) {
+    code = <div className="result-message-success">
+      <h4>{props.message}</h4>
+    </div>;
+  } else {
+    code = <div></div>;
+  }
+
+  return (
+    code
   )
 }
 
@@ -38,7 +48,8 @@ class PostRating extends Component {
       message: "",
       highlightColor: "",
       post_id: props.post_id,
-      submissionResult: ""
+      submissionResult: "",
+      feedbackSent: false
     };
     this.setRating = this.setRating.bind(this);
     this.captureFeedback = this.captureFeedback.bind(this);
@@ -72,21 +83,20 @@ class PostRating extends Component {
   }
 
   async handleSubmit(event) {
-    event.preventDefault();
-    
-    console.log("State: ");
-    console.log(this.state.rating);
-    console.log(this.state.message);
-    console.log(this.state.post_id);
-
-    if (this.state.rating !== "") {
+    if (this.state.rating === "") {
       this.setState({submissionResult: "Mind including a rating in your submission?"});
-    } else if (this.state.message !== "") {
+    } else if (this.state.message === "") {
       this.setState({submissionResult: "Mind telling us a bit more about your rating?"});
     } else {
       await this.sendFeedbackRequest();
-      this.setState({submissionResult: "Feedback sent! Thanks!"});
+      this.setState(
+        { 
+          submissionResult: "Feedback sent! Thanks!",
+          feedbackSent: true
+        }
+      );
     }
+    event.preventDefault();
   }
 
   sendFeedbackRequest() {
@@ -122,6 +132,7 @@ class PostRating extends Component {
       <div className="post-rating-form">
         <div className="rating-form">
           <h3>So, what'd you think of this post?</h3>
+          <MessageContainer message={this.state.submissionResult} success={this.state.feedbackSent}/>
           <div className="input-group">
             <label>Rate it on a scale of 1 to 5</label><br />
             <RatingButton value="1" highlighted={this.state.rating === "1" ? true : false} 
@@ -140,7 +151,7 @@ class PostRating extends Component {
           <FeedbackForm feedbackQuestion={question} changeAction={this.captureFeedback} />
         </div>
         <button className="submit-button" onClick={this.handleSubmit}>Send Feedback</button>
-        <MessageContainer message={this.props.submissionResult} />
+        
       </div>
     );
   }
