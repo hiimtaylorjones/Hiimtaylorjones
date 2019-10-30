@@ -54,3 +54,6 @@
       <%= link_to "New Page", new_page_path, :class => "button is-primary" %>
     </div>
 </div>
+
+<%= react_component('AdminPanel', { pages: @pages }) %>
+<%= stylesheet_pack_tag('AdminPanel') %>
