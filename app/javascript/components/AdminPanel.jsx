@@ -14,8 +14,10 @@ class PageView extends Component {
 
   constructor(props) {
     super(props);
+    let fetchedPages = this.fetchPages();
     this.state = {
-      currentView: "post"
+      currentView: "post",
+      pages: fetchedPages
     };
   };
 
