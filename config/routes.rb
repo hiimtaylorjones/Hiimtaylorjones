@@ -13,6 +13,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       post 'feedback/create', to: 'comments#create'
       get 'pages', to: 'pages#index'
+      get 'posts', to: 'posts#index'
     end
   end
 

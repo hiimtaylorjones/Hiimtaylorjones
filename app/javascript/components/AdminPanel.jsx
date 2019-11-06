@@ -1,14 +1,7 @@
 import React, { Component } from 'react';
 import PageView from './admin-panel/PageView.jsx';
+import PostView from './admin-panel/PostView.jsx';
 import '../post_rating/styles/admin-panel';
-
-function PostView(props) {
-  return (
-    <div className="post-view">
-      <h3>Looking at Post View!</h3>
-    </div>
-  );
-}
 
 function MetricsView(props) {
   return (
