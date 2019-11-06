@@ -1,6 +1,16 @@
 import React, { Component } from 'react';
 import Axios from 'axios';
 
+function PageRow(props) {
+  return (
+    <tr>
+      <td>{props.title}</td>
+      <td><button className="button is-warning">Edit</button></td>
+      <td><button className="button is-danger">Destroy</button></td>
+    </tr>
+  );
+}
+
 class PageView extends Component {
 
   constructor(props) {
@@ -33,13 +43,9 @@ class PageView extends Component {
           <tbody>
             <tr>
               <th>Title</th>
-              <th colSpan="3">Actions</th>
+              <th colSpan="2">Actions</th>
             </tr>
-            <tr>
-              { this.state.pages.map(page => <td key={page.id}>{page.title}</td>) }
-              <td><button className="button is-warning">Edit</button></td>
-              <td><button className="button is-danger">Destroy</button></td>
-            </tr>
+            { this.state.pages.map(page => <PageRow key={page.id} title={page.title} />) }
           </tbody>
         </table>
         <button className="button is-success">New Page</button>

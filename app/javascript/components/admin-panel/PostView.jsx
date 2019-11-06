@@ -1,6 +1,17 @@
 import React, { Component } from 'react';
 import Axios from 'axios';
 
+function PostRow(props) {
+  return (
+    <tr>
+      <td key={props.id}>{props.title}</td>
+      <td><button className="button is-success">Comments</button></td>
+      <td><button className="button is-warning">Edit</button></td>
+      <td><button className="button is-danger">Destroy</button></td>
+    </tr>
+  );
+}
+
 class PostView extends Component {
 
   constructor(props) {
@@ -35,11 +46,9 @@ class PostView extends Component {
               <th>Title</th>
               <th colSpan="3">Actions</th>
             </tr>
-            <tr>
-              { this.state.posts.map(post => <td key={post.id}>{post.title}</td>) }
-              <td><button className="button is-warning">Edit</button></td>
-              <td><button className="button is-danger">Destroy</button></td>
-            </tr>
+            { 
+              this.state.posts.map(post => <PostRow key={post.id} id={post.id} title={post.title} />)
+            }
           </tbody>
         </table>
         <button className="button is-success">New post</button>
