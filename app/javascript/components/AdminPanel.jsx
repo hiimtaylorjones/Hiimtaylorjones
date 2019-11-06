@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
+import PageView from './admin-panel/PageView.jsx';
 import '../post_rating/styles/admin-panel';
-import Axios from 'axios';
 
 function PostView(props) {
   return (
@@ -8,37 +8,6 @@ function PostView(props) {
       <h3>Looking at Post View!</h3>
     </div>
   );
-}
-
-class PageView extends Component {
-
-  constructor(props) {
-    super(props);
-    let fetchedPages = this.fetchPages();
-    this.state = {
-      currentView: "post",
-      pages: fetchedPages
-    };
-  };
-
-  fetchPages() {
-    let tokenHeader = document.querySelectorAll('meta[name="csrf-token"]')[0].content;
-    return Axios({
-      method: 'get',
-      url: 'http://localhost:3000/api/v1/pages',
-      data:{
-      },
-      headers: { 'X-CSRF-TOKEN' : tokenHeader }
-    });
-  }
-
-  render() {
-    return (
-      <div className="page-view">
-        <h3>Looking at Page View!</h3>
-      </div>
-    );
-  }
 }
 
 function MetricsView(props) {
