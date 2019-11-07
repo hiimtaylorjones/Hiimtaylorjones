@@ -20,19 +20,19 @@ RSpec.describe PostsController, :type => :controller do
 	describe "Show Post" do
 
 		before(:each) do
-			@post = FactoryGirl.create(:post)
+			@post = FactoryBot.create(:post)
 		end
 
 		describe "Get Post to Show" do
 
 			it "responds successfully with an HTTP 200 status code" do
-				get :show, id: @post
+				get :show, params: { id: @post.id }
 				expect(response).to be_success
 				expect(response).to have_http_status(200)
 			end
 
 			it "renders the show template" do
-				get :show, id: @post
+				get :show, params: { id: @post.id }
 				expect(response).to render_template(:show)
 			end
 		end
@@ -43,21 +43,21 @@ RSpec.describe PostsController, :type => :controller do
 		#User needs to log in
 
 		before(:each) do
-			@admin = FactoryGirl.create(:admin)
+			@admin = FactoryBot.create(:admin)
 			sign_in @admin
-			@post = FactoryGirl.create(:post)
+			@post = FactoryBot.create(:post)
 		end
 
 		describe "Your dumb Admin can't spell. (Edit Post)" do
 
 			it "responds successfully with an HTTP 200 status code" do
-				get :edit, id: @post
+				get :edit, params: { id: @post.id } 
 				expect(response).to be_success
 				expect(response).to have_http_status(200)
 			end
 
 			it "renders the edit template" do
-				get :edit, id: @post
+				get :edit, params: { id: @post.id }
 				expect(response).to render_template(:edit)
 			end
 		end
