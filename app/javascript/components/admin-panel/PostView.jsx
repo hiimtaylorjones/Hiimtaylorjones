@@ -36,7 +36,7 @@ class PostView extends Component {
       headers: { 'X-CSRF-TOKEN' : tokenHeader }
     });
     this.setState({
-      posts: response.data
+      posts: response.data.data
     });
   }
 
