@@ -2,10 +2,12 @@ import React, { Component } from 'react';
 import Axios from 'axios';
 
 function PageRow(props) {
+  let linkUrl = "/pages/" + props.title.toLowerCase() + "/edit";
+
   return (
     <tr>
       <td>{props.title}</td>
-      <td><button className="button is-warning">Edit</button></td>
+      <td><button className="button is-warning"><a href={linkUrl}>Edit</a></button></td>
       <td><button className="button is-danger">Destroy</button></td>
     </tr>
   );

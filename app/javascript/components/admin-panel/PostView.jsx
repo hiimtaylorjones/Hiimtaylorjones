@@ -2,11 +2,15 @@ import React, { Component } from 'react';
 import Axios from 'axios';
 
 function PostRow(props) {
+
+  let one = props.title.replace(/[^\w\s]/gi, '');
+  let two = one.replace(/\s+/g, '-').toLowerCase();
+  let linkUrl = "/posts/" + two + "/edit";
+
   return (
     <tr>
       <td key={props.id}>{props.title}</td>
-      <td><button className="button is-success">Comments</button></td>
-      <td><button className="button is-warning">Edit</button></td>
+      <td><button className="button is-success"><a href={linkUrl}>Edit</a></button></td>
       <td><button className="button is-danger">Destroy</button></td>
     </tr>
   );
@@ -44,7 +48,7 @@ class PostView extends Component {
           <tbody>
             <tr>
               <th>Title</th>
-              <th colSpan="3">Actions</th>
+              <th colSpan="2">Actions</th>
             </tr>
             { 
               this.state.posts.map(post => <PostRow key={post.id} id={post.id} title={post.title} />)

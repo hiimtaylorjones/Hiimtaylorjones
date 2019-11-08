@@ -15,7 +15,12 @@
 					<h1><%= link_to post.title, post_path(post) %></h1>
 				<% end %>
 				<h3><i><%= post.tagline %></i></h3>
-				<p>Last Updated on <b><%= post.updated_at.strftime("%B %d, %Y") %></b></p>
+				<p>
+					Written on <b><%= post.created_at.strftime("%B %d, %Y") %></b><br />
+					<% if post.updated_at > post.created_at %>
+						Updated on <b><%= post.updated_at.strftime("%B %d, %Y") %></b>
+					<% end %>
+				</p>
 			</div>
 
 			<div class="post-content center-block row">
