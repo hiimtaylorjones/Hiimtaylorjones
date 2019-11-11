@@ -9,14 +9,21 @@ RSpec.describe Api::V1::PostsController, type: :controller do
 		end
 
 	  describe "GET #index" do
-	    it "responds successfully with an HTTP 200 status code" do
+      
+      it "responds with a 200 status code and JSON formatting" do
 	      get :index
 	      expect(response).to be_success
         expect(response).to have_http_status(200)
         expect(response.content_type).to eq("application/json")
-	    end
+      end
+      
+      it "returns 10 records if not specified by filtering" do 
+        get :index, params: { page: 1 }
+        parsed_body = JSON.parse(response.body)
+        expect(parsed_body["data"].length).to eq(10)
+      end
 
-	    it "renders the index template" do
+	    it "respects pagination filtering" do
         get :index, params: { page: 1, per_page: 5 }
         parsed_body = JSON.parse(response.body)
         expect(parsed_body["data"].length).to eq(5)
