@@ -11,7 +11,7 @@ class Api::V1::PostsController < ApplicationController
   end
 
   def feedback
-    post = Post.find(params[:id])
+    post = Post.find(params[:post_id])
     comments = post.comments
     json_payload = json_outline(comments)
     render json: json_payload, status: :ok

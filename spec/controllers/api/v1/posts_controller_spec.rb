@@ -39,14 +39,14 @@ RSpec.describe Api::V1::PostsController, type: :controller do
       end
 
       it "responds with a 200 status code and JSON formatting" do
-	      get :index
+	      get :feedback, params: { post_id: @post.id }
 	      expect(response).to be_successful
         expect(response).to have_http_status(200)
         expect(response.content_type).to eq("application/json")
       end
 
       it "returns post feedback" do 
-        get :feedback
+        get :feedback, params: { post_id: @post.id }
         parsed_body = JSON.parse(response.body)
         expect(parsed_body["data"][0]["email"]).to eq(@comment.email)
         expect(parsed_body["data"][0]["post_id"]).to eq(@post.id)
