@@ -33,7 +33,7 @@ class PageView extends Component {
       headers: { 'X-CSRF-TOKEN' : tokenHeader }
     });
     this.setState({
-      pages: response.data
+      pages: response.data.data
     });
   }
 

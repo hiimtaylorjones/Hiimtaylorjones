@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe Api::V1::PostsController, type: :controller do
   describe "Post Index" do
 
-    before(:each) do
+    before(:all) do
       created_factory = FactoryBot.create_list(:post, 10)
       @posts = Post.order('created_at DESC')
 		end
@@ -12,7 +12,7 @@ RSpec.describe Api::V1::PostsController, type: :controller do
       
       it "responds with a 200 status code and JSON formatting" do
 	      get :index
-	      expect(response).to be_success
+	      expect(response).to be_successful
         expect(response).to have_http_status(200)
         expect(response.content_type).to eq("application/json")
       end
@@ -30,7 +30,28 @@ RSpec.describe Api::V1::PostsController, type: :controller do
         expect(parsed_body["data"][0]["title"]).to eq(@posts.first.title)
         expect(parsed_body["data"][0]["body"]).to eq(@posts.first.body)
 	    end
-	  end
+    end
+    
+    describe "GET #feedback" do 
+      before(:all) do
+        @post = @posts.first
+        @comment = FactoryBot.create(:comment, post: @post)
+      end
+
+      it "responds with a 200 status code and JSON formatting" do
+	      get :index
+	      expect(response).to be_successful
+        expect(response).to have_http_status(200)
+        expect(response.content_type).to eq("application/json")
+      end
+
+      it "returns post feedback" do 
+        get :feedback
+        parsed_body = JSON.parse(response.body)
+        expect(parsed_body["data"][0]["email"]).to eq(@comment.email)
+        expect(parsed_body["data"][0]["post_id"]).to eq(@post.id)
+      end
+    end
   end
 
 end

@@ -11,9 +11,11 @@ Rails.application.routes.draw do
 
   namespace :api do 
     namespace :v1 do
+      resources :posts, only: [:index] do
+        get 'feedback', to: 'posts#feedback' 
+      end
       post 'feedback/create', to: 'comments#create'
       get 'pages', to: 'pages#index'
-      get 'posts', to: 'posts#index'
     end
   end
 

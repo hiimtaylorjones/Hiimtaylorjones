@@ -2,7 +2,10 @@
 
 FactoryBot.define do
   factory :comment do |f|
-  	f.commenter
-  	f.body { "This is a simple comment. Who knows what will happen?" } 
+    f.association :post
+  	f.email { Faker::Internet.email }
+    f.message  { Faker::Lorem.paragraph }
+    f.approved { true }
+    f.rating { rand(5) + 1 }
   end
 end

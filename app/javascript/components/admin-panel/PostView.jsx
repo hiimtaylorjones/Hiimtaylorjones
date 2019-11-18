@@ -10,6 +10,7 @@ function PostRow(props) {
   return (
     <tr>
       <td key={props.id}>{props.title}</td>
+      <td><button className="button is-success"><a>Feedback</a></button></td>
       <td><button className="button is-success"><a href={linkUrl}>Edit</a></button></td>
       <td><button className="button is-danger">Destroy</button></td>
     </tr>
