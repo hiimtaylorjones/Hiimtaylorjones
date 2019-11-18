@@ -10,7 +10,7 @@ class FeedbackModal extends Component {
       userFeedback: [],
       postID: props.postId
     };
-    // this.fetchFeedback();
+    this.fetchFeedback();
   };
 
   async fetchFeedback() {
@@ -23,11 +23,13 @@ class FeedbackModal extends Component {
       headers: { 'X-CSRF-TOKEN' : tokenHeader }
     });
     this.setState({
-      posts: response.data.data
+      userFeedback: response.data.data
     });
   }
 
   render() {
-
+    <div className="post-feedback">
+      {userFeedback}
+    </div>
   }
 }
