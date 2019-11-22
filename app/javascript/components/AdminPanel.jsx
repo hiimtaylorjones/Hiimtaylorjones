@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
+
 import PageView from './admin-panel/PageView.jsx';
 import PostView from './admin-panel/PostView.jsx';
+import FeedbackModal from './admin-panel/FeedbackModal.jsx';
 import '../post_rating/styles/admin-panel';
 
 function MetricsView(props) {
@@ -44,6 +46,7 @@ class AdminPanel extends Component {
           </ul>
         </div>
         {renderSection}
+        <FeedbackModal /> 
       </div>
     );
   }
