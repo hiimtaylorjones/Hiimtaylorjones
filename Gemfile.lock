@@ -102,7 +102,7 @@ GEM
     pry (0.12.2)
       coderay (~> 1.1.0)
       method_source (~> 0.9.0)
-    puma (4.1.0)
+    puma (4.3.0)
       nio4r (~> 2.0)
     rack (2.0.7)
     rack-proxy (0.6.5)
@@ -218,7 +218,6 @@ PLATFORMS
 
 DEPENDENCIES
   acts-as-taggable-on (~> 6.0)
-  bcrypt
   commonmarker (= 0.19.0)
   devise
   factory_bot_rails
@@ -227,7 +226,7 @@ DEPENDENCIES
   github-markup (= 3.0.4)
   pg
   pry
-  puma (= 4.1.0)
+  puma (= 4.3.0)
   rails (= 5.2.3)
   rails-controller-testing
   rails_12factor
@@ -243,7 +242,7 @@ DEPENDENCIES
   yui-compressor
 
 RUBY VERSION
-   ruby 2.6.0p0
+   ruby 2.6.5p114
 
 BUNDLED WITH
    1.17.2
