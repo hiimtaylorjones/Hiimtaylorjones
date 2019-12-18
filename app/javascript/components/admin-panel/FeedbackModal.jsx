@@ -23,16 +23,16 @@ class FeedbackModal extends Component {
     super(props);
     this.state = {
       userFeedback: [],
-      postID: props.postId,
+      postId: props.postId,
       modalIsOpen: false,
       setIsOpen: false
     };
-    this.fetchFeedback();
     this.openModal = this.openModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
   };
 
-  openModal() {
+  async openModal() {
+    await this.fetchFeedback();
     this.setState({modalIsOpen: true});
   }
 
@@ -57,7 +57,7 @@ class FeedbackModal extends Component {
   render() {
     return(
       <div>
-        <button onClick={this.openModal}>Open Modal</button>
+        <button className="button is-success" onClick={this.openModal}>Feedback</button>
         <Modal
           isOpen={this.state.modalIsOpen}
           onAfterOpen={this.afterOpenModal}
@@ -80,7 +80,7 @@ class FeedbackModal extends Component {
           
           <div className="modal-body">
             <h3>I am a modal</h3>
-            {this.state.userFeedback}
+            { this.state.userFeedback.map(feedback => <div><p>{feedback.message}</p></div>) }
           </div>
           
         </Modal>
