@@ -248,7 +248,6 @@ DEPENDENCIES
   react-rails (= 2.6.0)
   rspec-rails
   sassc-rails
-  sprockets
   therubyracer
   turbolinks
   uglifier
