@@ -1,10 +1,21 @@
 import React, { Component } from 'react';
 import Axios from 'axios';
 import Modal from 'react-modal';
-
+import '../../packs/styles/components/modal.scss';
 
 var appElement = document.getElementById('example');
 Modal.setAppElement(appElement);
+
+const customStyles = {
+  content : {
+    top                   : '50%',
+    left                  : '50%',
+    right                 : 'auto',
+    bottom                : 'auto',
+    marginRight           : '-50%',
+    transform             : 'translate(-50%, -50%)'
+  }
+};
 
 class FeedbackModal extends Component {
 
@@ -16,7 +27,7 @@ class FeedbackModal extends Component {
       modalIsOpen: false,
       setIsOpen: false
     };
-    // this.fetchFeedback();
+    this.fetchFeedback();
     this.openModal = this.openModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
   };
@@ -52,18 +63,26 @@ class FeedbackModal extends Component {
           onAfterOpen={this.afterOpenModal}
           onRequestClose={this.closeModal}
           contentLabel="Example Modal"
+          style={customStyles}
         >
 
-          <h2 ref={this.state.postID}>Post Feedback</h2>
-          <button onClick={this.closeModal}>close</button>
-          <div>I am a modal</div>
-          <form>
-            <input />
-            <button>tab navigation</button>
-            <button>stays</button>
-            <button>inside</button>
-            <button>the modal</button>
-          </form>
+          <div className="modal-header">
+            <div className="level">
+              <div className="level-left modal-title">
+                <h2 ref={this.state.postID}>Post Feedback</h2>
+              </div>
+              
+              <div className="level-right">
+                <button onClick={this.closeModal}>close</button>
+              </div>
+            </div>
+          </div>
+          
+          <div className="modal-body">
+            <h3>I am a modal</h3>
+            {this.state.userFeedback}
+          </div>
+          
         </Modal>
       </div>);
   }
