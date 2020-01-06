@@ -1,7 +1,11 @@
 <% @posts.each do |post| %>
 	<%= render 'posts/full_post', post: post%>
+	<div class="content-divider"></div>
+<% end %>
 
-	<div class="has-text-centered">
-		<%= link_to 'Read More', post_path(post), class: "button" %>
-	</div>
+<% @page != 1 %>
+	<button class="button">Show Older</button>
+<% end %>
+<% if !@at_last_page %>
+	<button class="button">Show Newer</button>
 <% end %>
