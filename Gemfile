@@ -32,7 +32,7 @@ gem 'yui-compressor'
 # Testing assets
 
 group :development, :test do
-	gem 'rspec-rails'
+	gem 'rspec-rails', '4.0.0.beta3'
 	gem 'rails-controller-testing'
   gem 'factory_bot_rails'
 	gem 'faker'

@@ -12,7 +12,7 @@ RSpec.describe Api::V1::PagesController, type: :controller do
 	  describe "GET #index" do
 	    it "responds with a 200 status code and JSON formatting" do
 	      get :index
-	      expect(response).to be_success
+	      expect(response).to be_successful
         expect(response).to have_http_status(200)
         expect(response.content_type).to eq("application/json")
 	    end

@@ -30,15 +30,14 @@ class PostsController < ApplicationController
 	end
 
 	def index
-		@page = if params[:page]
+		@page = if params[:page].present?
 			params[:page]
 		else
 			1
 		end
 		
-		@at_last_page = (@posts.count / 10) == params[:page]
-
 		@posts = Post.where(published: true)
+		@at_last_page = (@posts.count / 10) == @page
 		@posts = @posts.order('created_at DESC').paginate(:page => params[:page], :per_page => 10)
 	end
 
