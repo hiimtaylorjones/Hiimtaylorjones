@@ -21,7 +21,6 @@ class PostsController < ApplicationController
   	if @post.published == false
 			redirect_to :back, notice: "The post you're trying to look at hasn't been published yet!"
 		end
-		@comment = Comment.new
 	end
 
 	def destroy
@@ -38,7 +37,7 @@ class PostsController < ApplicationController
 		
 		@posts = Post.where(published: true)
 		@at_last_page = (@posts.count / 10) == @page
-		@posts = @posts.order('created_at DESC').paginate(:page => params[:page], :per_page => 10)
+		@posts = @posts.order('created_at DESC').paginate(:page => @page, :per_page => 10)
 	end
 
 	def edit

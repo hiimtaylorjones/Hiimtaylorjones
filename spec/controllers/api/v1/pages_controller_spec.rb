@@ -17,7 +17,6 @@ RSpec.describe Api::V1::PagesController, type: :controller do
         expect(response.content_type).to eq("application/json")
 	    end
 
-
       it "returns 10 records if not specified by filtering" do 
         get :index, params: { page: 1 }
         parsed_body = JSON.parse(response.body)

@@ -3,9 +3,10 @@
 	<div class="content-divider"></div>
 <% end %>
 
-<% @page != 1 %>
+<% if @page != 1 %>
 	<button class="button">Show Older</button>
 <% end %>
+
 <% if !@at_last_page %>
 	<button class="button">Show Newer</button>
 <% end %>
