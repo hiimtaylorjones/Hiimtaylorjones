@@ -24,9 +24,11 @@ Rails.application.routes.draw do
   root 'basic_page#index'
 
   match '/about',             to: 'basic_page#about',             via: 'get'
+  match '/writing',           to: 'basic_page#writing',           via: 'get'
+  match '/speaking',          to: 'basic_page#speaking',          via: 'get'
+
   match '/admin',             to: 'basic_page#admin',             via: 'get'
   match '/blog',              to: 'posts#index',                  via: 'get'
-  match '/about_commenting',  to: 'basic_page#about_commenting',  via: 'get'
 
   get '*path' => redirect { |p, req|
     req.flash[:notice] = "#{p[:path]} isn't a page on this site. Sorry!";

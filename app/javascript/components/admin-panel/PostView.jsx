@@ -57,7 +57,7 @@ class PostView extends Component {
             }
           </tbody>
         </table>
-        <button className="button is-success">New post</button>
+        <button className="button is-success"><a href="/posts/new">New Post</a></button>
       </div>
     );
   }

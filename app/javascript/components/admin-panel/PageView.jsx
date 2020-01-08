@@ -50,7 +50,7 @@ class PageView extends Component {
             { this.state.pages.map(page => <PageRow key={page.id} title={page.title} />) }
           </tbody>
         </table>
-        <button className="button is-success">New Page</button>
+        <button className="button is-success"><a href="/pages/new">New Page</a></button>
       </div>
     );
   }

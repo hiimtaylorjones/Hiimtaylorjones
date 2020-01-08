@@ -6,7 +6,15 @@ class BasicPageController < ApplicationController
   end
 
   def about
-    @page = Page.find_by(title: "about")
+    @page = Page.find_by(title: "About")
+  end
+
+  def writing
+    @page = Page.find_by(title: "Writing")
+  end
+
+  def speaking
+    @page = Page.find_by(title: "Speaking")
   end
 
   def admin
