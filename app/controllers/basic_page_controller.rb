@@ -7,14 +7,17 @@ class BasicPageController < ApplicationController
 
   def about
     @page = Page.find_by(title: "About")
+    render layout: "page"
   end
 
   def writing
     @page = Page.find_by(title: "Writing")
+    render layout: "page"
   end
 
   def speaking
     @page = Page.find_by(title: "Speaking")
+    render layout: "page"
   end
 
   def admin
@@ -22,6 +25,7 @@ class BasicPageController < ApplicationController
     @admins = Admin.all
     @posts = Post.paginate(page: params[:page], per_page: 10).order('created_at DESC')
     @pages = Page.all
+    render layout: "page"
   end
 
 end

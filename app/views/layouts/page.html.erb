@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Everything Is Collateral </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Font stuff -->
+    <link href='https://fonts.googleapis.com/css?family=PT+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+
+    <%= javascript_pack_tag 'application' %>
+    <%= stylesheet_pack_tag 'application' %>
+    <%= csrf_meta_tags %>
+    <%= render 'layouts/partials/shim' %>
+
+  </head>
+
+  <%= render 'layouts/partials/header' %>
+
+  <body>
+    <div class="main-content">
+      <%= render 'layouts/partials/alerts' %>
+
+      <!--Yields all of the stuff you know and love.-->
+      <div class="columns is-mobile">
+        <div class="column is-3"></div>
+        <div class="column is-6">
+          <%= yield %>
+        </div>
+        <div class="column is-3"></div>
+      </div>
+
+      <%= render 'layouts/partials/footer' %>
+    </div>
+  </body>
+</html>
