@@ -43,7 +43,7 @@ class PagesController < ApplicationController
 		end
 
 		def find_page_by_title(title)
-			query = Page.where(title: title)
+			query = Page.where(title: title.capitalize)
 			if query.exists?
 				@page = query.first 
 			else
