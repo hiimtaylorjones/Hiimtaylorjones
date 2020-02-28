@@ -1,3 +1,5 @@
+require 'sidekiq/web'
+
 Rails.application.routes.draw do
 
   devise_for :admins
@@ -22,6 +24,8 @@ Rails.application.routes.draw do
   resources :pages, param: :title
 
   root 'basic_page#index'
+  
+  mount Sidekiq::Web => '/sidekiq'
 
   match '/about',             to: 'basic_page#about',             via: 'get'
   match '/writing',           to: 'basic_page#writing',           via: 'get'
