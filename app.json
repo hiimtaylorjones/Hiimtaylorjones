@@ -19,6 +19,9 @@
       "url": "heroku/nodejs"
     }
   ],
+  "scripts": {
+    "postdeploy": "bundle exec rake db:seed"
+  },
   "environments": {
     "test": {
       "scripts": {
