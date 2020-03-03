@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Axios from 'axios';
+import { API } from '../utilities/api.js';
 
 function PageRow(props) {
   let linkUrl = "/pages/" + props.title.toLowerCase() + "/edit";
@@ -25,9 +26,10 @@ class PageView extends Component {
 
   async fetchPages() {
     let tokenHeader = document.querySelectorAll('meta[name="csrf-token"]')[0].content;
+    let apiUrl = API.protocol + API.host + "/api/v1/pages";
     let response = await Axios({
       method: 'get',
-      url: 'http://localhost:3000/api/v1/pages',
+      url: apiUrl,
       data:{
       },
       headers: { 'X-CSRF-TOKEN' : tokenHeader }

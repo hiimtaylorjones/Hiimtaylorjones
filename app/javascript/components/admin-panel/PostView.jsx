@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import FeedbackModal from './FeedbackModal.jsx';
 import Axios from 'axios';
+import { API } from '../utilities/api.js';
 
 function PostRow(props) {
 
@@ -30,9 +31,10 @@ class PostView extends Component {
 
   async fetchPosts() {
     let tokenHeader = document.querySelectorAll('meta[name="csrf-token"]')[0].content;
+    let apiUrl = API.protocol + API.host + "/api/v1/posts";
     let response = await Axios({
       method: 'get',
-      url: 'http://localhost:3000/api/v1/posts',
+      url: apiUrl,
       data:{
       },
       headers: { 'X-CSRF-TOKEN' : tokenHeader }
