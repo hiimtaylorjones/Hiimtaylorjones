@@ -4,5 +4,5 @@ const protocol = isDevelopment ? "http://" : "https://";
 export const API = {
   version: "1",
   protocol: protocol,
-  host: "localhost:5000"
+  host: window.location.host
 }; 
