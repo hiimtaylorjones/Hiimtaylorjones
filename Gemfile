@@ -8,6 +8,9 @@ gem 'pg'
 gem 'puma', "4.3.2"
 gem 'sidekiq'
 
+# AWS Assets
+gem 'aws-sdk', '~> 2'
+
 # Authentication and Roles
 gem 'devise'
 
@@ -37,6 +40,7 @@ group :development, :test do
   gem 'factory_bot_rails'
 	gem 'faker'
 	gem 'pry'
+	gem 'dotenv-rails', groups: [:development, :test]
 end
 
 gem "letter_opener", :group => :development
