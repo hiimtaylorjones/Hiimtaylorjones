@@ -1,13 +1,21 @@
 {
-  "application.js": "/packs/js/application-d7427c51940fb84f1004.js",
-  "application.js.map": "/packs/js/application-d7427c51940fb84f1004.js.map",
+  "application.js": "/packs/js/application-6af84e35160fca5d89c4.js",
+  "application.js.map": "/packs/js/application-6af84e35160fca5d89c4.js.map",
   "entrypoints": {
     "application": {
       "js": [
-        "/packs/js/application-d7427c51940fb84f1004.js"
+        "/packs/js/application-6af84e35160fca5d89c4.js"
       ],
       "js.map": [
-        "/packs/js/application-d7427c51940fb84f1004.js.map"
+        "/packs/js/application-6af84e35160fca5d89c4.js.map"
+      ]
+    },
+    "libraries/jquery-fileupload": {
+      "js": [
+        "/packs/js/libraries/jquery-fileupload-d80225edba36e4bef9ed.js"
+      ],
+      "js.map": [
+        "/packs/js/libraries/jquery-fileupload-d80225edba36e4bef9ed.js.map"
       ]
     },
     "server_rendering": {
@@ -52,13 +60,15 @@
     },
     "uploader": {
       "js": [
-        "/packs/js/uploader-f0f137bd9477ffd0b029.js"
+        "/packs/js/uploader-a3ff7d25fca3266c7b73.js"
       ],
       "js.map": [
-        "/packs/js/uploader-f0f137bd9477ffd0b029.js.map"
+        "/packs/js/uploader-a3ff7d25fca3266c7b73.js.map"
       ]
     }
   },
+  "libraries/jquery-fileupload.js": "/packs/js/libraries/jquery-fileupload-d80225edba36e4bef9ed.js",
+  "libraries/jquery-fileupload.js.map": "/packs/js/libraries/jquery-fileupload-d80225edba36e4bef9ed.js.map",
   "server_rendering.js": "/packs/js/server_rendering-d707f1ef584cda22a62d.js",
   "server_rendering.js.map": "/packs/js/server_rendering-d707f1ef584cda22a62d.js.map",
   "styles/components/modal.js": "/packs/js/styles/components/modal-808f2e1cf333e612aeba.js",
@@ -69,6 +79,6 @@
   "styles/global/general.js.map": "/packs/js/styles/global/general-046b1d527277f1b74aa4.js.map",
   "styles/global/posts.js": "/packs/js/styles/global/posts-67b0805720fb646284a2.js",
   "styles/global/posts.js.map": "/packs/js/styles/global/posts-67b0805720fb646284a2.js.map",
-  "uploader.js": "/packs/js/uploader-f0f137bd9477ffd0b029.js",
-  "uploader.js.map": "/packs/js/uploader-f0f137bd9477ffd0b029.js.map"
+  "uploader.js": "/packs/js/uploader-a3ff7d25fca3266c7b73.js",
+  "uploader.js.map": "/packs/js/uploader-a3ff7d25fca3266c7b73.js.map"
 }

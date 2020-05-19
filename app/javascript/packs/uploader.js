@@ -1,4 +1,5 @@
 import $ from "jquery";
+import './libraries/jquery-fileupload.js';
 
 export function uploader() {
   $(function() {
@@ -44,6 +45,8 @@ export function uploader() {
           form.append(input);
         },
         fail: function(e, data) {
+          console.log(data);
+          console.log(e);
           submitButton.prop('disabled', false);
   
           progressBar.
