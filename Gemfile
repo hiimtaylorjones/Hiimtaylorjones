@@ -9,7 +9,7 @@ gem 'puma', "4.3.2"
 gem 'sidekiq'
 
 # AWS Assets
-gem 'aws-sdk', '~> 2'
+gem "aws-sdk-s3", require: false
 
 # Authentication and Roles
 gem 'devise'
