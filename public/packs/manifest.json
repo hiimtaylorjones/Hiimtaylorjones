@@ -1,29 +1,13 @@
 {
-  "application.js": "/packs/js/application-c24f9979bc5b45c4c4f2.js",
-  "application.js.map": "/packs/js/application-c24f9979bc5b45c4c4f2.js.map",
+  "application.js": "/packs/js/application-d7427c51940fb84f1004.js",
+  "application.js.map": "/packs/js/application-d7427c51940fb84f1004.js.map",
   "entrypoints": {
     "application": {
       "js": [
-        "/packs/js/application-c24f9979bc5b45c4c4f2.js"
+        "/packs/js/application-d7427c51940fb84f1004.js"
       ],
       "js.map": [
-        "/packs/js/application-c24f9979bc5b45c4c4f2.js.map"
-      ]
-    },
-    "libraries/jquery-fileupload": {
-      "js": [
-        "/packs/js/libraries/jquery-fileupload-4bb6e917871e3b023372.js"
-      ],
-      "js.map": [
-        "/packs/js/libraries/jquery-fileupload-4bb6e917871e3b023372.js.map"
-      ]
-    },
-    "libraries/jquery-widget": {
-      "js": [
-        "/packs/js/libraries/jquery-widget-4cf9c8ddf1a1b8c77cc3.js"
-      ],
-      "js.map": [
-        "/packs/js/libraries/jquery-widget-4cf9c8ddf1a1b8c77cc3.js.map"
+        "/packs/js/application-d7427c51940fb84f1004.js.map"
       ]
     },
     "server_rendering": {
@@ -68,17 +52,13 @@
     },
     "uploader": {
       "js": [
-        "/packs/js/uploader-32dbd803b6edc1cfe14e.js"
+        "/packs/js/uploader-f0f137bd9477ffd0b029.js"
       ],
       "js.map": [
-        "/packs/js/uploader-32dbd803b6edc1cfe14e.js.map"
+        "/packs/js/uploader-f0f137bd9477ffd0b029.js.map"
       ]
     }
   },
-  "libraries/jquery-fileupload.js": "/packs/js/libraries/jquery-fileupload-4bb6e917871e3b023372.js",
-  "libraries/jquery-fileupload.js.map": "/packs/js/libraries/jquery-fileupload-4bb6e917871e3b023372.js.map",
-  "libraries/jquery-widget.js": "/packs/js/libraries/jquery-widget-4cf9c8ddf1a1b8c77cc3.js",
-  "libraries/jquery-widget.js.map": "/packs/js/libraries/jquery-widget-4cf9c8ddf1a1b8c77cc3.js.map",
   "server_rendering.js": "/packs/js/server_rendering-d707f1ef584cda22a62d.js",
   "server_rendering.js.map": "/packs/js/server_rendering-d707f1ef584cda22a62d.js.map",
   "styles/components/modal.js": "/packs/js/styles/components/modal-808f2e1cf333e612aeba.js",
@@ -89,6 +69,6 @@
   "styles/global/general.js.map": "/packs/js/styles/global/general-046b1d527277f1b74aa4.js.map",
   "styles/global/posts.js": "/packs/js/styles/global/posts-67b0805720fb646284a2.js",
   "styles/global/posts.js.map": "/packs/js/styles/global/posts-67b0805720fb646284a2.js.map",
-  "uploader.js": "/packs/js/uploader-32dbd803b6edc1cfe14e.js",
-  "uploader.js.map": "/packs/js/uploader-32dbd803b6edc1cfe14e.js.map"
+  "uploader.js": "/packs/js/uploader-f0f137bd9477ffd0b029.js",
+  "uploader.js.map": "/packs/js/uploader-f0f137bd9477ffd0b029.js.map"
 }

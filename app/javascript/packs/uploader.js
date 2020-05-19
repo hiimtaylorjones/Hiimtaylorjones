@@ -1,6 +1,4 @@
-import './libraries/jquery-widget.js';
-import './libraries/jquery-fileupload.js';
-
+import $ from "jquery";
 
 export function uploader() {
   $(function() {
