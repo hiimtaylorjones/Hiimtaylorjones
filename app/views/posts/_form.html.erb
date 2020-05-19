@@ -21,12 +21,12 @@
 
     <div class="field">
       <%= f.label :banner_image %><br>
-      <%= f.file_field :banner_image , multiple: true, direct_upload: true %>
+      <%= f.file_field :banner_image , direct_upload: true %>
     </div>
 
     <div>
       <% if @post.banner_image.attached? %>
-        <%= image_tag url_for(@post.banner_image) %>
+        <%= image_tag @post.banner_image.service_url %>
       <% end %>
     </div>
 

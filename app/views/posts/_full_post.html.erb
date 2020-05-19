@@ -9,6 +9,11 @@
 	<div class="column">
 		<div class="post content">
 			<div class="post-header">
+				
+				<% if post.banner_image.attached? %>
+					<%= image_tag post.banner_image.service_url %>
+				<% end %>
+				
 				<% if @not_linkable == true %>
 					<h1><%= post.title %></h1>
 				<% else %>

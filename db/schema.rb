@@ -104,7 +104,6 @@ ActiveRecord::Schema.define(version: 2020_05_19_155747) do
     t.datetime "updated_at", null: false
     t.string "slug"
     t.boolean "commenting_enabled", default: false
-    t.string "banner_image_url"
     t.index ["slug"], name: "index_posts_on_slug", unique: true
   end
 
