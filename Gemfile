@@ -5,7 +5,7 @@ gem 'rails', '6.0.0'
 
 # Database and server
 gem 'pg'
-gem 'puma', "4.3.2"
+gem 'puma', "4.3.0"
 gem 'sidekiq'
 
 # AWS Assets
