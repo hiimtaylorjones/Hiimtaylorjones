@@ -5,6 +5,8 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+require 'factory_bot_rails'
+
 FactoryBot.create_list(:posts, 20)
 
 Page.create(title: "speaking")
