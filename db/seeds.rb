@@ -7,9 +7,11 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 
+puts ENV["SECRET_TEST_PASSWORD"]
+
 Admin.create!({:email => "admin@hiimtaylorjones.com", :password => ENV["SECRET_TEST_PASSWORD"], :password_confirmation => ENV["SECRET_TEST_PASSWORD"] })
 
-Post.create(title: "Sample Post", tagline: "Sample", body: "testing this thing out here.", published: true)
-Page.create(title: "speaking")
-Page.create(title: "writing")
-Page.create(title: "about")
+# Post.create(title: "Sample Post", tagline: "Sample", body: "testing this thing out here.", published: true)
+# Page.create(title: "speaking")
+# Page.create(title: "writing")
+# Page.create(title: "about")
