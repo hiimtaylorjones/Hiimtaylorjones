@@ -45,9 +45,9 @@ class PostsController < ApplicationController
 
 	def update
 		if @post.update(post_params)
-			redirect_to admin_path
+			redirect_to edit_post_path(@post), notice: "Post was successfully updated"
 		else
-			render 'edit'
+			render :edit
 		end
 	end
 
@@ -58,6 +58,6 @@ class PostsController < ApplicationController
 		end
 
 		def post_params
-			params.require(:post).permit(:title, :tagline, :published, :body, :tag_list)
+			params.require(:post).permit(:title, :tagline, :published, :body, :tag_list, :banner_image)
 		end
 end

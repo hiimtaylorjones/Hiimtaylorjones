@@ -19,6 +19,17 @@
       "url": "heroku/nodejs"
     }
   ],
+  "env": {
+    "SECRET_TEST_PASSWORD": {
+      "required": true
+    },
+    "RAILS_ENV": {
+      "required": true
+    },
+    "NODE_ENV": {
+      "required": true
+    }
+  },
   "scripts": {
     "postdeploy": "bundle exec rake db:seed"
   },
@@ -26,6 +37,17 @@
     "test": {
       "scripts": {
         "test": "bundle exec rspec spec"
+      },
+      "env": {
+        "SECRET_TEST_PASSWORD": {
+          "value": "test_me_out_1234"
+        },
+        "RAILS_ENV": {
+          "value": "test"
+        },
+        "NODE_ENV": {
+          "value": "test"
+        }
       }
     }
   }

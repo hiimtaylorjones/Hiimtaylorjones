@@ -7,6 +7,7 @@ class Post < ActiveRecord::Base
 	validate :check_tag_length
 
 	has_many :comments, dependent: :destroy
+	has_one_attached :banner_image
 
 	validates :title, presence: true, length: { maximum: 150 }
 	validates :body, presence: true, length: { minimum: 5 }

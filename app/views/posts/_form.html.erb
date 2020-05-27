@@ -20,6 +20,17 @@
     </div>
 
     <div class="field">
+      <%= f.label :banner_image %><br>
+      <%= f.file_field :banner_image , direct_upload: true %>
+    </div>
+
+    <div>
+      <% if @post.banner_image.attached? %>
+        <%= image_tag @post.banner_image.service_url %>
+      <% end %>
+    </div>
+
+    <div class="field">
       <%= f.label :tag_list %><br>
       <p class="control">
         <%= f.text_field :tag_list, :class => 'input' %>
