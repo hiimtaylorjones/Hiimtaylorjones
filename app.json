@@ -37,6 +37,17 @@
     "test": {
       "scripts": {
         "test": "bundle exec rspec spec"
+      },
+      "env": {
+        "SECRET_TEST_PASSWORD": {
+          "value": "test_me_out_1234"
+        },
+        "RAILS_ENV": {
+          "value": "test"
+        },
+        "NODE_ENV": {
+          "value": "test"
+        }
       }
     }
   }
