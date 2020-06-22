@@ -7,10 +7,12 @@ class PageForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      page: this.props.page,
+      title: this.props.page.title,
+      content: this.props.page.content
     };
     this.updatePage = this.updatePage.bind(this);
-    this.updatePageObject = this.updatePageObject.bind(this);
+    this.updateTitle = this.updateTitle.bind(this);
+    this.updateContent = this.updateContent.bind(this);
   };
 
   async updatePage(event) {
@@ -21,15 +23,23 @@ class PageForm extends Component {
       method: 'patch',
       url: apiUrl,
       data: {
-        page: this.state.page
+        id: this.props.page.id,
+        page:  {
+          title: this.state.title,
+          content: this.state.content
+        }
       },
       headers: { 'X-CSRF-TOKEN' : tokenHeader }
     });
     console.log(response.data.message);
   }
 
-  updatePageObject() {
-    console.log("You updated me!");
+  updateTitle(event) {
+    this.setState({title: event.target.value});
+  }
+
+  updateContent(event) {
+    this.setState({content: event.target.value});
   }
 
   render() {
@@ -40,14 +50,14 @@ class PageForm extends Component {
             <div className="field">
               <label name="title">Title</label>
               <div className="control">
-                <input type="text" value={this.props.page.title} onChange={this.updatePageObject} className="input"></input>
+                <input type="text" value={this.state.title} onChange={this.updateTitle} className="input"></input>
               </div>
             </div>
 
           <div className="field">
             <label name="content">Content</label>
             <div className="control">
-              <textarea value={this.props.page.content} onChange={this.updatePageObject} className="textarea" rows="25"></textarea>
+              <textarea value={this.state.content} onChange={this.updateContent} className="textarea" rows="25"></textarea>
             </div>
           </div>
       

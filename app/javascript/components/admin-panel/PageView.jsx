@@ -3,7 +3,11 @@ import Axios from 'axios';
 import { API } from '../utilities/api.js';
 
 function PageRow(props) {
-  let linkUrl = "/pages/" + props.title.toLowerCase() + "/edit";
+
+  let title = props.title;
+  let link_title = title.replace(/ /g, '-');
+
+  let linkUrl = "/pages/" + link_title + "/edit";
 
   return (
     <tr>
