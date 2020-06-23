@@ -19,7 +19,7 @@ class Api::V1::PagesController < ApplicationController
   def update
     page = Page.find(params[:id])
     if page.update(page_params)
-      render json: { status: :ok, page: page, message: "Page sucessfully updated!" }
+      render json: { status: 200, page: page, message: "Page sucessfully updated!" }
     else
       render json: { status: 422, page: page, message: "Could not update page" }
     end

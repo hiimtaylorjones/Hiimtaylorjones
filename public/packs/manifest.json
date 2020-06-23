@@ -1,13 +1,13 @@
 {
-  "application.js": "/packs/js/application-83338d2dcbb2790a1f4c.js",
-  "application.js.map": "/packs/js/application-83338d2dcbb2790a1f4c.js.map",
+  "application.js": "/packs/js/application-156c035edea5b114c56a.js",
+  "application.js.map": "/packs/js/application-156c035edea5b114c56a.js.map",
   "entrypoints": {
     "application": {
       "js": [
-        "/packs/js/application-83338d2dcbb2790a1f4c.js"
+        "/packs/js/application-156c035edea5b114c56a.js"
       ],
       "js.map": [
-        "/packs/js/application-83338d2dcbb2790a1f4c.js.map"
+        "/packs/js/application-156c035edea5b114c56a.js.map"
       ]
     },
     "libraries/jquery-fileupload": {
@@ -20,10 +20,18 @@
     },
     "server_rendering": {
       "js": [
-        "/packs/js/server_rendering-0cd707d53c1fde00f597.js"
+        "/packs/js/server_rendering-151141280950e4003592.js"
       ],
       "js.map": [
-        "/packs/js/server_rendering-0cd707d53c1fde00f597.js.map"
+        "/packs/js/server_rendering-151141280950e4003592.js.map"
+      ]
+    },
+    "styles/components/banner-notification": {
+      "js": [
+        "/packs/js/styles/components/banner-notification-b9a38ceee524cf61cbef.js"
+      ],
+      "js.map": [
+        "/packs/js/styles/components/banner-notification-b9a38ceee524cf61cbef.js.map"
       ]
     },
     "styles/components/modal": {
@@ -61,8 +69,10 @@
   },
   "libraries/jquery-fileupload.js": "/packs/js/libraries/jquery-fileupload-d80225edba36e4bef9ed.js",
   "libraries/jquery-fileupload.js.map": "/packs/js/libraries/jquery-fileupload-d80225edba36e4bef9ed.js.map",
-  "server_rendering.js": "/packs/js/server_rendering-0cd707d53c1fde00f597.js",
-  "server_rendering.js.map": "/packs/js/server_rendering-0cd707d53c1fde00f597.js.map",
+  "server_rendering.js": "/packs/js/server_rendering-151141280950e4003592.js",
+  "server_rendering.js.map": "/packs/js/server_rendering-151141280950e4003592.js.map",
+  "styles/components/banner-notification.js": "/packs/js/styles/components/banner-notification-b9a38ceee524cf61cbef.js",
+  "styles/components/banner-notification.js.map": "/packs/js/styles/components/banner-notification-b9a38ceee524cf61cbef.js.map",
   "styles/components/modal.js": "/packs/js/styles/components/modal-808f2e1cf333e612aeba.js",
   "styles/components/modal.js.map": "/packs/js/styles/components/modal-808f2e1cf333e612aeba.js.map",
   "styles/global/application.js": "/packs/js/styles/global/application-07683568fea3f1f5d6f9.js",

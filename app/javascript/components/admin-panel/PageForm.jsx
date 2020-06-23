@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Axios from 'axios';
 import { API } from '../utilities/api.js';
+import Notification from '../utilities/BannerNotification.jsx';
 
 class PageForm extends Component {
 
@@ -8,7 +9,9 @@ class PageForm extends Component {
     super(props);
     this.state = {
       title: this.props.page.title,
-      content: this.props.page.content
+      content: this.props.page.content,
+      responseStatus: null,
+      responseMessage: null
     };
     this.updatePage = this.updatePage.bind(this);
     this.updateTitle = this.updateTitle.bind(this);
@@ -31,6 +34,12 @@ class PageForm extends Component {
       },
       headers: { 'X-CSRF-TOKEN' : tokenHeader }
     });
+
+    this.setState({
+      responseMessage: response.data.message,
+      responseStatus: response.data.status
+    });
+
     console.log(response.data.message);
   }
 
@@ -43,8 +52,15 @@ class PageForm extends Component {
   }
 
   render() {
+
+    let notification;
+    if (this.state.responseMessage != null) {
+      notification = <Notification status={this.state.responseStatus} message={this.state.responseMessage} />;
+    }
+
     return (
       <div className="page-form">
+        {notification}
         <h3>Looking at Page Form!</h3>
           <form>
             <div className="field">
