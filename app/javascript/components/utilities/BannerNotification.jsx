@@ -24,7 +24,7 @@ class BannerNotification extends Component {
 
     if (status === 200) {
       color = "is-success";
-    } else if (status === 500) {
+    } else if (status === 422) {
       color = "is-warning";
     } else {
       color = "is-info";

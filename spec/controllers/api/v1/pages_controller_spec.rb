@@ -30,7 +30,50 @@ RSpec.describe Api::V1::PagesController, type: :controller do
         expect(parsed_body["data"][0]["title"]).to eq(@pages.first.title)
         expect(parsed_body["data"][0]["content"]).to eq(@pages.first.content)
 	    end
-	  end
+    end
+    
+    describe "PUT #update" do
+      before(:all) do
+        @page = FactoryBot.create(:page) 
+      end
+
+      context "Golden Path" do
+        it "responds with a 200 status code" do
+          put :update, params: { 
+            id: @page.id,
+            page: {
+              title: "New Title",
+              content: "New Content"
+            }
+          }
+          parsed_body = JSON.parse(response.body)
+          status = parsed_body["status"]
+          page = parsed_body["page"]
+          expect(status).to eq(200)
+          expect(page["title"]).to eq("New Title")
+          expect(page["content"]).to eq("New Content")
+        end
+      end
+
+      context "Faulty path" do
+        
+        it "responds with a 404 status code" do
+          put :update, params: { 
+            id: @page.id + 55,
+            page: {
+              title: "New Title",
+              content: "New Content"
+            }
+          }
+          parsed_body = JSON.parse(response.body)
+          status = parsed_body["status"]
+          page = parsed_body["page"]
+          expect(status).to eq(404)
+          expect(page).to eq(nil)
+        end
+      end
+    end
+
   end
 
 end

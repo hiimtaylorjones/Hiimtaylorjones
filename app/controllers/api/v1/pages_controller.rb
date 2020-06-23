@@ -17,11 +17,12 @@ class Api::V1::PagesController < ApplicationController
   end
 
   def update
-    page = Page.find(params[:id])
-    if page.update(page_params)
+    if Page.exists?(params[:id])
+      page = Page.find(params[:id])
+      page.update(page_params)
       render json: { status: 200, page: page, message: "Page sucessfully updated!" }
     else
-      render json: { status: 422, page: page, message: "Could not update page" }
+      render json: { status: 404, page: nil, message: "Page not found!" }
     end
   end
 
