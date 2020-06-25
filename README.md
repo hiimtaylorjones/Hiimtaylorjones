@@ -12,4 +12,4 @@ be able to look at my old code and cringe a bit.
 
 ## Where Can I Actually Take A Look At It?
 
-Its on [Heroku](https://secure-dawn-23123.herokuapp.com/)!
+Its live [here](https://hiimtaylorjones.com).
