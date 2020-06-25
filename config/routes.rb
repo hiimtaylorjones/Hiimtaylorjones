@@ -12,7 +12,7 @@ Rails.application.routes.draw do
         get 'feedback', to: 'posts#feedback', as: :feedback 
       end
       post 'feedback/create', to: 'comments#create'
-      get 'pages', to: 'pages#index'
+      resources :pages, only: [:index, :update]
     end
   end
 

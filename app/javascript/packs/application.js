@@ -15,7 +15,6 @@
 // const images = require.context('../images', true)
 // const imagePath = (name) => images(name, true)
 import './styles/global/application';
-import { uploader } from './uploader';
 import * as ActiveStorage from "activestorage"
 
 // Support component names relative to this directory:
@@ -23,9 +22,9 @@ var componentRequireContext = require.context("components", true);
 var ReactRailsUJS = require("react_ujs");
 ReactRailsUJS.useContext(componentRequireContext);
 
+// ActiveStorage Upload listeners
 
 ActiveStorage.start()
-
 
 addEventListener("direct-upload:initialize", event => {
   const { target, detail } = event

@@ -28,22 +28,14 @@ class PagesController < ApplicationController
 		find_page_by_title(params[:title])
 	end
 
-	def update
-		find_page(params[:title])
-		if @page.update(page_params)
-			redirect_to page_path(@page.title)
-		else
-			render 'edit'
-		end
-	end
-
 	private
 		def find_page(id)
 			@page = Page.find(id)
 		end
 
 		def find_page_by_title(title)
-			query = Page.where(title: title.capitalize)
+			search_for = title.gsub("-", " ")
+			query = Page.where(title: search_for)
 			if query.exists?
 				@page = query.first 
 			else

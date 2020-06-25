@@ -16,10 +16,20 @@ class Api::V1::PagesController < ApplicationController
     render json: pages_json, status: :ok
   end
 
-private 
+  def update
+    if Page.exists?(params[:id])
+      page = Page.find(params[:id])
+      page.update(page_params)
+      render json: { status: 200, page: page, message: "Page sucessfully updated!" }
+    else
+      render json: { status: 404, page: nil, message: "Page not found!" }
+    end
+  end
+
+private
 
   def page_params
-    params.require(:page).permit(:title, :body, :published)
+    params.require(:page).permit(:title, :content, :published)
   end
 
 end
