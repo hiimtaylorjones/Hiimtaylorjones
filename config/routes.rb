@@ -20,8 +20,6 @@ Rails.application.routes.draw do
 
   root 'basic_page#index'
   
-  mount Sidekiq::Web => '/sidekiq'
-  
   match '/admin',             to: 'basic_page#admin',             via: 'get'
   match '/blog',              to: 'posts#index',                  via: 'get'
 
