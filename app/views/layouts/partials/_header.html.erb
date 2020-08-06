@@ -14,9 +14,9 @@
     </div>
 
     <div class="level-right nav-menu">
-      <%= link_to "About", about_path, class: "nav-item" %>
-      <%= link_to "Writing", writing_path, class: "nav-item" %>
-      <%= link_to "Speaking", speaking_path, class: "nav-item" %>
+      <% Page.all.each do |page| %>
+        <%= link_to page.title, page_path(page.title), class: "nav-item" %>
+      <% end %>
     </div>
   </div>
 </nav>
