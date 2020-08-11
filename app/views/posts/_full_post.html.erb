@@ -28,7 +28,7 @@
 			<div class="bottom-nav has-text-centered">
 				<% if admin_signed_in? %>
 					<br />
-					<%= link_to 'Edit Post', edit_post_path(post.title), class: "button" %>
+					<%= link_to 'Edit Post', edit_post_path(post.friendly_id), class: "button" %>
 				<% end %>
 			</div>
 		</div>
