@@ -92,7 +92,7 @@ ActiveRecord::Schema.define(version: 2020_08_29_021140) do
     t.text "content"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.boolean "published"
+    t.boolean "published", default: false
     t.string "placement", default: "none"
     t.index ["title"], name: "index_pages_on_title", unique: true
   end
