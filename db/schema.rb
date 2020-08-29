@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_19_155747) do
+ActiveRecord::Schema.define(version: 2020_08_29_021140) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -92,6 +92,8 @@ ActiveRecord::Schema.define(version: 2020_05_19_155747) do
     t.text "content"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "published"
+    t.string "placement", default: "none"
     t.index ["title"], name: "index_pages_on_title", unique: true
   end
 
