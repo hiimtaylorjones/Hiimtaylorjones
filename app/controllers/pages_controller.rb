@@ -34,8 +34,7 @@ class PagesController < ApplicationController
 		end
 
 		def find_page_by_title(title)
-			search_for = title.gsub("-", " ")
-			query = Page.where(title: search_for)
+			query = Page.friendly.where(title: title)
 			if query.exists?
 				@page = query.first 
 			else

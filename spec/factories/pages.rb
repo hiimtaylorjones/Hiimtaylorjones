@@ -4,5 +4,7 @@ FactoryBot.define do
   factory :page do |f|
     f.title 		{ Faker::Lorem.sentence }
     f.content   { Faker::Lorem.paragraph }
+    f.published { false }
+    f.placement { "none" }
   end
 end
