@@ -29,7 +29,7 @@ class Api::V1::PagesController < ApplicationController
 private
 
   def page_params
-    params.require(:page).permit(:title, :content, :published)
+    params.require(:page).permit(:title, :content, :published, :navbar_visibility)
   end
 
 end
