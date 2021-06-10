@@ -1,7 +1,7 @@
 ruby '2.6.5'
 source 'https://rubygems.org'
 
-gem 'rails', '6.0.0'
+gem 'rails', '~> 6.1', '>= 6.1.3.2'
 
 # Database and server
 gem 'pg'
@@ -23,7 +23,7 @@ gem 'react-rails', '2.6.0'
 # Rendering and Tagging
 gem 'github-markup', '3.0.4'
 gem 'commonmarker', '0.19.0'
-gem 'acts-as-taggable-on', '~> 6.0'
+gem 'acts-as-taggable-on'
 gem 'friendly_id'
 
 # Javascript and Coffeescript
