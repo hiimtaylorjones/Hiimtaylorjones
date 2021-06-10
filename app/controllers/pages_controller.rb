@@ -21,28 +21,28 @@ class PagesController < ApplicationController
 	end
 
 	def show
-		find_page_by_title(params[:title])
+		find_page(params[:title])
 	end
 
 	def edit
-		find_page_by_title(params[:title])
+		find_page(params[:title])
 	end
 
 	private
-		def find_page(id)
-			@page = Page.find(id)
-		end
 
-		def find_page_by_title(title)
-			query = Page.friendly.where(title: title)
-			if query.exists?
-				@page = query.first 
+		def find_page(url_arg)
+			slug_search = Page.where(slug: url_arg.downcase)
+			title_search = Page.friendly.where(title: url_arg)
+			query = slug_search.or(title_search)
+			
+			if query.present?
+				@page = query.first
 			else
 				redirect_to root_path, notice: "Page not found"
 			end
 		end
 
 		def page_params
-			params.require(:page).permit(:title, :content)
+			params.require(:page).permit(:title, :content, :placement, :published)
 		end
 end

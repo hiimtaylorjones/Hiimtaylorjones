@@ -10,12 +10,16 @@ class PageForm extends Component {
     this.state = {
       title: this.props.page.title,
       content: this.props.page.content,
+      published: this.props.page.published,
+      placement: this.props.placement,
       responseStatus: null,
       responseMessage: null
     };
     this.updatePage = this.updatePage.bind(this);
     this.updateTitle = this.updateTitle.bind(this);
     this.updateContent = this.updateContent.bind(this);
+    this.updatePublished = this.updatePublished.bind(this);
+    this.updatePlacement = this.updatePlacement.bind(this);
   };
 
   async updatePage(event) {
@@ -29,7 +33,9 @@ class PageForm extends Component {
         id: this.props.page.id,
         page:  {
           title: this.state.title,
-          content: this.state.content
+          content: this.state.content,
+          published: this.state.published,
+          placement: this.state.placement
         }
       },
       headers: { 'X-CSRF-TOKEN' : tokenHeader }
@@ -51,6 +57,14 @@ class PageForm extends Component {
     this.setState({content: event.target.value});
   }
 
+  updatePlacement(event) {
+    this.setState({placement: event.target.value});
+  }
+
+  updatePublished(event) {
+    this.setState({published: event.target.checked});
+  }
+
   render() {
 
     let notification;
@@ -62,13 +76,30 @@ class PageForm extends Component {
       <div className="page-form">
         {notification}
         <h3>Looking at Page Form!</h3>
-          <form>
-            <div className="field">
-              <label name="title">Title</label>
-              <div className="control">
-                <input type="text" value={this.state.title} onChange={this.updateTitle} className="input"></input>
-              </div>
+        <form>
+          <div className="field">
+            <label name="title">Title</label>
+            <div className="control">
+              <input type="text" value={this.state.title} onChange={this.updateTitle} className="input"></input>
             </div>
+          </div>
+
+          <div className="field">
+            <label name="placement">Navigation Placement</label>
+            <div className="control">
+              <select value={this.state.placement} onChange={this.updatePlacement}>
+                <option value="navbar">Navbar</option>
+                <option value="none">Hidden</option>
+              </select>
+            </div>
+          </div>
+
+          <div className="field">
+            <label name="published">Published</label>
+            <div className="control">
+              <input type="checkbox" value={this.state.published} checked={this.state.published} onChange={this.updatePublished} />
+            </div>
+          </div>
 
           <div className="field">
             <label name="content">Content</label>
@@ -76,7 +107,7 @@ class PageForm extends Component {
               <textarea value={this.state.content} onChange={this.updateContent} className="textarea" rows="25"></textarea>
             </div>
           </div>
-      
+    
           <div className="text-center">
             <button type="submit" className="button is-primary" onClick={this.updatePage}>Submit</button>
           </div>
