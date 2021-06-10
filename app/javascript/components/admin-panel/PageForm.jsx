@@ -11,7 +11,7 @@ class PageForm extends Component {
       title: this.props.page.title,
       content: this.props.page.content,
       published: this.props.page.published,
-      placement: this.props.placement,
+      placement: this.props.page.placement,
       responseStatus: null,
       responseMessage: null
     };
@@ -85,21 +85,23 @@ class PageForm extends Component {
           </div>
 
           <div className="field">
-            <label name="placement">Navigation Placement</label>
-            <div className="control">
-              <select value={this.state.placement} onChange={this.updatePlacement}>
-                <option value="navbar">Navbar</option>
-                <option value="none">Hidden</option>
-              </select>
-            </div>
-          </div>
-
-          <div className="field">
             <label name="published">Published</label>
             <div className="control">
               <input type="checkbox" value={this.state.published} checked={this.state.published} onChange={this.updatePublished} />
             </div>
           </div>
+
+          <div className="field">
+            <label name="placement">Navigation Placement</label>
+            <div className="control">
+              <select value={this.state.placement} onChange={this.updatePlacement}>
+                <option value="none">Hidden</option>
+                <option value="navbar">Navbar</option>
+              </select>
+            </div>
+          </div>
+
+          
 
           <div className="field">
             <label name="content">Content</label>
