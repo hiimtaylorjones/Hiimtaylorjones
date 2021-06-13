@@ -1,84 +1,24 @@
 {
-  "application.js": "/packs/js/application-889d704803a05ec760ff.js",
-  "application.js.map": "/packs/js/application-889d704803a05ec760ff.js.map",
+  "application.css": "/packs/css/application-be89c346.css",
+  "application.js": "/packs/js/application-2c54a366cb6d68577993.js",
+  "css/application-be89c346.css.map": "/packs/css/application-be89c346.css.map",
   "entrypoints": {
     "application": {
-      "js": [
-        "/packs/js/application-889d704803a05ec760ff.js"
-      ],
-      "js.map": [
-        "/packs/js/application-889d704803a05ec760ff.js.map"
-      ]
-    },
-    "libraries/jquery-fileupload": {
-      "js": [
-        "/packs/js/libraries/jquery-fileupload-d80225edba36e4bef9ed.js"
-      ],
-      "js.map": [
-        "/packs/js/libraries/jquery-fileupload-d80225edba36e4bef9ed.js.map"
-      ]
-    },
-    "server_rendering": {
-      "js": [
-        "/packs/js/server_rendering-82303f64128c9e709156.js"
-      ],
-      "js.map": [
-        "/packs/js/server_rendering-82303f64128c9e709156.js.map"
-      ]
-    },
-    "styles/components/banner-notification": {
-      "js": [
-        "/packs/js/styles/components/banner-notification-ac2d10da85e918bd085f.js"
-      ],
-      "js.map": [
-        "/packs/js/styles/components/banner-notification-ac2d10da85e918bd085f.js.map"
-      ]
-    },
-    "styles/components/modal": {
-      "js": [
-        "/packs/js/styles/components/modal-b4d94062ea7bec1641f4.js"
-      ],
-      "js.map": [
-        "/packs/js/styles/components/modal-b4d94062ea7bec1641f4.js.map"
-      ]
-    },
-    "styles/global/application": {
-      "js": [
-        "/packs/js/styles/global/application-0b5b376060f316db7e1a.js"
-      ],
-      "js.map": [
-        "/packs/js/styles/global/application-0b5b376060f316db7e1a.js.map"
-      ]
-    },
-    "styles/global/general": {
-      "js": [
-        "/packs/js/styles/global/general-30d229545f55bdc6ad5e.js"
-      ],
-      "js.map": [
-        "/packs/js/styles/global/general-30d229545f55bdc6ad5e.js.map"
-      ]
-    },
-    "styles/global/posts": {
-      "js": [
-        "/packs/js/styles/global/posts-96efaaea2732249ee8d2.js"
-      ],
-      "js.map": [
-        "/packs/js/styles/global/posts-96efaaea2732249ee8d2.js.map"
-      ]
+      "assets": {
+        "js": [
+          "/packs/js/runtime-e24eb07bc0a258eb8edf.js",
+          "/packs/js/vendors-node_modules_babel_runtime_regenerator_index_js-node_modules_activestorage_app_assets-c9257c-1c40c940a7a371b15501.js",
+          "/packs/js/application-2c54a366cb6d68577993.js"
+        ],
+        "css": [
+          "/packs/css/application-be89c346.css"
+        ]
+      }
     }
   },
-  "libraries/jquery-fileupload.js": "/packs/js/libraries/jquery-fileupload-d80225edba36e4bef9ed.js",
-  "libraries/jquery-fileupload.js.map": "/packs/js/libraries/jquery-fileupload-d80225edba36e4bef9ed.js.map",
-  "server_rendering.js": "/packs/js/server_rendering-82303f64128c9e709156.js",
-  "server_rendering.js.map": "/packs/js/server_rendering-82303f64128c9e709156.js.map",
-  "styles/components/banner-notification.js": "/packs/js/styles/components/banner-notification-ac2d10da85e918bd085f.js",
-  "styles/components/banner-notification.js.map": "/packs/js/styles/components/banner-notification-ac2d10da85e918bd085f.js.map",
-  "styles/components/modal.js": "/packs/js/styles/components/modal-b4d94062ea7bec1641f4.js",
-  "styles/components/modal.js.map": "/packs/js/styles/components/modal-b4d94062ea7bec1641f4.js.map",
-  "styles/global/application.js": "/packs/js/styles/global/application-0b5b376060f316db7e1a.js",
-  "styles/global/application.js.map": "/packs/js/styles/global/application-0b5b376060f316db7e1a.js.map",
-  "styles/global/general.js": "/packs/js/styles/global/general-30d229545f55bdc6ad5e.js",
-  "styles/global/general.js.map": "/packs/js/styles/global/general-30d229545f55bdc6ad5e.js.map",
-  "styles/global/posts.js": "/packs/js/styles/global/posts-96efaaea2732249ee8d2.js",
-  "styles/global/posts.js.map": "/packs/js/styles/global/posts-96efaaea2732249ee8d2.js.map"
+  "js/application-2c54a366cb6d68577993.js.map": "/packs/js/application-2c54a366cb6d68577993.js.map",
+  "js/runtime-e24eb07bc0a258eb8edf.js.map": "/packs/js/runtime-e24eb07bc0a258eb8edf.js.map",
+  "js/vendors-node_modules_babel_runtime_regenerator_index_js-node_modules_activestorage_app_assets-c9257c-1c40c940a7a371b15501.js": "/packs/js/vendors-node_modules_babel_runtime_regenerator_index_js-node_modules_activestorage_app_assets-c9257c-1c40c940a7a371b15501.js",
+  "js/vendors-node_modules_babel_runtime_regenerator_index_js-node_modules_activestorage_app_assets-c9257c-1c40c940a7a371b15501.js.map": "/packs/js/vendors-node_modules_babel_runtime_regenerator_index_js-node_modules_activestorage_app_assets-c9257c-1c40c940a7a371b15501.js.map",
+  "runtime.js": "/packs/js/runtime-e24eb07bc0a258eb8edf.js"
 }
