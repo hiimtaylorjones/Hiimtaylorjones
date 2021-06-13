@@ -17,7 +17,7 @@ gem 'devise'
 gem 'will_paginate'
 gem 'therubyracer'
 gem 'sassc-rails'
-gem 'webpacker', '~> 4.2.2'
+gem 'webpacker', '~> 6.x'
 gem 'react-rails', '2.6.0'
 
 # Rendering and Tagging
