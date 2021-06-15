@@ -1,24 +1,47 @@
 {
-  "application.css": "/packs/css/application-be89c346.css",
-  "application.js": "/packs/js/application-2c54a366cb6d68577993.js",
-  "css/application-be89c346.css.map": "/packs/css/application-be89c346.css.map",
+  "application.css": "/packs/css/application-6413ee02.css",
+  "application.js": "/packs/js/application-08da6d4d7ed875bda35c.js",
+  "css/application-6413ee02.css.map": "/packs/css/application-6413ee02.css.map",
+  "css/server_rendering-2cc2dde1.css.map": "/packs/css/server_rendering-2cc2dde1.css.map",
   "entrypoints": {
     "application": {
       "assets": {
         "js": [
           "/packs/js/runtime-e24eb07bc0a258eb8edf.js",
-          "/packs/js/vendors-node_modules_babel_runtime_regenerator_index_js-node_modules_activestorage_app_assets-c9257c-1c40c940a7a371b15501.js",
-          "/packs/js/application-2c54a366cb6d68577993.js"
+          "/packs/js/vendors-node_modules_babel_runtime_regenerator_index_js-node_modules_axios_index_js-node_modu-d1e39f-141b6d9b7e00824c343f.js",
+          "/packs/js/vendors-node_modules_activestorage_app_assets_javascripts_activestorage_js-82b65f81c5a017c66ca3.js",
+          "/packs/js/app_javascript_components_sync_recursive_-bb14a77b5fa90ce90a35.js",
+          "/packs/js/application-08da6d4d7ed875bda35c.js"
         ],
         "css": [
-          "/packs/css/application-be89c346.css"
+          "/packs/css/application-6413ee02.css"
+        ]
+      }
+    },
+    "server_rendering": {
+      "assets": {
+        "js": [
+          "/packs/js/runtime-e24eb07bc0a258eb8edf.js",
+          "/packs/js/vendors-node_modules_babel_runtime_regenerator_index_js-node_modules_axios_index_js-node_modu-d1e39f-141b6d9b7e00824c343f.js",
+          "/packs/js/app_javascript_components_sync_recursive_-bb14a77b5fa90ce90a35.js",
+          "/packs/js/server_rendering-d921af94d4630c6db547.js"
+        ],
+        "css": [
+          "/packs/css/server_rendering-2cc2dde1.css"
         ]
       }
     }
   },
-  "js/application-2c54a366cb6d68577993.js.map": "/packs/js/application-2c54a366cb6d68577993.js.map",
+  "js/app_javascript_components_sync_recursive_-bb14a77b5fa90ce90a35.js": "/packs/js/app_javascript_components_sync_recursive_-bb14a77b5fa90ce90a35.js",
+  "js/app_javascript_components_sync_recursive_-bb14a77b5fa90ce90a35.js.map": "/packs/js/app_javascript_components_sync_recursive_-bb14a77b5fa90ce90a35.js.map",
+  "js/application-08da6d4d7ed875bda35c.js.map": "/packs/js/application-08da6d4d7ed875bda35c.js.map",
   "js/runtime-e24eb07bc0a258eb8edf.js.map": "/packs/js/runtime-e24eb07bc0a258eb8edf.js.map",
-  "js/vendors-node_modules_babel_runtime_regenerator_index_js-node_modules_activestorage_app_assets-c9257c-1c40c940a7a371b15501.js": "/packs/js/vendors-node_modules_babel_runtime_regenerator_index_js-node_modules_activestorage_app_assets-c9257c-1c40c940a7a371b15501.js",
-  "js/vendors-node_modules_babel_runtime_regenerator_index_js-node_modules_activestorage_app_assets-c9257c-1c40c940a7a371b15501.js.map": "/packs/js/vendors-node_modules_babel_runtime_regenerator_index_js-node_modules_activestorage_app_assets-c9257c-1c40c940a7a371b15501.js.map",
-  "runtime.js": "/packs/js/runtime-e24eb07bc0a258eb8edf.js"
+  "js/server_rendering-d921af94d4630c6db547.js.map": "/packs/js/server_rendering-d921af94d4630c6db547.js.map",
+  "js/vendors-node_modules_activestorage_app_assets_javascripts_activestorage_js-82b65f81c5a017c66ca3.js": "/packs/js/vendors-node_modules_activestorage_app_assets_javascripts_activestorage_js-82b65f81c5a017c66ca3.js",
+  "js/vendors-node_modules_activestorage_app_assets_javascripts_activestorage_js-82b65f81c5a017c66ca3.js.map": "/packs/js/vendors-node_modules_activestorage_app_assets_javascripts_activestorage_js-82b65f81c5a017c66ca3.js.map",
+  "js/vendors-node_modules_babel_runtime_regenerator_index_js-node_modules_axios_index_js-node_modu-d1e39f-141b6d9b7e00824c343f.js": "/packs/js/vendors-node_modules_babel_runtime_regenerator_index_js-node_modules_axios_index_js-node_modu-d1e39f-141b6d9b7e00824c343f.js",
+  "js/vendors-node_modules_babel_runtime_regenerator_index_js-node_modules_axios_index_js-node_modu-d1e39f-141b6d9b7e00824c343f.js.map": "/packs/js/vendors-node_modules_babel_runtime_regenerator_index_js-node_modules_axios_index_js-node_modu-d1e39f-141b6d9b7e00824c343f.js.map",
+  "runtime.js": "/packs/js/runtime-e24eb07bc0a258eb8edf.js",
+  "server_rendering.css": "/packs/css/server_rendering-2cc2dde1.css",
+  "server_rendering.js": "/packs/js/server_rendering-d921af94d4630c6db547.js"
 }

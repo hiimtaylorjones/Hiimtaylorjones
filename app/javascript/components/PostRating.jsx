@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import '../post_rating/styles/post-rating';
+import '../styles/components/post-rating.scss';
 import Axios from 'axios';
 
 function RatingButton(props) {

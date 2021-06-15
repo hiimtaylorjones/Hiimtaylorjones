@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 
-import PageView from './admin-panel/PageView.jsx';
-import PostView from './admin-panel/PostView.jsx';
-import '../post_rating/styles/admin-panel';
+import PageView from './admin/PageView.jsx';
+import PostView from './admin/PostView.jsx';
+import '../styles/components/post-rating.scss';
 
 function MetricsView(props) {
   return (

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Axios from 'axios';
 import Modal from 'react-modal';
-import '../../packs/styles/components/modal.scss';
+import '../../styles/components/modal.scss';
 
 var appElement = document.getElementById('example');
 Modal.setAppElement(appElement);

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import '../../packs/styles/components/banner-notification';
+import '../../styles/components/banner-notification.scss';
 
 class BannerNotification extends Component {
 
