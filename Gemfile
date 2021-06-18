@@ -1,7 +1,7 @@
 ruby '2.6.5'
 source 'https://rubygems.org'
 
-gem 'rails', '6.0.0'
+gem 'rails', '6.0.4'
 
 # Database and server
 gem 'pg'
