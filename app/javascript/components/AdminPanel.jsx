@@ -4,14 +4,6 @@ import PageView from './admin-panel/PageView.jsx';
 import PostView from './admin-panel/PostView.jsx';
 import '../post_rating/styles/admin-panel';
 
-function MetricsView(props) {
-  return (
-    <div className="metrics-view">
-      <h3>Looking at Metrics View!</h3>
-    </div>
-  );
-}
-
 class AdminPanel extends Component {
   constructor(props) {
     super(props);
@@ -31,8 +23,6 @@ class AdminPanel extends Component {
       renderSection = <PostView />; 
     } else if (this.state.currentView === "page") {
       renderSection = <PageView />;
-    } else {
-      renderSection = <MetricsView />;
     }
 
     return(
@@ -41,7 +31,6 @@ class AdminPanel extends Component {
           <ul>
             <li className={ this.state.currentView === "post" ? "is-active" : ""}><a value="post" onClick={this.switchView}>Posts</a></li>
             <li className={ this.state.currentView === "page" ? "is-active" : ""}><a value="page" onClick={this.switchView}>Pages</a></li>
-            <li className={ this.state.currentView === "metrics" ? "is-active" : ""}><a value="metrics" onClick={this.switchView}>Metrics</a></li>
           </ul>
         </div>
         {renderSection}
