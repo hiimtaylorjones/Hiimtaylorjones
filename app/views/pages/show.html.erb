@@ -5,9 +5,6 @@
 </div>
 
 <div class="bottom-nav text-center">
-	<button type="button" class="btn btn-default">
-		<%= link_to 'Back', pages_path %>
-	</button>
 	<% if admin_signed_in? %>
 		| <button type="button" class="btn btn-default"><%= link_to 'Edit Page', edit_page_path(@page.title) %></button>
 	<% end %>
