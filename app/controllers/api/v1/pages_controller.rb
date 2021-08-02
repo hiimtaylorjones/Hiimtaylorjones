@@ -1,5 +1,7 @@
 class Api::V1::PagesController < ApplicationController
 
+  before_action :authenticate_admin!
+
   def index
     pages = if params[:per_page]
       Page.last(params[:per_page])

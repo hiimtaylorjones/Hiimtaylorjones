@@ -1,6 +1,12 @@
 require 'rails_helper'
 
 RSpec.describe PagesController, :type => :controller do
+
+  before do 
+    admin = Admin.create!(email: "hello1234@eic.com", password: "passingpassword!")
+    sign_in admin
+  end
+
   before(:all) do
     @page = FactoryBot.create(:page, published: true)
   end

@@ -1,4 +1,5 @@
 class Api::V1::PostsController < ApplicationController
+  before_action :authenticate_admin!, only: [:feedback]
 
   def index
     posts = if params[:per_page]

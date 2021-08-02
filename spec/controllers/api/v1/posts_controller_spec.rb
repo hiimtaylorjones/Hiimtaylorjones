@@ -3,6 +3,11 @@ require 'rails_helper'
 RSpec.describe Api::V1::PostsController, type: :controller do
   describe "Post Index" do
 
+    before do 
+      admin = Admin.find_by(email: "admin@hiimtaylorjones.com")
+      sign_in admin
+    end
+
     before(:all) do
       created_factory = FactoryBot.create_list(:post, 10)
       @posts = Post.order('created_at DESC')
