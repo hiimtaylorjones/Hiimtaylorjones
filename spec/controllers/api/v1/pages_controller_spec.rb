@@ -4,19 +4,15 @@ RSpec.describe Api::V1::PagesController, type: :controller do
 
   describe "Page Index" do
 
-    before(:all) do 
-      @admin = Admin.find_by(email: "admin@hiimtaylorjones.com")
-      sign_in @admin
+    before do 
+      admin = Admin.find_by(email: "admin@hiimtaylorjones.com")
+      sign_in admin
     end
 
     before(:each) do
       created_factory = FactoryBot.create_list(:page, 10)
       @pages = Page.last(5)
 		end
-
-    after(:all) do 
-      sign_out @admin 
-    end
 
 	  describe "GET #index" do
 	    it "responds with a 200 status code and JSON formatting" do
