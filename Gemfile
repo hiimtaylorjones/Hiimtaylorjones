@@ -1,11 +1,11 @@
 ruby '3.0.2'
 source 'https://rubygems.org'
 
-gem 'rails', '6.0.4'
+gem 'rails', '6.1.5'
 
 # Database and server
 gem 'pg'
-gem 'puma', "4.3.5"
+gem "puma", ">= 4.3.12"
 
 # AWS Assets
 gem "aws-sdk-s3", require: false
