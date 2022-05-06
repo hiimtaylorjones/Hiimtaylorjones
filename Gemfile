@@ -5,7 +5,7 @@ gem 'rails', '6.0.4'
 
 # Database and server
 gem 'pg'
-gem 'puma', "4.3.5"
+gem 'puma', "4.3.12"
 
 # AWS Assets
 gem "aws-sdk-s3", require: false
