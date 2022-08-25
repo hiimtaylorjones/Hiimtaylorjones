@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
   resources :coffees
-  devise_for :admins
+  devise_for :admins, only: []
   resources :posts
 
   namespace :api do 

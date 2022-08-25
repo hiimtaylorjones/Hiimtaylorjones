@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe PagesController, :type => :controller do
 
   before do 
-    admin = Admin.find_by(email: "admin@hiimtaylorjones.com")
+    admin = FactoryBot.create(:admin)
     sign_in admin
   end
 
