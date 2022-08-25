@@ -1,11 +1,11 @@
 ruby '2.6.5'
 source 'https://rubygems.org'
 
-gem 'rails', '6.0.4'
+gem 'rails', '~> 6.1', '>= 6.1.6.1'
 
 # Database and server
-gem 'pg'
-gem 'puma', "4.3.12"
+gem 'pg', '~> 1.4', '>= 1.4.3'
+gem 'puma', '~> 5.6', '>= 5.6.5'
 
 # AWS Assets
 gem "aws-sdk-s3", require: false
@@ -23,8 +23,8 @@ gem 'react-rails', '2.6.0'
 # Rendering and Tagging
 gem 'github-markup', '3.0.4'
 gem 'commonmarker', '0.19.0'
-gem 'acts-as-taggable-on', '~> 6.0'
-gem 'friendly_id'
+gem 'acts-as-taggable-on', '~> 9.0', '>= 9.0.1'
+gem 'friendly_id', '~> 5.4', '>= 5.4.2'
 
 # Javascript and Coffeescript
 gem 'uglifier'
@@ -34,7 +34,7 @@ gem 'yui-compressor'
 # Testing assets
 
 group :development, :test do
-	gem 'rspec-rails', '4.0.0.beta3'
+	gem 'rspec-rails', '~> 5.1.2'
 	gem 'rails-controller-testing'
   gem 'factory_bot_rails'
 	gem 'faker'
