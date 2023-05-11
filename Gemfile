@@ -1,7 +1,7 @@
-ruby '2.6.5'
+ruby '3.2.2'
 source 'https://rubygems.org'
 
-gem 'rails', '6.0.4'
+gem 'rails',  '7.0.4.2'
 
 # Database and server
 gem 'pg'
@@ -15,15 +15,14 @@ gem 'devise'
 
 # UI Frameworks and Gems
 gem 'will_paginate'
-gem 'therubyracer'
 gem 'sassc-rails'
 gem 'webpacker', '~> 4.2.2'
 gem 'react-rails', '2.6.0'
 
 # Rendering and Tagging
-gem 'github-markup', '3.0.4'
-gem 'commonmarker', '0.19.0'
-gem 'acts-as-taggable-on', '~> 6.0'
+gem 'github-markup', '4.0.1'
+gem 'commonmarker', '~> 0.23.9'
+gem 'acts-as-taggable-on', '~> 9.0'
 gem 'friendly_id'
 
 # Javascript and Coffeescript
@@ -34,7 +33,7 @@ gem 'yui-compressor'
 # Testing assets
 
 group :development, :test do
-	gem 'rspec-rails', '4.0.0.beta3'
+	gem 'rspec-rails', '6.0.2'
 	gem 'rails-controller-testing'
   gem 'factory_bot_rails'
 	gem 'faker'
