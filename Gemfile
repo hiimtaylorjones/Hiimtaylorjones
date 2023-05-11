@@ -15,8 +15,8 @@ gem 'devise'
 
 # UI Frameworks and Gems
 gem 'will_paginate'
-gem 'webpacker', '5.4.4'
-gem 'react-rails', '2.7.0'
+gem 'sassc-rails'
+gem "bulma-rails", "~> 0.9.4"
 
 # Rendering and Tagging
 gem 'github-markup', '4.0.1'

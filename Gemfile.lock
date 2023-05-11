@@ -86,16 +86,13 @@ GEM
       aws-sigv4 (~> 1.4)
     aws-sigv4 (1.5.2)
       aws-eventstream (~> 1, >= 1.0.2)
-    babel-source (5.8.35)
-    babel-transpiler (0.7.0)
-      babel-source (>= 4.0, < 6)
-      execjs (~> 2.0)
     bcrypt (3.1.18)
     builder (3.2.4)
+    bulma-rails (0.9.4)
+      sassc (~> 2.0)
     coderay (1.1.3)
     commonmarker (0.23.9)
     concurrent-ruby (1.2.2)
-    connection_pool (2.4.0)
     crass (1.0.6)
     date (3.3.3)
     devise (4.9.2)
@@ -110,7 +107,6 @@ GEM
       dotenv (= 2.8.1)
       railties (>= 3.2)
     erubi (1.12.0)
-    execjs (2.8.1)
     factory_bot (6.2.1)
       activesupport (>= 5.0.0)
     factory_bot_rails (6.2.0)
@@ -118,6 +114,7 @@ GEM
       railties (>= 5.0.0)
     faker (3.2.0)
       i18n (>= 1.8.11, < 2)
+    ffi (1.15.5)
     friendly_id (5.5.0)
       activerecord (>= 4.0.0)
     github-markup (4.0.1)
@@ -164,8 +161,6 @@ GEM
       nio4r (~> 2.0)
     racc (1.6.2)
     rack (2.2.7)
-    rack-proxy (0.7.6)
-      rack
     rack-test (2.1.0)
       rack (>= 1.3)
     rails (7.0.4.2)
@@ -204,12 +199,6 @@ GEM
       thor (~> 1.0)
       zeitwerk (~> 2.5)
     rake (13.0.6)
-    react-rails (2.7.0)
-      babel-transpiler (>= 0.7.0)
-      connection_pool
-      execjs
-      railties (>= 3.2)
-      tilt
     responders (3.1.0)
       actionpack (>= 5.2)
       railties (>= 5.2)
@@ -230,7 +219,21 @@ GEM
       rspec-mocks (~> 3.12)
       rspec-support (~> 3.12)
     rspec-support (3.12.0)
-    semantic_range (3.0.0)
+    sassc (2.4.0)
+      ffi (~> 1.9)
+    sassc-rails (2.1.2)
+      railties (>= 4.0.0)
+      sassc (>= 2.0)
+      sprockets (> 3.0)
+      sprockets-rails
+      tilt
+    sprockets (4.2.0)
+      concurrent-ruby (~> 1.0)
+      rack (>= 2.2.4, < 4)
+    sprockets-rails (3.4.2)
+      actionpack (>= 5.2)
+      activesupport (>= 5.2)
+      sprockets (>= 3.0.0)
     thor (1.2.1)
     tilt (2.1.0)
     timeout (0.3.2)
@@ -238,11 +241,6 @@ GEM
       concurrent-ruby (~> 1.0)
     warden (1.2.9)
       rack (>= 2.0.9)
-    webpacker (5.4.4)
-      activesupport (>= 5.2)
-      rack-proxy (>= 0.6.1)
-      railties (>= 5.2)
-      semantic_range (>= 2.3.0)
     websocket-driver (0.7.5)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
@@ -255,6 +253,7 @@ PLATFORMS
 DEPENDENCIES
   acts-as-taggable-on (~> 9.0)
   aws-sdk-s3
+  bulma-rails (~> 0.9.4)
   commonmarker (~> 0.23.9)
   devise
   dotenv-rails
@@ -269,9 +268,8 @@ DEPENDENCIES
   rails (= 7.0.4.2)
   rails-controller-testing
   rails_12factor
-  react-rails (= 2.7.0)
   rspec-rails (= 6.0.2)
-  webpacker (= 5.4.4)
+  sassc-rails
   will_paginate
 
 RUBY VERSION
