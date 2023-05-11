@@ -5,7 +5,7 @@ gem 'rails',  '7.0.4.2'
 
 # Database and server
 gem 'pg'
-gem 'puma', "4.3.12"
+gem 'puma', "6.2.2"
 
 # AWS Assets
 gem "aws-sdk-s3", require: false
@@ -15,9 +15,8 @@ gem 'devise'
 
 # UI Frameworks and Gems
 gem 'will_paginate'
-gem 'sassc-rails'
-gem 'webpacker', '~> 4.2.2'
-gem 'react-rails', '2.6.0'
+gem 'webpacker', '5.4.4'
+gem 'react-rails', '2.7.0'
 
 # Rendering and Tagging
 gem 'github-markup', '4.0.1'
