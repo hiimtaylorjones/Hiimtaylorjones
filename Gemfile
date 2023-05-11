@@ -24,13 +24,7 @@ gem 'commonmarker', '~> 0.23.9'
 gem 'acts-as-taggable-on', '~> 9.0'
 gem 'friendly_id'
 
-# Javascript and Coffeescript
-gem 'uglifier'
-gem 'turbolinks'
-gem 'yui-compressor'
-
 # Testing assets
-
 group :development, :test do
 	gem 'rspec-rails', '6.0.2'
 	gem 'rails-controller-testing'
