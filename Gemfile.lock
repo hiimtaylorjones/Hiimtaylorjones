@@ -107,6 +107,7 @@ GEM
       dotenv (= 2.8.1)
       railties (>= 3.2)
     erubi (1.12.0)
+    execjs (2.8.1)
     factory_bot (6.2.1)
       activesupport (>= 5.0.0)
     factory_bot_rails (6.2.0)
@@ -236,6 +237,8 @@ GEM
       actionpack (>= 5.2)
       activesupport (>= 5.2)
       sprockets (>= 3.0.0)
+    terser (1.1.15)
+      execjs (>= 0.3.0, < 3)
     thor (1.2.1)
     tilt (2.1.0)
     timeout (0.3.2)
@@ -273,6 +276,7 @@ DEPENDENCIES
   rails_12factor
   rspec-rails (= 6.0.2)
   sassc-rails
+  terser (~> 1.1)
   will_paginate
 
 RUBY VERSION

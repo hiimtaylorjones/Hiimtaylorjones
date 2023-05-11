@@ -17,6 +17,7 @@ gem 'devise'
 gem 'will_paginate'
 gem 'sassc-rails'
 gem "bulma-rails", "~> 0.9.4"
+gem "terser", "~> 1.1"
 
 # Rendering and Tagging
 gem 'github-markup', '4.0.1'
