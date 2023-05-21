@@ -2,28 +2,24 @@
 	<div class="column">
 		<div class="post content">
 			<div class="post-header">
-				
 				<% if post.banner_image.attached? %>
 					<%= image_tag post.banner_image.service_url %>
 				<% end %>
-				
-				<% if @not_linkable == true %>
-					<h1><%= post.title %></h1>
-				<% else %>
-					<h1><%= link_to post.title, post_path(post) %></h1>
-				<% end %>
+				<h1><%= link_to post.title, post_path(post) %></h1>
 				<h3><i><%= post.tagline %></i></h3>
 				<p>
-					Written on <b><%= post.created_at.strftime("%B %d, %Y") %></b><br />
-					<% if post.updated_at > post.created_at %>
-						Updated on <b><%= post.updated_at.strftime("%B %d, %Y") %></b>
-					<% end %>
+					Written on <b><%= post.created_at.strftime("%B %d, %Y") %></b><br />				
 				</p>
 			</div>
 
 			<div class="post-content center-block row">
 				<%= markdown post.body %>
+				<% if post.updated_at != post.created_at %>
+					<p>Updated on <b><%= post.updated_at.strftime("%B %d, %Y") %></b></p>
+				<% end %>
 			</div>
+
+			
 			
 			<div class="bottom-nav has-text-centered">
 				<% if admin_signed_in? %>
