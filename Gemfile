@@ -1,7 +1,7 @@
 ruby '3.2.2'
 source 'https://rubygems.org'
 
-gem 'rails',  '7.0.4.2'
+gem 'rails',  '7.0.7'
 
 # Database and server
 gem 'pg'
@@ -21,7 +21,7 @@ gem "terser", "~> 1.1"
 
 # Rendering and Tagging
 gem 'github-markup', '4.0.1'
-gem 'commonmarker', '~> 0.23.9'
+gem "commonmarker", ">= 0.23.10"
 gem 'acts-as-taggable-on', '~> 9.0'
 gem 'friendly_id'
 
