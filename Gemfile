@@ -23,7 +23,7 @@ gem 'terser', '~> 1.2', '>= 1.2.5'
 gem 'github-markup', '4.0.1'
 gem "commonmarker", ">= 0.23.10"
 gem 'acts-as-taggable-on', '~> 9.0'
-gem 'friendly_id'
+gem 'friendly_id', '~> 5.1'
 
 # Testing assets
 group :development, :test do
