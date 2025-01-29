@@ -1,4 +1,4 @@
-ruby '3.4.1'
+ruby '3.3.5'
 source 'https://rubygems.org'
 
 gem 'rails',  '7.0.7'
@@ -23,7 +23,7 @@ gem 'terser', '~> 1.2', '>= 1.2.5'
 gem 'github-markup', '4.0.1'
 gem "commonmarker", ">= 0.23.10"
 gem 'acts-as-taggable-on', '~> 9.0'
-gem 'friendly_id', '~> 5.5', '>= 5.5.1'
+gem 'friendly_id'
 
 # Testing assets
 group :development, :test do

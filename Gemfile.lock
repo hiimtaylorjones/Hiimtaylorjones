@@ -274,7 +274,7 @@ DEPENDENCIES
   dotenv-rails
   factory_bot_rails
   faker
-  friendly_id (~> 5.5, >= 5.5.1)
+  friendly_id
   github-markup (= 4.0.1)
   letter_opener
   pg (= 1.5.3)
@@ -288,7 +288,7 @@ DEPENDENCIES
   will_paginate (~> 4.0, >= 4.0.1)
 
 RUBY VERSION
-   ruby 3.4.1p0
+   ruby 3.3.5p100
 
 BUNDLED WITH
    2.4.13
