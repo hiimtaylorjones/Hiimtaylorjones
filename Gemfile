@@ -20,8 +20,7 @@ gem 'bulma-rails', '~> 1.0', '>= 1.0.3'
 gem 'terser', '~> 1.2', '>= 1.2.5'
 
 # Rendering and Tagging
-gem 'github-markup', '~> 5.0.1'
-gem "commonmarker", "~> 2.3.0"
+gem "commonmarker", "~> 2.3.1"
 gem 'acts-as-taggable-on', '~> 12.0'
 gem 'friendly_id', '~> 5.5.1'
 
