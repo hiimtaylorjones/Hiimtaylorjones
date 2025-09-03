@@ -15,8 +15,6 @@ gem 'devise', '~> 4.9', '>= 4.9.4'
 
 # UI Frameworks and Gems
 gem 'will_paginate', '~> 4.0', '>= 4.0.1'
-gem 'sassc-rails', '~> 2.1', '>= 2.1.2'
-gem 'bulma-rails', '~> 1.0', '>= 1.0.3'
 gem 'terser', '~> 1.2', '>= 1.2.5'
 
 # Rendering and Tagging
