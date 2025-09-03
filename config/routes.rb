@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
 
-  resources :coffees
   devise_for :admins
   resources :posts
 
@@ -25,4 +24,6 @@ Rails.application.routes.draw do
     req.flash[:notice] = "#{p[:path]} isn't a page on this site. Sorry!";
    '/'
   }
+
+  get "up" => "rails/health#show", as: :rails_health_check
 end
