@@ -1,6 +1,5 @@
-@import 'bulma';
-@import "general";
-@import "posts";
+@use "general";
+@use "posts";
 
 
 .direct-upload {
