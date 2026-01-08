@@ -1,7 +1,4 @@
 .post-header {
-	h1, h3 {
-		margin: 0px !important; // Overriding Bulma here.
-	}
 	p {
 		margin-bottom: 20px;
 	}
@@ -37,10 +34,6 @@
 	}
 }
 
-.tag-section {
-	width: 150px;
-}
-
 .comment-section {
 	text-align: center;
 	p {
@@ -52,13 +45,6 @@
 		font-weight: 550;
 	}
 }
-
-.tag-list {
-	button {
-		margin-top: 10px;
-	}
-}
-
 
 .result-message-warning {
 	background-color: lightcoral;
@@ -90,8 +76,5 @@
 		padding: 10px;
 		margin-left: 20px;
 		list-style: circle;
-		li {
-
-		}
 	}
 }
