@@ -122,15 +122,6 @@ pre {
 	font-size: 18px;
 }
 
-.content-divider {
-	display: block;
-	height: 1px;
-	border: 0;
-	border-top: 1px solid #ccc;
-	margin: 1em 0;
-	padding: 0;
-}
-
 .notification-banner {
 	width: 70%;
 	border: 1px black;
@@ -149,3 +140,6 @@ pre {
 	}
 }
 
+.footer {
+	text-align: center;
+}
