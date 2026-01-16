@@ -17,11 +17,12 @@ Rails.application.routes.draw do
 
   root 'basic_page#index'
   
-  match '/admin',             to: 'basic_page#admin',             via: 'get'
-  match '/blog',              to: 'posts#index',                  via: 'get'
+  match '/admin',   to: 'basic_page#admin',   via: 'get'
+  match '/blog',    to: 'posts#index',        via: 'get'
+  match '/refresh', to: 'basic_page#refresh', via: 'get'
 
   get '*path' => redirect { |p, req|
-    req.flash[:notice] = "#{p[:path]} isn't a page on this site. Sorry!";
+    req.flash[:notice] = "#{p[:path]} is unavailable";
    '/'
   }
 

@@ -12,4 +12,7 @@ class BasicPageController < ApplicationController
     @pages = Page.all
   end
 
+  def refresh
+  end
+
 end
