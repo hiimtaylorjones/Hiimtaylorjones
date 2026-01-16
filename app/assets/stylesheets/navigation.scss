@@ -1,0 +1,55 @@
+.nav {
+	background-color: royalblue;
+	.logo {
+		font-family: 'PT Sans', sans-serif;
+		font-size: 1.7em;
+		color: #fff !important;
+		text-transform: uppercase;
+		letter-spacing: 1px;
+		font-weight: bold;
+	}
+
+	.nav-content {
+		margin: 10px;
+	}
+
+	.nav-menu {
+
+		.nav-item {
+			font-family: 'PT Sans', sans-serif;
+			font-size: 1.4em;
+			color: #fff;
+			text-transform: uppercase;
+			letter-spacing: 1px;
+			font-weight: bold;
+		}
+	}
+
+	border-top: 2px solid black;
+	border-bottom: 2px solid black;
+}
+
+.footer {
+	text-align: center;
+  background-color: royalblue;
+  height: 5%;
+  .links {
+    padding-top: 10px;
+    a, p {
+      color: #fff;
+    }
+  }
+
+	border-top: 2px solid black;
+	border-bottom: 2px solid black;
+}
+
+.admin-banner {
+	font-size: 1.2em;
+	background-color: green;
+	.admin-action {
+		color: white;
+		font-size: 1.2em;
+		margin-right: 20px;
+	}
+}

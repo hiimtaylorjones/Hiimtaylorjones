@@ -1,0 +1,18 @@
+<% if admin_signed_in? %>
+  <div class="admin-banner">
+    <div class="level-right">
+      <%= link_to "Log Out", destroy_admin_session_path, method: :delete, class: "admin-action"%>
+    </div>
+  </div>
+<% end %>
+
+<nav class="nav">
+  <div class="nav-content level">
+    <div class="level-left">
+      <%= link_to "Hi, I'm Taylor Jones", root_path, class: "nav-item logo" %>
+    </div>
+
+    <div class="level-right nav-menu">
+    </div>
+  </div>
+</nav>
