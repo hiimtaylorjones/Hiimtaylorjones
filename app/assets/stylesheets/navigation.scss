@@ -1,18 +1,21 @@
 .nav {
-	height: 10vh;
+	height: 5vh;
 	background-color: royalblue;
-	
-	.logo {
-		font-size: 1.7em;
-		color: #fff !important;
-		text-transform: uppercase;
-		letter-spacing: 2px;
-		font-weight: bold;
-		margin-left: 20px;
-	}
 
-	.nav-logo {
+	.nav-logo-section {
 		width: 40%;
+
+		padding: 10px;
+
+		.nav-logo {
+			font-size: 1.7em;
+			color: #fff !important;
+			text-transform: uppercase;
+			letter-spacing: 2px;
+			font-weight: bold;
+			margin-left: 20px;
+
+		}
 	}
 
 	.nav-spacer {
@@ -39,7 +42,7 @@
 }
 
 .footer {
-	height: 10vh;
+	height: 5vh;
 	text-align: center;
   background-color: royalblue;
   .links {
