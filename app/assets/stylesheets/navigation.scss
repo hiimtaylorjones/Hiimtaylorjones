@@ -1,16 +1,14 @@
 .nav {
 	height: 10vh;
-	flex-direction: row;
 	background-color: royalblue;
+	
 	.logo {
-		// font-family: 'PT Sans', sans-serif;
 		font-size: 1.7em;
 		color: #fff !important;
 		text-transform: uppercase;
-		letter-spacing: 1px;
+		letter-spacing: 2px;
 		font-weight: bold;
-		margin-left: 10px;
-		margin-top: 10px;
+		margin-left: 20px;
 	}
 
 	.nav-logo {
@@ -30,6 +28,9 @@
 			letter-spacing: 5px;
 			font-weight: bold;
 			list-style: none;
+
+			margin-left: auto;
+			margin-right: auto;
 		}
 	}
 
