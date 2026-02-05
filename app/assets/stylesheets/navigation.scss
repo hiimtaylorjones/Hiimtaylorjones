@@ -1,4 +1,6 @@
 .nav {
+	height: 10vh;
+	flex-direction: row;
 	background-color: royalblue;
 	.logo {
 		// font-family: 'PT Sans', sans-serif;
@@ -7,21 +9,27 @@
 		text-transform: uppercase;
 		letter-spacing: 1px;
 		font-weight: bold;
+		margin-left: 10px;
+		margin-top: 10px;
 	}
 
-	.nav-content {
-		margin: 10px;
+	.nav-logo {
+		width: 40%;
+	}
+
+	.nav-spacer {
+		width: 40%;
 	}
 
 	.nav-menu {
-
+		width: 20%;
 		.nav-item {
-			// font-family: 'PT Sans', sans-serif;
 			font-size: 1.4em;
 			color: #fff;
 			text-transform: uppercase;
-			letter-spacing: 1px;
+			letter-spacing: 5px;
 			font-weight: bold;
+			list-style: none;
 		}
 	}
 
@@ -30,6 +38,7 @@
 }
 
 .footer {
+	height: 10vh;
 	text-align: center;
   background-color: royalblue;
   .links {
