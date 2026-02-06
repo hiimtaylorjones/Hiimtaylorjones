@@ -14,8 +14,8 @@ The internal Rails module name is `Everythingisruby::Application`.
 # Install dependencies
 bundle install
 
-# Start development server (runs Puma + Dartsass CSS watcher via foreman)
-bin/dev
+# Start development server (runs Puma + Dartsass CSS watcher via Heroku CLI)
+heroku local -f Procfile.dev
 
 # Run all tests
 bundle exec rspec spec

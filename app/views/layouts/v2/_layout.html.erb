@@ -19,18 +19,26 @@
 
   </head>
 
-  <%= render 'layouts/v2/header' %>
-
-  <body>
-    <div class="main-content container">
-      <%= render 'layouts/v2/alerts' %>
-      <div class="column wide-2"></div>
-      <div class="column wide-6">
-        <%= yield %>
+  <body data-controller="sidebar">
+    <div class="page-wrapper">
+      <%= render 'layouts/v2/header' %>
+      <div class="main-content container">
+        <%= render 'layouts/v2/alerts' %>
+        <div class="column wide-2"></div>
+        <div class="column wide-6">
+          <%= yield %>
+        </div>
+        <div class="column wide-2"></div>
       </div>
-      <div class="column wide-2"></div>
+      <%= render 'layouts/v2/footer' %>
     </div>
-    <%= render 'layouts/v2/footer' %>
+
+    <aside class="sidebar" data-sidebar-target="panel">
+      <button class="sidebar-close" data-action="sidebar#toggle" aria-label="Close menu">&times;</button>
+      <ul class="sidebar-nav">
+        <li><%= link_to "Posts", posts_path %></li>
+      </ul>
+    </aside>
   </body>
 </html>
    

@@ -23,17 +23,10 @@
 
   .nav-menu {
     width: 20%;
-
-    .nav-item {
-      font-size: 1.4em;
-      color: $color-white;
-      text-transform: uppercase;
-      letter-spacing: 5px;
-      font-weight: bold;
-      list-style: none;
-      margin-left: auto;
-      margin-right: auto;
-    }
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 20px;
   }
 
   border-top: $border-standard;
@@ -64,5 +57,82 @@
     color: $color-white;
     font-size: 1.2em;
     margin-right: 20px;
+  }
+}
+
+// Hamburger button
+.hamburger {
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 6px;
+}
+
+.hamburger-line {
+  display: block;
+  width: 28px;
+  height: 3px;
+  background-color: $color-white;
+  border-radius: 2px;
+}
+
+// Sidebar panel
+.sidebar {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 300px;
+  height: 100%;
+  background-color: $color-primary;
+  transform: translateX(100%);
+  transition: transform 0.3s ease;
+  z-index: 1000;
+  padding: 20px;
+  border-left: $border-standard;
+}
+
+.sidebar-close {
+  background: none;
+  border: none;
+  color: $color-white;
+  font-size: 2em;
+  cursor: pointer;
+  position: absolute;
+  top: 10px;
+  right: 20px;
+}
+
+.sidebar-nav {
+  list-style: none;
+  padding: 0;
+  margin-top: 60px;
+
+  li {
+    margin-bottom: 20px;
+  }
+
+  a {
+    color: $color-white;
+    font-size: 1.4em;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    font-weight: bold;
+    text-decoration: none;
+  }
+}
+
+// Sidebar overlay
+.page-wrapper {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+body.sidebar-open {
+  .sidebar {
+    transform: translateX(0);
   }
 }

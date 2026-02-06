@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
   devise_for :admins
-  # resources :posts
+  resources :posts
   # resources :pages, param: :title
 
   root 'basic_page#refresh'
