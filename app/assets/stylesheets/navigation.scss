@@ -1,67 +1,70 @@
+@use "variables" as *;
+
 .nav {
-	height: 10vh;
-	background-color: royalblue;
+  height: 10vh;
+  background-color: $color-primary;
 
-	.nav-logo-section {
-		width: 40%;
+  .nav-logo-section {
+    width: 40%;
+    padding: 10px;
 
-		padding: 10px;
-
-		.nav-logo {
-			font-size: 1.7em;
-			color: #fff !important;
-			text-transform: uppercase;
-			letter-spacing: 2px;
-			font-weight: bold;
-			margin-left: 20px;
-
-		}
-	}
-
-	.nav-spacer {
-		width: 40%;
-	}
-
-	.nav-menu {
-		width: 20%;
-		.nav-item {
-			font-size: 1.4em;
-			color: #fff;
-			text-transform: uppercase;
-			letter-spacing: 5px;
-			font-weight: bold;
-			list-style: none;
-
-			margin-left: auto;
-			margin-right: auto;
-		}
-	}
-
-	border-top: 2px solid black;
-	border-bottom: 2px solid black;
-}
-
-.footer {
-	height: 10vh;
-	text-align: center;
-  background-color: royalblue;
-  .links {
-    padding-top: 10px;
-    a, p {
-      color: #fff;
+    .nav-logo {
+      font-size: 1.7em;
+      color: $color-white;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-weight: bold;
+      margin-left: 20px;
     }
   }
 
-	border-top: 2px solid black;
-	border-bottom: 2px solid black;
+  .nav-spacer {
+    width: 40%;
+  }
+
+  .nav-menu {
+    width: 20%;
+
+    .nav-item {
+      font-size: 1.4em;
+      color: $color-white;
+      text-transform: uppercase;
+      letter-spacing: 5px;
+      font-weight: bold;
+      list-style: none;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+
+  border-top: $border-standard;
+  border-bottom: $border-standard;
+}
+
+.footer {
+  height: 10vh;
+  text-align: center;
+  background-color: $color-primary;
+
+  .links {
+    padding-top: 10px;
+
+    a, p {
+      color: $color-white;
+    }
+  }
+
+  border-top: $border-standard;
+  border-bottom: $border-standard;
 }
 
 .admin-banner {
-	font-size: 1.2em;
-	background-color: green;
-	.admin-action {
-		color: white;
-		font-size: 1.2em;
-		margin-right: 20px;
-	}
+  font-size: 1.2em;
+  background-color: $color-admin;
+
+  .admin-action {
+    color: $color-white;
+    font-size: 1.2em;
+    margin-right: 20px;
+  }
 }
