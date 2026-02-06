@@ -1,7 +1,6 @@
 @use "variables" as *;
 
 .nav {
-  height: 10vh;
   background-color: $color-primary;
 
   .nav-logo-section {
@@ -42,7 +41,6 @@
 }
 
 .footer {
-  height: 10vh;
   text-align: center;
   background-color: $color-primary;
 
