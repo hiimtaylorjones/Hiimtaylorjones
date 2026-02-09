@@ -1,54 +1,51 @@
-<div class="post-container">
-  <div class="post-form container">
-    <%= form_for @post, html: { multipart: true } do |f| %>
-      <% if @post.errors.any? %>
-      <div id="error_exdivlanation">
-        <h2><%= pluralize(@post.errors.count, "error") %> prohibited
-          this post from being saved:</h2>
-        <ul>
-        <% @post.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-        </ul>
-      </div>
-      <% end %>
+<%= form_for @post, html: { multipart: true } do |f| %>
+  <% if @post.errors.any? %>
+  <div class="form-errors">
+    <h2><%= pluralize(@post.errors.count, "error") %> prohibited
+      this post from being saved:</h2>
+    <ul>
+    <% @post.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+  <% end %>
 
-      <div class="input-section">
-        <%= f.label :title %><br>
-        <%= f.text_field :title, :class => 'input-field' %>
-      </div>
+  <div class="form-group">
+    <%= f.label :title %>
+    <%= f.text_field :title, class: "form-input" %>
+  </div>
 
-      <div class="input-section">
-        <%= f.label :banner_image %><br>
-        <%= f.file_field :banner_image , direct_upload: true %>
-      </div>
+  <div class="form-group">
+    <%= f.label :banner_image %>
+    <%= f.file_field :banner_image, direct_upload: true %>
+  </div>
 
-      <div>
-        <% if @post.banner_image.attached? %>
-          <%= image_tag @post.banner_image.service_url %>
-        <% end %>
-      </div>
+  <% if @post.banner_image.attached? %>
+    <div class="form-group">
+      <%= image_tag @post.banner_image, class: "form-image-preview" %>
+    </div>
+  <% end %>
 
-      <div class="input-section">
-        <%= f.label :tagline %><br>
-        <%= f.text_field :tagline, :class => 'input-field' %>
-      </div>
+  <div class="form-group">
+    <%= f.label :tagline %>
+    <%= f.text_field :tagline, class: "form-input" %>
+  </div>
 
-      <div class="checkbox">
-        <%= f.label :published do %>
-          <%= f.check_box :published %>
-          Published
-        <% end %>
-      </div>
-
-      <div class="input-section">
-        <%= f.label :body %><br>
-        <%= f.text_area :body, placeholder: "Enter Post Content Here.", :class => 'input-textarea', rows: 25 %>
-      </div>
-
-      <div class="submit-button-holder">
-        <%= f.submit class: "submit-button" %>
-      </div>
+  <div class="form-checkbox">
+    <%= f.label :published do %>
+      <%= f.check_box :published %>
+      Published
     <% end %>
   </div>
-</div>
+
+  <div class="form-group">
+    <%= f.label :body %>
+    <%= f.text_area :body, placeholder: "Enter Post Content Here.", class: "form-textarea", rows: 25 %>
+  </div>
+
+  <div class="form-actions">
+    <%= link_to "Back", back_path, class: "primary-button" %>
+    <%= f.submit class: "primary-button" %>
+  </div>
+<% end %>

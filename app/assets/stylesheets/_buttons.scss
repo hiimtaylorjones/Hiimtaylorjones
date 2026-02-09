@@ -3,10 +3,11 @@
 .button,
 .primary-button {
   display: inline-block;
-  padding: 8px 16px;
+  padding: 10px 20px;
   background-color: $color-primary;
   color: $color-white;
   font-family: $font-family-base;
+  font-size: 1.1rem;
   font-weight: 700;
   text-transform: uppercase;
   text-decoration: none;

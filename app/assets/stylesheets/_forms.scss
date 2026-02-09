@@ -1,0 +1,87 @@
+@use "variables" as *;
+
+.form-group {
+  margin-bottom: 20px;
+
+  label {
+    display: block;
+    margin-bottom: 6px;
+    font-family: $font-family-base;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+}
+
+.form-input {
+  width: 100%;
+  padding: 8px 12px;
+  font-family: $font-family-base;
+  border: $border-standard;
+  box-sizing: border-box;
+
+  &:focus {
+    outline: none;
+    border-color: $color-primary;
+    box-shadow: 0 0 0 2px rgba($color-primary, 0.3);
+  }
+}
+
+.form-textarea {
+  width: 100%;
+  padding: 8px 12px;
+  font-family: $font-family-base;
+  font-size: 1.1rem;
+  border: $border-standard;
+  box-sizing: border-box;
+  resize: vertical;
+
+  &:focus {
+    outline: none;
+    border-color: $color-primary;
+    box-shadow: 0 0 0 2px rgba($color-primary, 0.3);
+  }
+}
+
+.form-checkbox {
+  margin-bottom: 20px;
+
+  label {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: $font-family-base;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    cursor: pointer;
+  }
+}
+
+.form-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 24px;
+  margin-bottom: 60px;
+}
+
+.form-errors {
+  padding: 16px;
+  margin-bottom: 20px;
+  border: 2px solid $color-danger;
+  background-color: rgba($color-danger, 0.08);
+
+  h2 {
+    margin-top: 0;
+    color: $color-danger;
+    font-family: $font-family-base;
+    font-size: 1rem;
+  }
+}
+
+.form-image-preview {
+  max-width: 100%;
+  border: $border-standard;
+  margin-bottom: 20px;
+}
