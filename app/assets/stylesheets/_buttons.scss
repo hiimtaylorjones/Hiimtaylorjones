@@ -1,3 +1,4 @@
+@use "sass:color";
 @use "variables" as *;
 
 .button,
@@ -15,7 +16,7 @@
   cursor: pointer;
 
   &:hover {
-    background-color: darken($color-primary, 10%);
+    background-color: color.adjust($color-primary, $lightness: -10%);
   }
 }
 
@@ -32,7 +33,7 @@
   cursor: pointer;
 
   &:hover {
-    background-color: darken($color-warning, 10%);
+    background-color: color.adjust($color-warning, $lightness: -10%);
   }
 }
 
@@ -49,6 +50,6 @@
   cursor: pointer;
 
   &:hover {
-    background-color: darken($color-danger, 10%);
+    background-color: color.adjust($color-danger, $lightness: -10%);
   }
 }
