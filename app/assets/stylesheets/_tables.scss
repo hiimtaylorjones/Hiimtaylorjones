@@ -1,0 +1,43 @@
+@use "variables" as *;
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+
+  th,
+  td {
+    padding: 10px 14px;
+    border-bottom: $border-standard;
+    text-align: left;
+  }
+
+  th {
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-family: $font-family-base;
+  }
+
+  td form {
+    display: inline;
+    margin: 0;
+  }
+}
+
+.table-bordered {
+  th,
+  td {
+    border: $border-standard;
+  }
+}
+
+.table-striped {
+  tbody tr:nth-child(even) {
+    background-color: rgba($color-primary, 0.08);
+  }
+}
+
+.table-hover {
+  tbody tr:hover {
+    background-color: rgba($color-primary, 0.14);
+  }
+}

@@ -1,0 +1,53 @@
+@use "variables" as *;
+
+.button,
+.primary-button {
+  display: inline-block;
+  padding: 8px 16px;
+  background-color: $color-primary;
+  color: $color-white;
+  font-family: $font-family-base;
+  font-weight: 700;
+  text-transform: uppercase;
+  text-decoration: none;
+  border: $border-standard;
+  cursor: pointer;
+
+  &:hover {
+    background-color: darken($color-primary, 10%);
+  }
+}
+
+.warning-button {
+  display: inline-block;
+  padding: 8px 16px;
+  background-color: $color-warning;
+  color: $color-text;
+  font-family: $font-family-base;
+  font-weight: 700;
+  text-transform: uppercase;
+  text-decoration: none;
+  border: $border-standard;
+  cursor: pointer;
+
+  &:hover {
+    background-color: darken($color-warning, 10%);
+  }
+}
+
+.danger-button {
+  display: inline-block;
+  padding: 8px 16px;
+  background-color: $color-danger;
+  color: $color-white;
+  font-family: $font-family-base;
+  font-weight: 700;
+  text-transform: uppercase;
+  text-decoration: none;
+  border: $border-standard;
+  cursor: pointer;
+
+  &:hover {
+    background-color: darken($color-danger, 10%);
+  }
+}
