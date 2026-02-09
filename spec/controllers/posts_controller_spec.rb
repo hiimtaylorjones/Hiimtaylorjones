@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe PostsController, :type => :controller do
 
 	describe "Post Index" do
-		before(:all) do
+		before(:each) do
 			FactoryBot.create_list(:post, 10)
 		end
 
@@ -23,7 +23,7 @@ RSpec.describe PostsController, :type => :controller do
 
 	describe "Show Post" do
 
-		before(:all) do
+		before(:each) do
 			@post = FactoryBot.create(:post)
 		end
 
@@ -44,7 +44,7 @@ RSpec.describe PostsController, :type => :controller do
 
 	describe "Admin Interacitons" do
 
-		before(:all) do
+		before(:each) do
 			@admin = FactoryBot.create(:admin)
 			@post = FactoryBot.create(:post)
 		end
