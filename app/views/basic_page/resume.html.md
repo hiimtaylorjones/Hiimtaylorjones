@@ -1,6 +1,6 @@
 # Taylor Jones
 
-Software Engineer based out of Orlando, Florida. For the past 8 years or so, I've been working at Heroku helping make deploying and scaling code seamless and fun.
+Software Engineer based out of Orlando, Florida.
 
 ---
 
