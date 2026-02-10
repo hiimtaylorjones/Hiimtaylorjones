@@ -63,14 +63,6 @@ Part of the Auburn University Engineering Co-Op program, working on Check Remitt
 
 ---
 
-## Skills
-
-- **Languages:** Go, Ruby, Apex
-- **Platforms:** Heroku, Salesforce, AWS
-- **Practices:** Platform Engineering, Customer Experience, Technical Writing
-
----
-
 ## Publications
 
 - Dockerizing React Applications for Continuous Integration
