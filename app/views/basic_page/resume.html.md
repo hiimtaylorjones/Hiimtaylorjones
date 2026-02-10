@@ -62,13 +62,3 @@ Part of the Auburn University Engineering Co-Op program, working on Check Remitt
 *Minor, Business (2010 - 2015)*
 
 ---
-
-## Publications
-
-- Dockerizing React Applications for Continuous Integration
-- Gaining Deeper Insights with Data Science
-- So You're Thinking of Decomposing Your Monolith into Microservices
-- Decomposing Monolithic View Systems
-- Effectively Testing Dockerized Ruby Applications
-
----
