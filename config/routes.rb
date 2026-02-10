@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   root 'basic_page#refresh'
   
   match '/admin',   to: 'basic_page#admin',   via: 'get'
+  match '/resume',  to: 'basic_page#resume',  via: 'get'
   # match '/blog',    to: 'posts#index',        via: 'get'
   # match '/refresh', to: 'basic_page#refresh', via: 'get'
 

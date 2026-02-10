@@ -14,4 +14,8 @@ class BasicPageController < ApplicationController
   def refresh
   end
 
+  def resume
+    @content_class = "resume"
+  end
+
 end

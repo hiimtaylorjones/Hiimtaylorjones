@@ -25,7 +25,7 @@
       <div class="main-content container">
         <%= render 'layouts/v2/alerts' %>
         <div class="column wide-2"></div>
-        <div class="column wide-6">
+        <div class="column wide-6 <%= @content_class %>">
           <%= yield %>
         </div>
         <div class="column wide-2"></div>
@@ -37,6 +37,7 @@
       <button class="sidebar-close" data-action="sidebar#toggle" aria-label="Close menu">&times;</button>
       <ul class="sidebar-nav">
         <li><%= link_to "Posts", posts_path %></li>
+        <li><%= link_to "Resume", "/resume" %></li>
       </ul>
     </aside>
   </body>
