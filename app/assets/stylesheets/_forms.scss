@@ -80,6 +80,32 @@
   }
 }
 
+.login-card {
+  max-width: 420px;
+  width: 100%;
+  margin: 3rem auto;
+  padding: 2rem;
+  border: $border-standard;
+
+  .login-title {
+    text-align: center;
+    margin-bottom: 1.5rem;
+  }
+
+  .form-group label {
+    font-size: 0.85rem;
+  }
+
+  .form-input {
+    font-size: 1rem;
+  }
+
+  .form-actions {
+    justify-content: center;
+    margin-bottom: 0;
+  }
+}
+
 .form-image-preview {
   max-width: 100%;
   border: $border-standard;
