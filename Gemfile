@@ -1,17 +1,17 @@
 ruby '3.4.5'
 source 'https://rubygems.org'
 
-gem 'rails',  '8.0.2'
+gem 'rails', '~> 8.0', '>= 8.0.4.1'
 
 # Database and server
 gem 'pg', "~> 1.5.9"
 gem 'puma', "~> 6.6.0"
 
 # AWS Assets
-gem 'aws-sdk-s3', '~> 1.183'
+gem 'aws-sdk-s3', '~> 1', '>= 1.208.0'
 
 # Authentication and Roles
-gem 'devise', '~> 4.9', '>= 4.9.4'
+gem 'devise', '~> 4.9'
 
 # UI Frameworks and Gems
 gem 'will_paginate', '~> 4.0', '>= 4.0.1'
