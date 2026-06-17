@@ -5,13 +5,13 @@ gem 'rails', '~> 8.0', '>= 8.0.4.1'
 
 # Database and server
 gem 'pg', "~> 1.5.9"
-gem 'puma', "~> 6.6.0"
+gem 'puma', "~> 8.0", ">= 8.0.2"
 
 # AWS Assets
 gem 'aws-sdk-s3', '~> 1', '>= 1.208.0'
 
 # Authentication and Roles
-gem 'devise', '~> 4.9'
+gem 'devise', '~> 5.0', '>= 5.0.4'
 
 # UI Frameworks and Gems
 gem 'will_paginate', '~> 4.0', '>= 4.0.1'
