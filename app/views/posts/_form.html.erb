@@ -40,8 +40,7 @@
   </div>
 
   <div class="form-group">
-    <%= f.label :body %>
-    <%= f.text_area :body, placeholder: "Enter Post Content Here.", class: "form-textarea", rows: 25 %>
+    <p class="help-text">Post body is managed via <code>db/posts/<%= @post.slug %>.md</code></p>
   </div>
 
   <div class="form-actions">

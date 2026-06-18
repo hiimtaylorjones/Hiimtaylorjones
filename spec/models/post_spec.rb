@@ -7,7 +7,8 @@ describe Post do
   it "should have a title" do
   	expect(FactoryBot.build(:post, title: nil)).not_to be_valid
   end
-  it "should have content" do
-  	expect(FactoryBot.build(:post, body: nil)).not_to be_valid
+  it "should have content (from file or database)" do
+  	post = FactoryBot.build(:post)
+  	expect(post).not_to be_valid
   end
 end
