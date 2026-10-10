@@ -4,7 +4,6 @@ class Post < ActiveRecord::Base
 	extend FriendlyId
   friendly_id :title, use: :slugged
 
-	has_many :comments, dependent: :destroy
 	has_one_attached :banner_image
 
 	validates :title, presence: true, length: { maximum: 150 }
