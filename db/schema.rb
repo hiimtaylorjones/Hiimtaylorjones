@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2026_10_10_132014) do
+ActiveRecord::Schema[8.0].define(version: 2026_10_10_132124) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -59,6 +59,16 @@ ActiveRecord::Schema[8.0].define(version: 2026_10_10_132014) do
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
   end
 
+  create_table "collections", force: :cascade do |t|
+    t.string "title", null: false
+    t.string "slug"
+    t.text "description"
+    t.boolean "published", default: false, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["slug"], name: "index_collections_on_slug", unique: true
+  end
+
   create_table "friendly_id_slugs", id: :serial, force: :cascade do |t|
     t.string "slug", null: false
     t.integer "sluggable_id", null: false
@@ -104,6 +114,8 @@ ActiveRecord::Schema[8.0].define(version: 2026_10_10_132014) do
     t.datetime "created_at", precision: nil, null: false
     t.datetime "updated_at", precision: nil, null: false
     t.string "slug"
+    t.bigint "collection_id"
+    t.index ["collection_id"], name: "index_posts_on_collection_id"
     t.index ["slug"], name: "index_posts_on_slug", unique: true
   end
 
@@ -119,4 +131,5 @@ ActiveRecord::Schema[8.0].define(version: 2026_10_10_132014) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "posts", "collections"
 end

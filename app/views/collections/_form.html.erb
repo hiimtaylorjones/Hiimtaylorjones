@@ -1,0 +1,35 @@
+<%= form_for @collection do |f| %>
+  <% if @collection.errors.any? %>
+  <div class="form-errors">
+    <h2><%= pluralize(@collection.errors.count, "error") %> prohibited
+      this collection from being saved:</h2>
+    <ul>
+    <% @collection.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.label :title %>
+    <%= f.text_field :title, class: "form-input" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :description %>
+    <%= f.text_area :description, placeholder: "What ties these posts together?", class: "form-textarea", rows: 5 %>
+  </div>
+
+  <div class="form-checkbox">
+    <%= f.label :published do %>
+      <%= f.check_box :published %>
+      Published
+    <% end %>
+  </div>
+
+  <div class="form-actions">
+    <%= link_to "Back", back_path, class: "primary-button" %>
+    <%= f.submit class: "primary-button" %>
+  </div>
+<% end %>

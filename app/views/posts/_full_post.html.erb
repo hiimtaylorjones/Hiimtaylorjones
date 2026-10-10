@@ -10,6 +10,9 @@
 				<p>
 					Written on <b><%= post.created_at.strftime("%B %d, %Y") %></b><br />				
 				</p>
+				<% if post.collection.present? %>
+					<p>Part of <%= link_to post.collection.title, collection_path(post.collection) %></p>
+				<% end %>
 			</div>
 
 			<div class="post-content center-block row">

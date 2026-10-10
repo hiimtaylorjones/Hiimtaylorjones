@@ -1,0 +1,31 @@
+<div class="collection">
+	<div class="collection-header">
+		<h1><%= @collection.title %></h1>
+		<% unless @collection.published? %>
+			<p><b>Unpublished</b> — only you can see this.</p>
+		<% end %>
+		<% if @collection.description.present? %>
+			<p><%= @collection.description %></p>
+		<% end %>
+	</div>
+
+	<div class="content-divider"></div>
+
+	<% if @posts.any? %>
+		<% @posts.each do |post| %>
+			<%= render 'posts/post_summary', post: post %>
+			<div class="content-divider"></div>
+		<% end %>
+
+		<%= will_paginate @posts %>
+	<% else %>
+		<p>Nothing published in this collection yet.</p>
+	<% end %>
+
+	<div class="bottom-nav has-text-centered">
+		<% if admin_signed_in? %>
+			<%= link_to 'Edit Collection', edit_collection_path(@collection), class: "button" %>
+		<% end %>
+		<%= link_to 'All Collections', collections_path, class: "button" %>
+	</div>
+</div>
