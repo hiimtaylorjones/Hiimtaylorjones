@@ -3,7 +3,7 @@
 		<div class="post content">
 			<div class="post-header">
 				<% if post.banner_image.attached? %>
-					<%= image_tag post.banner_image.service_url %>
+					<%= image_tag post.banner_image %>
 				<% end %>
 				<h1><%= link_to post.title, post_path(post) %></h1>
 				<h3><i><%= post.tagline %></i></h3>

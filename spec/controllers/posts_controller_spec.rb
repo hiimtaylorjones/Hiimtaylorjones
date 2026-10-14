@@ -65,4 +65,36 @@ RSpec.describe PostsController, :type => :controller do
 			end
 		end
 	end
+
+	describe "Unpublished posts" do
+
+		it "redirects instead of rendering when a post is unpublished" do
+			draft = FactoryBot.create(:post, :unpublished)
+			get :show, params: { id: draft.id }
+			expect(response).to redirect_to(posts_path)
+		end
+
+		# `posts.published` has no DB default, so legacy rows are NULL rather than false.
+		it "redirects when published is nil rather than false" do
+			draft = FactoryBot.create(:post, :never_published)
+			get :show, params: { id: draft.id }
+			expect(response).to redirect_to(posts_path)
+		end
+
+		it "still renders a published post" do
+			live = FactoryBot.create(:post)
+			get :show, params: { id: live.id }
+			expect(response).to have_http_status(200)
+		end
+	end
+
+	describe "Posts with a banner image" do
+		render_views
+
+		it "renders the show page without raising" do
+			bannered = FactoryBot.create(:post, :with_banner_image)
+			get :show, params: { id: bannered.id }
+			expect(response).to have_http_status(200)
+		end
+	end
 end
