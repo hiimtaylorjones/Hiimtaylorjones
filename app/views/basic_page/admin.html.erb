@@ -36,7 +36,7 @@
       <tr>
         <th>Title</th>
         <th>Posts</th>
-        <th>Published</th>
+        <th>Active</th>
         <th colspan="2">Actions</th>
       </tr>
     </thead>
@@ -50,7 +50,7 @@
             <%= collection.posts.count %>
           </td>
           <td>
-            <%= collection.published? ? "Yes" : "No" %>
+            <%= collection.active? ? "Yes" : "No" %>
           </td>
           <td>
             <%= link_to 'Edit', edit_collection_path(collection), class: "warning-button" %>

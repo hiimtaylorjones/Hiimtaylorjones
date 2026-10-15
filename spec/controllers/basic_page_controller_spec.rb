@@ -23,13 +23,13 @@ RSpec.describe BasicPageController, :type => :controller do
 			expect(response.body).to include(collection.title)
 		end
 
-		it "lists unpublished collections for the admin too" do
+		it "lists inactive collections for the admin too" do
 			sign_in FactoryBot.create(:admin)
-			draft = FactoryBot.create(:collection, :unpublished)
+			inactive = FactoryBot.create(:collection, :inactive)
 
 			get :admin
 
-			expect(assigns(:collections)).to include(draft)
+			expect(assigns(:collections)).to include(inactive)
 		end
 	end
 

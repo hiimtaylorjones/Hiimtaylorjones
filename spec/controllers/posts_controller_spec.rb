@@ -126,14 +126,14 @@ RSpec.describe PostsController, :type => :controller do
 	describe "Collection in the post templates" do
 		render_views
 
-		it "offers a collection select on the post form, drafts included" do
+		it "offers a collection select on the post form, inactive ones included" do
 			sign_in FactoryBot.create(:admin)
-			draft_collection = FactoryBot.create(:collection, :unpublished, title: "Draft Series")
+			FactoryBot.create(:collection, :inactive, title: "Inactive Series")
 
 			get :new
 
 			expect(response.body).to include("post[collection_id]")
-			expect(response.body).to include("Draft Series")
+			expect(response.body).to include("Inactive Series")
 		end
 
 		it "links back to the collection from a post that has one" do
@@ -152,6 +152,31 @@ RSpec.describe PostsController, :type => :controller do
 			get :show, params: { id: subject_post.id }
 
 			expect(response.body).not_to include("Part of")
+		end
+
+		# An inactive collection's grouping does not apply, so a visitor must see
+		# neither its title nor a link to it — the link would only bounce them.
+		it "hides an inactive collection from a visitor entirely" do
+			inactive = FactoryBot.create(:collection, :inactive, title: "Secret Series")
+			subject_post = FactoryBot.create(:post, collection: inactive)
+
+			get :show, params: { id: subject_post.id }
+
+			expect(response).to have_http_status(200)
+			expect(response.body).not_to include("Part of")
+			expect(response.body).not_to include("Secret Series")
+			expect(response.body).not_to include(collection_path(inactive))
+		end
+
+		it "shows an inactive collection to an admin, marked as such" do
+			sign_in FactoryBot.create(:admin)
+			inactive = FactoryBot.create(:collection, :inactive, title: "Secret Series")
+			subject_post = FactoryBot.create(:post, collection: inactive)
+
+			get :show, params: { id: subject_post.id }
+
+			expect(response.body).to include("Secret Series")
+			expect(response.body).to include("(inactive)")
 		end
 	end
 end

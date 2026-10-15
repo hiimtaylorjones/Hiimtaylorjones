@@ -1,8 +1,8 @@
 <div class="collection">
 	<div class="collection-header">
 		<h1><%= @collection.title %></h1>
-		<% unless @collection.published? %>
-			<p><b>Unpublished</b> — only you can see this.</p>
+		<% unless @collection.active? %>
+			<p><b>Inactive</b> — only you can see this, and its posts read as unclassified.</p>
 		<% end %>
 		<% if @collection.description.present? %>
 			<p><%= @collection.description %></p>

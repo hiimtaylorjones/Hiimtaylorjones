@@ -4,10 +4,10 @@ FactoryBot.define do
 	factory :collection do |f|
 		f.title				{ Faker::Lorem.sentence }
 		f.description	{ Faker::Lorem.paragraph }
-		f.published		{ true }
+		f.active			{ true }
 
-		f.trait :unpublished do
-			published { false }
+		f.trait :inactive do
+			active { false }
 		end
 
 		f.trait :with_posts do

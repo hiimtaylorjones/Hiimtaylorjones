@@ -15,8 +15,21 @@ describe Collection do
 		expect(Collection.friendly.find("learning-rust")).to eq(collection)
 	end
 
-	it "defaults to unpublished" do
-		expect(Collection.new.published).to eq(false)
+	it "defaults to inactive" do
+		expect(Collection.new.active).to eq(false)
+	end
+
+	describe "deactivating a collection" do
+		# The reversible counterpart to destroy: membership survives, so the
+		# series reassembles when it is switched back on.
+		it "keeps its posts as members so the grouping can be restored" do
+			collection = FactoryBot.create(:collection, :with_posts, post_count: 2)
+
+			collection.update!(active: false)
+
+			expect(collection.reload.posts.count).to eq(2)
+			expect(collection.posts.first.collection).to eq(collection)
+		end
 	end
 
 	describe "destroying a collection" do
@@ -34,31 +47,31 @@ describe Collection do
 		end
 	end
 
-	describe ".with_published_posts" do
-		it "excludes a published collection with no published posts" do
+	describe ".listable" do
+		it "excludes an active collection with no published posts" do
 			empty = FactoryBot.create(:collection)
 			FactoryBot.create(:post, :unpublished, collection: empty)
 
-			expect(Collection.with_published_posts).not_to include(empty)
+			expect(Collection.listable).not_to include(empty)
 		end
 
-		it "excludes an unpublished collection even when its posts are live" do
-			draft = FactoryBot.create(:collection, :unpublished)
-			FactoryBot.create(:post, collection: draft)
+		it "excludes an inactive collection even when its posts are live" do
+			inactive = FactoryBot.create(:collection, :inactive)
+			FactoryBot.create(:post, collection: inactive)
 
-			expect(Collection.with_published_posts).not_to include(draft)
+			expect(Collection.listable).not_to include(inactive)
 		end
 
-		it "includes a published collection with at least one published post" do
+		it "includes an active collection with at least one published post" do
 			live = FactoryBot.create(:collection, :with_posts, post_count: 2)
 
-			expect(Collection.with_published_posts).to include(live)
+			expect(Collection.listable).to include(live)
 		end
 
 		it "lists a collection once, not once per post" do
 			live = FactoryBot.create(:collection, :with_posts, post_count: 3)
 
-			expect(Collection.with_published_posts.to_a.count(live)).to eq(1)
+			expect(Collection.listable.to_a.count(live)).to eq(1)
 		end
 	end
 end

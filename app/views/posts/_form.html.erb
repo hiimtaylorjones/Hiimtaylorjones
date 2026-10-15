@@ -34,7 +34,7 @@
 
   <div class="form-group">
     <%= f.label :collection %>
-    <%# All collections, not just published ones, so a post can be filed into a draft series. %>
+    <%# All collections, inactive ones included, so a post can be filed into a series before it goes live. %>
     <%= f.collection_select :collection_id, Collection.order(:title), :id, :title,
           { include_blank: "— None —" }, { class: "form-input" } %>
   </div>

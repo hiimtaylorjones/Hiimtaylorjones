@@ -17,8 +17,8 @@ class CollectionsController < ApplicationController
 	end
 
 	def show
-		unless @collection.published? || admin_signed_in?
-			redirect_to collections_path, notice: "The collection you're trying to look at hasn't been published yet!"
+		unless @collection.active? || admin_signed_in?
+			redirect_to collections_path, notice: "That collection isn't active right now!"
 			return
 		end
 
@@ -29,7 +29,7 @@ class CollectionsController < ApplicationController
 	end
 
 	def index
-		@collections = Collection.with_published_posts.order('created_at DESC')
+		@collections = Collection.listable.order('created_at DESC')
 	end
 
 	def edit
@@ -55,6 +55,6 @@ class CollectionsController < ApplicationController
 		end
 
 		def collection_params
-			params.require(:collection).permit(:title, :description, :published)
+			params.require(:collection).permit(:title, :description, :active)
 		end
 end

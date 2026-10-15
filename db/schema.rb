@@ -63,7 +63,7 @@ ActiveRecord::Schema[8.0].define(version: 2026_10_10_132124) do
     t.string "title", null: false
     t.string "slug"
     t.text "description"
-    t.boolean "published", default: false, null: false
+    t.boolean "active", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["slug"], name: "index_collections_on_slug", unique: true

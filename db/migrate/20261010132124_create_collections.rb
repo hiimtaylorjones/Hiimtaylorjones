@@ -6,7 +6,10 @@ class CreateCollections < ActiveRecord::Migration[8.0]
       t.string  :title, null: false
       t.string  :slug
       t.text    :description
-      t.boolean :published, default: false, null: false
+      # `active`, not `published`: this is not a page-visibility flag. An
+      # inactive collection's grouping simply does not apply — its posts read
+      # as unclassified. Post#published remains the authority on a post.
+      t.boolean :active, default: false, null: false
 
       t.timestamps
     end

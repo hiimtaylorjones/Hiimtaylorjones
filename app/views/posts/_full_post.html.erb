@@ -10,8 +10,13 @@
 				<p>
 					Written on <b><%= post.created_at.strftime("%B %d, %Y") %></b><br />				
 				</p>
-				<% if post.collection.present? %>
-					<p>Part of <%= link_to post.collection.title, collection_path(post.collection) %></p>
+				<%# An inactive collection's grouping does not apply, so a visitor sees
+				    no collection at all. Admins see it, marked, for navigation. %>
+				<% if post.collection.present? && (post.collection.active? || admin_signed_in?) %>
+					<p>
+						Part of <%= link_to post.collection.title, collection_path(post.collection) %>
+						<% unless post.collection.active? %><i>(inactive)</i><% end %>
+					</p>
 				<% end %>
 			</div>
 

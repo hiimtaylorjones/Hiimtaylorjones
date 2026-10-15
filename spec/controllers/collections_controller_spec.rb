@@ -13,7 +13,7 @@ RSpec.describe CollectionsController, :type => :controller do
 			expect(response).to render_template(:index)
 		end
 
-		it "omits collections with nothing published in them" do
+		it "omits active collections with nothing published in them" do
 			empty = FactoryBot.create(:collection)
 			get :index
 			expect(assigns(:collections)).not_to include(empty)
@@ -39,16 +39,16 @@ RSpec.describe CollectionsController, :type => :controller do
 			expect(assigns(:posts)).not_to include(draft)
 		end
 
-		it "redirects a visitor away from an unpublished collection" do
-			draft = FactoryBot.create(:collection, :unpublished)
-			get :show, params: { id: draft.id }
+		it "redirects a visitor away from an inactive collection" do
+			inactive = FactoryBot.create(:collection, :inactive)
+			get :show, params: { id: inactive.id }
 			expect(response).to redirect_to(collections_path)
 		end
 
-		it "lets a signed-in admin preview an unpublished collection" do
+		it "lets a signed-in admin preview an inactive collection" do
 			sign_in FactoryBot.create(:admin)
-			draft = FactoryBot.create(:collection, :unpublished)
-			get :show, params: { id: draft.id }
+			inactive = FactoryBot.create(:collection, :inactive)
+			get :show, params: { id: inactive.id }
 			expect(response).to have_http_status(200)
 		end
 
@@ -88,14 +88,14 @@ RSpec.describe CollectionsController, :type => :controller do
 		it "creates a collection" do
 			sign_in @admin
 			expect {
-				post :create, params: { collection: { title: "A New Series", description: "Notes", published: true } }
+				post :create, params: { collection: { title: "A New Series", description: "Notes", active: true } }
 			}.to change { Collection.count }.by(1)
 			expect(response).to redirect_to(collections_url)
 		end
 
 		it "requires an admin to create a collection" do
 			expect {
-				post :create, params: { collection: { title: "Sneaky", published: true } }
+				post :create, params: { collection: { title: "Sneaky", active: true } }
 			}.not_to change { Collection.count }
 		end
 
