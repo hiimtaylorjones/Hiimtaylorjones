@@ -17,9 +17,8 @@ gem 'devise', '~> 5.0', '>= 5.0.4'
 gem 'will_paginate', '~> 4.0', '>= 4.0.1'
 gem 'terser', '~> 1.2', '>= 1.2.5'
 
-# Rendering and Tagging
+# Rendering
 gem "commonmarker", "~> 2.3.1"
-gem 'acts-as-taggable-on', '~> 12.0'
 gem 'friendly_id', '~> 5.5.1'
 
 # Rails 8 Stuff
