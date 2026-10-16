@@ -34,7 +34,7 @@ class PostsController < ApplicationController
 			1
 		end
 		
-		@posts = Post.where(published: true)
+		@posts = Post.published
 		@at_last_page = (@posts.count / 10) == @page
 		@posts = @posts.order('created_at DESC').paginate(:page => @page, :per_page => 10)
 	end
@@ -57,6 +57,6 @@ class PostsController < ApplicationController
 		end
 
 		def post_params
-			params.require(:post).permit(:title, :tagline, :published, :body, :banner_image)
+			params.require(:post).permit(:title, :tagline, :published, :body, :banner_image, :collection_id)
 		end
 end

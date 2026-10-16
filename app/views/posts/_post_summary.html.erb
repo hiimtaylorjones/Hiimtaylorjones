@@ -1,0 +1,7 @@
+<div class="post-summary">
+	<h2><%= link_to post.title, post_path(post) %></h2>
+	<% if post.tagline.present? %>
+		<h4><i><%= post.tagline %></i></h4>
+	<% end %>
+	<p>Written on <b><%= post.created_at.strftime("%B %d, %Y") %></b></p>
+</div>

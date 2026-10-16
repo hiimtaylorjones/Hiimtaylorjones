@@ -97,4 +97,86 @@ RSpec.describe PostsController, :type => :controller do
 			expect(response).to have_http_status(200)
 		end
 	end
+
+	describe "Assigning a post to a collection" do
+
+		it "persists collection_id through post_params" do
+			admin = FactoryBot.create(:admin)
+			collection = FactoryBot.create(:collection)
+			sign_in admin
+
+			subject_post = FactoryBot.create(:post)
+			patch :update, params: { id: subject_post.id, post: { collection_id: collection.id } }
+
+			expect(subject_post.reload.collection).to eq(collection)
+		end
+
+		it "can clear a post's collection" do
+			admin = FactoryBot.create(:admin)
+			collection = FactoryBot.create(:collection)
+			sign_in admin
+
+			subject_post = FactoryBot.create(:post, collection: collection)
+			patch :update, params: { id: subject_post.id, post: { collection_id: "" } }
+
+			expect(subject_post.reload.collection).to be_nil
+		end
+	end
+
+	describe "Collection in the post templates" do
+		render_views
+
+		it "offers a collection select on the post form, inactive ones included" do
+			sign_in FactoryBot.create(:admin)
+			FactoryBot.create(:collection, :inactive, title: "Inactive Series")
+
+			get :new
+
+			expect(response.body).to include("post[collection_id]")
+			expect(response.body).to include("Inactive Series")
+		end
+
+		it "links back to the collection from a post that has one" do
+			collection = FactoryBot.create(:collection, title: "Learning Rust")
+			subject_post = FactoryBot.create(:post, collection: collection)
+
+			get :show, params: { id: subject_post.id }
+
+			expect(response.body).to include("Part of")
+			expect(response.body).to include(collection_path(collection))
+		end
+
+		it "omits the collection line for a standalone post" do
+			subject_post = FactoryBot.create(:post, collection: nil)
+
+			get :show, params: { id: subject_post.id }
+
+			expect(response.body).not_to include("Part of")
+		end
+
+		# An inactive collection's grouping does not apply, so a visitor must see
+		# neither its title nor a link to it — the link would only bounce them.
+		it "hides an inactive collection from a visitor entirely" do
+			inactive = FactoryBot.create(:collection, :inactive, title: "Secret Series")
+			subject_post = FactoryBot.create(:post, collection: inactive)
+
+			get :show, params: { id: subject_post.id }
+
+			expect(response).to have_http_status(200)
+			expect(response.body).not_to include("Part of")
+			expect(response.body).not_to include("Secret Series")
+			expect(response.body).not_to include(collection_path(inactive))
+		end
+
+		it "shows an inactive collection to an admin, marked as such" do
+			sign_in FactoryBot.create(:admin)
+			inactive = FactoryBot.create(:collection, :inactive, title: "Secret Series")
+			subject_post = FactoryBot.create(:post, collection: inactive)
+
+			get :show, params: { id: subject_post.id }
+
+			expect(response.body).to include("Secret Series")
+			expect(response.body).to include("(inactive)")
+		end
+	end
 end

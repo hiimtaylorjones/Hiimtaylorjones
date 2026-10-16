@@ -6,7 +6,11 @@ class Post < ActiveRecord::Base
 
 	has_one_attached :banner_image
 
+	belongs_to :collection, optional: true
+
 	validates :title, presence: true, length: { maximum: 150 }
 	validates :body, presence: true, length: { minimum: 5 }
+
+	scope :published, -> { where(published: true) }
 
 end

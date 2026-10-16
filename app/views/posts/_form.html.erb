@@ -32,6 +32,13 @@
     <%= f.text_field :tagline, class: "form-input" %>
   </div>
 
+  <div class="form-group">
+    <%= f.label :collection %>
+    <%# All collections, inactive ones included, so a post can be filed into a series before it goes live. %>
+    <%= f.collection_select :collection_id, Collection.order(:title), :id, :title,
+          { include_blank: "— None —" }, { class: "form-input" } %>
+  </div>
+
   <div class="form-checkbox">
     <%= f.label :published do %>
       <%= f.check_box :published %>
