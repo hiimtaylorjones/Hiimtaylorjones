@@ -8,6 +8,12 @@ Personal portfolio/blog site for Taylor Jones, live at https://hiimtaylorjones.c
 
 The internal Rails module name is `Everythingisruby::Application`.
 
+## Coding Style
+
+### Comments
+
+Should be short and somewhat verbose. Emphasis on human readable content that briefly describes important or complex code sections. More info can be added on later iterations - if approved.
+
 ## Common Commands
 
 ```bash
