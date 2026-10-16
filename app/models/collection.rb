@@ -12,6 +12,6 @@ class Collection < ActiveRecord::Base
 	scope :active, -> { where(active: true) }
 
 	scope :listable, -> {
-		active.joins(:posts).where(posts: { published: true })
+		active.joins(:posts).where(posts: { published: true }).distinct
 	}
 end
