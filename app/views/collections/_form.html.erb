@@ -28,6 +28,26 @@
     <% end %>
   </div>
 
+  <div class="form-group collection-posts">
+    <%= f.label :post_ids, "Posts" %>
+    <%# Drafts are listed too, so a post can be filed into a series before it goes live. %>
+    <%= f.collection_check_boxes :post_ids, Post.includes(:collection).order(created_at: :desc), :id, :title do |b| %>
+      <div class="form-checkbox">
+        <%= b.label do %>
+          <%= b.check_box %>
+          <%= b.text %>
+          <small>
+            <%= b.object.published? ? "Published" : "Draft" %>
+            <% if b.object.collection && b.object.collection != @collection %>
+              · in "<%= b.object.collection.title %>"
+            <% end %>
+          </small>
+        <% end %>
+      </div>
+    <% end %>
+    <p><small>A post belongs to one collection, so checking a post filed elsewhere moves it here.</small></p>
+  </div>
+
   <div class="form-actions">
     <%= link_to "Back", back_path, class: "primary-button" %>
     <%= f.submit class: "primary-button" %>

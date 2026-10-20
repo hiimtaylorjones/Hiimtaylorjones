@@ -105,6 +105,65 @@ RSpec.describe CollectionsController, :type => :controller do
 			expect(@collection.reload.title).to eq("Renamed")
 		end
 
+		it "lists posts as checkboxes on the edit form" do
+			sign_in @admin
+			FactoryBot.create(:post, :unpublished, title: "Filed Draft")
+			get :edit, params: { id: @collection.id }
+			expect(response.body).to include("Filed Draft")
+			expect(response.body).to include("collection[post_ids][]")
+		end
+
+		it "creates a collection with posts already in it" do
+			sign_in @admin
+			posts = FactoryBot.create_list(:post, 2)
+			post :create, params: { collection: { title: "Filled In", post_ids: posts.map(&:id) } }
+			expect(Collection.find_by(title: "Filled In").posts).to match_array(posts)
+		end
+
+		it "adds posts to a collection" do
+			sign_in @admin
+			posts = FactoryBot.create_list(:post, 2)
+			patch :update, params: { id: @collection.id, collection: { post_ids: posts.map(&:id) } }
+			expect(@collection.reload.posts).to match_array(posts)
+		end
+
+		it "removes posts from a collection without destroying them" do
+			sign_in @admin
+			kept, dropped = FactoryBot.create_list(:post, 2, collection: @collection)
+
+			expect {
+				patch :update, params: { id: @collection.id, collection: { post_ids: [kept.id] } }
+			}.not_to change { Post.count }
+
+			expect(@collection.reload.posts).to eq([kept])
+			expect(dropped.reload.collection).to be_nil
+		end
+
+		it "moves a post out of its previous collection" do
+			sign_in @admin
+			other = FactoryBot.create(:collection)
+			member = FactoryBot.create(:post, collection: other)
+
+			patch :update, params: { id: @collection.id, collection: { post_ids: [member.id] } }
+
+			expect(member.reload.collection).to eq(@collection)
+			expect(other.reload.posts).to be_empty
+		end
+
+		it "empties a collection when every post is unchecked" do
+			sign_in @admin
+			FactoryBot.create_list(:post, 2, collection: @collection)
+			# The form's hidden field submits [""] when nothing is checked.
+			patch :update, params: { id: @collection.id, collection: { post_ids: [""] } }
+			expect(@collection.reload.posts).to be_empty
+		end
+
+		it "requires an admin to change a collection's posts" do
+			member = FactoryBot.create(:post)
+			patch :update, params: { id: @collection.id, collection: { post_ids: [member.id] } }
+			expect(member.reload.collection).to be_nil
+		end
+
 		it "destroys a collection without destroying its posts" do
 			sign_in @admin
 			collection = FactoryBot.create(:collection, :with_posts, post_count: 2)

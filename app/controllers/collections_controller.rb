@@ -55,6 +55,6 @@ class CollectionsController < ApplicationController
 		end
 
 		def collection_params
-			params.require(:collection).permit(:title, :description, :active)
+			params.require(:collection).permit(:title, :description, :active, post_ids: [])
 		end
 end
