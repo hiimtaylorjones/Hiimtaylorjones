@@ -8,6 +8,12 @@ Personal portfolio/blog site for Taylor Jones, live at https://hiimtaylorjones.c
 
 The internal Rails module name is `Everythingisruby::Application`.
 
+## Coding Style
+
+### Comments
+
+Should be short and somewhat verbose. Emphasis on human readable content that briefly describes important or complex code sections. More info can be added on later iterations - if approved.
+
 ## Common Commands
 
 ```bash
@@ -71,3 +77,7 @@ A `.reek` config exists at the project root (it disables `IrresponsibleModule` f
 ## Environment Variables (Production)
 
 `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY` (S3 storage), `DB_USERNAME`, `DB_PASSWORD`, `SECRET_TEST_PASSWORD`.
+
+## Pull Request Creation
+
+When generating a pull request, include a section with `###`-titled text called `AI Notes`. These notes should include three to five short bullet points of what changes are included in the PR. The goal here is to reduce vebose output while giving good starting notes for the PR. 

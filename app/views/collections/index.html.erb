@@ -1,0 +1,18 @@
+<div class="collections-index">
+	<h1>Collections</h1>
+
+	<% if @collections.any? %>
+		<% @collections.each do |collection| %>
+			<div class="collection-summary">
+				<h2><%= link_to collection.title, collection_path(collection) %></h2>
+				<% if collection.description.present? %>
+					<p><%= collection.description %></p>
+				<% end %>
+				<p><%= pluralize(collection.posts.published.count, "post") %></p>
+			</div>
+			<div class="content-divider"></div>
+		<% end %>
+	<% else %>
+		<p>No collections yet.</p>
+	<% end %>
+</div>
