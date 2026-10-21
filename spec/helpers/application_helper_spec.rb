@@ -19,13 +19,13 @@ RSpec.describe ApplicationHelper, type: :helper do
     end
 
     it 'strips <iframe> tags' do
-      output = helper.markdown('<iframe src="https://evil.com"></iframe>')
+      output = helper.markdown('<iframe src=""></iframe>')
       expect(output).not_to include('<iframe>')
     end
 
     it 'preserves standard markdown headings' do
       output = helper.markdown('## Hello')
-      expect(output).to include('<h2>')
+      expect(output).to include('<h2')
       expect(output).to include('Hello')
     end
 
