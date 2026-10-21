@@ -35,7 +35,7 @@ RSpec.describe BasicPageController, :type => :controller do
 
 	describe "GET #refresh" do
 		it "renders the markdown home page" do
-			get :refresh
+			get :index
 			expect(response).to have_http_status(200)
 		end
 	end

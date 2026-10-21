@@ -12,9 +12,6 @@ class BasicPageController < ApplicationController
     @collections = Collection.order('created_at DESC')
   end
 
-  def refresh
-  end
-
   def resume
     @content_class = "resume"
   end

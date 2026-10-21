@@ -5,11 +5,12 @@ Rails.application.routes.draw do
   resources :collections
   resources :pages, param: :title
 
-  root 'posts#index'
+  root 'basic_page#index'
   
   match '/admin',           to: 'basic_page#admin',   via: 'get'
   match '/resume',          to: 'basic_page#resume',  via: 'get'
-  
+  match '/blog',            to: 'posts#index',        via: 'get'
+
   get '*path' => redirect { |p, req|
     req.flash[:notice] = "#{p[:path]} is unavailable";
    '/'
