@@ -8,7 +8,7 @@ class BasicPageController < ApplicationController
   def admin
     authenticate_admin!
     @admins = Admin.all
-    @posts = Post.paginate(page: params[:page], per_page: 10).order('created_at DESC')
+    @posts = Post.includes(:collection).paginate(page: params[:page], per_page: 10).order('created_at DESC')
     @collections = Collection.order('created_at DESC')
   end
 

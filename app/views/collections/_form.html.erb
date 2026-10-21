@@ -28,6 +28,28 @@
     <% end %>
   </div>
 
+  <fieldset class="collection-posts">
+    <legend>Posts</legend>
+    <%# Drafts are listed too, so a post can be filed into a series before it goes live. %>
+    <div class="collection-posts-list">
+      <%= f.collection_check_boxes :post_ids, Post.includes(:collection).order(created_at: :desc), :id, :title do |b| %>
+        <%= b.label class: "collection-post-row" do %>
+          <%= b.check_box %>
+          <span class="collection-post-title"><%= b.text %></span>
+          <span class="collection-post-meta">
+            <% if b.object.collection && b.object.collection != @collection %>
+              <span class="collection-post-elsewhere">in "<%= b.object.collection.title %>"</span>
+            <% end %>
+            <span class="status-badge <%= b.object.published? ? "is-published" : "is-draft" %>">
+              <%= b.object.published? ? "Published" : "Draft" %>
+            </span>
+          </span>
+        <% end %>
+      <% end %>
+    </div>
+    <p class="collection-posts-hint">A post belongs to one collection, so checking a post filed elsewhere moves it here.</p>
+  </fieldset>
+
   <div class="form-actions">
     <%= link_to "Back", back_path, class: "primary-button" %>
     <%= f.submit class: "primary-button" %>
