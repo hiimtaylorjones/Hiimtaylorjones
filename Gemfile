@@ -1,4 +1,4 @@
-ruby '3.4.5'
+ruby file: ".ruby-version"
 source 'https://rubygems.org'
 
 gem 'rails', '~> 8.0', '>= 8.0.4.1'
@@ -18,7 +18,7 @@ gem 'will_paginate', '~> 4.0', '>= 4.0.1'
 gem 'terser', '~> 1.2', '>= 1.2.5'
 
 # Rendering
-gem "commonmarker", "~> 2.3.1"
+gem "commonmarker", "~> 2.10.1"
 gem 'friendly_id', '~> 5.5.1'
 
 # Rails 8 Stuff
