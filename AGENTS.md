@@ -4,7 +4,7 @@ This is the source of truth for AI coding agents (Claude Code, Codex, Copilot, o
 
 ## Project Overview
 
-Personal portfolio/blog site for Taylor Jones, live at https://hiimtaylorjones.com. Built with Ruby 4.0.6 and Rails 8.1, deployed on Heroku with PostgreSQL and AWS S3 for file storage.
+Personal portfolio/blog site for Taylor Jones, live at https://hiimtaylorjones.com. Built with Ruby 4.0.10 and Rails 8.1, deployed on Heroku with PostgreSQL and AWS S3 for file storage.
 
 The internal Rails module name is `Everythingisruby::Application`.
 
@@ -104,7 +104,7 @@ Scopes: `Collection.active`, and `Collection.listable` for the index — active 
 
 ## CI
 
-`.github/workflows/ci.yml` runs on every push and pull request: Postgres 16 service container, Ruby 4.0.6 via `ruby/setup-ruby` with gem caching, then `rails db:schema:load`, `rails dartsass:build`, `rspec spec`. The CSS build step is required — some specs render views that call `stylesheet_link_tag`.
+`.github/workflows/ci.yml` runs on every push and pull request: Postgres 16 service container, Ruby (version read from `.ruby-version`) via `ruby/setup-ruby` with gem caching, then `rails db:schema:load`, `rails dartsass:build`, `rspec spec`. The CSS build step is required — some specs render views that call `stylesheet_link_tag`.
 
 ## Testing
 
