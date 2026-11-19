@@ -126,4 +126,8 @@ A `.reek` config exists at the project root (it disables `IrresponsibleModule` f
 
 ## Pull Request Creation
 
-When generating a pull request, include a section with `###`-titled text called `AI Notes`. These notes should include three to five short bullet points of what changes are included in the PR. The goal here is to reduce vebose output while giving good starting notes for the PR. 
+PR bodies follow `.github/pull_request_template.md`. GitHub only pre-fills it in the web UI, so when creating a PR with `gh pr create --body-file`, build the body from the template by hand:
+
+- **Commentary** is written by a person. Leave it empty, keeping the HTML comment, so the author can fill it in. Never write in it.
+- **AI Description** gets three to five short bullet points on what the PR changes. The goal is to keep output brief while giving good starting notes for the PR.
+- **Checklist**: tick only the items you actually verified. 
