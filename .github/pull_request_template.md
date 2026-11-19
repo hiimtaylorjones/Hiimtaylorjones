@@ -16,4 +16,4 @@ Delete this section if no AI tools were used.
 - [ ] `bundle exec rspec spec` passes
 - [ ] Any new route sits above the `get '*path'` catch-all
 - [ ] Post visibility goes through `Post.published` / `published?`
-- [ ] CLAUDE.md updated if behavior or architecture changed
+- [ ] AGENTS.md updated if behavior or architecture changed
