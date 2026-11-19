@@ -131,3 +131,4 @@ PR bodies follow `.github/pull_request_template.md`. GitHub only pre-fills it in
 - **Commentary** is written by a person. Leave it empty, keeping the HTML comment, so the author can fill it in. Never write in it.
 - **AI Description** gets three to five short bullet points on what the PR changes. The goal is to keep output brief while giving good starting notes for the PR.
 - **Checklist**: tick only the items you actually verified. 
+Do not sign PR descriptions. This applies to every AI tool or agent (Claude Code, Codex, Copilot, or any other): no "Generated with …", "Created by …", or similar attribution line at the end of the body. The AI Description heading already marks which part is machine-written.
