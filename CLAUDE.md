@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-Personal portfolio/blog site for Taylor Jones, live at https://hiimtaylorjones.com. Built with Ruby 3.4.5 and Rails 8.0.5, deployed on Heroku with PostgreSQL and AWS S3 for file storage.
+Personal portfolio/blog site for Taylor Jones, live at https://hiimtaylorjones.com. Built with Ruby 4.0.6 and Rails 8.1, deployed on Heroku with PostgreSQL and AWS S3 for file storage.
 
 The internal Rails module name is `Everythingisruby::Application`.
 
@@ -55,11 +55,11 @@ There is no tagging and no commenting. Tags were dropped in `db/migrate/20250130
 - Stimulus for JavaScript (only `sidebar_controller.js` — hamburger menu toggle)
 - Solid Queue/Cache/Cable (Rails 8 defaults)
 
-**Routes:** Root points to `basic_page#refresh`. Working routes: `resources :posts`, `resources :collections`, `/admin`, `/resume`. Undefined paths redirect to root with a flash notice via the `get '*path'` catch-all — **any new route must be declared above it**.
+**Routes:** Root points to `basic_page#index`, which shows the most recent published post. Working routes: `resources :posts`, `resources :collections`, `/admin`, `/resume`, `/blog` (alias for `posts#index`), and the `/up` health check. Undefined paths redirect to root with a flash notice via the `get '*path'` catch-all — **any new route must be declared above it**.
 
-Known dead routes: `resources :pages, param: :title` is declared but there is no `Page` model and no `PagesController`, so every `/pages/*` request raises. `BasicPageController#index` and `app/views/basic_page/index.html.erb` have no route pointing at them.
+Legacy `pages` and `inquiries` tables remain in `db/schema.rb` with no model behind them. They are left in place on purpose; dropping them is a separate, irreversible decision.
 
-**Content pages:** The home page (`app/views/basic_page/refresh.html.md`) and resume (`app/views/basic_page/resume.html.md`) are plain Markdown files rendered via the custom `MarkdownHandler`. Editing them directly updates the page content — no controller logic involved.
+**Content pages:** The resume (`app/views/basic_page/resume.html.md`) is a plain Markdown file rendered via the custom `MarkdownHandler`. Editing it directly updates the page content — no controller logic involved.
 
 **Post partials:** Two, and the distinction matters. `app/views/posts/_full_post.html.erb` renders a post's complete Markdown body and is for single-post pages and the post index. `app/views/posts/_post_summary.html.erb` renders only title, tagline and date, and is what listing pages use — rendering `_full_post` in a loop dumps every member post's full body onto one screen.
 
@@ -104,11 +104,11 @@ Scopes: `Collection.active`, and `Collection.listable` for the index — active 
 
 ## CI
 
-`.github/workflows/ci.yml` runs on every push and pull request: Postgres 16 service container, Ruby 3.4.5 via `ruby/setup-ruby` with gem caching, then `rails db:schema:load`, `rails dartsass:build`, `rspec spec`. The CSS build step is required — some specs render views that call `stylesheet_link_tag`.
+`.github/workflows/ci.yml` runs on every push and pull request: Postgres 16 service container, Ruby 4.0.6 via `ruby/setup-ruby` with gem caching, then `rails db:schema:load`, `rails dartsass:build`, `rspec spec`. The CSS build step is required — some specs render views that call `stylesheet_link_tag`.
 
 ## Testing
 
-RSpec with FactoryBot factories in `spec/factories/`. Devise test helpers are configured for `:controller` and `:view` types in `rails_helper.rb`. Test coverage: models, controllers, requests, helpers, mailers.
+RSpec with FactoryBot factories in `spec/factories/`. Devise test helpers are configured for `:controller` and `:view` types in `rails_helper.rb`. Test coverage: models, controllers, requests, helpers.
 
 **Controller specs do not render views by default.** Any spec that asserts on markup, or that exists to catch an ERB error, needs `render_views` in the describe block — `collections_controller_spec.rb` and `basic_page_controller_spec.rb` use it, and so do the post specs covering the collection select and the banner image.
 

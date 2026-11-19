@@ -15,7 +15,6 @@ gem 'devise', '~> 5.0', '>= 5.0.4'
 
 # UI Frameworks and Gems
 gem 'will_paginate', '~> 4.0', '>= 4.0.1'
-gem 'terser', '~> 1.2', '>= 1.2.5'
 
 # Rendering
 gem "commonmarker", "~> 2.10.1"
@@ -42,7 +41,7 @@ gem "thruster", require: false
 
 # Testing assets
 group :development, :test do
-	gem 'rspec-rails', '~> 6.0.2'
+	gem 'rspec-rails', '~> 8.0'
 	gem 'rails-controller-testing'
   gem 'factory_bot_rails'
 	gem 'faker'
