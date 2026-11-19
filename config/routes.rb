@@ -3,7 +3,6 @@ Rails.application.routes.draw do
   devise_for :admins
   resources :posts
   resources :collections
-  resources :pages, param: :title
 
   root 'basic_page#index'
   
@@ -11,10 +10,11 @@ Rails.application.routes.draw do
   match '/resume',          to: 'basic_page#resume',  via: 'get'
   match '/blog',            to: 'posts#index',        via: 'get'
 
+  # Must sit above the catch-all below, or it is never reached.
+  get "up" => "rails/health#show", as: :rails_health_check
+
   get '*path' => redirect { |p, req|
     req.flash[:notice] = "#{p[:path]} is unavailable";
    '/'
   }
-
-  get "up" => "rails/health#show", as: :rails_health_check
 end

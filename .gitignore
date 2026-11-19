@@ -16,16 +16,9 @@
 /tmp
 .env
 
-/publics/assets/**
+/public/assets
 
 /config/aws_cred.yml
-
-/public/packs
-/public/packs-test
-/node_modules
-/yarn-error.log
-yarn-debug.log*
-.yarn-integrity
 
 /app/assets/builds/*
 !/app/assets/builds/.keep
@@ -33,3 +26,6 @@ yarn-debug.log*
 # Active Storage local disk service (used by the test environment).
 /storage/*
 !/storage/.keep
+
+# macOS Finder metadata
+.DS_Store

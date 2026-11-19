@@ -4,19 +4,13 @@
     {
       "plan": "heroku-postgresql",
       "options": {
-        "version": "11"
+        "version": "16"
       }
-    },
-    {
-      "plan": "heroku-redis"
     }
   ],
   "buildpacks": [
     {
       "url": "heroku/ruby"
-    },
-    {
-      "url": "heroku/nodejs"
     }
   ],
   "env": {
@@ -24,9 +18,6 @@
       "required": true
     },
     "RAILS_ENV": {
-      "required": true
-    },
-    "NODE_ENV": {
       "required": true
     }
   },
@@ -43,9 +34,6 @@
           "value": "test_me_out_1234"
         },
         "RAILS_ENV": {
-          "value": "test"
-        },
-        "NODE_ENV": {
           "value": "test"
         }
       }
