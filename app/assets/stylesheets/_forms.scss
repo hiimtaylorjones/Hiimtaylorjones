@@ -43,6 +43,61 @@
   }
 }
 
+// Write / Preview tabs above the post body. The selected tab overlaps the
+// editor's top border so the tab and the box read as one piece.
+.editor-tabs {
+  display: flex;
+  gap: 4px;
+  margin-bottom: -2px;
+}
+
+.editor-tab {
+  padding: 6px 16px;
+  font-family: $font-family-base;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: rgba($color-text, 0.6);
+  background: transparent;
+  border: 2px solid transparent;
+  cursor: pointer;
+
+  &:hover {
+    color: $color-text;
+  }
+
+  &:focus-visible {
+    outline: 2px solid $color-primary;
+    outline-offset: 2px;
+  }
+
+  &[aria-selected="true"] {
+    position: relative;
+    color: $color-text;
+    background-color: $color-white;
+    border-color: $color-text;
+    border-bottom-color: $color-white;
+  }
+}
+
+.editor-preview {
+  padding: 8px 12px;
+  font-size: 1.1rem;
+  background-color: $color-white;
+  border: $border-standard;
+  box-sizing: border-box;
+  overflow-wrap: break-word;
+
+  img {
+    max-width: 100%;
+  }
+}
+
+.editor-preview-note {
+  color: rgba($color-text, 0.6);
+  font-style: italic;
+}
+
 .form-checkbox {
   margin-bottom: 20px;
 

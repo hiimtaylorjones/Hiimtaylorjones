@@ -197,4 +197,47 @@ RSpec.describe PostsController, :type => :controller do
 			expect(response.body).to include("(inactive)")
 		end
 	end
+
+	describe "Previewing a post body" do
+
+		it "renders Markdown through the same sanitizing helper as a published post" do
+			sign_in FactoryBot.create(:admin)
+			post :preview, params: { body: "## Hello\n\n<script>alert(1)</script>" }
+
+			expect(response).to have_http_status(200)
+			expect(Nokogiri::HTML(response.body).at_css("h2")&.text).to eq("Hello")
+			expect(response.body).not_to include("<script")
+		end
+
+		it "returns a bare fragment, not a full page" do
+			sign_in FactoryBot.create(:admin)
+			post :preview, params: { body: "Hello" }
+			expect(response.body).not_to include("<html")
+		end
+
+		it "handles an empty body" do
+			sign_in FactoryBot.create(:admin)
+			post :preview
+			expect(response).to have_http_status(200)
+		end
+
+		it "requires an admin" do
+			post :preview, params: { body: "## Hello" }
+			expect(response).to redirect_to(new_admin_session_path)
+		end
+	end
+
+	describe "Preview tab on the post form" do
+		render_views
+
+		it "wires the body field to the preview endpoint" do
+			sign_in FactoryBot.create(:admin)
+			get :edit, params: { id: FactoryBot.create(:post).id }
+
+			editor = Nokogiri::HTML(response.body).at_css("[data-controller='markdown-preview']")
+			expect(editor["data-markdown-preview-url-value"]).to eq(preview_posts_path)
+			expect(editor.at_css("textarea[name='post[body]'][data-markdown-preview-target='input']")).to be_present
+			expect(editor.css("[role='tab']").map(&:text)).to eq(["Write", "Preview"])
+		end
+	end
 end
