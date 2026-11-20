@@ -52,10 +52,10 @@ There is no tagging and no commenting. Tags were dropped in `db/migrate/20250130
 - Devise for admin authentication (`authenticate_admin!`, `admin_signed_in?`)
 - Will Paginate for pagination
 - Propshaft asset pipeline with Dartsass for SCSS compilation
-- Stimulus for JavaScript (only `sidebar_controller.js` — hamburger menu toggle)
+- Stimulus for JavaScript: `sidebar_controller.js` (hamburger menu toggle) and `markdown_preview_controller.js` (Write / Preview tabs on the post form)
 - Solid Queue/Cache/Cable (Rails 8 defaults)
 
-**Routes:** Root points to `basic_page#index`, which shows the most recent published post. Working routes: `resources :posts`, `resources :collections`, `/admin`, `/resume`, `/blog` (alias for `posts#index`), and the `/up` health check. Undefined paths redirect to root with a flash notice via the `get '*path'` catch-all — **any new route must be declared above it**.
+**Routes:** Root points to `basic_page#index`, which shows the most recent published post. Working routes: `resources :posts` (plus `POST /posts/preview`), `resources :collections`, `/admin`, `/resume`, `/blog` (alias for `posts#index`), and the `/up` health check. Undefined paths redirect to root with a flash notice via the `get '*path'` catch-all — **any new route must be declared above it**.
 
 Legacy `pages` and `inquiries` tables remain in `db/schema.rb` with no model behind them. They are left in place on purpose; dropping them is a separate, irreversible decision.
 
@@ -69,7 +69,7 @@ Legacy `pages` and `inquiries` tables remain in `db/schema.rb` with no model beh
 
 Collections views reuse the existing `table`, `primary-button`, `warning-button`, `danger-button` and `content-divider` classes; their own wrapper classes (`collections-index`, `collection-summary`, `post-summary`, `admin-collections-index`) are currently unstyled and inherit the content column.
 
-**Admin flow:** Posting requires admin login. CRUD on both posts and collections is protected by `before_action :authenticate_admin!`. The admin dashboard is at `/admin` (rendered by `basic_page#admin`) and lists posts and collections in separate tables — it shows *all* of both, regardless of `published`/`active`.
+**Admin flow:** Posting requires admin login. CRUD on both posts and collections is protected by `before_action :authenticate_admin!`, as is `posts#preview`. That action backs the post form's Preview tab: it renders an unsaved body through `ApplicationHelper#markdown` and returns a bare HTML fragment, so the preview matches the published page. The admin dashboard is at `/admin` (rendered by `basic_page#admin`) and lists posts and collections in separate tables — it shows *all* of both, regardless of `published`/`active`.
 
 ## Collections: active vs. published
 

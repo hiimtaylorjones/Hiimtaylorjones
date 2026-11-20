@@ -1,7 +1,10 @@
 Rails.application.routes.draw do
 
   devise_for :admins
-  resources :posts
+  resources :posts do
+    # Renders unsaved Markdown for the editor's Preview tab.
+    post :preview, on: :collection
+  end
   resources :collections
 
   root 'basic_page#index'

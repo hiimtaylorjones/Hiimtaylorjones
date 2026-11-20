@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
 
-	before_action :authenticate_admin!, only: [:create, :new, :edit, :update, :destroy]
+	before_action :authenticate_admin!, only: [:create, :new, :edit, :update, :destroy, :preview]
 	before_action :find_post, only: [:show, :edit, :update, :destroy]
 
 	def new
@@ -49,6 +49,13 @@ class PostsController < ApplicationController
 		else
 			render :edit
 		end
+	end
+
+	# Renders a post body through the same helper as the published page, for
+	# the editor's Preview tab. Returns a bare HTML fragment and saves nothing.
+	def preview
+		# Not `.to_s`: nil.to_s is US-ASCII, which Commonmarker rejects.
+		render html: helpers.markdown(params[:body] || "")
 	end
 
 	private

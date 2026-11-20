@@ -46,9 +46,20 @@
     <% end %>
   </div>
 
-  <div class="form-group">
+  <%# Write / Preview tabs, like a GitHub comment box. Preview renders on the
+      server so it matches the published post exactly. %>
+  <div class="form-group" data-controller="markdown-preview"
+       data-markdown-preview-url-value="<%= preview_posts_path %>">
     <%= f.label :body %>
-    <%= f.text_area :body, placeholder: "Enter Post Content Here.", class: "form-textarea", rows: 25 %>
+    <div class="editor-tabs" role="tablist">
+      <button type="button" role="tab" class="editor-tab" aria-selected="true"
+              data-markdown-preview-target="writeTab" data-action="markdown-preview#write">Write</button>
+      <button type="button" role="tab" class="editor-tab" aria-selected="false"
+              data-markdown-preview-target="previewTab" data-action="markdown-preview#preview">Preview</button>
+    </div>
+    <%= f.text_area :body, placeholder: "Enter Post Content Here.", class: "form-textarea", rows: 25,
+          data: { markdown_preview_target: "input" } %>
+    <div class="editor-preview post-content" hidden data-markdown-preview-target="output"></div>
   </div>
 
   <div class="form-actions">
