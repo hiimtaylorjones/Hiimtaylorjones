@@ -11,6 +11,19 @@ body {
   min-height: 100dvh;
   font-family: $font-family-base;
   font-weight: 400;
+  background-color: $color-bg;
+  color: $color-text;
+}
+
+// Base link colour. :where() keeps specificity at zero, so buttons and nav links keep their own colours.
+:where(a, a:visited) {
+  color: $color-link;
+}
+
+// Post titles are links, but read as headings rather than copper link text.
+.post-header h1 a,
+.post-header h1 a:visited {
+  color: $color-text;
 }
 
 .container {

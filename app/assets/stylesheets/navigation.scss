@@ -53,6 +53,12 @@
   font-size: 1.2em;
   background-color: $color-admin;
 
+  // White on the admin colour; the browser-default blue was unreadable here.
+  a,
+  a:visited {
+    color: $color-white;
+  }
+
   .admin-action {
     color: $color-white;
     font-size: 1.2em;
