@@ -2,25 +2,38 @@ require 'rails_helper'
 
 RSpec.describe ApplicationHelper, type: :helper do
   describe '#markdown' do
-    it 'strips <script> tags from post body' do
-      output = helper.markdown('<script>alert("xss")</script>Hello')
-      expect(output).not_to include('<script>')
-      expect(output).not_to include('alert("xss")')
-    end
+    # Commonmarker's safe mode already drops raw HTML and javascript: links, so
+    # feeding these through it would pass even without sanitize. Stubbing it to
+    # return hostile HTML proves sanitize holds on its own.
+    describe 'sanitizing rendered HTML' do
+      def sanitized(html)
+        allow(Commonmarker).to receive(:to_html).and_return(html)
+        helper.markdown('ignored')
+      end
 
-    it 'strips inline event handlers from allowed tags' do
-      output = helper.markdown('<p onmouseover="alert(1)">text</p>')
-      expect(output).not_to include('onmouseover')
-    end
+      it 'strips <script> tags' do
+        output = sanitized('<script>alert("xss")</script><p>Hello</p>')
+        expect(output).not_to include('<script')
+        expect(output).to include('<p>Hello</p>')
+      end
 
-    it 'strips javascript: hrefs' do
-      output = helper.markdown('[click](javascript:alert(1))')
-      expect(output).not_to include('javascript:')
-    end
+      it 'strips inline event handlers from allowed tags' do
+        output = sanitized('<p onmouseover="alert(1)">text</p><img src="a.png" onerror="alert(1)">')
+        expect(output).not_to include('onmouseover')
+        expect(output).not_to include('onerror')
+        expect(output).to include('<img src="a.png">')
+      end
 
-    it 'strips <iframe> tags' do
-      output = helper.markdown('<iframe src=""></iframe>')
-      expect(output).not_to include('<iframe>')
+      it 'strips javascript: hrefs' do
+        output = sanitized('<a href="javascript:alert(1)">click</a>')
+        expect(output).not_to include('javascript:')
+        expect(output).to include('click')
+      end
+
+      it 'strips <iframe> tags' do
+        output = sanitized('<iframe src="https://evil.example"></iframe>')
+        expect(output).not_to include('<iframe')
+      end
     end
 
     it 'preserves standard markdown headings' do

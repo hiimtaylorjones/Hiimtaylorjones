@@ -68,7 +68,7 @@ RSpec.describe CollectionsController, :type => :controller do
 
 		it "requires an admin to reach the new form" do
 			get :new
-			expect(response).not_to have_http_status(200)
+			expect(response).to redirect_to(new_admin_session_path)
 		end
 
 		it "renders the new form for an admin" do

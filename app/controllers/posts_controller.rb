@@ -28,15 +28,16 @@ class PostsController < ApplicationController
 	end
 
 	def index
+		# Params arrive as strings; the view compares @page against 1.
 		@page = if params[:page].present?
-			params[:page]
+			params[:page].to_i
 		else
 			1
 		end
-		
-		@posts = Post.published
-		@at_last_page = (@posts.count / 10) == @page
-		@posts = @posts.order('created_at DESC').paginate(:page => @page, :per_page => 10)
+
+		@posts = Post.published.order('created_at DESC').paginate(:page => @page, :per_page => 10)
+		# will_paginate knows the page count, so let it say where the end is.
+		@at_last_page = @posts.next_page.nil?
 	end
 
 	def edit
