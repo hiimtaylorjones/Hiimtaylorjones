@@ -8,7 +8,7 @@ RSpec.describe BasicPageController, :type => :controller do
 	describe "GET #admin" do
 		it "redirects a visitor who is not signed in" do
 			get :admin
-			expect(response).not_to have_http_status(200)
+			expect(response).to redirect_to(new_admin_session_path)
 		end
 
 		it "renders the dashboard with posts and collections for an admin" do

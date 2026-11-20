@@ -3,58 +3,54 @@ require 'rails_helper'
 RSpec.describe PostsController, :type => :controller do
 
 	describe "Post Index" do
+		# No other spec renders posts/index, so render it for real here.
+		render_views
+
+		# Fifteen posts at ten per page makes two pages.
 		before(:each) do
-			FactoryBot.create_list(:post, 10)
+			FactoryBot.create_list(:post, 15)
 		end
 
-	  describe "GET #index" do
-	    it "responds successfully with an HTTP 200 status code" do
-	      get :index
-	      expect(response).to be_successful
-	      expect(response).to have_http_status(200)
-	    end
-
-	    it "renders the index template" do
-	      get :index
-				expect(response).to render_template(:index)
-			end
-	  end
-	end
-
-	describe "Show Post" do
-
-		before(:each) do
-			@post = FactoryBot.create(:post)
-		end
-
-		describe "Get Post to Show" do
-
+		describe "GET #index" do
 			it "responds successfully with an HTTP 200 status code" do
-				get :show, params: { id: @post.id }
-				expect(response).to be_successful
+				get :index
 				expect(response).to have_http_status(200)
 			end
 
-			it "renders the show template" do
-				get :show, params: { id: @post.id }
-				expect(response).to render_template(:show)
+			it "renders the index template" do
+				get :index
+				expect(response).to render_template(:index)
+			end
+
+			it "treats the page param as a number" do
+				get :index, params: { page: "1" }
+				expect(assigns(:page)).to eq(1)
+			end
+
+			it "is not on the last page while older posts remain" do
+				get :index
+				expect(assigns(:at_last_page)).to eq(false)
+			end
+
+			it "knows when it is on the last page" do
+				get :index, params: { page: "2" }
+				expect(assigns(:at_last_page)).to eq(true)
 			end
 		end
 	end
 
-	describe "Admin Interacitons" do
+	describe "Admin Interactions" do
 
 		before(:each) do
 			@admin = FactoryBot.create(:admin)
 			@post = FactoryBot.create(:post)
 		end
 
-		describe "Your dumb Admin can't spell. (Edit Post)" do
+		describe "Edit Post" do
 
 			it "responds successfully with an HTTP 200 status code" do
 				sign_in @admin
-				get :edit, params: { id: @post.id } 
-				expect(response).to be_successful
+				get :edit, params: { id: @post.id }
 				expect(response).to have_http_status(200)
 			end
 

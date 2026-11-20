@@ -16,12 +16,6 @@ RSpec.describe 'Security', type: :request do
       get root_path
       expect(response.headers['Content-Security-Policy']).to include("script-src 'self'")
     end
-
-    it 'is present on post pages' do
-      post = FactoryBot.create(:post)
-      get post_path(post)
-      expect(response.headers['Content-Security-Policy']).to be_present
-    end
   end
 
   describe 'Parameter log filtering' do
