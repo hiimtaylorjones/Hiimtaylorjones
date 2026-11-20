@@ -3,10 +3,13 @@
 	<div class="content-divider"></div>
 <% end %>
 
-<% if @page != 1 && @posts.length > 1 %>
-	<button class="button">Show Older</button>
-<% end %>
+<%# Newest posts come first, so page 1 only offers older ones. %>
+<div class="has-text-centered">
+	<% if @page > 1 %>
+		<%= link_to "Show Newer", posts_path(page: @page - 1), class: "button" %>
+	<% end %>
 
-<% if !@at_last_page %>
-	<button class="button">Show Newer</button>
-<% end %>
+	<% unless @at_last_page %>
+		<%= link_to "Show Older", posts_path(page: @page + 1), class: "button" %>
+	<% end %>
+</div>

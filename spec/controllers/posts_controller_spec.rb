@@ -37,6 +37,31 @@ RSpec.describe PostsController, :type => :controller do
 				expect(assigns(:at_last_page)).to eq(true)
 			end
 		end
+
+		describe "paging buttons" do
+			def button(label)
+				Nokogiri::HTML(response.body).css("a.button").find { |a| a.text == label }
+			end
+
+			it "offers only older posts on the first page" do
+				get :index
+				expect(button("Show Older")&.[]("href")).to eq(posts_path(page: 2))
+				expect(button("Show Newer")).to be_nil
+			end
+
+			it "offers only newer posts on the last page" do
+				get :index, params: { page: "2" }
+				expect(button("Show Newer")&.[]("href")).to eq(posts_path(page: 1))
+				expect(button("Show Older")).to be_nil
+			end
+
+			it "offers no paging when everything fits on one page" do
+				Post.limit(5).destroy_all
+				get :index
+				expect(button("Show Older")).to be_nil
+				expect(button("Show Newer")).to be_nil
+			end
+		end
 	end
 
 	describe "Admin Interactions" do
