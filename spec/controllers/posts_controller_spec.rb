@@ -98,6 +98,24 @@ RSpec.describe PostsController, :type => :controller do
 		end
 	end
 
+	describe "Edit Post button" do
+		render_views
+
+		let(:live) { FactoryBot.create(:post) }
+
+		it "sits in the post header for an admin" do
+			sign_in FactoryBot.create(:admin)
+			get :show, params: { id: live.id }
+			header = Nokogiri::HTML(response.body).at_css(".post-header")
+			expect(header.at_css("a[href='#{edit_post_path(live.friendly_id)}']")&.text).to eq("Edit Post")
+		end
+
+		it "is hidden from visitors" do
+			get :show, params: { id: live.id }
+			expect(response.body).not_to include("Edit Post")
+		end
+	end
+
 	describe "Assigning a post to a collection" do
 
 		it "persists collection_id through post_params" do

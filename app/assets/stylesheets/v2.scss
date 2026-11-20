@@ -95,3 +95,13 @@ p {
   font-size: 1.2em;
   line-height: 1.75em;
 }
+
+// Post header row: date and collection on the left, admin Edit button on the right.
+// Wraps so the button drops below the details on narrow screens.
+.post-meta {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+}
