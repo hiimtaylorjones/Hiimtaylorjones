@@ -1,5 +1,3 @@
-@use "variables" as *;
-
 html, body {
   margin: 0;
   padding: 0;
@@ -9,21 +7,21 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100dvh;
-  font-family: $font-family-base;
+  font-family: var(--font-family-base);
   font-weight: 400;
-  background-color: $color-bg;
-  color: $color-text;
+  background-color: var(--color-bg);
+  color: var(--color-text);
 }
 
-// Base link colour. :where() keeps specificity at zero, so buttons and nav links keep their own colours.
+/* Base link colour. :where() keeps specificity at zero, so buttons and nav links keep their own colours. */
 :where(a, a:visited) {
-  color: $color-link;
+  color: var(--color-link);
 }
 
-// Post titles are links, but read as headings rather than copper link text.
+/* Post titles are links, but read as headings rather than copper link text. */
 .post-header h1 a,
 .post-header h1 a:visited {
-  color: $color-text;
+  color: var(--color-text);
 }
 
 .container {
@@ -61,7 +59,7 @@ h2 {
   letter-spacing: -1px;
   margin-bottom: 20px;
   font-weight: normal;
-  color: $color-text;
+  color: var(--color-text);
 }
 
 h3 {
@@ -109,8 +107,8 @@ p {
   line-height: 1.75em;
 }
 
-// Post header row: date and collection on the left, admin Edit button on the right.
-// Wraps so the button drops below the details on narrow screens.
+/* Post header row: date and collection on the left, admin Edit button on the right.
+   Wraps so the button drops below the details on narrow screens. */
 .post-meta {
   display: flex;
   flex-wrap: wrap;

@@ -50,5 +50,3 @@ group :development, :test do
 end
 
 gem "letter_opener", :group => :development
-
-gem "dartsass-rails", "~> 0.5.1"
