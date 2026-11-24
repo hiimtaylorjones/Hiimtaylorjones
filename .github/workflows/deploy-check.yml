@@ -1,0 +1,64 @@
+name: Deploy check
+
+# Heroku auto-deploys every push to main. This follows that deploy with
+# bin/deploy-check and, if the release is unhealthy, opens a draft revert PR
+# with bin/deploy-revert-pr. It never rolls back or merges anything itself.
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      sha:
+        description: Commit to check (blank = the commit this runs on)
+        required: false
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          # The revert needs history back to the previous release.
+          fetch-depth: 0
+
+      # The scripts use only the standard library, so no bundle install.
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: .ruby-version
+
+      - name: Follow the deploy
+        id: check
+        continue-on-error: true
+        env:
+          HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+          SHA: ${{ inputs.sha || github.sha }}
+        run: bin/deploy-check --sha "$SHA" --report deploy-report.md
+
+      - name: Write the job summary
+        if: always()
+        run: cat deploy-report.md >> "$GITHUB_STEP_SUMMARY" 2>/dev/null || true
+
+      - name: Open a draft revert PR
+        if: steps.check.outputs.status == 'unhealthy' && steps.check.outputs.previous_sha != ''
+        env:
+          GH_TOKEN: ${{ github.token }}
+          BAD: ${{ steps.check.outputs.sha }}
+          PREVIOUS: ${{ steps.check.outputs.previous_sha }}
+          VERSION: ${{ steps.check.outputs.version }}
+        run: |
+          # Commit as the Actions bot, looking its noreply address up from GitHub.
+          git config user.name "github-actions[bot]"
+          git config user.email "$(gh api '/users/github-actions%5Bbot%5D' --jq '"\(.id)+\(.login)@users.noreply.github.com"')"
+          bin/deploy-revert-pr --bad "$BAD" --previous "$PREVIOUS" --version "$VERSION" --report deploy-report.md
+
+      # Unhealthy or inconclusive turns the run red, so it shows on the commit.
+      - name: Fail if the deploy was not healthy
+        if: steps.check.outcome == 'failure'
+        run: |
+          echo "Deploy check status: ${{ steps.check.outputs.status || 'error' }}"
+          exit 1

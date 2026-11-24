@@ -106,6 +106,18 @@ Scopes: `Collection.active`, and `Collection.listable` for the index — active 
 
 `.github/workflows/ci.yml` runs on every push and pull request: Postgres 16 service container, Ruby (version read from `.ruby-version`) via `ruby/setup-ruby` with gem caching, then `rails db:schema:load`, `rails dartsass:build`, `rspec spec`. The CSS build step is required — some specs render views that call `stylesheet_link_tag`.
 
+## Deploys
+
+Heroku (app `hiimtaylorjones`) auto-deploys every push to `main`. The `release:` line in `Procfile` runs `rake db:migrate` on **every** deploy; with nothing pending it simply exits 0.
+
+`.github/workflows/deploy-check.yml` follows each deploy:
+
+- `bin/deploy-check` walks one commit through build → release phase → web dynos → `/up`, `/`, `/blog`, `/resume` → error logs since the release. Exit `0` healthy, `1` unhealthy, `2` inconclusive. It talks to the Heroku Platform API (`HEROKU_API_KEY` repo secret, or `heroku auth:token` locally) and never hits an endpoint that returns config vars.
+- When the check is unhealthy, `bin/deploy-revert-pr` opens a **draft** PR reverting the release's commits (previous good deploy → bad one), with the report, the `heroku rollback` command, and a warning naming any migrations the revert cannot undo. Nothing is rolled back or merged automatically.
+- Revert PRs opened by the workflow's `GITHUB_TOKEN` do not trigger CI; push an empty commit or re-run CI by hand.
+
+For in-session use, the `heroku-deploy-watch` skill in `.claude/skills/` covers the same steps. Never run `heroku config` or `heroku releases:info` in logs or transcripts: both print every config var.
+
 ## Testing
 
 RSpec with FactoryBot factories in `spec/factories/`. Devise test helpers are configured for `:controller` and `:view` types in `rails_helper.rb`. Test coverage: models, controllers, requests, helpers.
