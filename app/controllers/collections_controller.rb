@@ -24,12 +24,12 @@ class CollectionsController < ApplicationController
 
 		# A draft post never surfaces through its collection, even to an admin.
 		@posts = @collection.posts.published
-		                    .order('created_at DESC')
+		                    .order(created_at: :desc)
 		                    .paginate(page: params[:page], per_page: 10)
 	end
 
 	def index
-		@collections = Collection.listable.order('created_at DESC')
+		@collections = Collection.listable.order(created_at: :desc)
 	end
 
 	def edit
