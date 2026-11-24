@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
 
-  devise_for :admins
+  # Admin login. Helper names match the old Devise routes.
+  get    "login",  to: "admin_sessions#new",     as: :new_admin_session
+  post   "login",  to: "admin_sessions#create",  as: :admin_session
+  delete "logout", to: "admin_sessions#destroy", as: :destroy_admin_session
+
   resources :posts do
     # Renders unsaved Markdown for the editor's Preview tab.
     post :preview, on: :collection

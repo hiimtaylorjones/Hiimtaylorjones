@@ -1,4 +1,5 @@
 class BasicPageController < ApplicationController
+  before_action :authenticate_admin!, only: :admin
 
   def index
     @posts = Post.published
@@ -6,7 +7,6 @@ class BasicPageController < ApplicationController
   end
 
   def admin
-    authenticate_admin!
     @admins = Admin.all
     @posts = Post.includes(:collection).paginate(page: params[:page], per_page: 10).order('created_at DESC')
     @collections = Collection.order('created_at DESC')

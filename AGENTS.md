@@ -42,14 +42,14 @@ bundle exec rails console
 **Models:**
 - `Post` — Blog posts with title, tagline, body, banner image attachment (Active Storage), friendly URL slugs, and a `published` boolean flag. `belongs_to :collection, optional: true`.
 - `Collection` — A named grouping of posts, e.g. a multi-part series. Title, description, friendly slug, and an `active` flag (not `published` — see below). `has_many :posts, dependent: :nullify`.
-- `Admin` — Devise-authenticated admin users. Only one admin exists in practice.
+- `Admin` — admin users, `has_secure_password` (bcrypt in `password_digest`). Only one admin exists in practice. `AdminSession` is one row per signed-in browser. The Devise-era columns (`reset_password_token`, trackable fields) are still on `admins`, unused.
 
 There is no tagging and no commenting. Tags were dropped in `db/migrate/20250130184410_remove_tags_and_taggings.rb`; the `Comment`/`Response` models and their tables were removed in `db/migrate/20261010132014_drop_comments_and_responses.rb`.
 
 **Key Libraries:**
 - FriendlyId for slug-based URLs on Posts and Collections (`Post.friendly.find(params[:id])`). Both use `:slugged` without overriding `should_generate_new_friendly_id?`, so renaming a record keeps its original slug.
 - Commonmarker for Markdown rendering — two places: `ApplicationHelper#markdown` for post bodies in ERB, and `Handlers::MarkdownHandler` registered as a template handler for `.html.md` view files
-- Devise for admin authentication (`authenticate_admin!`, `admin_signed_in?`)
+- Admin auth is the Rails 8 authentication generator's pattern, hand-adapted in `app/controllers/concerns/authentication.rb`: a signed `admin_session_id` cookie, `Current.admin_session`, and Devise-compatible helper names (`authenticate_admin!`, `admin_signed_in?`, `current_admin`). Login is `GET/POST /login`, logout `DELETE /logout`, rate-limited to 10 attempts per 3 minutes. There is no password reset or remember-me; reset a password from the console.
 - Will Paginate for pagination
 - Propshaft asset pipeline with Dartsass for SCSS compilation
 - Stimulus for JavaScript: `sidebar_controller.js` (hamburger menu toggle) and `markdown_preview_controller.js` (Write / Preview tabs on the post form)
@@ -69,7 +69,7 @@ Legacy `pages` and `inquiries` tables remain in `db/schema.rb` with no model beh
 
 Collections views reuse the existing `table`, `primary-button`, `warning-button`, `danger-button` and `content-divider` classes; their own wrapper classes (`collections-index`, `collection-summary`, `post-summary`, `admin-collections-index`) are currently unstyled and inherit the content column.
 
-**Admin flow:** Posting requires admin login. CRUD on both posts and collections is protected by `before_action :authenticate_admin!`, as is `posts#preview`. That action backs the post form's Preview tab: it renders an unsaved body through `ApplicationHelper#markdown` and returns a bare HTML fragment, so the preview matches the published page. The admin dashboard is at `/admin` (rendered by `basic_page#admin`) and lists posts and collections in separate tables — it shows *all* of both, regardless of `published`/`active`.
+**Admin flow:** Posting requires admin login (`/login`). CRUD on both posts and collections is protected by `before_action :authenticate_admin!`, as is `posts#preview`. That action backs the post form's Preview tab: it renders an unsaved body through `ApplicationHelper#markdown` and returns a bare HTML fragment, so the preview matches the published page. The admin dashboard is at `/admin` (rendered by `basic_page#admin`) and lists posts and collections in separate tables — it shows *all* of both, regardless of `published`/`active`.
 
 ## Collections: active vs. published
 
@@ -108,7 +108,7 @@ Scopes: `Collection.active`, and `Collection.listable` for the index — active 
 
 ## Testing
 
-RSpec with FactoryBot factories in `spec/factories/`. Devise test helpers are configured for `:controller` and `:view` types in `rails_helper.rb`. Test coverage: models, controllers, requests, helpers.
+RSpec with FactoryBot factories in `spec/factories/`. `sign_in(admin)` for controller specs comes from `spec/support/authentication_helpers.rb`; request specs log in by posting to `admin_session_path`. The test env uses `:null_store`, so login rate limiting never trips in specs. Test coverage: models, controllers, requests, helpers.
 
 **Controller specs do not render views by default.** Any spec that asserts on markup, or that exists to catch an ERB error, needs `render_views` in the describe block — `collections_controller_spec.rb` and `basic_page_controller_spec.rb` use it, and so do the post specs covering the collection select and the banner image.
 
