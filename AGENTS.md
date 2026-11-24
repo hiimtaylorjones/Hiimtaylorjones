@@ -53,7 +53,7 @@ There is no tagging and no commenting. Tags were dropped in `db/migrate/20250130
 - Will Paginate for pagination
 - Propshaft asset pipeline with Dartsass for SCSS compilation
 - Stimulus for JavaScript: `sidebar_controller.js` (hamburger menu toggle) and `markdown_preview_controller.js` (Write / Preview tabs on the post form)
-- Solid Queue/Cache/Cable (Rails 8 defaults)
+- No background jobs, cache store or Action Cable channels. The Solid Queue/Cache/Cable gems were removed as unused; `config/cable.yml` uses the `async` adapter so Turbo still boots. The `solid_cable_messages` table remains in the schema, unused.
 
 **Routes:** Root points to `basic_page#index`, which shows the most recent published post. Working routes: `resources :posts` (plus `POST /posts/preview`), `resources :collections`, `/admin`, `/resume`, `/blog` (alias for `posts#index`), and the `/up` health check. Undefined paths redirect to root with a flash notice via the `get '*path'` catch-all — **any new route must be declared above it**.
 
