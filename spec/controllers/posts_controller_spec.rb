@@ -103,7 +103,7 @@ RSpec.describe PostsController, :type => :controller do
 			sign_in FactoryBot.create(:admin)
 			get :show, params: { id: live.id }
 			header = Nokogiri::HTML(response.body).at_css(".post-header")
-			expect(header.at_css("a[href='#{edit_post_path(live.friendly_id)}']")&.text).to eq("Edit Post")
+			expect(header.at_css("a[href='#{edit_post_path(live)}']")&.text).to eq("Edit Post")
 		end
 
 		it "is hidden from visitors" do

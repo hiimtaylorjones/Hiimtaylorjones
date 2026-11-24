@@ -51,7 +51,7 @@ class CollectionsController < ApplicationController
 	private
 
 		def find_collection
-			@collection = Collection.friendly.find(params[:id])
+			@collection = Collection.find_by_slug_or_id!(params[:id])
 		end
 
 		def collection_params

@@ -23,7 +23,7 @@
 						<% end %>
 					</div>
 					<% if admin_signed_in? %>
-						<%= link_to 'Edit Post', edit_post_path(post.friendly_id), class: "button" %>
+						<%= link_to 'Edit Post', edit_post_path(post), class: "button" %>
 					<% end %>
 				</div>
 			</div>

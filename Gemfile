@@ -18,7 +18,6 @@ gem 'will_paginate', '~> 4.0', '>= 4.0.1'
 
 # Rendering
 gem "commonmarker", "~> 2.10.1"
-gem 'friendly_id', '~> 5.5.1'
 
 # Rails 8 Stuff
 gem "propshaft"
