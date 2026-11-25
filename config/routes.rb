@@ -16,6 +16,9 @@ Rails.application.routes.draw do
   # Must sit above the catch-all below, or it is never reached.
   get "up" => "rails/health#show", as: :rails_health_check
 
+  # Heroku app webhooks for the deploy check. Must also sit above the catch-all.
+  post "webhooks/heroku" => "heroku_webhooks#create", as: :heroku_webhooks
+
   get '*path' => redirect { |p, req|
     req.flash[:notice] = "#{p[:path]} is unavailable";
    '/'

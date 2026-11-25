@@ -1,0 +1,118 @@
+#!/usr/bin/env bash
+# Opens a draft PR that reverts everything a bad Heroku release shipped: the
+# commits after the previous good deploy, up to and including the bad one.
+# It only prepares the undo. Nothing is merged or rolled back.
+#
+#   bin/deploy-revert-pr --bad 3ad11eb8 --previous 31b000f5 --version 126 \
+#     [--report tmp/deploy-report.md] [--dry-run]
+#
+# Works in a temporary git worktree, so the current checkout is never touched.
+# --dry-run builds the revert commit and prints the PR body, but pushes nothing.
+# Needs a git identity (user.name / user.email); the workflow sets one.
+set -euo pipefail
+
+bad="" previous="" version="" report="" dry_run=false
+while [[ $# -gt 0 ]]; do
+  case "$1" in
+    --bad) bad="$2"; shift 2 ;;
+    --previous) previous="$2"; shift 2 ;;
+    --version) version="$2"; shift 2 ;;
+    --report) report="$2"; shift 2 ;;
+    --dry-run) dry_run=true; shift ;;
+    *) echo "Unknown argument: $1" >&2; exit 2 ;;
+  esac
+done
+[[ -n "$bad" && -n "$previous" && -n "$version" ]] || { echo "Need --bad, --previous and --version." >&2; exit 2; }
+
+git fetch --quiet origin main
+bad=$(git rev-parse --verify "$bad^{commit}")
+previous=$(git rev-parse --verify "$previous^{commit}")
+branch="revert-release-v$version"
+
+# A rerun of the workflow should not open a second PR.
+if git ls-remote --exit-code --heads origin "$branch" >/dev/null 2>&1; then
+  echo "Branch $branch already exists on origin; not opening another revert PR."
+  exit 0
+fi
+
+commits=$(git rev-list --reverse "$previous..$bad")
+[[ -n "$commits" ]] || { echo "No commits between $previous and $bad." >&2; exit 1; }
+if [[ -n "$(git rev-list --merges "$previous..$bad")" ]]; then
+  echo "The release contains merge commits; revert it by hand." >&2
+  exit 1
+fi
+
+worktree=$(mktemp -d)
+cleanup() { git worktree remove --force "$worktree" >/dev/null 2>&1 || true; }
+trap cleanup EXIT
+git worktree add --quiet --detach "$worktree" origin/main
+
+(
+  cd "$worktree"
+  if ! git revert --no-commit "$previous..$bad"; then
+    git revert --abort || true
+    echo "The release does not revert cleanly onto current main; revert it by hand." >&2
+    exit 1
+  fi
+  {
+    echo "Revert release v$version (${bad:0:8})"
+    echo
+    echo "Reverts the commits Heroku release v$version shipped after the last good deploy:"
+    echo
+    git log --format='- %h %s' "$previous..$bad"
+  } | git commit --quiet -F -
+)
+
+# Reverting a migration file does not undo it in the database.
+migrations=$(git diff --name-only --diff-filter=A "$previous" "$bad" -- db/migrate)
+release_note="$(git log --format='- `%h` %s' "$previous..$bad")"
+subject=$(git log -1 --format=%s "$bad")
+
+body=$(mktemp)
+{
+  cat <<EOF
+## Commentary
+<!--
+Written by a person. Why this change, what you're unsure about, what a
+reviewer should look at first. A sentence or two is fine.
+-->
+
+## Deploy check
+
+Opened automatically by \`bin/deploy-revert-pr\` after the deploy check found Heroku release **v$version** unhealthy. It is a draft: review the report, then merge it, close it, or fix forward.
+
+Reverts:
+$release_note
+
+EOF
+  if [[ -n "$migrations" ]]; then
+    echo "> [!WARNING]"
+    echo "> This release added migrations. Reverting the files does **not** undo them in the database. Run \`heroku run rails db:rollback\` for each one (newest first) before or after merging:"
+    echo "$migrations" | sed 's/^/> - `/; s/$/`/'
+    echo
+  fi
+  if [[ -n "$report" && -f "$report" ]]; then
+    cat "$report"
+    echo
+  fi
+  cat <<EOF
+## Checklist
+- [ ] \`bundle exec rspec spec\` passes
+- [ ] Any new route sits above the \`get '*path'\` catch-all
+- [ ] Post visibility goes through \`Post.published\` / \`published?\`
+- [ ] AGENTS.md updated if behavior or architecture changed
+EOF
+} > "$body"
+
+if $dry_run; then
+  echo "--- dry run: would push $branch and open this draft PR ---"
+  echo "Title: Revert release v$version: $subject"
+  (cd "$worktree" && git log -1 --stat --format='%n%B' | cat)
+  echo "--- body ---"
+  cat "$body"
+  exit 0
+fi
+
+git -C "$worktree" push --quiet origin "HEAD:refs/heads/$branch"
+gh pr create --draft --base main --head "$branch" \
+  --title "Revert release v$version: $subject" --body-file "$body"

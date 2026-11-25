@@ -1,0 +1,333 @@
+#!/usr/bin/env ruby
+# Follows a Heroku deploy and reports whether it is healthy:
+# build -> release phase -> dynos -> HTTP checks -> recent error logs.
+#
+# Uses the Heroku Platform API directly (not the CLI), and never calls an
+# endpoint that returns config vars, so its output is safe for CI logs.
+#
+#   bin/deploy-check                       # newest build
+#   bin/deploy-check --sha 3ad11eb8        # the build of a specific commit
+#   bin/deploy-check --build <build id>    # a specific build (from a webhook)
+#   bin/deploy-check --release 127         # a release with no build: rollback, config change
+#   bin/deploy-check --report tmp/deploy-report.md
+#
+# Exit codes: 0 healthy, 1 unhealthy, 2 could not tell (no build, API error).
+# Auth: HEROKU_API_KEY, falling back to `heroku auth:token` locally.
+
+require "json"
+require "net/http"
+require "optparse"
+require "time"
+require "uri"
+
+options = {
+  app: ENV.fetch("HEROKU_APP", "hiimtaylorjones"),
+  url: ENV.fetch("SITE_URL", "https://hiimtaylorjones.com"),
+  sha: nil,
+  build: nil,
+  release: nil,
+  timeout: Integer(ENV.fetch("DEPLOY_CHECK_TIMEOUT", 1200)),
+  interval: 15,
+  report: nil
+}
+parser = OptionParser.new do |o|
+  o.on("--app NAME") { options[:app] = _1 }
+  o.on("--url URL") { options[:url] = _1.chomp("/") }
+  o.on("--sha SHA", "Commit to follow (default: newest build)") { options[:sha] = _1 }
+  o.on("--build ID", "Build to follow") { options[:build] = _1 }
+  o.on("--release VERSION", Integer, "Release to check, skipping the build") { options[:release] = _1 }
+  o.on("--timeout SECONDS", Integer) { options[:timeout] = _1 }
+  o.on("--interval SECONDS", Integer) { options[:interval] = _1 }
+  o.on("--report PATH", "Also write a Markdown report here") { options[:report] = _1 }
+end
+# A bad invocation says nothing about the deploy: exit 2, never 1 (unhealthy).
+begin
+  parser.parse!
+rescue OptionParser::ParseError => e
+  warn "? #{e.message}"
+  exit 2
+end
+
+PATHS = %w[/up / /blog /resume].freeze
+# Router errors (code=H10), runtime errors (Error R14), 5xx responses, and
+# exceptions Rails logs at FATAL. A bare "Error" is left out: it mostly
+# catches harmless lines such as RoutingError from bots probing paths.
+LOG_ERROR = /code=H\d\d|Error R\d\d|status=5\d\d|\bFATAL\b/
+
+# Raised by any step that finds the deploy unhealthy.
+class Unhealthy < StandardError
+  attr_reader :step, :detail
+  def initialize(step, message, detail = nil)
+    @step, @detail = step, detail
+    super(message)
+  end
+end
+
+# Raised when the check itself cannot run, so it cannot judge the deploy.
+class Inconclusive < StandardError; end
+
+# Minimal Heroku Platform API client.
+class HerokuAPI
+  def initialize(app)
+    @app = app
+    @token = ENV["HEROKU_API_KEY"].to_s.strip
+    @token = `heroku auth:token 2>/dev/null`.strip if @token.empty?
+    raise Inconclusive, "No Heroku token: set HEROKU_API_KEY or run `heroku login`." if @token.empty?
+  end
+
+  def get(path, range: nil)
+    request(Net::HTTP::Get, path, range: range)
+  end
+
+  def post(path, body)
+    request(Net::HTTP::Post, path, body: body)
+  end
+
+  # Fetches a plain-text stream URL the API handed us (release output, logs).
+  def fetch_text(url)
+    response = Net::HTTP.get_response(URI(url))
+    response.is_a?(Net::HTTPSuccess) ? response.body.to_s : ""
+  rescue StandardError
+    ""
+  end
+
+  private
+    def request(klass, path, range: nil, body: nil)
+      uri = URI("https://api.heroku.com/apps/#{@app}#{path}")
+      req = klass.new(uri)
+      req["Accept"] = "application/vnd.heroku+json; version=3"
+      req["Authorization"] = "Bearer #{@token}"
+      # Net::HTTP will not gunzip a ranged response, so ask for it uncompressed.
+      req["Accept-Encoding"] = "identity"
+      req["Range"] = range if range
+      if body
+        req["Content-Type"] = "application/json"
+        req.body = JSON.generate(body)
+      end
+      response = Net::HTTP.start(uri.host, uri.port, use_ssl: true) { _1.request(req) }
+      unless response.is_a?(Net::HTTPSuccess)
+        raise Inconclusive, "Heroku API #{klass::METHOD} #{path} returned #{response.code}"
+      end
+      JSON.parse(response.body)
+    end
+end
+
+# Runs each step in order, collecting a line per step for the report.
+class DeployCheck
+  attr_reader :lines, :facts
+
+  def initialize(api, options)
+    @api, @options = api, options
+    @lines = []
+    @facts = { app: options[:app] }
+    @deadline = Time.now + options[:timeout]
+  end
+
+  def run
+    release = @options[:release] ? wait_for_release_version(@options[:release]) : wait_for_release(wait_for_build)
+    find_previous_deploy(release)
+    wait_for_dynos(release)
+    check_paths
+    scan_logs(release)
+  end
+
+  private
+    def note(text)
+      @lines << text
+      warn text
+    end
+
+    # Polls until the block returns a value, or the shared deadline passes.
+    def poll(what)
+      loop do
+        result = yield
+        return result if result
+        raise Inconclusive, "Timed out waiting for #{what}." if Time.now > @deadline
+        sleep @options[:interval]
+      end
+    end
+
+    def wait_for_build
+      sha, id = @options[:sha], @options[:build]
+      what = id ? "build #{id}" : sha ? "a Heroku build of #{sha[0, 8]}" : "a Heroku build"
+      build = poll(what) do
+        match = if id
+          @api.get("/builds/#{id}")
+        else
+          builds = @api.get("/builds", range: "created_at ..; order=desc, max=20")
+          sha ? builds.find { _1.dig("source_blob", "version").to_s.start_with?(sha) } : builds.first
+        end
+        match if match && match["status"] != "pending"
+      end
+      @facts[:sha] = build.dig("source_blob", "version")
+      if build["status"] == "failed"
+        raise Unhealthy.new("build", "Heroku build failed for #{@facts[:sha][0, 8]}. Nothing went live.",
+                            @api.fetch_text(build["output_stream_url"].to_s).lines.last(40).join)
+      end
+      note "✓ build succeeded for #{@facts[:sha][0, 8]}"
+      build
+    end
+
+    def wait_for_release(build)
+      release_id = build.dig("release", "id")
+      release = poll("the release phase to finish") do
+        id = release_id || @api.get("/builds/#{build['id']}").dig("release", "id")
+        r = id && @api.get("/releases/#{id}")
+        r if r && r["status"] != "pending"
+      end
+      finish_release(release, "release phase ran db:migrate")
+    end
+
+    # A release with no build behind it, such as a rollback or config change.
+    # A code deploy checked this way still gets its commit, for the revert.
+    def wait_for_release_version(version)
+      release = poll("release v#{version} to finish") do
+        r = @api.get("/releases/#{version}")
+        r if r["status"] != "pending"
+      end
+      @facts[:sha] = release["description"][/\ADeploy (\h+)/, 1] if release["description"]
+      finish_release(release, release["description"])
+    end
+
+    def finish_release(release, detail)
+      @facts[:version] = release["version"]
+      @facts[:released_at] = release["created_at"]
+      if release["status"] == "failed"
+        output = @api.fetch_text(release["output_stream_url"].to_s)
+        raise Unhealthy.new("release", "Release phase failed for v#{release['version']}.",
+                            output.lines.last(40).join)
+      end
+      note "✓ release v#{release['version']} succeeded#{" (#{detail})" if detail}"
+      release
+    end
+
+    # The last successful code deploy before this one: the revert target.
+    def find_previous_deploy(release)
+      previous = @api.get("/releases", range: "version ..; order=desc, max=50").find do |r|
+        r["version"] < release["version"] && r["status"] == "succeeded" && r["description"].to_s.match?(/\ADeploy \h+/)
+      end
+      return unless previous
+
+      @facts[:previous_version] = previous["version"]
+      @facts[:previous_sha] = previous["description"][/\ADeploy (\h+)/, 1]
+    end
+
+    # Checks the dynos of whatever release is live now. When a newer release
+    # has already replaced this one, its dynos never run this version.
+    def wait_for_dynos(release)
+      version = release["version"]
+      current = @api.get("/releases", range: "version ..; order=desc, max=10").find { _1["current"] }
+      if current && current["version"] != version
+        note "  note: v#{version} was replaced by v#{current['version']}; checking that instead, with no revert"
+        version = current["version"]
+        # Any failure from here on belongs to the newer release, not this commit.
+        @facts.delete(:sha)
+      end
+      dynos = poll("web dynos to boot on v#{version}") do
+        web = @api.get("/dynos").select { _1["type"] == "web" }
+        crashed = web.find { _1["state"] == "crashed" }
+        raise Unhealthy.new("dynos", "#{crashed['name']} crashed on v#{crashed.dig('release', 'version')}.") if crashed
+
+        on_release = web.select { _1.dig("release", "version") == version }
+        web if web.any? && on_release.size == web.size && web.all? { _1["state"] == "up" }
+      end
+      note "✓ #{dynos.map { _1['name'] }.join(', ')} up on v#{version}"
+    end
+
+    # Each path gets a few tries, since a dyno can be "up" a moment before Puma serves.
+    def check_paths
+      PATHS.each do |path|
+        code = nil
+        3.times do |attempt|
+          sleep 5 if attempt.positive?
+          code = http_status("#{@options[:url]}#{path}")
+          break if code == 200
+        end
+        raise Unhealthy.new("http", "#{path} returned #{code}, expected 200.") unless code == 200
+      end
+      note "✓ #{PATHS.join(', ')} all returned 200"
+    end
+
+    def http_status(url)
+      uri = URI(url)
+      Net::HTTP.start(uri.host, uri.port, use_ssl: uri.scheme == "https", open_timeout: 10, read_timeout: 20) do |http|
+        http.request(Net::HTTP::Get.new(uri)).code.to_i
+      end
+    rescue StandardError => e
+      e.class.name
+    end
+
+    # Error lines logged since the release went out. Skipped, not failed, if
+    # the token cannot open a log session.
+    def scan_logs(release)
+      session = @api.post("/log-sessions", { lines: 1500 })
+      since = Time.parse(release["created_at"])
+      errors = @api.fetch_text(session["logplex_url"]).lines.select do |line|
+        stamp = (Time.parse(line[0, 32]) rescue nil)
+        stamp && stamp >= since && line.match?(LOG_ERROR)
+      end
+      raise Unhealthy.new("logs", "#{errors.size} error line(s) in the logs since v#{release['version']}.", errors.last(40).join) if errors.any?
+
+      note "✓ no router, runtime or app errors in the logs since the release"
+    rescue Inconclusive => e
+      note "- log scan skipped: #{e.message}"
+    end
+end
+
+def write_report(path, status, check, error = nil)
+  return unless path
+
+  facts = check.facts
+  heading = { healthy: "✅ Deploy healthy", unhealthy: "❌ Deploy unhealthy", inconclusive: "⚠️ Deploy check inconclusive" }[status]
+  out = +"### #{heading}\n\n"
+  out << "**App:** #{facts[:app]}"
+  out << " · **Release:** v#{facts[:version]}" if facts[:version]
+  out << " · **Commit:** `#{facts[:sha][0, 8]}`" if facts[:sha]
+  out << "\n\n"
+  out << check.lines.map { "- #{_1}\n" }.join
+  if error
+    out << "\n**Failed step:** #{error.respond_to?(:step) ? error.step : 'check'}: #{error.message}\n"
+    out << "\n<details><summary>Output</summary>\n\n```\n#{error.detail.strip}\n```\n</details>\n" if error.respond_to?(:detail) && error.detail.to_s.strip != ""
+  end
+  if status == :unhealthy && facts[:previous_version]
+    out << "\n**Fastest fix (seconds):** `heroku rollback v#{facts[:previous_version]} -a #{facts[:app]}` " \
+           "returns to `#{facts[:previous_sha]}`. It does not undo migrations.\n"
+  end
+  File.write(path, out)
+end
+
+# Hands results to a GitHub Actions workflow, when running in one.
+def write_outputs(status, check, error)
+  return unless ENV["GITHUB_OUTPUT"]
+
+  facts = check.facts
+  File.open(ENV["GITHUB_OUTPUT"], "a") do |f|
+    f.puts "status=#{status}"
+    f.puts "failed_step=#{error.step}" if error.respond_to?(:step)
+    %i[sha version previous_sha previous_version].each { f.puts "#{_1}=#{facts[_1]}" if facts[_1] }
+  end
+end
+
+check = nil
+begin
+  api = HerokuAPI.new(options[:app])
+  check = DeployCheck.new(api, options)
+  check.run
+  write_report(options[:report], :healthy, check)
+  write_outputs(:healthy, check, nil)
+  warn "Deploy healthy."
+  exit 0
+rescue Unhealthy => e
+  warn "✗ #{e.step}: #{e.message}"
+  warn e.detail if e.detail
+  write_report(options[:report], :unhealthy, check, e)
+  write_outputs(:unhealthy, check, e)
+  exit 1
+rescue Inconclusive, StandardError => e
+  # A crash in the checker says nothing about the deploy, so never report it as unhealthy.
+  warn "? #{e.class == Inconclusive ? e.message : "checker error: #{e.class}: #{e.message}"}"
+  check ||= DeployCheck.new(nil, options)
+  write_report(options[:report], :inconclusive, check, e)
+  write_outputs(:inconclusive, check, e)
+  exit 2
+end

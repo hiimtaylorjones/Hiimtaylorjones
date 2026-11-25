@@ -55,7 +55,7 @@ There is no tagging and no commenting. Tags were dropped in `db/migrate/20250130
 - Stimulus for JavaScript: `sidebar_controller.js` (hamburger menu toggle) and `markdown_preview_controller.js` (Write / Preview tabs on the post form)
 - No background jobs, cache store or Action Cable channels. The Solid Queue/Cache/Cable gems were removed as unused; `config/cable.yml` uses the `async` adapter so Turbo still boots. The `solid_cable_messages` table remains in the schema, unused.
 
-**Routes:** Root points to `basic_page#index`, which shows the most recent published post. Working routes: `resources :posts` (plus `POST /posts/preview`), `resources :collections`, `/admin`, `/resume`, `/blog` (alias for `posts#index`), and the `/up` health check. Undefined paths redirect to root with a flash notice via the `get '*path'` catch-all — **any new route must be declared above it**.
+**Routes:** Root points to `basic_page#index`, which shows the most recent published post. Working routes: `resources :posts` (plus `POST /posts/preview`), `resources :collections`, `/admin`, `/resume`, `/blog` (alias for `posts#index`), the `/up` health check, and `POST /webhooks/heroku` (see Deploys). Undefined paths redirect to root with a flash notice via the `get '*path'` catch-all — **any new route must be declared above it**.
 
 Legacy `pages` and `inquiries` tables remain in `db/schema.rb` with no model behind them. They are left in place on purpose; dropping them is a separate, irreversible decision.
 
@@ -106,6 +106,31 @@ Scopes: `Collection.active`, and `Collection.listable` for the index — active 
 
 `.github/workflows/ci.yml` runs on every push and pull request: Postgres 16 service container, Ruby (version read from `.ruby-version`) via `ruby/setup-ruby` with gem caching, then `rails db:schema:load`, `rails dartsass:build`, `rspec spec`. The CSS build step is required — some specs render views that call `stylesheet_link_tag`.
 
+## Deploys
+
+Heroku (app `hiimtaylorjones`) auto-deploys every push to `main`. The `release:` line in `Procfile` runs `rake db:migrate` on **every** deploy; with nothing pending it simply exits 0.
+
+Each deploy is checked automatically, driven by Heroku app webhooks:
+
+```
+Heroku webhook (api:build, api:release; sync level, retried on non-2xx)
+  → POST /webhooks/heroku        HerokuWebhooksController: verifies Heroku-Webhook-Hmac-SHA256
+  → HerokuWebhookEvent           decides whether the event matters
+  → GithubDispatch               repository_dispatch heroku-build / heroku-release
+  → .github/workflows/deploy-check.yml
+  → bin/deploy-check, then bin/deploy-revert-pr if unhealthy
+```
+
+- **Builds are the trigger for code deploys**, on purpose: a build finishes before Heroku restarts the dynos, so the old, healthy code receives the webhook even when the new code is about to crash. Keying on release events instead would put the receiver on the code being checked.
+- **Releases are used only when no build is behind them** (rollbacks, config var and add-on changes). `HerokuWebhookEvent` skips `Deploy <sha>` releases, since their build already dispatched.
+- `bin/deploy-check` (`--build ID`, `--release VERSION`, or `--sha`) walks the deploy through build → release phase → web dynos → `/up`, `/`, `/blog`, `/resume` → error logs since the release. Exit `0` healthy, `1` unhealthy, `2` inconclusive (including any checker crash or bad option, so a broken checker never triggers a revert). It uses the Heroku Platform API and never an endpoint that returns config vars. If the release was already replaced, it checks the live one and drops the revert target.
+- `bin/deploy-revert-pr` opens a **draft** PR reverting the release's commits (previous good deploy → bad one), with the report, the `heroku rollback` command, and a warning naming any migrations a revert cannot undo. Only code deploys get one. Nothing is rolled back or merged automatically.
+- `repository_dispatch` runs the workflow file on `main`, so workflow changes only take effect once merged. Revert PRs opened by the workflow's `GITHUB_TOKEN` do not trigger CI; push to the branch or re-run CI by hand.
+
+Secrets: `HEROKU_WEBHOOK_SECRET` and `GITHUB_DISPATCH_TOKEN` (fine-grained, this repo, Contents read & write — the minimum for dispatches) are Heroku config vars; `HEROKU_API_KEY` (read scope) is a GitHub repo secret. Without the webhook secret the endpoint answers 503 to everything.
+
+For in-session use, the `heroku-deploy-watch` skill in `.claude/skills/` covers the same steps. Never run `heroku config` or `heroku releases:info` in logs or transcripts: both print every config var.
+
 ## Testing
 
 RSpec with FactoryBot factories in `spec/factories/`. Devise test helpers are configured for `:controller` and `:view` types in `rails_helper.rb`. Test coverage: models, controllers, requests, helpers.
@@ -122,7 +147,7 @@ A `.reek` config exists at the project root (it disables `IrresponsibleModule` f
 
 ## Environment Variables (Production)
 
-`AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY` (S3 storage), `DB_USERNAME`, `DB_PASSWORD`, `SECRET_TEST_PASSWORD`.
+`AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY` (S3 storage), `DB_USERNAME`, `DB_PASSWORD`, `SECRET_TEST_PASSWORD`, `HEROKU_WEBHOOK_SECRET`, `GITHUB_DISPATCH_TOKEN`.
 
 ## Pull Request Creation
 

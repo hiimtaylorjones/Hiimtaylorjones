@@ -1,0 +1,89 @@
+name: Deploy check
+
+# Started by Heroku app webhooks, relayed through this app's
+# POST /webhooks/heroku (HerokuWebhooksController) as repository_dispatch:
+#   heroku-build    a build finished (every code deploy)
+#   heroku-release  a release with no build finished (rollback, config change)
+# bin/deploy-check follows it; if it is unhealthy and names a commit that is
+# still live, bin/deploy-revert-pr opens a draft revert PR. Nothing here rolls
+# back or merges anything.
+on:
+  repository_dispatch:
+    types: [heroku-build, heroku-release]
+  workflow_dispatch:
+    inputs:
+      sha:
+        description: Commit whose build to check
+        required: false
+      release:
+        description: Release version to check instead (e.g. 127)
+        required: false
+
+run-name: >-
+  Deploy check: ${{ github.event.client_payload.sha && format('build of {0}', github.event.client_payload.sha)
+  || github.event.client_payload.description
+  || inputs.sha || (inputs.release && format('v{0}', inputs.release)) || 'newest build' }}
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          # The revert needs history back to the previous release.
+          fetch-depth: 0
+
+      # The scripts use only the standard library, so no bundle install.
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: .ruby-version
+
+      - name: Follow the deploy
+        id: check
+        continue-on-error: true
+        env:
+          HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+          BUILD_ID: ${{ github.event.client_payload.build_id }}
+          RELEASE: ${{ github.event.client_payload.version || inputs.release }}
+          SHA: ${{ inputs.sha }}
+        run: |
+          if [ -n "$BUILD_ID" ]; then target=(--build "$BUILD_ID")
+          elif [ -n "$RELEASE" ]; then target=(--release "$RELEASE")
+          elif [ -n "$SHA" ]; then target=(--sha "$SHA")
+          else target=()
+          fi
+          bin/deploy-check "${target[@]}" --report deploy-report.md
+
+      - name: Write the job summary
+        if: always()
+        run: cat deploy-report.md >> "$GITHUB_STEP_SUMMARY" 2>/dev/null || true
+
+      # Only code deploys get a revert. Rollbacks and config changes have no
+      # commit to revert, so their report carries the rollback hint alone.
+      - name: Open a draft revert PR
+        if: >-
+          steps.check.outputs.status == 'unhealthy'
+          && steps.check.outputs.sha != ''
+          && steps.check.outputs.previous_sha != ''
+        env:
+          GH_TOKEN: ${{ github.token }}
+          BAD: ${{ steps.check.outputs.sha }}
+          PREVIOUS: ${{ steps.check.outputs.previous_sha }}
+          VERSION: ${{ steps.check.outputs.version }}
+        run: |
+          # Commit as the Actions bot, looking its noreply address up from GitHub.
+          git config user.name "github-actions[bot]"
+          git config user.email "$(gh api '/users/github-actions%5Bbot%5D' --jq '"\(.id)+\(.login)@users.noreply.github.com"')"
+          bin/deploy-revert-pr --bad "$BAD" --previous "$PREVIOUS" --version "$VERSION" --report deploy-report.md
+
+      # Unhealthy or inconclusive turns the run red.
+      - name: Fail if the deploy was not healthy
+        if: steps.check.outcome == 'failure'
+        run: |
+          echo "Deploy check status: ${{ steps.check.outputs.status || 'error' }}"
+          exit 1
