@@ -5,22 +5,36 @@ description: Check whether a Heroku deploy of this site is healthy (build, relea
 
 # Watching a Heroku deploy
 
-Heroku auto-deploys every push to `main` of the `hiimtaylorjones` app. The
-`Deploy check` GitHub workflow (`.github/workflows/deploy-check.yml`) already
-runs `bin/deploy-check` after each push and opens a draft revert PR when a
-release is unhealthy. This skill is for doing the same by hand in a session.
+Heroku auto-deploys every push to `main` of the `hiimtaylorjones` app. Heroku
+app webhooks reach this app's `POST /webhooks/heroku`, which starts the
+`Deploy check` GitHub workflow for every finished build, rollback and config
+change. That workflow runs `bin/deploy-check` and opens a draft revert PR when
+a code deploy is unhealthy. AGENTS.md ("Deploys") has the full chain.
 
 ## Check
 
-1. Find the commit: the merge commit on `origin/main` (`git fetch && git log -1 origin/main`).
-2. Run `bin/deploy-check --sha <sha> --report tmp/deploy-report.md` in the
-   background. It waits up to 20 minutes for Heroku to build and release.
+1. **Look for the workflow run first**; it has usually already happened:
+   `gh run list --workflow "Deploy check" -L 5`, then `gh run view <id> --log`.
+   Its job summary is the report.
+2. No run, or it should be re-checked? Run it locally in the background:
+   - a code deploy: `bin/deploy-check --sha <merge commit> --report tmp/deploy-report.md`
+     (find the commit with `git fetch && git log -1 origin/main`)
+   - a rollback or config change: `bin/deploy-check --release <version> --report tmp/deploy-report.md`
 3. Read the exit code: `0` healthy, `1` unhealthy, `2` inconclusive (no build
-   for that commit, API error, or the checker itself crashed). Inconclusive is
-   not a verdict on the deploy, so never prepare a revert for it.
+   found, API error, or the checker itself failed). Inconclusive is not a
+   verdict on the deploy, so never prepare a revert for it.
 
-If the workflow already ran, read its job summary instead of re-running:
-`gh run list --workflow "Deploy check" -L 5`, then `gh run view <id> --log`.
+## When no workflow run appeared
+
+The relay is broken somewhere. Check in order:
+
+- `heroku webhooks -a hiimtaylorjones` lists the subscription, and
+  `heroku webhooks:deliveries -a hiimtaylorjones` shows recent attempts. A 401
+  means the signing secret does not match `HEROKU_WEBHOOK_SECRET`; 503 means
+  that config var is missing; 502 means GitHub refused the dispatch (look for
+  "Heroku webhook not forwarded to GitHub" in `heroku logs`, usually an
+  expired or under-scoped `GITHUB_DISPATCH_TOKEN`).
+- Remember `repository_dispatch` only runs the workflow as it exists on `main`.
 
 ## When it is unhealthy
 
@@ -38,6 +52,10 @@ Then give the user both ways out, and let them choose:
 - **On main:** a draft revert PR. If the workflow did not open one, run
   `bin/deploy-revert-pr --bad <sha> --previous <previous_sha> --version <v> --report tmp/deploy-report.md`
   (try `--dry-run` first).
+
+A bad rollback or config change has no commit to revert, so no revert PR is
+opened. The way out there is the reverse change (roll forward, or restore the
+config var), which is the user's call.
 
 ## Rules
 

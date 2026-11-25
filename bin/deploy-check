@@ -1,12 +1,14 @@
 #!/usr/bin/env ruby
-# Follows one commit through a Heroku deploy and reports whether it is healthy:
+# Follows a Heroku deploy and reports whether it is healthy:
 # build -> release phase -> dynos -> HTTP checks -> recent error logs.
 #
 # Uses the Heroku Platform API directly (not the CLI), and never calls an
 # endpoint that returns config vars, so its output is safe for CI logs.
 #
 #   bin/deploy-check                       # newest build
-#   bin/deploy-check --sha 3ad11eb8        # a specific commit
+#   bin/deploy-check --sha 3ad11eb8        # the build of a specific commit
+#   bin/deploy-check --build <build id>    # a specific build (from a webhook)
+#   bin/deploy-check --release 127         # a release with no build: rollback, config change
 #   bin/deploy-check --report tmp/deploy-report.md
 #
 # Exit codes: 0 healthy, 1 unhealthy, 2 could not tell (no build, API error).
@@ -22,18 +24,29 @@ options = {
   app: ENV.fetch("HEROKU_APP", "hiimtaylorjones"),
   url: ENV.fetch("SITE_URL", "https://hiimtaylorjones.com"),
   sha: nil,
+  build: nil,
+  release: nil,
   timeout: Integer(ENV.fetch("DEPLOY_CHECK_TIMEOUT", 1200)),
   interval: 15,
   report: nil
 }
-OptionParser.new do |o|
+parser = OptionParser.new do |o|
   o.on("--app NAME") { options[:app] = _1 }
   o.on("--url URL") { options[:url] = _1.chomp("/") }
   o.on("--sha SHA", "Commit to follow (default: newest build)") { options[:sha] = _1 }
+  o.on("--build ID", "Build to follow") { options[:build] = _1 }
+  o.on("--release VERSION", Integer, "Release to check, skipping the build") { options[:release] = _1 }
   o.on("--timeout SECONDS", Integer) { options[:timeout] = _1 }
   o.on("--interval SECONDS", Integer) { options[:interval] = _1 }
   o.on("--report PATH", "Also write a Markdown report here") { options[:report] = _1 }
-end.parse!
+end
+# A bad invocation says nothing about the deploy: exit 2, never 1 (unhealthy).
+begin
+  parser.parse!
+rescue OptionParser::ParseError => e
+  warn "? #{e.message}"
+  exit 2
+end
 
 PATHS = %w[/up / /blog /resume].freeze
 # Router errors (code=H10), runtime errors (Error R14), 5xx responses, and
@@ -111,8 +124,7 @@ class DeployCheck
   end
 
   def run
-    build = wait_for_build
-    release = wait_for_release(build)
+    release = @options[:release] ? wait_for_release_version(@options[:release]) : wait_for_release(wait_for_build)
     find_previous_deploy(release)
     wait_for_dynos(release)
     check_paths
@@ -136,10 +148,15 @@ class DeployCheck
     end
 
     def wait_for_build
-      sha = @options[:sha]
-      build = poll(sha ? "a Heroku build of #{sha[0, 8]}" : "a Heroku build") do
-        builds = @api.get("/builds", range: "created_at ..; order=desc, max=20")
-        match = sha ? builds.find { _1.dig("source_blob", "version").to_s.start_with?(sha) } : builds.first
+      sha, id = @options[:sha], @options[:build]
+      what = id ? "build #{id}" : sha ? "a Heroku build of #{sha[0, 8]}" : "a Heroku build"
+      build = poll(what) do
+        match = if id
+          @api.get("/builds/#{id}")
+        else
+          builds = @api.get("/builds", range: "created_at ..; order=desc, max=20")
+          sha ? builds.find { _1.dig("source_blob", "version").to_s.start_with?(sha) } : builds.first
+        end
         match if match && match["status"] != "pending"
       end
       @facts[:sha] = build.dig("source_blob", "version")
@@ -158,15 +175,29 @@ class DeployCheck
         r = id && @api.get("/releases/#{id}")
         r if r && r["status"] != "pending"
       end
+      finish_release(release, "release phase ran db:migrate")
+    end
+
+    # A release with no build behind it, such as a rollback or config change.
+    # A code deploy checked this way still gets its commit, for the revert.
+    def wait_for_release_version(version)
+      release = poll("release v#{version} to finish") do
+        r = @api.get("/releases/#{version}")
+        r if r["status"] != "pending"
+      end
+      @facts[:sha] = release["description"][/\ADeploy (\h+)/, 1] if release["description"]
+      finish_release(release, release["description"])
+    end
+
+    def finish_release(release, detail)
       @facts[:version] = release["version"]
       @facts[:released_at] = release["created_at"]
       if release["status"] == "failed"
         output = @api.fetch_text(release["output_stream_url"].to_s)
-        raise Unhealthy.new("release", "Release phase (db:migrate) failed for v#{release['version']}.",
+        raise Unhealthy.new("release", "Release phase failed for v#{release['version']}.",
                             output.lines.last(40).join)
       end
-      note "✓ release v#{release['version']} succeeded (release phase ran db:migrate)"
-      note "  note: v#{release['version']} is no longer current; a newer release replaced it" unless release["current"]
+      note "✓ release v#{release['version']} succeeded#{" (#{detail})" if detail}"
       release
     end
 
@@ -181,8 +212,17 @@ class DeployCheck
       @facts[:previous_sha] = previous["description"][/\ADeploy (\h+)/, 1]
     end
 
+    # Checks the dynos of whatever release is live now. When a newer release
+    # has already replaced this one, its dynos never run this version.
     def wait_for_dynos(release)
       version = release["version"]
+      current = @api.get("/releases", range: "version ..; order=desc, max=10").find { _1["current"] }
+      if current && current["version"] != version
+        note "  note: v#{version} was replaced by v#{current['version']}; checking that instead, with no revert"
+        version = current["version"]
+        # Any failure from here on belongs to the newer release, not this commit.
+        @facts.delete(:sha)
+      end
       dynos = poll("web dynos to boot on v#{version}") do
         web = @api.get("/dynos").select { _1["type"] == "web" }
         crashed = web.find { _1["state"] == "crashed" }
