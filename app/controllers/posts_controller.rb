@@ -35,7 +35,7 @@ class PostsController < ApplicationController
 			1
 		end
 
-		@posts = Post.published.order('created_at DESC').paginate(:page => @page, :per_page => 10)
+		@posts = Post.published.order(created_at: :desc).paginate(page: @page, per_page: 10)
 		# will_paginate knows the page count, so let it say where the end is.
 		@at_last_page = @posts.next_page.nil?
 	end
