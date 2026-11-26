@@ -9,9 +9,9 @@ Rails.application.routes.draw do
 
   root 'basic_page#index'
   
-  match '/admin',           to: 'basic_page#admin',   via: 'get'
-  match '/resume',          to: 'basic_page#resume',  via: 'get'
-  match '/blog',            to: 'posts#index',        via: 'get'
+  get '/admin',           to: 'basic_page#admin'
+  get '/resume',          to: 'basic_page#resume'
+  get '/blog',            to: 'posts#index'
 
   # Must sit above the catch-all below, or it is never reached.
   get "up" => "rails/health#show", as: :rails_health_check

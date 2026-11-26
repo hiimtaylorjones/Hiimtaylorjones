@@ -2,14 +2,14 @@ class BasicPageController < ApplicationController
 
   def index
     @posts = Post.published
-    @posts = @posts.order('created_at DESC').paginate(:page => params[:page], :per_page => 1)
+    @posts = @posts.order(created_at: :desc).paginate(page: params[:page], per_page: 1)
   end
 
   def admin
     authenticate_admin!
     @admins = Admin.all
-    @posts = Post.includes(:collection).paginate(page: params[:page], per_page: 10).order('created_at DESC')
-    @collections = Collection.order('created_at DESC')
+    @posts = Post.includes(:collection).paginate(page: params[:page], per_page: 10).order(created_at: :desc)
+    @collections = Collection.order(created_at: :desc)
   end
 
   def resume
