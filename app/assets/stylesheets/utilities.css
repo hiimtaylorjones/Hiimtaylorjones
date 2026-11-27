@@ -6,8 +6,8 @@
   margin-top: 24px;
 }
 
-// Trailing button row at the end of a page (e.g. "More Posts").
-// Separates it from the content above and keeps it off the page bottom.
+/* Trailing button row at the end of a page (e.g. "More Posts").
+   Separates it from the content above and keeps it off the page bottom. */
 .bottom-nav {
   margin-top: 32px;
   margin-bottom: 48px;
