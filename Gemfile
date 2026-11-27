@@ -29,15 +29,8 @@ gem "turbo-rails"
 # Hotwire's modest JavaScript framework [https://stimulus.hotwired.dev]
 gem "stimulus-rails"
 
-# Use the database-backed adapters for Rails.cache, Active Job, and Action Cable
-gem "solid_cache"
-gem "solid_queue"
-gem "solid_cable"
-
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", require: false
-# Add HTTP asset caching/compression and X-Sendfile acceleration to Puma [https://github.com/basecamp/thruster/]
-gem "thruster", require: false
 
 # Testing assets
 group :development, :test do
@@ -45,10 +38,6 @@ group :development, :test do
 	gem 'rails-controller-testing'
   gem 'factory_bot_rails'
 	gem 'faker'
-	gem 'pry'
-	gem 'dotenv-rails'
 end
 
 gem "letter_opener", :group => :development
-
-gem "dartsass-rails", "~> 0.5.1"

@@ -20,7 +20,7 @@ Should be short and somewhat verbose. Emphasis on human readable content that br
 # Install dependencies
 bundle install
 
-# Start development server (Puma + Dartsass CSS watcher via Heroku CLI)
+# Start development server (Puma via Heroku CLI)
 heroku local -f Procfile.dev
 
 # Run all tests
@@ -51,9 +51,9 @@ There is no tagging and no commenting. Tags were dropped in `db/migrate/20250130
 - Commonmarker for Markdown rendering — two places: `ApplicationHelper#markdown` for post bodies in ERB, and `Handlers::MarkdownHandler` registered as a template handler for `.html.md` view files
 - Admin auth is the Rails 8 authentication generator's pattern, hand-adapted in `app/controllers/concerns/authentication.rb`: a signed `admin_session_id` cookie, `Current.admin_session`, and Devise-compatible helper names (`authenticate_admin!`, `admin_signed_in?`, `current_admin`). Login is `GET/POST /login`, logout `DELETE /logout`, rate-limited to 10 attempts per 3 minutes. There is no password reset or remember-me; reset a password from the console.
 - Will Paginate for pagination
-- Propshaft asset pipeline with Dartsass for SCSS compilation
+- Propshaft asset pipeline serving plain CSS (native nesting, custom properties, `color-mix`). No Sass and no CSS build step.
 - Stimulus for JavaScript: `sidebar_controller.js` (hamburger menu toggle) and `markdown_preview_controller.js` (Write / Preview tabs on the post form)
-- Solid Queue/Cache/Cable (Rails 8 defaults)
+- No background jobs, cache store or Action Cable channels. The Solid Queue/Cache/Cable gems were removed as unused; `config/cable.yml` uses the `async` adapter so Turbo still boots. The `solid_cable_messages` table remains in the schema, unused.
 
 **Routes:** Root points to `basic_page#index`, which shows the most recent published post. Working routes: `resources :posts` (plus `POST /posts/preview`), `resources :collections`, `/admin`, `/resume`, `/blog` (alias for `posts#index`), and the `/up` health check. Undefined paths redirect to root with a flash notice via the `get '*path'` catch-all — **any new route must be declared above it**.
 
@@ -65,7 +65,7 @@ Legacy `pages` and `inquiries` tables remain in `db/schema.rb` with no model beh
 
 **Views:** The v2 layout (`app/views/layouts/v2/_layout.html.erb`) wraps all pages. It includes a header with a hamburger menu that opens a Stimulus-controlled sidebar. The `@content_class` instance variable can be set in controllers to add a CSS class to the content column (used by `resume` action).
 
-**Assets:** `application.scss` is the only SCSS entry point and the only file the layout links. It `@use`s `v2` and `navigation` (which are not underscore-prefixed but are consumed as partials, not built separately) plus `_buttons`, `_forms`, `_resume`, `_tables`, `_utilities`, `_variables`. There is no dartsass initializer, so `dartsass:build` compiles `application.scss` alone. JavaScript via ImportMap.
+**Assets:** Plain CSS in `app/assets/stylesheets/`, one file per area: `variables` (design tokens as `:root` custom properties, including the precomputed `--color-*-dark` hover shades), `v2` (base), `navigation`, `tables`, `buttons`, `forms`, `utilities`, `resume`. The layout links them explicitly in that order with one `stylesheet_link_tag`. Order matters, so a new stylesheet must be added to that list. Use `/* */` comments (`//` is not CSS), and do not put declarations after nested rules. JavaScript via ImportMap.
 
 Collections views reuse the existing `table`, `primary-button`, `warning-button`, `danger-button` and `content-divider` classes; their own wrapper classes (`collections-index`, `collection-summary`, `post-summary`, `admin-collections-index`) are currently unstyled and inherit the content column.
 
@@ -104,7 +104,7 @@ Scopes: `Collection.active`, and `Collection.listable` for the index — active 
 
 ## CI
 
-`.github/workflows/ci.yml` runs on every push and pull request: Postgres 16 service container, Ruby (version read from `.ruby-version`) via `ruby/setup-ruby` with gem caching, then `rails db:schema:load`, `rails dartsass:build`, `rspec spec`. The CSS build step is required — some specs render views that call `stylesheet_link_tag`.
+`.github/workflows/ci.yml` runs on every push and pull request: Postgres 16 service container, Ruby (version read from `.ruby-version`) via `ruby/setup-ruby` with gem caching, then `rails db:schema:load` and `rspec spec`.
 
 ## Testing
 

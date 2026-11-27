@@ -1,8 +1,9 @@
+# No channels exist yet; Turbo only needs a working adapter to boot.
 development:
-  adapter: solid_cable
+  adapter: async
 
 test:
   adapter: test
 
 production:
-  adapter: solid_cable
+  adapter: async

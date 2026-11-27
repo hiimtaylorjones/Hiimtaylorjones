@@ -14,7 +14,8 @@
     <meta name="mobile-web-app-capable" content="yes">
 
     <%= csrf_meta_tags %>
-    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%# Order matters: tokens first, then base styles, then components. %>
+    <%= stylesheet_link_tag "variables", "v2", "navigation", "tables", "buttons", "forms", "utilities", "resume", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
 
   </head>
