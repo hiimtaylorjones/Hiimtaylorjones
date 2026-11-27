@@ -10,8 +10,8 @@ gem 'puma', "~> 8.0", ">= 8.0.2"
 # AWS Assets
 gem 'aws-sdk-s3', '~> 1', '>= 1.208.0'
 
-# Authentication and Roles
-gem 'devise', '~> 5.0', '>= 5.0.4'
+# Admin passwords (has_secure_password)
+gem "bcrypt", "~> 3.1"
 
 # UI Frameworks and Gems
 gem 'will_paginate', '~> 4.0', '>= 4.0.1'

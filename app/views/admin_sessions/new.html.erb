@@ -1,0 +1,19 @@
+<div class="login-card">
+  <h2 class="login-title">Log In</h2>
+
+  <%= form_with url: admin_session_path, data: { turbo: false } do |f| %>
+    <div class="form-group">
+      <%= f.label :email %>
+      <%= f.email_field :email, autofocus: true, autocomplete: "username", class: "form-input" %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :password %>
+      <%= f.password_field :password, autocomplete: "current-password", class: "form-input" %>
+    </div>
+
+    <div class="form-actions">
+      <%= f.submit "Log in", class: "button" %>
+    </div>
+  <% end %>
+</div>
