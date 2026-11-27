@@ -40,4 +40,4 @@ group :development, :test do
 	gem 'faker'
 end
 
-gem "dartsass-rails", "~> 0.5.1"
+gem "letter_opener", :group => :development

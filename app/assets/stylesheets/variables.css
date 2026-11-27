@@ -1,0 +1,24 @@
+/* Design tokens, shared by every stylesheet. Loaded first by the layout. */
+:root {
+  /* Colors (Evergreen scheme) */
+  --color-primary: #2f5d50;
+  --color-white: #fff;
+  --color-text: #1d2421;
+  --color-bg: #eef3f0;
+  --color-link: #9a5420;
+  --color-admin: #6b4c9a;
+  --color-warning: #e6a817;
+  --color-danger: #c0392b;
+
+  /* Button hover shades: each base colour with 10% less lightness, as Sass's
+     color.adjust used to compute. */
+  --color-primary-dark: #1e3b33;
+  --color-warning-dark: #b88612;
+  --color-danger-dark: #962d22;
+
+  /* Borders */
+  --border-standard: 2px solid var(--color-text);
+
+  /* Typography */
+  --font-family-base: "Roboto Condensed", sans-serif;
+}
