@@ -1,6 +1,5 @@
-class Collection < ApplicationRecord
-	extend FriendlyId
-  friendly_id :title, use: :slugged
+class Collection < ActiveRecord::Base
+	include Sluggable
 
 	# Prevents deleting posts in an `collection.destroy!` operation`
 	has_many :posts, dependent: :nullify

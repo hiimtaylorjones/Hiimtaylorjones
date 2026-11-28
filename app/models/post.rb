@@ -1,8 +1,7 @@
 # A post written by an admin for usage on the site
 
-class Post < ApplicationRecord
-	extend FriendlyId
-  friendly_id :title, use: :slugged
+class Post < ActiveRecord::Base
+	include Sluggable
 
 	has_one_attached :banner_image
 

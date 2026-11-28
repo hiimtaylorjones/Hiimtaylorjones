@@ -12,7 +12,7 @@ describe Collection do
 	it "generates a friendly slug from the title" do
 		collection = FactoryBot.create(:collection, title: "Learning Rust")
 		expect(collection.slug).to eq("learning-rust")
-		expect(Collection.friendly.find("learning-rust")).to eq(collection)
+		expect(Collection.find_by_slug_or_id!("learning-rust")).to eq(collection)
 	end
 
 	it "defaults to inactive" do

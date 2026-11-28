@@ -47,7 +47,7 @@ bundle exec rails console
 There is no tagging and no commenting. Tags were dropped in `db/migrate/20250130184410_remove_tags_and_taggings.rb`; the `Comment`/`Response` models and their tables were removed in `db/migrate/20261010132014_drop_comments_and_responses.rb`.
 
 **Key Libraries:**
-- FriendlyId for slug-based URLs on Posts and Collections (`Post.friendly.find(params[:id])`). Both use `:slugged` without overriding `should_generate_new_friendly_id?`, so renaming a record keeps its original slug.
+- Slug URLs on Posts and Collections come from the `Sluggable` concern (`app/models/concerns/sluggable.rb`), which replaced FriendlyId. The slug is built from the title once and kept on rename, so links survive. Duplicate titles get a UUID suffix, route-clashing words (`new`, `edit`, `admin`, …) are rejected, and `to_param` returns the slug. Look records up with `Post.find_by_slug_or_id!(params[:id])`, which falls back to the numeric id for old links. The `friendly_id_slugs` table is unused and left in place.
 - Commonmarker for Markdown rendering — two places: `ApplicationHelper#markdown` for post bodies in ERB, and `Handlers::MarkdownHandler` registered as a template handler for `.html.md` view files
 - Admin auth is the Rails 8 authentication generator's pattern, hand-adapted in `app/controllers/concerns/authentication.rb`: a signed `admin_session_id` cookie, `Current.admin_session`, and Devise-compatible helper names (`authenticate_admin!`, `admin_signed_in?`, `current_admin`). Login is `GET/POST /login`, logout `DELETE /logout`, rate-limited to 10 attempts per 3 minutes. There is no password reset or remember-me; reset a password from the console.
 - Will Paginate for pagination
@@ -57,7 +57,7 @@ There is no tagging and no commenting. Tags were dropped in `db/migrate/20250130
 
 **Routes:** Root points to `basic_page#index`, which shows the most recent published post. Working routes: `resources :posts` (plus `POST /posts/preview`), `resources :collections`, `/admin`, `/resume`, `/blog` (alias for `posts#index`), and the `/up` health check. Undefined paths redirect to root with a flash notice via the `get '*path'` catch-all — **any new route must be declared above it**.
 
-Legacy `pages` and `inquiries` tables remain in `db/schema.rb` with no model behind them. They are left in place on purpose; dropping them is a separate, irreversible decision.
+Legacy `pages`, `inquiries` and `friendly_id_slugs` tables remain in `db/schema.rb` with no model behind them. They are left in place on purpose; dropping them is a separate, irreversible decision.
 
 **Content pages:** The resume (`app/views/basic_page/resume.html.md`) is a plain Markdown file rendered via the custom `MarkdownHandler`. Editing it directly updates the page content — no controller logic involved.
 
