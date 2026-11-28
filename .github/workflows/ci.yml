@@ -41,8 +41,5 @@ jobs:
       - name: Set up database
         run: bundle exec rails db:schema:load
 
-      - name: Build CSS
-        run: bundle exec rails dartsass:build
-
       - name: Run tests
         run: bundle exec rspec spec

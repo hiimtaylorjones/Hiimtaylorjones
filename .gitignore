@@ -20,9 +20,6 @@
 
 /config/aws_cred.yml
 
-/app/assets/builds/*
-!/app/assets/builds/.keep
-
 # Active Storage local disk service (used by the test environment).
 /storage/*
 !/storage/.keep
